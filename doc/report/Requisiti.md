@@ -42,6 +42,8 @@ Superata una determinata soglia di infezione, l'umanità inizia la ricerca di un
 
 - L'utente ha la possibilità di aprire un menu per l'acquisto dei potenziamenti del virus tramite i "Punti Evoluzione" collezionati. 
 
+- L'utente può visualizzare l'avanzamento dei giorni dell'anno durante l'evoluzione della partita.
+
 ### 2.3.1 Sistema
 
 #### Gestione stati
@@ -69,6 +71,8 @@ Superata una determinata soglia di infezione, l'umanità inizia la ricerca di un
 
 - Il virus può inoltre infettare uno stato non direttamente confinante con la stessa dinamica descritta precedentemente, purchè esista una tratta che collega i due stati (via porto/aeroporto) e che sia stato sbloccato il potenziamento corrispondente.
 
+- I calcoli sopra descritti vengono eseguiti periodicamente per mantenere aggiornato lo stato di gioco.
+
 - Il virus possiede le seguenti caratteristiche: 
   - Diffusione negli stati freddi
   - Diffusione negli stati caldi
@@ -82,21 +86,30 @@ Superata una determinata soglia di infezione, l'umanità inizia la ricerca di un
 
 #### Gestione potenziamenti
 
-  - I potenziamenti acquistabili tramite "Punti Evoluzione" agiscono sulle caratteristiche del virus elencate precedentemente migliorandole.
-  
-  - I potenziamenti sono organizzati in una gerarchia, alcuni sono acquistabili solamente dopo aver già acquisito quelli soprastanti.
-  
-  - Di seguito si elencano i potenziamenti disponibili:
-    - Resistenza al freddo I e II
-    - Resistenza al caldo I e II
-    - Resistenza batterica (contro tutti i climi)
-    - Abilitazione aeroporti
-    - Abilitazione porti
-    - Infezione attraverso animali (poco popolate)
-    - Infezione delle vie respiratorie (molto popolate)
-    - Resistenza ai medicinali (zone ricche)
-    - Infezione dell'acqua potabile (zone povere)
-    - Mutazioni spontanee (vaccino)
+- I potenziamenti acquistabili tramite "Punti Evoluzione" agiscono sulle caratteristiche del virus elencate precedentemente migliorandole.
+
+- I potenziamenti sono organizzati in una gerarchia, alcuni sono acquistabili solamente dopo aver già acquisito quelli soprastanti.
+
+- Di seguito si elencano i potenziamenti disponibili:
+  - Resistenza al freddo I e II
+  - Resistenza al caldo I e II
+  - Resistenza batterica (contro tutti i climi)
+  - Abilitazione aeroporti
+  - Abilitazione porti
+  - Infezione attraverso animali (poco popolate)
+  - Infezione delle vie respiratorie (molto popolate)
+  - Resistenza ai medicinali (zone ricche)
+  - Infezione dell'acqua potabile (zone povere)
+  - Mutazioni spontanee (vaccino)
+
+
+#### Sviluppo del vaccino
+
+- Lo sviluppo del vaccino ha inizio quando viene raggiunto una determinata soglia di persone infette, rispetto alla popolazione globale.
+
+- La ricerca del vaccino procede in modo costante ma può essere rallentata acquistando potenziamenti del virus.
+
+- Se la ricerca del vaccino termina prima che l'intera popolazione sia infettata, la partita viene considerata persa.
 
 
   
