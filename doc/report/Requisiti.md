@@ -28,7 +28,41 @@ Superata una determinata soglia di infezione, l'umanità inizia la ricerca di un
 
 ### 2.3.1 Utente
 
+- Ad inizio partita l'utente deve inserire il nome del virus e selezionare uno stato da cui far partire l'infezione.
+
+- L'utente visualizza una mappa del mondo in cui sono rappresentati gli stati e per ogni stato è indicato se possiede un porto e/o un aeroporto.
+
+- L'utente può raccogliere "Punti Evoluzione" che vengono generati casualmente negli stati della mappa.
+
+- L'utente può selezionare uno stato per visualizzarne le informazioni di dettaglio come: caratteristiche, numero di infetti e popolazione totale.
+
+- L'utente visualizza un pannello che riporta l'elenco di tutti gli stati e per ognuno il numero di infetti.
+
+- Può essere visualizzato lo stato di avanzamento della ricerca del vaccino.
+
+- L'utente ha la possibilità di aprire un menu per l'acquisto dei potenziamenti del virus tramite i "Punti Evoluzione" collezionati. 
+
 ### 2.3.1 Sistema
+
+#### Gestione stati
+
+- Ogni stato possiede una serie di caratteristiche:
+  -  Ricchezza (1-10)
+  -  Clima (Freddo, Mite, Caldo)
+  -  Densità di popolazione (1-10)
+  -  Istruzione 
+
+#### Comportamento virus
+
+- Il virus possiede le seguenti caratteristiche: 
+  - Resistenza al freddo
+  - Resitenza al caldo
+  - Resistenza batterica (contro tutti i climi)
+  - Diffusione via aria
+  - Diffusione via acqua
+  - Diffusione attraverso animali
+  - Resistenza ai medicinali (Contro il vaccino)
+  - Mutazioni spontanee (Contro il vaccino)
 
 ## 2.4 Non funzionali
 
