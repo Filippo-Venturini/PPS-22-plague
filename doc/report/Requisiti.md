@@ -111,9 +111,16 @@ Superata una determinata soglia di infezione, l'umanità inizia la ricerca di un
 
 - Se la ricerca del vaccino termina prima che l'intera popolazione sia infettata, la partita viene considerata persa.
 
-
-  
-
 ## 2.4 Non funzionali
+
+- L'avanzamento della simulazione deve essere regolare.
+
+- L'infezione interna ad uno stato deve essere coerente con le caratteristiche dello stato e del virus.
+
+- L'infezione di stati confinanti deve essere coerente con le caratteristiche dello stato e del virus.
+
+- I parametri di gioco (virus, stati ecc.) devono essere correttamente bilanciati.
+
+- L'esecuzione del gioco deve risultare fluida e senza situazioni di blocco.
 
 ## 2.5 Di implementazione
