@@ -46,23 +46,60 @@ Superata una determinata soglia di infezione, l'umanità inizia la ricerca di un
 
 #### Gestione stati
 
+- Ogni stato ha una determinata popolazione e un certo numero di infetti che inizialmente è pari a zero.
 - Ogni stato possiede una serie di caratteristiche:
   -  Ricchezza (1-10)
   -  Clima (Freddo, Mite, Caldo)
   -  Densità di popolazione (1-10)
-  -  Istruzione 
+  -  Controllo confini (Alto controllo = difficile infettare da fuori)
+  -  Globalizzazione (Alta globalizzazione = popolazione che viaggia molto)
+- Ogni stato può confinare con altri stati.
+- Uno stato può possedere un porto e/o un aeroporto che permettono la trasmissione del virus a stati non direttamente confinanti.
+- Ogni porto/aeroporto possiede delle tratte prestabilite che realizzano collegamenti con altri stati.
 
 #### Comportamento virus
 
+- Il virus comincia la sua espansione da uno stato scelto dall'utente.
+
+- L'infettività del virus all'interno di uno stato dipende da una serie di caratteristiche proprie, da quelle dello stato che sta infettando e del numero di infetti attualmente raggiunto.
+
+- Durante l'infezione interna ad uno stato, il virus incrementa il numero di infetti proporzionalmente alla sua infettività.
+
+- Il virus a partire da uno stato già infettato, può infettare gli stati confinanti con una certa probabilità. Essa viene calcolata a partire da una serie di caratteristiche dello stato di partenza (globalizzazione e numero di infetti) e dal livello di controllo dei confini dello stato di arrivo.
+
+- Il virus può inoltre infettare uno stato non direttamente confinante con la stessa dinamica descritta precedentemente, purchè esista una tratta che collega i due stati (via porto/aeroporto) e che sia stato sbloccato il potenziamento corrispondente.
+
 - Il virus possiede le seguenti caratteristiche: 
-  - Resistenza al freddo
-  - Resitenza al caldo
-  - Resistenza batterica (contro tutti i climi)
-  - Diffusione via aria
-  - Diffusione via acqua
-  - Diffusione attraverso animali
-  - Resistenza ai medicinali (Contro il vaccino)
-  - Mutazioni spontanee (Contro il vaccino)
+  - Diffusione negli stati freddi
+  - Diffusione negli stati caldi
+  - Capacità di infezione sfruttando aeroporti
+  - Capacità di infezione sfruttando porti
+  - Diffusione negli stati poco densamente popolati
+  - Diffusione negli stati densamente popolati
+  - Diffusione negli stati ricchi
+  - Diffusione negli stati poveri
+  - Resistenza al vaccino
+
+#### Gestione potenziamenti
+
+  - I potenziamenti acquistabili tramite "Punti Evoluzione" agiscono sulle caratteristiche del virus elencate precedentemente migliorandole.
+  
+  - I potenziamenti sono organizzati in una gerarchia, alcuni sono acquistabili solamente dopo aver già acquisito quelli soprastanti.
+  
+  - Di seguito si elencano i potenziamenti disponibili:
+    - Resistenza al freddo I e II
+    - Resistenza al caldo I e II
+    - Resistenza batterica (contro tutti i climi)
+    - Abilitazione aeroporti
+    - Abilitazione porti
+    - Infezione attraverso animali (poco popolate)
+    - Infezione delle vie respiratorie (molto popolate)
+    - Resistenza ai medicinali (zone ricche)
+    - Infezione dell'acqua potabile (zone povere)
+    - Mutazioni spontanee (vaccino)
+
+
+  
 
 ## 2.4 Non funzionali
 
