@@ -2,7 +2,11 @@
 
 ## 2.1 Business
 
+Il progetto ha l'obiettivo di rappresentare un videogioco, perciò il target di utenza è costituito da persone appassionate al mondo videoludico. Le aspettative di questo tipo di utenza sono tipicamente concentrate sull' usabilità e la coerenza delle dinamiche di gioco. Perciò gli obiettivi degli sviluppatori saranno orientati ad ottenere una solida e chiara dinamica di evoluzione e progressione del gioco e il progetto potrà essere giudicato terminato con esito positivo, quando presenterà le funzionalità identificate durante l'analisi dei requisiti e le sue dinamiche risulteranno consistenti. 
+
 ## 2.2 Modello di dominio
+
+Per quanto riguarda il dominio applicativo è stato preso come riferimento il noto gioco "Plague.Inc" a cui sono state applicate modifiche e riadattamenti. Di seguito si riportano una descrizione dettagliata dei requisiti del progetto.
 
 ### Gestione partita
 
