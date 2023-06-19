@@ -27,3 +27,7 @@ I task presenti all'interno di ogni backlog saranno distribuiti tra i membri del
 Al termine di ogni sprint è previsto un meeting, durante il quale saranno analizzati i risultati raggiunti in relazione al backlog prodotto. Inoltre, verrà stilato il backlog relativo allo sprint successivo, identificando i task sulla base delle funzionalità necessarie. I meeting saranno realizzati in via telematica utilizzando Microsoft Teams.
 
 ## Strumenti di controllo della qualità (TDD, GitHub Actions)
+
+Per verificare la correttezza delle funzionalità sviluppate si utilizzerà un approccio di tipo Test Driven Development (TDD) in modo tale da verificare la presenza di errori sui singoli componenti durante la loro implementazione e poterli quindi correggere prima di procedere con lo sviluppo di feature successive.
+
+Si è inoltre deciso di utilizzare GitHub Actions in modo da poter verificare in automatico la correttezza dei test in seguito ad ogni push sul repository, segnalando l'eventuale presenza di test falliti attraverso una notifica via mail a tutti i membri del gruppo.
