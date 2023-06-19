@@ -115,6 +115,10 @@ Superata una determinata soglia di infezione, l'umanità inizia la ricerca di un
 
 - Se la ricerca del vaccino termina prima che l'intera popolazione sia infettata, la partita viene considerata persa.
 
+#### Configurazione di gioco
+
+- Le carattestiche che descrivono la configurazione di gioco (proprietà degli stati e del virus, rotte disponibili, ecc.) devono poter essere aggiornabili in maniera agevole senza intervenire pesantemente sul codice, mantenendo quindi separati gli aspetti implementativi da quelli di configurazione.
+
 ## 2.4 Non funzionali
 
 - L'avanzamento della simulazione deve essere regolare.
