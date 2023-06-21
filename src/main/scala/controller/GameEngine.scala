@@ -1,5 +1,3 @@
 package controller
 
-object GameEngine {
 
-}
