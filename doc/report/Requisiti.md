@@ -2,7 +2,7 @@
 
 ## 2.1 Business
 
-Il progetto ha l'obiettivo di rappresentare un videogioco, perciò il target di utenza è costituito da persone appassionate al mondo videoludico. Le aspettative di questo tipo di utenza sono tipicamente concentrate sull' usabilità e la coerenza delle dinamiche di gioco. Perciò gli obiettivi degli sviluppatori saranno orientati ad ottenere una solida e chiara dinamica di evoluzione e progressione del gioco e il progetto potrà essere giudicato terminato con esito positivo, quando presenterà le funzionalità identificate durante l'analisi dei requisiti e le sue dinamiche risulteranno consistenti. 
+Il progetto ha l'obiettivo di rappresentare un videogioco, perciò il target di utenza è costituito da persone appassionate al mondo videoludico. Le aspettative di questo tipo di utenza sono tipicamente concentrate sull' usabilità e la coerenza delle dinamiche di gioco. Perciò gli obiettivi degli sviluppatori saranno orientati ad ottenere una solida e chiara dinamica di evoluzione e progressione del gioco e il progetto potrà essere giudicato terminato con esito positivo, quando presenterà le funzionalità identificate durante l'analisi dei requisiti, risulterà facilmente configurabile e le sue dinamiche saranno consistenti. 
 
 ## 2.2 Modello di dominio
 
@@ -50,15 +50,16 @@ Superata una determinata soglia di infezione, l'umanità inizia la ricerca di un
 
 ### 2.3.1 Sistema
 
-#### Gestione stati
+#### Gestione regioni
 
-- Ogni stato ha una determinata popolazione e un certo numero di infetti che inizialmente è pari a zero.
-- Ogni stato possiede una serie di caratteristiche:
-  -  Ricchezza (1-10)
-  -  Clima (Freddo, Mite, Caldo)
-  -  Densità di popolazione (1-10)
-  -  Controllo confini (Alto controllo = difficile infettare da fuori)
-  -  Globalizzazione (Alta globalizzazione = popolazione che viaggia molto)
+- Ogni regione ha una determinata popolazione e un certo numero di infetti che inizialmente è pari a zero.
+- Ogni regione possiede una serie di caratteristiche:
+  -  **Richness**: indica il livello di ricchezza di una regione.
+  -  **Climate**: indica se il clima di una reigone è freddo, mite o caldo.
+  -  **Population density**: indica il livello della densità di popolazione della regione.
+  -  **Borders control**: riporta il controllo sui confini di una determinata regione, se alto risulta più difficile che avvenga l'infezione da parte di un altra regione.
+  -  **Globalization**: riporta il livello di tendenza agli spostamenti della popolazione della regione, se alto è più probabil ne infetti altre.
+    
 - Ogni stato può confinare con altri stati.
 - Uno stato può possedere un porto e/o un aeroporto che permettono la trasmissione del virus a stati non direttamente confinanti.
 - Ogni porto/aeroporto possiede delle tratte prestabilite che realizzano collegamenti con altri stati.
@@ -78,15 +79,15 @@ Superata una determinata soglia di infezione, l'umanità inizia la ricerca di un
 - I calcoli sopra descritti vengono eseguiti periodicamente per mantenere aggiornato lo stato di gioco.
 
 - Il virus possiede le seguenti caratteristiche: 
-  - Diffusione negli stati freddi
-  - Diffusione negli stati caldi
-  - Capacità di infezione sfruttando aeroporti
-  - Capacità di infezione sfruttando porti
-  - Diffusione negli stati poco densamente popolati
-  - Diffusione negli stati densamente popolati
-  - Diffusione negli stati ricchi
-  - Diffusione negli stati poveri
-  - Resistenza al vaccino
+  - **Cold regions infectivity**: determina la velocità di infezione del virus nelle regioni con clima freddo.
+  - **Warm regions infectivity**: determina la velocità di infezione del virus nelle regioni con clima caldo.
+  - **Low density regions infectivity**: determina la velocità di infezione del virus nelle regioni con bassa densità di popolazione.
+  - **High density regions infectivity**: determina la velocità di infezione del virus nelle regioni con alta densità di popolazione.
+  - **Rich regions infectivity**: determina la velocità di infezione del virus nelle regioni ricche.
+  - **Poor regions infectivity**: determina la velocità di infezione del virus nelle regioni povere.
+  - **Vaccine resistance**: un alto valore di questa caratteristica determina un maggior rallentamento della ricerca del vaccino.
+  - **Airport enabled**: se presente, permette al virus di infettare altre regioni tramite aeroporti.
+  - **Port enabled**: se presente, permette al virus di infettare altre regioni tramite porti.
 
 #### Gestione potenziamenti
 
@@ -117,7 +118,13 @@ Superata una determinata soglia di infezione, l'umanità inizia la ricerca di un
 
 #### Configurazione di gioco
 
-- Le carattestiche che descrivono la configurazione di gioco (proprietà degli stati e del virus, rotte disponibili, ecc.) devono poter essere aggiornabili in maniera agevole senza intervenire pesantemente sul codice, mantenendo quindi separati gli aspetti implementativi da quelli di configurazione.
+- Nel sistema sono presenti diverse caratteristiche che necessitano di una configurazione iniziale:
+  
+  - Caratteristiche delle regioni
+  - Parametri iniziali del virus
+  - Rotte portuali e aeroportuali disponibili
+    
+- Esse devono poter essere configurabili e modificabili in maniera agevole e consistente, mantenendo quindi separati gli aspetti implementativi da quelli di configurazione.
 
 ## 2.4 Non funzionali
 
@@ -132,3 +139,9 @@ Superata una determinata soglia di infezione, l'umanità inizia la ricerca di un
 - L'esecuzione del gioco deve risultare fluida e senza situazioni di blocco.
 
 ## 2.5 Di implementazione
+
+- A fronte dei requisiti precedentemente analizzati si rende necessaria l'implementazione di un motore di gioco che si occupa della progressione ed evoluzione dello stesso.
+
+- Si richiede inoltre la realizzazione di un'entità che si occupa del caricamento e gestione delle configurazioni iniziali.
+  
+- Infine sarà necessaria una struttura che modelli il mondo di gioco.
