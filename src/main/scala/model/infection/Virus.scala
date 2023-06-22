@@ -1,5 +1,5 @@
 package model.infection
-import model.world.RegionConfiguration
+import model.world.RegionTypes.*
 
 type Name = String
 type ColdRegionsInfectivity = Int
