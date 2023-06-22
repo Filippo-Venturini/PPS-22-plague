@@ -44,8 +44,18 @@ class RegionBuilderTest {
   def testSetRichness(): Unit = {
     assertEquals(Some(regionConfiguration.richness), regionBuilder.setRichness(regionConfiguration.richness).richness)
   }
-  
-  
+
+  @Test
+  def testClimateIsUnsetByDefault(): Unit = {
+    assertEquals(None, regionBuilder.climate)
+  }
+
+  @Test
+  def testSetClimate(): Unit = {
+    assertEquals(Some(regionConfiguration.climate), regionBuilder.setClimate(regionConfiguration.climate).climate)
+  }
+
+
 
 
 
