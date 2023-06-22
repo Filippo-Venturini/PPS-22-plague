@@ -14,8 +14,8 @@ class InternalInfectionLogic(override val region: Region,
 
 class ExternalInfectionLogic(override val region: Region,
                              override val virus: Virus) extends InfectionLogic:
-  override def compute(): Unit =
-    for (region <- region.borderingRegions)
-      println("")
-
+  override def compute(): Unit = ???
+    /*val ratioOfInfectedPopulation: Double =
+      region.getReachableRegions.filter((region, reachableMode) => region.infectedAmount > 0).size
+    */
 
