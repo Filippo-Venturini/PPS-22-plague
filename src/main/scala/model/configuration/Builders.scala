@@ -1,7 +1,6 @@
 package model.configuration
 
-import model.world.{BasicRegion, Name, Population, Climate, Region, RegionConfiguration, Richness, BordersControl}
-
+import model.world.RegionTypes.*
 object Builders:
   case class RegionBuilder(name: Option[Name],
                            population: Option[Population],
