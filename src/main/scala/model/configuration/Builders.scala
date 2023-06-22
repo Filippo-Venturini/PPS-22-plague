@@ -13,8 +13,7 @@ object Builders {
 
   class SimpleRegionBuilder() extends RegionBuilder:
     private var name: Option[Name] = None
-
-    override def setName(name: String): RegionBuilder = {this.name = Some(name); this}
+    override def setName(name: Name): RegionBuilder = {this.name = Some(name); this}
 
     override def build(): Option[Region] = name match
       case name if name.isEmpty => None

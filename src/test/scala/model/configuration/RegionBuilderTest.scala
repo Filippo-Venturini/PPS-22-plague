@@ -1,6 +1,5 @@
 package model.configuration
 
-
 import model.configuration.Builders.{RegionBuilder, SimpleRegionBuilder}
 import model.world.RegionConfiguration
 import org.junit.Assert.assertEquals
@@ -19,6 +18,10 @@ class RegionBuilderTest {
   @Test
   def testCannotBuildWithoutSettingMandatoryFields(): Unit =
     assertEquals(None, regionBuilder.build())
+
+  @Test
+  def testSetNameReturnsTheBuilder(): Unit =
+    assertEquals(regionBuilder, regionBuilder.setName(regionConfiguration.name))
 
 
 
