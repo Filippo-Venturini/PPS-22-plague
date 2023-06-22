@@ -1,7 +1,7 @@
 package model.configuration
 
 import model.configuration.Builders.RegionBuilder
-import model.world.RegionConfiguration
+import model.world.RegionTypes.*
 import org.junit.Assert.assertEquals
 import org.junit.{Before, Test}
 
