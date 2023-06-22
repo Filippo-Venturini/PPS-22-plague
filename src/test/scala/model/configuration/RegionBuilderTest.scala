@@ -9,7 +9,12 @@ import org.junit.{Before, Test}
 class RegionBuilderTest {
 
   private val regionConfiguration = RegionConfiguration("Europe", 60_000_000, 0, 0 ,0, 0, 0)
-  var regionBuilder: RegionBuilder = new SimpleRegionBuilder()
+  private var regionBuilder: RegionBuilder = new SimpleRegionBuilder()
+
+  @Before
+  def beforeAll(): Unit ={
+    regionBuilder = new SimpleRegionBuilder()
+  }
 
   @Test
   def testCannotBuildWithoutSettingMandatoryFields(): Unit =
