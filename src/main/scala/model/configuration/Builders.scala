@@ -7,11 +7,17 @@ object Builders:
                            richness: Option[Richness],
                            climate: Option[Climate],
                            bordersControl: Option[BordersControl]):
-    def setName(name: Name): RegionBuilder = new RegionBuilder(Some(name), population, richness, climate, bordersControl)
-    def setPopulation(population: Population): RegionBuilder = new RegionBuilder(name, Some(population), richness, climate, bordersControl)
-    def setRichness(richness: Richness): RegionBuilder = new RegionBuilder(name, population, Some(richness), climate, bordersControl)
-    def setClimate(climate: Climate): RegionBuilder = new RegionBuilder(name, population, richness, Some(climate), bordersControl)
-    def setBordersControl(bordersControl: BordersControl): RegionBuilder = new RegionBuilder(name, population, richness, climate, Some(bordersControl))
+    private def copy(name: Option[Name] = name,
+                     population: Option[Population] = population,
+                     richness: Option[Richness] = richness,
+                     climate: Option[Climate] = climate,
+                     bordersControl: Option[BordersControl] = bordersControl): RegionBuilder =
+      new RegionBuilder(name, population, richness, climate, bordersControl)
+    def setName(name: Name): RegionBuilder = copy(name=Some(name))
+    def setPopulation(population: Population): RegionBuilder = copy(population=Some(population))
+    def setRichness(richness: Richness): RegionBuilder = copy(richness=Some(richness))
+    def setClimate(climate: Climate): RegionBuilder = copy(climate=Some(climate))
+    def setBordersControl(bordersControl: BordersControl): RegionBuilder = copy(bordersControl=Some(bordersControl))
 
   object RegionBuilder:
     def apply() = new RegionBuilder(None, None, None, None, None)
