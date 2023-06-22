@@ -8,30 +8,22 @@ import org.junit.{Before, Test}
 class RegionBuilderTest {
 
   private val regionConfiguration = RegionConfiguration("Europe", 60_000_000, 0, 0 ,0, 0, 0)
-  private var regionBuilder: RegionBuilder = new RegionBuilder()
+  private var regionBuilder: RegionBuilder = RegionBuilder()
 
   @Before
   def beforeAll(): Unit ={
-    regionBuilder = new RegionBuilder()
+    regionBuilder = RegionBuilder()
   }
 
   @Test
-  def testCannotBuildWithoutSettingMandatoryFields(): Unit =
-    assertEquals(None, regionBuilder.build())
+  def testNameIsUnsetByDefault(): Unit = {
+    assertEquals(None, regionBuilder.name)
+  }
 
   @Test
-  def testSetNameReturnsTheBuilder(): Unit =
-    assertEquals(regionBuilder, regionBuilder.setName(regionConfiguration.name))
-
-  @Test
-  def testSetPopulationReturnsTheBuilder(): Unit =
-    assertEquals(regionBuilder, regionBuilder.setPopulation(regionConfiguration.population))
-
-  @Test
-  def testSetRichnessReturnsTheBuilder(): Unit =
-    assertEquals(regionBuilder, regionBuilder.setRichness(regionConfiguration.richness))
-
-
+  def testSetName(): Unit = {
+    assertEquals(Some(regionConfiguration.name), regionBuilder.setName(regionConfiguration.name).name)
+  }
 
 
 
