@@ -1,13 +1,15 @@
 package model.configuration
 
 import model.configuration.Builders.RegionBuilder
+import model.world.BasicRegion
 import model.world.RegionTypes.*
 import org.junit.Assert.assertEquals
 import org.junit.{Before, Test}
 
 class RegionBuilderTest {
 
-  private val regionConfiguration = RegionConfiguration("Europe", 60_000_000, 0, 0 ,0, 0, 0)
+  private val regionConfiguration = RegionConfiguration("Central-Europe", 60_000_000, 0, 0 ,0, 0, 0)
+  private val borderingRegionsIds = List("Northern-Europe", "Balkans")
   private var regionBuilder: RegionBuilder = RegionBuilder()
 
   @Before
@@ -75,7 +77,25 @@ class RegionBuilderTest {
     assertEquals(Some(regionConfiguration.globalization), regionBuilder.setGlobalization(regionConfiguration.globalization).globalization)
   }
 
+  @Test
+  def testPopulationDensityIsUnsetByDefault(): Unit = {
+    assertEquals(None, regionBuilder.populationDensity)
+  }
 
+  @Test
+  def testSetPopulationDensity(): Unit = {
+    assertEquals(Some(regionConfiguration.populationDensity), regionBuilder.setPopulationDensity(regionConfiguration.populationDensity).populationDensity)
+  }
+
+  @Test
+  def testBorderingRegionsIsEmptyByDefault(): Unit = {
+    assertEquals(List(), regionBuilder.borderingRegionsIds)
+  }
+
+  @Test
+  def testSetBorderingRegions(): Unit = {
+    assertEquals(borderingRegionsIds, regionBuilder.setBorderingRegions(borderingRegionsIds).borderingRegionsIds)
+  }
 
 }
 
