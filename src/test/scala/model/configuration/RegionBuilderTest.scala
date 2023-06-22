@@ -23,6 +23,10 @@ class RegionBuilderTest {
   def testSetNameReturnsTheBuilder(): Unit =
     assertEquals(regionBuilder, regionBuilder.setName(regionConfiguration.name))
 
+  @Test
+  def testSetPopulationReturnsTheBuilder(): Unit =
+    assertEquals(regionBuilder, regionBuilder.setPopulation(regionConfiguration.population))
+
 
 
 }
