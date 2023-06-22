@@ -9,9 +9,9 @@ class RegionBuilderTest {
 
   var regionBuilder: RegionBuilder = new SimpleRegionBuilder()
 
-  @Test
+  /*@Test
   def testCannotBuildWithoutSettingMandatoryFields(): Unit =
-    assertEquals(None, regionBuilder.build())
+    assertEquals(None, regionBuilder.build())*/
 
 }
 

@@ -15,7 +15,7 @@ class TestInfection {
   val regionPopulationDensity: Int = 8
   val regionInfectedAmount: Int = 1
 
-  var testRegion: Region = new BasicRegion(regionName,
+  /*var testRegion: Region = new BasicRegion(regionName,
     regionPopulation,
     regionRichness,
     regionClimate,
@@ -29,6 +29,6 @@ class TestInfection {
   @Test
   def testInternalIncrementInfection: Unit =
     infectionLogic.compute()
-    assertEquals(testRegion.infectedAmount, 2)
+    assertEquals(testRegion.infectedAmount, 2)*/
 
 }

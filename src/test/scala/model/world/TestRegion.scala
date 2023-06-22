@@ -3,56 +3,54 @@ import org.junit.Assert.assertEquals
 import org.junit.{Before, Test}
 
 class TestRegion {
-
-  val regionName: String = "Europe"
-  val regionPopulation: Int = 746000000
-  val regionRichness: Int = 9
-  val regionClimate: Int = 5
-  val regionBordersControl: Int = 8
-  val regionGlobalization: Int = 9
-  val regionPopulationDensity: Int = 8
   val regionInfectedAmount: Int = 0
+  val newInfectedAmount: Int = 10
+  
+  val testRegionConfiguration: RegionConfiguration = RegionConfiguration("Europe", 746000000, 9, 5, 8, 9, 8)
 
-  var testRegion: Region = new BasicRegion(regionName,
-    regionPopulation,
-    regionRichness,
-    regionClimate,
-    regionBordersControl,
-    regionGlobalization,
-    regionPopulationDensity,
-    regionInfectedAmount)
+  val testRegion: Region = new BasicRegion(testRegionConfiguration)
+  val borderingRegion: Region = new BasicRegion(testRegionConfiguration)
 
   @Test
   def testRegionName: Unit =
-    assertEquals(regionName, testRegion.name)
+    assertEquals(testRegionConfiguration.name, testRegion.name)
 
   @Test
   def testRegionPopulation: Unit =
-    assertEquals(regionPopulation, testRegion.population)
+    assertEquals(testRegionConfiguration.population, testRegion.population)
 
   @Test
   def testRegionRichness: Unit =
-    assertEquals(regionRichness, testRegion.richness)
+    assertEquals(testRegionConfiguration.richness, testRegion.richness)
 
   @Test
   def testRegionClimate: Unit =
-    assertEquals(regionClimate, testRegion.climate)
+    assertEquals(testRegionConfiguration.climate, testRegion.climate)
 
   @Test
   def testRegionBordersControl: Unit =
-    assertEquals(regionBordersControl, testRegion.bordersControl)
+    assertEquals(testRegionConfiguration.bordersControl, testRegion.bordersControl)
 
   @Test
   def testRegionGlobalization: Unit =
-    assertEquals(regionGlobalization, testRegion.globalization)
+    assertEquals(testRegionConfiguration.globalization, testRegion.globalization)
 
   @Test
   def testRegionPopulationDensity: Unit =
-    assertEquals(regionPopulationDensity, testRegion.populationDensity)
+    assertEquals(testRegionConfiguration.populationDensity, testRegion.populationDensity)
 
   @Test
   def testIncrementInfectAmount: Unit =
-    testRegion.infectedAmount = 10
-    assertEquals(regionInfectedAmount + 10, testRegion.infectedAmount)
+    testRegion.infectedAmount = newInfectedAmount
+    assertEquals(newInfectedAmount, testRegion.infectedAmount)
+
+  @Test
+  def testInitiallyEmptyBorderingRegions: Unit =
+    assertEquals(List(), testRegion.borderingRegions)
+
+  @Test
+  def testAddOneBorderingRegion: Unit =
+    testRegion.addBorderingRegion(borderingRegion)
+    assertEquals(List(borderingRegion), testRegion.borderingRegions)
 
 }
