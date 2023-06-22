@@ -65,6 +65,15 @@ class RegionBuilderTest {
     assertEquals(Some(regionConfiguration.bordersControl), regionBuilder.setBordersControl(regionConfiguration.bordersControl).bordersControl)
   }
 
+  @Test
+  def testGlobalizationIsUnsetByDefault(): Unit = {
+    assertEquals(None, regionBuilder.globalization)
+  }
+
+  @Test
+  def testSetGlobalization(): Unit = {
+    assertEquals(Some(regionConfiguration.globalization), regionBuilder.setGlobalization(regionConfiguration.globalization).globalization)
+  }
 
 
 
