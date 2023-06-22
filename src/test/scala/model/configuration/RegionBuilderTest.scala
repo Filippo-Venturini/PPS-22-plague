@@ -1,6 +1,6 @@
 package model.configuration
 
-import model.configuration.Builders.{RegionBuilder}
+import model.configuration.Builders.RegionBuilder
 import model.world.RegionConfiguration
 import org.junit.Assert.assertEquals
 import org.junit.{Before, Test}
@@ -55,6 +55,15 @@ class RegionBuilderTest {
     assertEquals(Some(regionConfiguration.climate), regionBuilder.setClimate(regionConfiguration.climate).climate)
   }
 
+  @Test
+  def testBordersControlIsUnsetByDefault(): Unit = {
+    assertEquals(None, regionBuilder.bordersControl)
+  }
+
+  @Test
+  def testSetBordersControl(): Unit = {
+    assertEquals(Some(regionConfiguration.bordersControl), regionBuilder.setBordersControl(regionConfiguration.bordersControl).bordersControl)
+  }
 
 
 
