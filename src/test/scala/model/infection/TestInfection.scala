@@ -1,6 +1,7 @@
 package model.infection
 
-import model.world.{BasicRegion, Region, RegionConfiguration}
+import model.world.{BasicRegion, Region}
+import model.world.RegionTypes.*
 import org.junit.Assert.assertEquals
 import org.junit.{Before, Test}
 
