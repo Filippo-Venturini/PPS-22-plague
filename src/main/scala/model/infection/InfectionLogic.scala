@@ -1,6 +1,4 @@
 package model.infection
-
-import model.infection.VirusStructure.Virus
 import model.world.Region
 
 trait InfectionLogic:
@@ -16,5 +14,8 @@ class InternalInfectionLogic(override val region: Region,
 
 class ExternalInfectionLogic(override val region: Region,
                              override val virus: Virus) extends InfectionLogic:
-  override def compute(): Unit = region.infectedAmount match
-    case i if i > 0 => region.infectedAmount = region.infectedAmount + 1
+  override def compute(): Unit = ???
+    /*val ratioOfInfectedPopulation: Double =
+      region.getReachableRegions.filter((region, reachableMode) => region.infectedAmount > 0).size
+    */
+

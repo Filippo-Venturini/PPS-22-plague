@@ -1,6 +1,5 @@
 package model.infection
 
-import model.infection.VirusStructure.Virus
 import model.world.Region
 
 object InfectionHandler:
