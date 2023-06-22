@@ -25,6 +25,28 @@ class RegionBuilderTest {
     assertEquals(Some(regionConfiguration.name), regionBuilder.setName(regionConfiguration.name).name)
   }
 
+  @Test
+  def testPopulationIsUnsetByDefault(): Unit = {
+    assertEquals(None, regionBuilder.name)
+  }
+
+  @Test
+  def testSetPopulation(): Unit = {
+    assertEquals(Some(regionConfiguration.population), regionBuilder.setPopulation(regionConfiguration.population).population)
+  }
+
+  @Test
+  def testRichnessIsUnsetByDefault(): Unit = {
+    assertEquals(None, regionBuilder.name)
+  }
+
+  @Test
+  def testSetRichness(): Unit = {
+    assertEquals(Some(regionConfiguration.richness), regionBuilder.setRichness(regionConfiguration.richness).richness)
+  }
+  
+  
+
 
 
 }
