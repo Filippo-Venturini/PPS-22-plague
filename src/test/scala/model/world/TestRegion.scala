@@ -5,9 +5,7 @@ import org.junit.{Before, Test}
 class TestRegion {
   val regionInfectedAmount: Int = 0
   val newInfectedAmount: Int = 10
-  
   val testRegionConfiguration: RegionConfiguration = RegionConfiguration("Europe", 746000000, 9, 5, 8, 9, 8)
-
   val testRegion: Region = new BasicRegion(testRegionConfiguration)
   val borderingRegion: Region = new BasicRegion(testRegionConfiguration)
 
@@ -46,11 +44,15 @@ class TestRegion {
 
   @Test
   def testInitiallyEmptyBorderingRegions: Unit =
-    assertEquals(List(), testRegion.borderingRegions)
+    assertEquals(List(), testRegion.getReachableRegions)
 
   @Test
   def testAddOneBorderingRegion: Unit =
     testRegion.addBorderingRegion(borderingRegion)
-    assertEquals(List(borderingRegion), testRegion.borderingRegions)
+    assertEquals(List((borderingRegion, ReachableMode.Border)), testRegion.getReachableRegions)
 
+  @Test
+  def testGetReachableRegionsByBorders: Unit =
+    testRegion.addBorderingRegions(List(borderingRegion, borderingRegion, borderingRegion))
+    assertEquals(List((borderingRegion, ReachableMode.Border), (borderingRegion, ReachableMode.Border), (borderingRegion, ReachableMode.Border)), testRegion.getReachableRegions)
 }
