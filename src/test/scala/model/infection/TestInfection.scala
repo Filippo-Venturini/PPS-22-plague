@@ -20,16 +20,14 @@ class TestInfection {
 
     testRegion.infectedAmount = 1
     infectionLogic.compute()
-    assertEquals(testRegion.infectedAmount, 2)
+    assertEquals(2, testRegion.infectedAmount)
 
-
-
-/*
+  /*
   @Test
   def testExternalIncrementInfection: Unit =
     val testInfectedRegionConfiguration: RegionConfiguration = RegionConfiguration("Europe", 746000000, 9, 5, 8, 9, 8)
     val testInfectedRegion: Region = new BasicRegion(testInfectedRegionConfiguration)
-    testInfectedRegion.infectedAmount = 1
+    testInfectedRegion.infectedAmount = 3 * (testInfectedRegion.population / 4)
 
     val borderControl = 0
     val testSaneRegionConfiguration: RegionConfiguration = RegionConfiguration("NorthAfrica", 243000000, 2, 9, borderControl, 2, 2)
@@ -39,6 +37,7 @@ class TestInfection {
     testSaneRegion.addBorderingRegion(testInfectedRegion)
 
     infectionLogic.compute()
-    assertEquals(testSaneRegion.infectedAmount, 2)
-*/
+    assert(testSaneRegion.infectedAmount > 0)
+  */
+
 }

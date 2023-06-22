@@ -15,7 +15,10 @@ class InternalInfectionLogic(override val region: Region,
 class ExternalInfectionLogic(override val region: Region,
                              override val virus: Virus) extends InfectionLogic:
   override def compute(): Unit = ???
-    /*val ratioOfInfectedPopulation: Double =
-      region.getReachableRegions.filter((region, reachableMode) => region.infectedAmount > 0).size
-    */
 
+/*
+    if region.getReachableRegions.filter((region, reachableMode) => region.infectedAmount / region.population > 0.5).size > 0
+      then region.infectedAmount = region.infectedAmount + 1
+
+
+*/
