@@ -1,37 +1,29 @@
 package model.configuration
 
-import model.configuration.Builders.RegionBuilder
-import model.world.RegionTypes.*
-import org.junit.Assert.{assertEquals, assertTrue, assertFalse}
+import model.configuration.Readers.Region.RegionReader
+import model.world.Region
+import model.world.RegionTypes.RegionConfiguration
+import org.junit.Assert.{assertEquals, assertFalse, assertTrue}
 import org.junit.{Before, Test}
 
 object TestReaders {
 
-  class TestTypeChecker {
+  class TestRegionReader {
+    
+      val reader: RegionReader = RegionReader()
 
-    import model.configuration.Readers.TypeChecker.*
-
-    @Test
-    def testCorrectCast(): Unit =
-      val castingOperations: List[String => Any] = List(_.toIntOption, _.toFloatOption, _.toBooleanOption)
-      assertTrue(checkTypes(List("1", "2.5", "true"), castingOperations))
 
     @Test
-    def testWrongIntCast(): Unit =
-      val castingOperations: List[String => Any] = List(_.toIntOption, _.toFloatOption, _.toBooleanOption)
-      assertFalse(checkTypes(List("1a", "2.5", "true"), castingOperations))
-
-    @Test
-    def testWrongBooleanCast(): Unit =
-      val castingOperations: List[String => Any] = List(_.toIntOption, _.toFloatOption, _.toBooleanOption)
-      assertFalse(checkTypes(List("1", "2.5", "truee"), castingOperations))
-
-    @Test
-    def testWrongFloatCast(): Unit =
-      val castingOperations: List[String => Any] = List(_.toIntOption, _.toFloatOption, _.toBooleanOption)
-      assertFalse(checkTypes(List("1", "2.5a", "true"), castingOperations))
-
+      def testCorrectRowRead(): Unit =
+        val conf = RegionConfiguration("Central-Europe", 60_000_000, 6, 6, 8, 9, 10)
+        val region: Region = reader.read(s"${conf.name},${conf.population},${conf.populationDensity},${conf.climate},${conf.richness},${conf.bordersControl},${conf.globalization}").get
+        assertEquals(conf.name, region.name)
+        assertEquals(conf.population, region.population)
+        assertEquals(conf.populationDensity, region.populationDensity)
+        assertEquals(conf.climate, region.climate)
+        assertEquals(conf.richness, region.richness)
+        assertEquals(conf.bordersControl, region.bordersControl)
+        assertEquals(conf.globalization, region.globalization)
 
   }
-
 }

@@ -19,6 +19,4 @@ class ExternalInfectionLogic(override val region: Region,
 /*
     if region.getReachableRegions.filter((region, reachableMode) => region.infectedAmount / region.population > 0.5).size > 0
       then region.infectedAmount = region.infectedAmount + 1
-
-
 */
