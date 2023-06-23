@@ -1,59 +1,90 @@
 package model.world
 import model.world.RegionTypes.*
-import org.junit.Assert.assertEquals
+import org.junit.Assert.{assertEquals, assertFalse}
 import org.junit.{Before, Test}
 
 class TestRegion {
   val regionInfectedAmount: Int = 0
   val newInfectedAmount: Int = 10
-  val testRegionConfiguration: RegionConfiguration = RegionConfiguration("Europe", 746000000, 9, 5, 8, 9, 8)
-  val testRegion: Region = new BasicRegion(testRegionConfiguration)
-  val borderingRegion: Region = new BasicRegion(testRegionConfiguration)
+  val firstRegionConfiguration: RegionConfiguration = RegionConfiguration("Europe", 746000000, 9, 5, 8, 9, 8)
+  val secondRegionConfiguration: RegionConfiguration = RegionConfiguration("United States", 746000000, 9, 5, 8, 9, 8)
+  val thirdTestRegionConfiguration: RegionConfiguration = RegionConfiguration("Russia", 143000000, 2, 3, 6, 9, 5)
+  val fourthTestRegionConfiguration: RegionConfiguration = RegionConfiguration("Japan", 125000000, 4, 1, 7, 4, 8)
+  var firstRegion: Region = new BasicRegion(firstRegionConfiguration)
+  var secondRegion: Region = new BasicRegion(secondRegionConfiguration)
+  var portRouteManager: PortRouteManager = new PortRouteManager
+  var thirdRegion: Region = new RegionWithPort(thirdTestRegionConfiguration, portRouteManager)
+  var fourthRegion: Region = new RegionWithPort(fourthTestRegionConfiguration, portRouteManager)
+
+  @Before
+  def init: Unit =
+    firstRegion = new BasicRegion(firstRegionConfiguration)
+    secondRegion = new BasicRegion(secondRegionConfiguration)
+    portRouteManager = new PortRouteManager
+    thirdRegion = new RegionWithPort(thirdTestRegionConfiguration, portRouteManager)
+    fourthRegion = new RegionWithPort(fourthTestRegionConfiguration, portRouteManager)
 
   @Test
   def testRegionName: Unit =
-    assertEquals(testRegionConfiguration.name, testRegion.name)
+    assertEquals(firstRegionConfiguration.name, firstRegion.name)
 
   @Test
   def testRegionPopulation: Unit =
-    assertEquals(testRegionConfiguration.population, testRegion.population)
+    assertEquals(firstRegionConfiguration.population, firstRegion.population)
 
   @Test
   def testRegionRichness: Unit =
-    assertEquals(testRegionConfiguration.richness, testRegion.richness)
+    assertEquals(firstRegionConfiguration.richness, firstRegion.richness)
 
   @Test
   def testRegionClimate: Unit =
-    assertEquals(testRegionConfiguration.climate, testRegion.climate)
+    assertEquals(firstRegionConfiguration.climate, firstRegion.climate)
 
   @Test
   def testRegionBordersControl: Unit =
-    assertEquals(testRegionConfiguration.bordersControl, testRegion.bordersControl)
+    assertEquals(firstRegionConfiguration.bordersControl, firstRegion.bordersControl)
 
   @Test
   def testRegionGlobalization: Unit =
-    assertEquals(testRegionConfiguration.globalization, testRegion.globalization)
+    assertEquals(firstRegionConfiguration.globalization, firstRegion.globalization)
 
   @Test
   def testRegionPopulationDensity: Unit =
-    assertEquals(testRegionConfiguration.populationDensity, testRegion.populationDensity)
+    assertEquals(firstRegionConfiguration.populationDensity, firstRegion.populationDensity)
 
   @Test
   def testIncrementInfectAmount: Unit =
-    testRegion.infectedAmount = newInfectedAmount
-    assertEquals(newInfectedAmount, testRegion.infectedAmount)
+    firstRegion.infectedAmount = newInfectedAmount
+    assertEquals(newInfectedAmount, firstRegion.infectedAmount)
 
   @Test
   def testInitiallyEmptyBorderingRegions: Unit =
-    assertEquals(List(), testRegion.getReachableRegions)
+    assertEquals(List(), firstRegion.getReachableRegions)
 
   @Test
   def testAddOneBorderingRegion: Unit =
-    testRegion.addBorderingRegion(borderingRegion)
-    assertEquals(List((borderingRegion, ReachableMode.Border)), testRegion.getReachableRegions)
+    firstRegion.addBorderingRegion(secondRegion)
+    assertEquals(List((secondRegion, ReachableMode.Border)), firstRegion.getReachableRegions)
 
   @Test
-  def testGetReachableRegionsByBorders: Unit =
-    testRegion.addBorderingRegions(List(borderingRegion, borderingRegion, borderingRegion))
-    assertEquals(List((borderingRegion, ReachableMode.Border), (borderingRegion, ReachableMode.Border), (borderingRegion, ReachableMode.Border)), testRegion.getReachableRegions)
+  def testReachableRegionsByBorders: Unit =
+    firstRegion.addBorderingRegions(List(secondRegion, thirdRegion, fourthRegion))
+    assertEquals(List((secondRegion, ReachableMode.Border), (thirdRegion, ReachableMode.Border), (fourthRegion, ReachableMode.Border)), firstRegion.getReachableRegions)
+
+  @Test
+  def testNotReachableRegionsByBorders: Unit =
+    firstRegion.addBorderingRegions(List(secondRegion, thirdRegion))
+    assertFalse(firstRegion.getReachableRegions.contains(fourthRegion))
+
+  @Test
+  def testReachableRegionsByPort: Unit =
+    portRouteManager.addRoute(thirdRegion, fourthRegion)
+    assertEquals(List((fourthRegion, ReachableMode.Port)), thirdRegion.getReachableRegions)
+
+  @Test
+  def testReachableRegionsByBordersAndPort: Unit =
+    thirdRegion.addBorderingRegion(secondRegion)
+    portRouteManager.addRoute(thirdRegion, fourthRegion)
+    assertEquals(List((secondRegion, ReachableMode.Border), (fourthRegion, ReachableMode.Port)), thirdRegion.getReachableRegions)
+
 }

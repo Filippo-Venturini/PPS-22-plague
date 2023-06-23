@@ -2,8 +2,10 @@ package model.infection
 
 import model.world.Region
 
-object InfectionHandler:
+trait Infection:
+  def computeInfection(region: Iterable[Region])(using logic: InfectionLogic): Unit
 
-  trait Infection:
-    def setVirus(virus: Virus): Unit
-    def computeInfection(region: Iterable[Region])(using logic: InfectionLogic): Unit
+
+class InfectionHandler(virus: Virus, region: Iterable[Region]) extends Infection:
+  override def computeInfection(region: Iterable[Region])(using logic: InfectionLogic): Unit =
+    region.foreach(region => logic.compute(region, virus))
