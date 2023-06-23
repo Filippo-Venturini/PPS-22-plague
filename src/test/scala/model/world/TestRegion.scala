@@ -81,4 +81,10 @@ class TestRegion {
     portRouteManager.addRoute(thirdRegion, fourthRegion)
     assertEquals(List((fourthRegion, ReachableMode.Port)), thirdRegion.getReachableRegions)
 
+  @Test
+  def testReachableRegionsByBordersAndPort: Unit =
+    thirdRegion.addBorderingRegion(secondRegion)
+    portRouteManager.addRoute(thirdRegion, fourthRegion)
+    assertEquals(List((secondRegion, ReachableMode.Border), (fourthRegion, ReachableMode.Port)), thirdRegion.getReachableRegions)
+
 }
