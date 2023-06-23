@@ -54,20 +54,20 @@ class BasicRegion (override val regionConfiguration: RegionConfiguration) extend
  * Mixin that add the possibility of having a port
  */
 trait WithPort extends Region:
-  def portRoutes: List[Route] = List()
+  def portRouteManager: PortRouteManager
 
   /**
    *
    *  @return the list of all the region reachable, so the bordering and also the reachable with port
    */
-  abstract override def getReachableRegions: List[ReachableRegion] = super.getReachableRegions
+  abstract override def getReachableRegions: List[ReachableRegion] = super.getReachableRegions ::: portRouteManager.getAllRoutesOf(this).map(route => (route.secondRegion, route.reachableMode))
 
 /**
  * Class that represent a region with a port
  *
  * @param regionConfiguration the configuration that contains all the region's characteristics
  */
-class RegionWithPort(regionConfiguration: RegionConfiguration) extends BasicRegion(regionConfiguration) with WithPort
+class RegionWithPort(regionConfiguration: RegionConfiguration, override val portRouteManager: PortRouteManager) extends BasicRegion(regionConfiguration) with WithPort
 
 
 
