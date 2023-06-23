@@ -12,7 +12,7 @@ Sprint 1: 21-30 June
 ||model the basic external infection logic|Di Girolamo|5|4|||||
 |I need a way to represent regions and boundaries|model different kinds of regions|Venturini|6|5|||||
 ||Obtain directly reachable regions|Venturini|5|2|||||
-||have a logic representation for routes|Venturini|2|1|||||
+||have a logic representation for routes and a manager|Venturini|3|1|||||
 ||Obtain port/airport-reachable regions|Venturini|5|5|||||
 |I need a way to configure the game settings for regions and virus|define the configuration files structure|Malucelli|4|3|||||
 ||model a mechanism to read the configuration of the regions and virus file|Malucelli|7|7|||||
