@@ -4,6 +4,7 @@ import model.configuration.Builders.RegionBuilder
 import model.world.{BasicRegion, Region}
 import model.world.RegionTypes.*
 object Builders:
+  trait ConfigurationBuilder
   case class RegionBuilder(name: Option[Name],
                            population: Option[Population],
                            richness: Option[Richness],
@@ -13,7 +14,7 @@ object Builders:
                            populationDensity: Option[PopulationDensity],
                            borderingRegionsIds: List[Name],
                            hasAirport: Boolean,
-                           hasPort: Boolean):
+                           hasPort: Boolean) extends ConfigurationBuilder:
     private def copy(name: Option[Name] = name,
                      population: Option[Population] = population,
                      richness: Option[Richness] = richness,
