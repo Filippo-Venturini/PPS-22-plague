@@ -16,7 +16,10 @@ object TestReaders {
       val castingOperations: List[String => Any] = List(_.toIntOption, _.toFloatOption, _.toBooleanOption)
       assertTrue(checkTypes(List("1", "2.5", "true"), castingOperations))
 
-
+    @Test
+    def testWrongIntCast(): Unit =
+      val castingOperations: List[String => Any] = List(_.toIntOption, _.toFloatOption, _.toBooleanOption)
+      assertFalse(checkTypes(List("1a", "2.5", "true"), castingOperations))
 
   }
 
