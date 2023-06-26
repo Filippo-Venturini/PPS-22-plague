@@ -8,5 +8,5 @@ import scala.util.{Success, Failure, Using}
 object File:
   def readLines(path: String): Iterable[String] =
     Using(Source.fromFile(path))(_.getLines()) match
-      case Success(value) => value.toSeq
-      case Failure(_) => Seq()
+      case Success(value) => {println("non empty"); value.toSeq}
+      case Failure(exception) => {println(exception); Seq()}

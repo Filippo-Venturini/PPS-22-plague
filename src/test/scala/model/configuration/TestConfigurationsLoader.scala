@@ -11,3 +11,7 @@ class TestConfigurationsLoader:
   def testNonExistingFileReading(): Unit = {
     assertTrue(File.readLines("foo").isEmpty)
   }
+  @Test
+  def testExistingFileReading(): Unit = {
+    assertFalse(File.readLines(getClass.getResource("/configs/regions.txt").toString).isEmpty)
+  }
