@@ -69,5 +69,8 @@ trait WithPort extends Region:
  */
 class RegionWithPort(regionConfiguration: RegionConfiguration, override val portRouteManager: PortRouteManager) extends BasicRegion(regionConfiguration) with WithPort
 
+trait WithAirport extends Region:
+  def airportRouteManager: AirportRouteManager
+  abstract override def getReachableRegions: List[ReachableRegion] = super.getReachableRegions ::: airportRouteManager.getAllRoutesOf(this).map(route => (route.secondRegion, route.reachableMode)) 
 
-
+class RegionWithAirport(regionConfiguration: RegionConfiguration, override val airportRouteManager: AirportRouteManager) extends BasicRegion(regionConfiguration) with WithAirport
