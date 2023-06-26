@@ -13,7 +13,7 @@ trait InfectionLogic:
   def virus: Virus
   def compute(region: Region, virus: Virus): Unit
   val infectionRatioIncreaseInside: Int = 1000000
-  val infectionRatioIncreaseFromRoute: Int = 100000000
+  val infectionRatioIncreaseFromRoute: Double = 0.000001
 
 class InternalInfectionLogic(override val region: Region,
                      override val virus: Virus) extends InfectionLogic:
@@ -34,5 +34,7 @@ class ExternalInfectionLogic(override val region: Region,
       (reachableMode == ReachableMode.Border) ||
       (reachableMode == ReachableMode.Airport && virus.airportEnabled) ||
       (reachableMode == ReachableMode.Port && virus.portEnabled)).size > 0
-      then region.infectedAmount = region.infectedAmount + (region.population / infectionRatioIncreaseFromRoute)
+      then region.infectedAmount = region.infectedAmount + (region.population / (region.population * (infectionRatioIncreaseFromRoute / region.bordersControl)).toInt)
+
+
 
