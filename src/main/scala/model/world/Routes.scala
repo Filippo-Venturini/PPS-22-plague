@@ -1,6 +1,53 @@
 package model.world
 import RegionTypes.*
 
-case class Route(firstRegion: Region, secondRegion: Region, reachableMode: ReachableMode)
+/**
+ * Case Class that represent a route between two regions
+ *
+ * @param fromRegion  the starting region
+ * @param toRegion  the ending region
+ * @param reachableMode the type of reachability (via port or via airport)
+ */
+case class Route(fromRegion: Region, toRegion: Region, reachableMode: ReachableMode)
 
-class RouteManager()
+/**
+ * Class that represent a RouteManager that is responsible for handling routes between regions
+ */
+abstract class RouteManager:
+  protected var allRoutes: List[Route] = List()
+
+  /**
+   * @param fromRegion the starting region
+   * @param toRegion the ending region
+   */
+  def addRoute(fromRegion: Region, toRegion: Region): Unit
+
+  /**
+   * @param region the region of which you want to know the routes
+   * @return all the routes corresponding to the region
+   */
+  def getAllRoutesOf(region: Region): List[Route] = this.allRoutes.filter(r => r.fromRegion equals region)
+
+/**
+ * Class that represent a route manager that handle only port routes
+ */
+class PortRouteManager extends RouteManager:
+  /**
+   * Add a new port route between the two regions
+   *
+   * @param fromRegion the starting region
+   * @param toRegion the ending region
+   */
+  override def addRoute(fromRegion: Region, toRegion: Region): Unit = this.allRoutes = this.allRoutes :+ Route(fromRegion, toRegion, ReachableMode.Port)
+
+/**
+ * Class that represent a route manager that handle only airport routes
+ */
+class AirportRouteManager extends RouteManager:
+  /**
+   * Add a new airport route between the two regions
+   *
+   * @param fromRegion the starting region
+   * @param toRegion the ending region
+   */
+  override def addRoute(fromRegion: Region, toRegion: Region): Unit = this.allRoutes = this.allRoutes :+ Route(fromRegion, toRegion, ReachableMode.Airport)

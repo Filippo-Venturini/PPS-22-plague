@@ -3,12 +3,12 @@ package model.configuration
 import model.configuration.Builders.RegionBuilder
 import model.world.BasicRegion
 import model.world.RegionTypes.*
-import org.junit.Assert.assertEquals
+import org.junit.Assert.{assertEquals, assertTrue}
 import org.junit.{Before, Test}
 
-class RegionBuilderTest {
+class TestRegionBuilder {
 
-  private val regionConfiguration = RegionConfiguration("Central-Europe", 60_000_000, 0, 0 ,0, 0, 0)
+  private val configuration = RegionConfiguration("Central-Europe", 60_000_000, 0, 0 ,0, 0, 0)
   private val borderingRegionsIds = List("Northern-Europe", "Balkans")
   private var regionBuilder: RegionBuilder = RegionBuilder()
 
@@ -24,7 +24,7 @@ class RegionBuilderTest {
 
   @Test
   def testSetName(): Unit = {
-    assertEquals(Some(regionConfiguration.name), regionBuilder.setName(regionConfiguration.name).name)
+    assertEquals(Some(configuration.name), regionBuilder.setName(configuration.name).name)
   }
 
   @Test
@@ -34,7 +34,7 @@ class RegionBuilderTest {
 
   @Test
   def testSetPopulation(): Unit = {
-    assertEquals(Some(regionConfiguration.population), regionBuilder.setPopulation(regionConfiguration.population).population)
+    assertEquals(Some(configuration.population), regionBuilder.setPopulation(configuration.population).population)
   }
 
   @Test
@@ -44,7 +44,7 @@ class RegionBuilderTest {
 
   @Test
   def testSetRichness(): Unit = {
-    assertEquals(Some(regionConfiguration.richness), regionBuilder.setRichness(regionConfiguration.richness).richness)
+    assertEquals(Some(configuration.richness), regionBuilder.setRichness(configuration.richness).richness)
   }
 
   @Test
@@ -54,7 +54,7 @@ class RegionBuilderTest {
 
   @Test
   def testSetClimate(): Unit = {
-    assertEquals(Some(regionConfiguration.climate), regionBuilder.setClimate(regionConfiguration.climate).climate)
+    assertEquals(Some(configuration.climate), regionBuilder.setClimate(configuration.climate).climate)
   }
 
   @Test
@@ -64,7 +64,7 @@ class RegionBuilderTest {
 
   @Test
   def testSetBordersControl(): Unit = {
-    assertEquals(Some(regionConfiguration.bordersControl), regionBuilder.setBordersControl(regionConfiguration.bordersControl).bordersControl)
+    assertEquals(Some(configuration.bordersControl), regionBuilder.setBordersControl(configuration.bordersControl).bordersControl)
   }
 
   @Test
@@ -74,7 +74,7 @@ class RegionBuilderTest {
 
   @Test
   def testSetGlobalization(): Unit = {
-    assertEquals(Some(regionConfiguration.globalization), regionBuilder.setGlobalization(regionConfiguration.globalization).globalization)
+    assertEquals(Some(configuration.globalization), regionBuilder.setGlobalization(configuration.globalization).globalization)
   }
 
   @Test
@@ -84,7 +84,7 @@ class RegionBuilderTest {
 
   @Test
   def testSetPopulationDensity(): Unit = {
-    assertEquals(Some(regionConfiguration.populationDensity), regionBuilder.setPopulationDensity(regionConfiguration.populationDensity).populationDensity)
+    assertEquals(Some(configuration.populationDensity), regionBuilder.setPopulationDensity(configuration.populationDensity).populationDensity)
   }
 
   @Test
@@ -95,6 +95,24 @@ class RegionBuilderTest {
   @Test
   def testSetBorderingRegions(): Unit = {
     assertEquals(borderingRegionsIds, regionBuilder.setBorderingRegions(borderingRegionsIds).borderingRegionsIds)
+  }
+
+  @Test
+  def testBuildReturnsNoneIfMandatoryFieldsAreMissing(): Unit = {
+    assertEquals(None, regionBuilder.build())
+  }
+
+  @Test
+  def testBuildReturnsBasicRegionIfMandatoryFieldsAreGiven(): Unit = {
+    regionBuilder = regionBuilder
+      .setName(configuration.name)
+      .setClimate(configuration.climate)
+      .setRichness(configuration.richness)
+      .setBordersControl(configuration.bordersControl)
+      .setPopulationDensity(configuration.populationDensity)
+      .setPopulation(configuration.population)
+      .setGlobalization(configuration.globalization)
+    assertTrue(regionBuilder.build().get.isInstanceOf[BasicRegion])
   }
 
 }
