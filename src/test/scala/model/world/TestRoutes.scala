@@ -18,11 +18,11 @@ class TestRoutes {
 
   @Test
   def testFirstRegion: Unit =
-    assertEquals(firstTestRegion, testRoute.firstRegion)
+    assertEquals(firstTestRegion, testRoute.fromRegion)
 
   @Test
   def testSecondRegion: Unit =
-    assertEquals(secondTestRegion, testRoute.secondRegion)
+    assertEquals(secondTestRegion, testRoute.toRegion)
 
   @Test
   def testPortRoute: Unit =
