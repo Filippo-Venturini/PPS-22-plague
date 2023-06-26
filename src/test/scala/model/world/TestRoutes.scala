@@ -4,7 +4,7 @@ import org.junit.Assert.assertEquals
 import org.junit.{Before, Test}
 
 class TestRoutes {
-  val firstTestRegionConfiguration: RegionConfiguration = RegionConfiguration("Europe", 746000000, 9, 5, 8, 9, 8)
+  val firstTestRegionConfiguration: RegionConfiguration = RegionConfiguration("Europe", 747000000, 9, 5, 8, 9, 8)
   val secondTestRegionConfiguration: RegionConfiguration = RegionConfiguration("United States", 331000000, 10, 2, 8, 1, 3)
   val thirdTestRegionConfiguration: RegionConfiguration = RegionConfiguration("Russia", 143000000, 2, 3, 6, 9, 5)
   val firstTestRegion: Region = new BasicRegion(firstTestRegionConfiguration)
@@ -18,11 +18,11 @@ class TestRoutes {
 
   @Test
   def testFirstRegion: Unit =
-    assertEquals(firstTestRegion, testRoute.firstRegion)
+    assertEquals(firstTestRegion, testRoute.fromRegion)
 
   @Test
   def testSecondRegion: Unit =
-    assertEquals(secondTestRegion, testRoute.secondRegion)
+    assertEquals(secondTestRegion, testRoute.toRegion)
 
   @Test
   def testPortRoute: Unit =
