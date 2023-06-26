@@ -10,3 +10,17 @@ object File:
     Try(Source.fromResource(path).getLines()) match
       case Success(value) => value.toSeq
       case Failure(_) => Seq()
+
+object Loader:
+  trait ConfigurationFile:
+    def path: String
+
+  case class RegionFile(override val path: String) extends ConfigurationFile
+
+  object ConfigurationsLoader:
+    def load[T](file: ConfigurationFile)(using parser: Parser[T]): Iterable[T] =
+      File.readLinesFromResources(file.path)
+        .map(line => parser.parse(line))
+        .filter(opt => opt.isDefined)
+        .map(opt => opt.get)
+        .toSeq
