@@ -12,6 +12,7 @@ class TestRegion {
   val fourthTestRegionConfiguration: RegionConfiguration = RegionConfiguration("Japan", 125000000, 4, 1, 7, 4, 8)
   val fifthTestRegionConfiguration: RegionConfiguration = RegionConfiguration("Australia", 25000000, 6, 2, 1, 3, 5)
   val sixthTestRegionConfiguration: RegionConfiguration = RegionConfiguration("North Africa", 178000000, 3, 7, 3, 9, 2)
+  val seventhTestRegionConfiguration: RegionConfiguration = RegionConfiguration("South Africa", 59000000, 7, 2, 5, 5, 7)
   var firstRegion: Region = new BasicRegion(firstRegionConfiguration)
   var secondRegion: Region = new BasicRegion(secondRegionConfiguration)
   var portRouteManager: PortRouteManager = new PortRouteManager()
@@ -20,6 +21,7 @@ class TestRegion {
   var fourthRegion: Region = new RegionWithPort(fourthTestRegionConfiguration, portRouteManager)
   var fifthRegion: Region = new RegionWithAirport(fifthTestRegionConfiguration, airportRouteManager)
   var sixthRegion: Region = new RegionWithAirport(sixthTestRegionConfiguration, airportRouteManager)
+  var seventhRegion: Region = new RegionWithAirportAndPort(sixthTestRegionConfiguration, airportRouteManager, portRouteManager)
 
   @Before
   def init: Unit =
@@ -30,7 +32,8 @@ class TestRegion {
     thirdRegion = new RegionWithPort(thirdTestRegionConfiguration, portRouteManager)
     fourthRegion = new RegionWithPort(fourthTestRegionConfiguration, portRouteManager)
     fifthRegion = new RegionWithAirport(fifthTestRegionConfiguration, airportRouteManager)
-    fifthRegion = new RegionWithAirport(sixthTestRegionConfiguration, airportRouteManager)
+    sixthRegion = new RegionWithAirport(sixthTestRegionConfiguration, airportRouteManager)
+    seventhRegion = new RegionWithAirportAndPort(sixthTestRegionConfiguration, airportRouteManager, portRouteManager)
 
 
   @Test
@@ -101,4 +104,9 @@ class TestRegion {
     airportRouteManager.addRoute(fifthRegion, sixthRegion)
     assertEquals(List((sixthRegion, ReachableMode.Airport)), fifthRegion.getReachableRegions)
 
+  @Test
+  def testReachableRegionsByAirportAndPort: Unit =
+    airportRouteManager.addRoute(seventhRegion, sixthRegion)
+    portRouteManager.addRoute(seventhRegion, fourthRegion)
+    assertEquals(List((sixthRegion, ReachableMode.Airport),(fourthRegion, ReachableMode.Port)), seventhRegion.getReachableRegions)
 }
