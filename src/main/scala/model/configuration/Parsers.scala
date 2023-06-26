@@ -6,7 +6,8 @@ import model.world.RegionTypes.{BordersControl, Climate, Globalization, Populati
 
 object Parsers:
 
-  trait Parser
+  trait Parser[T]:
+    def parse(line: String): Option[T]
 
   object Region:
     private enum RegionConfigurationFileFormat(val castCondition: String => Boolean, val setter: (RegionBuilder, String) => RegionBuilder):
@@ -18,8 +19,7 @@ object Parsers:
       case BORDERS_CONTROL extends RegionConfigurationFileFormat(_.toIntOption.isDefined, (b, s) => b.setBordersControl(s.toInt))
       case GLOBALIZATION extends RegionConfigurationFileFormat(_.toIntOption.isDefined, (b, s) => b.setGlobalization(s.toInt))
 
-    trait RegionParser extends Parser :
-      def parse(line: String): Option[Region]
+    trait RegionParser extends Parser[Region]
 
     object RegionParser:
       def apply(): RegionParser = new SimpleRegionParser
