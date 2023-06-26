@@ -4,9 +4,9 @@ import model.configuration.Builders.RegionBuilder
 import model.world.Region
 import model.world.RegionTypes.{BordersControl, Climate, Globalization, Population, Richness, *}
 
-object Readers:
+object Parsers:
 
-  trait Reader
+  trait Parser
 
   object Region:
     private enum RegionConfigurationFileFormat(val castCondition: String => Boolean, val setter: (RegionBuilder, String) => RegionBuilder):
@@ -18,13 +18,13 @@ object Readers:
       case BORDERS_CONTROL extends RegionConfigurationFileFormat(_.toIntOption.isDefined, (b, s) => b.setBordersControl(s.toInt))
       case GLOBALIZATION extends RegionConfigurationFileFormat(_.toIntOption.isDefined, (b, s) => b.setGlobalization(s.toInt))
 
-    trait RegionReader extends Reader :
-      def read(line: String): Option[Region]
+    trait RegionParser extends Parser :
+      def parse(line: String): Option[Region]
 
-    object RegionReader:
-      def apply(): RegionReader = new SimpleRegionReader
-      private class SimpleRegionReader extends RegionReader:
-        def read(line: String): Option[Region] =
+    object RegionParser:
+      def apply(): RegionParser = new SimpleRegionParser
+      private class SimpleRegionParser extends RegionParser:
+        def parse(line: String): Option[Region] =
           val params = line.split(",").toList
           RegionConfigurationFileFormat.values
             .foldLeft(RegionBuilder())((builder, field) => field.ordinal < params.size && field.castCondition.apply(params(field.ordinal)) match
