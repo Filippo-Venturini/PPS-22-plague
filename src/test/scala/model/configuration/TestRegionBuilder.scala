@@ -6,7 +6,7 @@ import model.world.RegionTypes.*
 import org.junit.Assert.{assertEquals, assertTrue}
 import org.junit.{Before, Test}
 
-class RegionBuilderTest {
+class TestRegionBuilder {
 
   private val configuration = RegionConfiguration("Central-Europe", 60_000_000, 0, 0 ,0, 0, 0)
   private val borderingRegionsIds = List("Northern-Europe", "Balkans")
