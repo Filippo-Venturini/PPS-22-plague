@@ -6,10 +6,10 @@ Sprint 1: 21-30 June
 |------|-------|------|------|------|------|------|------|------|
 |Product Backlog Item |Sprint Task |Volunteer | Initial Estimate of Effort | 1 | 2 | 3 | 4 | 5 |
 |I need a way to make the game's logic start and evolve|model the basic structure of a game engine|Venturini|3|2|2||||
-|I would have a basic infection mechanism|create an Infection Handler|Di Girolamo|7|5|2||||
-||create virus structure|Di Girolamo|4|3|2||||
-||model the basic internal infection logic|Di Girolamo|5|3|2||||
-||model the basic external infection logic|Di Girolamo|5|4|3||||
+|I would have a basic infection mechanism|create an Infection Handler|Di Girolamo|7|5|2|0|||
+||create virus structure|Di Girolamo|4|3|2|2|||
+||model the basic internal infection logic|Di Girolamo|5|3|2|1|||
+||model the basic external infection logic|Di Girolamo|5|4|3|2|||
 |I need a way to represent regions and boundaries|model different kinds of regions|Venturini|6|5|4|1|||
 ||Obtain directly reachable regions|Venturini|5|2|1|0|||
 ||have a logic representation for routes and a manager|Venturini|3|1|1|1|||
