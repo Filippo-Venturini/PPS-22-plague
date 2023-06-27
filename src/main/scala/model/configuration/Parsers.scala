@@ -12,7 +12,7 @@ object Parsers:
   object Region:
     private enum RegionConfigurationFileFormat(val castCondition: String => Boolean, val setter: (RegionBuilder, String) => RegionBuilder):
       case NAME extends RegionConfigurationFileFormat(_ => true, (b, s) => b.setName(s))
-      case POPULATION extends RegionConfigurationFileFormat(_.toIntOption.isDefined, (b, s) => b.setPopulation(s.toInt))
+      case POPULATION extends RegionConfigurationFileFormat(_.replace("_","").toIntOption.isDefined, (b, s) => b.setPopulation(s.replace("_","").toInt))
       case DENSITY extends RegionConfigurationFileFormat(_.toIntOption.isDefined, (b, s) => b.setPopulationDensity(s.toInt))
       case CLIMATE extends RegionConfigurationFileFormat(_.toIntOption.isDefined, (b, s) => b.setClimate(s.toInt))
       case RICHNESS extends RegionConfigurationFileFormat(_.toIntOption.isDefined, (b, s) => b.setRichness(s.toInt))

@@ -20,6 +20,7 @@ object Loader:
   object ConfigurationsLoader:
     def load[T](file: ConfigurationFile)(using parser: Parser[T]): Iterable[T] =
       File.readLinesFromResources(file.path)
+        .filter(line => !line.startsWith("#"))
         .map(line => parser.parse(line))
         .filter(opt => opt.isDefined)
         .map(opt => opt.get)
