@@ -27,7 +27,7 @@ class TestInfection {
     assert(testRegion.infectedAmount > 1)
 
   @Test
-  def testExternalIncrementInfection: Unit =
+  def testSimpleExternalIncrementInfection: Unit =
     val testInfectedRegionConfiguration: RegionConfiguration = RegionConfiguration("Europe", 746000000, 9, 5, 8, 9, 8)
     val testInfectedRegion: Region = new BasicRegion(testInfectedRegionConfiguration)
     testInfectedRegion.infectedAmount = 3 * (testInfectedRegion.population / 4)
@@ -38,13 +38,51 @@ class TestInfection {
 
     val regions: List[Region] = List(testInfectedRegion, testSaneRegion)
     val infectionHandler: InfectionHandler = new InfectionHandler(virus, regions)
-
     val infectionLogic: InfectionLogic = new ExternalInfectionLogic(testSaneRegion, virus)
 
     testSaneRegion.addBorderingRegion(testInfectedRegion)
-
     infectionHandler.computeInfection(regions)(using infectionLogic)
 
     assert(testSaneRegion.infectedAmount > 0)
-  
+
+
+  @Test
+  def testWithBorderControl: Unit =
+
+    val testHighBordersControl = 7
+    val regionHighBordersControlConfigurator: RegionConfiguration = RegionConfiguration("CentralAmerica", 800000000, 8, 5, testHighBordersControl, 8, 9)
+    val regionHighBordersControl: Region = new BasicRegion(regionHighBordersControlConfigurator)
+
+    val testLowBordersControl = 2
+    val regionLowBordersControlConfigurator: RegionConfiguration = RegionConfiguration("NorthAfrica", 800000000, 2, 9, testLowBordersControl, 2, 2)
+    val regionLowBordersControl: Region = new BasicRegion(regionLowBordersControlConfigurator)
+
+    val testInfectedRegionConfiguration: RegionConfiguration = RegionConfiguration("Europe", 746000000, 9, 5, 8, 9, 8)
+    val testInfectedRegion: Region = new BasicRegion(testInfectedRegionConfiguration)
+    testInfectedRegion.infectedAmount = 3 * (testInfectedRegion.population / 4)
+
+    val regionsWithHighBorderControl: List[Region] = List(testInfectedRegion, regionHighBordersControl)
+    val infectionHandlerHighBorderControl: InfectionHandler = new InfectionHandler(virus, regionsWithHighBorderControl)
+    val infectionLogicHighBorderControl: InfectionLogic = new ExternalInfectionLogic(regionHighBordersControl, virus)
+
+    regionHighBordersControl.addBorderingRegion(testInfectedRegion)
+    infectionHandlerHighBorderControl.computeInfection(regionsWithHighBorderControl)(using infectionLogicHighBorderControl)
+
+    val infectedHighBordersControlRegion = regionHighBordersControl.infectedAmount
+
+    val regionsWithLowBorderControl: List[Region] = List(testInfectedRegion, regionLowBordersControl)
+    val infectionHandlerLowBorderControl: InfectionHandler = new InfectionHandler(virus, regionsWithLowBorderControl)
+    val infectionLogicLowBorderControl: InfectionLogic = new ExternalInfectionLogic(regionLowBordersControl, virus)
+
+    regionLowBordersControl.addBorderingRegion(testInfectedRegion)
+    infectionHandlerLowBorderControl.computeInfection(regionsWithLowBorderControl)(using infectionLogicLowBorderControl)
+
+    val infectedLowBordersControlRegion = regionLowBordersControl.infectedAmount
+
+    assert(infectedLowBordersControlRegion < infectedHighBordersControlRegion)
+
 }
+
+
+
+

@@ -13,7 +13,16 @@ trait InfectionLogic:
   def virus: Virus
   def compute(region: Region, virus: Virus): Unit
   val infectionRatioIncreaseInside: Int = 1000000
-  val infectionRatioIncreaseFromRoute: Int = 100000000
+  val infectionRatioIncreaseFromRoute: Double = 0.000001
+  def infectedRatio(): Double
+  /*
+  val population: Population = regionConfiguration.population
+  val richness: Richness = regionConfiguration.richness
+  val climate: Climate = regionConfiguration.climate
+  val bordersControl: BordersControl = regionConfiguration.bordersControl
+  val globalization: Globalization = regionConfiguration.globalization
+  val populationDensity: PopulationDensity = regionConfiguration.populationDensity
+  */
 
 class InternalInfectionLogic(override val region: Region,
                      override val virus: Virus) extends InfectionLogic:
@@ -22,6 +31,8 @@ class InternalInfectionLogic(override val region: Region,
    */
   override def compute(region: Region, virus: Virus): Unit = region.infectedAmount match
     case i if i > 0 => region.infectedAmount = region.infectedAmount + (region.population / infectionRatioIncreaseInside)
+
+  override def infectedRatio(): Double = ???
 
 
 class ExternalInfectionLogic(override val region: Region,
@@ -34,9 +45,7 @@ class ExternalInfectionLogic(override val region: Region,
       (reachableMode == ReachableMode.Border) ||
       (reachableMode == ReachableMode.Airport && virus.airportEnabled) ||
       (reachableMode == ReachableMode.Port && virus.portEnabled)).size > 0
-      then region.infectedAmount = region.infectedAmount + (region.population / infectionRatioIncreaseFromRoute)
+      then region.infectedAmount = region.infectedAmount + (region.population / (region.population * infectedRatio()).toInt)
 
-/*
-    if region.getReachableRegions.filter((region, reachableMode) => region.infectedAmount / region.population > 0.5).size > 0
-      then region.infectedAmount = region.infectedAmount + 1
-*/
+  override def infectedRatio(): Double =
+    infectionRatioIncreaseFromRoute / region.bordersControl
