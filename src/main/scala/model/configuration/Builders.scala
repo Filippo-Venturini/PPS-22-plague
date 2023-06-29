@@ -3,6 +3,7 @@ package model.configuration
 import model.configuration.Builders.RegionBuilder
 import model.world.{BasicRegion, Region}
 import model.world.RegionTypes.*
+import model.infection.{ColdRegionsInfectivity}
 object Builders:
   trait ConfigurationBuilder
   case class RegionBuilder(name: Option[Name],
@@ -46,3 +47,12 @@ object Builders:
       case _ => None
   object RegionBuilder:
     def apply() = new RegionBuilder(None, None, None, None, None, None, None, List(), false, false)
+
+  case class VirusBuilder(coldRegionsInfectivity: Option[ColdRegionsInfectivity]) extends ConfigurationBuilder:
+    private def copy(coldRegionsInfectivity: Option[ColdRegionsInfectivity] = coldRegionsInfectivity): VirusBuilder =
+      new VirusBuilder(coldRegionsInfectivity)
+
+    def setColdRegionInfectivity(coldRegionsInfectivity: ColdRegionsInfectivity): VirusBuilder =
+      copy(coldRegionsInfectivity=Some(coldRegionsInfectivity))
+  object VirusBuilder:
+    def apply() = new VirusBuilder(None)
