@@ -3,7 +3,7 @@ package model.configuration
 import model.configuration.Builders.RegionBuilder
 import model.world.{BasicRegion, Region}
 import model.world.RegionTypes.*
-import model.infection.{ColdRegionsInfectivity, WarmRegionsInfectivity, LowDensityRegionInfectivity, HighDensityRegionsInfectivity}
+import model.infection.{ColdRegionsInfectivity, WarmRegionsInfectivity, LowDensityRegionInfectivity, HighDensityRegionsInfectivity, RichRegionsInfectivity, PoorRegionsInfectivity, VaccineResistance, AirportEnabled, PortEnabled}
 object Builders:
   trait ConfigurationBuilder
   case class RegionBuilder(name: Option[Name],
@@ -51,12 +51,17 @@ object Builders:
   case class VirusBuilder(coldRegionsInfectivity: Option[ColdRegionsInfectivity],
                           warmRegionsInfectivity: Option[WarmRegionsInfectivity],
                           lowDensityRegionsInfectivity: Option[LowDensityRegionInfectivity],
-                          highDensityRegionsInfectivity: Option[HighDensityRegionsInfectivity]) extends ConfigurationBuilder:
+                          highDensityRegionsInfectivity: Option[HighDensityRegionsInfectivity],
+                          richRegionsInfectivity: Option[RichRegionsInfectivity],
+                          poorRegionsInfectivity: Option[PoorRegionsInfectivity]) extends ConfigurationBuilder:
     private def copy(coldRegionsInfectivity: Option[ColdRegionsInfectivity] = coldRegionsInfectivity,
                      warmRegionsInfectivity: Option[WarmRegionsInfectivity] = warmRegionsInfectivity,
                      lowDensityRegionsInfectivity: Option[LowDensityRegionInfectivity],
-                     highDensityRegionsInfectivity: Option[HighDensityRegionsInfectivity]): VirusBuilder =
-      new VirusBuilder(coldRegionsInfectivity, warmRegionsInfectivity, lowDensityRegionsInfectivity, highDensityRegionsInfectivity)
+                     highDensityRegionsInfectivity: Option[HighDensityRegionsInfectivity],
+                     richRegionsInfectivity: Option[RichRegionsInfectivity],
+                     poorRegionsInfectivity: Option[PoorRegionsInfectivity]): VirusBuilder =
+      new VirusBuilder(coldRegionsInfectivity, warmRegionsInfectivity, lowDensityRegionsInfectivity, highDensityRegionsInfectivity,
+        richRegionsInfectivity, poorRegionsInfectivity)
 
     def setColdRegionInfectivity(coldRegionsInfectivity: ColdRegionsInfectivity): VirusBuilder =
       copy(coldRegionsInfectivity = Some(coldRegionsInfectivity))
@@ -69,5 +74,11 @@ object Builders:
 
     def setHighDensityRegionsInfectivity(highDensityRegionsInfectivity: HighDensityRegionsInfectivity): VirusBuilder =
       copy(highDensityRegionsInfectivity = Some(highDensityRegionsInfectivity))
+
+    def setRichRegionsInfectivity(richRegionsInfectivity: RichRegionsInfectivity): VirusBuilder =
+      copy(richRegionsInfectivity = Some(richRegionsInfectivity))
+
+    def setPoorRegionsInfectivity(poorRegionsInfectivity: PoorRegionsInfectivity): VirusBuilder =
+      copy(poorRegionsInfectivity = Some(poorRegionsInfectivity))
   object VirusBuilder:
-    def apply() = new VirusBuilder(None, None, None, None)
+    def apply() = new VirusBuilder(None, None, None, None, None, None)
