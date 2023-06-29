@@ -50,11 +50,11 @@ object Builders:
 
   case class VirusBuilder(coldRegionsInfectivity: Option[ColdRegionsInfectivity],
                           warmRegionsInfectivity: Option[WarmRegionsInfectivity],
-                          lowDensityRegionInfectivity: Option[LowDensityRegionInfectivity]) extends ConfigurationBuilder:
+                          lowDensityRegionsInfectivity: Option[LowDensityRegionInfectivity]) extends ConfigurationBuilder:
     private def copy(coldRegionsInfectivity: Option[ColdRegionsInfectivity] = coldRegionsInfectivity,
                      warmRegionsInfectivity: Option[WarmRegionsInfectivity] = warmRegionsInfectivity,
-                     lowDensityRegionInfectivity: Option[LowDensityRegionInfectivity]): VirusBuilder =
-      new VirusBuilder(coldRegionsInfectivity, warmRegionsInfectivity, lowDensityRegionInfectivity)
+                     lowDensityRegionsInfectivity: Option[LowDensityRegionInfectivity]): VirusBuilder =
+      new VirusBuilder(coldRegionsInfectivity, warmRegionsInfectivity, lowDensityRegionsInfectivity)
 
     def setColdRegionInfectivity(coldRegionsInfectivity: ColdRegionsInfectivity): VirusBuilder =
       copy(coldRegionsInfectivity = Some(coldRegionsInfectivity))
@@ -62,7 +62,7 @@ object Builders:
     def setWarmRegionInfectivity(warmRegionsInfectivity: WarmRegionsInfectivity): VirusBuilder =
       copy(warmRegionsInfectivity = Some(warmRegionsInfectivity))
 
-    def setLowDensityInfectivity(lowDensityRegionInfectivity: LowDensityRegionInfectivity): VirusBuilder =
-      copy(lowDensityRegionInfectivity = Some(lowDensityRegionInfectivity))
+    def setLowDensityRegionsInfectivity(lowDensityRegionsInfectivity: LowDensityRegionInfectivity): VirusBuilder =
+      copy(lowDensityRegionsInfectivity = Some(lowDensityRegionsInfectivity))
   object VirusBuilder:
     def apply() = new VirusBuilder(None, None, None)
