@@ -54,16 +54,18 @@ object Builders:
                           highDensityRegionsInfectivity: Option[HighDensityRegionsInfectivity],
                           richRegionsInfectivity: Option[RichRegionsInfectivity],
                           poorRegionsInfectivity: Option[PoorRegionsInfectivity],
-                          vaccineResistance: Option[VaccineResistance]) extends ConfigurationBuilder:
+                          vaccineResistance: Option[VaccineResistance],
+                          airportEnabled: Option[AirportEnabled]) extends ConfigurationBuilder:
     private def copy(coldRegionsInfectivity: Option[ColdRegionsInfectivity] = coldRegionsInfectivity,
                      warmRegionsInfectivity: Option[WarmRegionsInfectivity] = warmRegionsInfectivity,
                      lowDensityRegionsInfectivity: Option[LowDensityRegionInfectivity],
                      highDensityRegionsInfectivity: Option[HighDensityRegionsInfectivity],
                      richRegionsInfectivity: Option[RichRegionsInfectivity],
                      poorRegionsInfectivity: Option[PoorRegionsInfectivity],
-                     vaccineResistance: Option[VaccineResistance]): VirusBuilder =
+                     vaccineResistance: Option[VaccineResistance],
+                     airportEnabled: Option[AirportEnabled]): VirusBuilder =
       new VirusBuilder(coldRegionsInfectivity, warmRegionsInfectivity, lowDensityRegionsInfectivity, highDensityRegionsInfectivity,
-        richRegionsInfectivity, poorRegionsInfectivity, vaccineResistance)
+        richRegionsInfectivity, poorRegionsInfectivity, vaccineResistance, airportEnabled)
 
     def setColdRegionInfectivity(coldRegionsInfectivity: ColdRegionsInfectivity): VirusBuilder =
       copy(coldRegionsInfectivity = Some(coldRegionsInfectivity))
@@ -85,5 +87,8 @@ object Builders:
 
     def setVaccineResistance(vaccineResistance: VaccineResistance): VirusBuilder =
       copy(vaccineResistance = Some(vaccineResistance))
+
+    def setAirportEnabled(airportEnabled: AirportEnabled): VirusBuilder =
+      copy(airportEnabled = Some(airportEnabled))
   object VirusBuilder:
-    def apply() = new VirusBuilder(None, None, None, None, None, None, None)
+    def apply() = new VirusBuilder(None, None, None, None, None, None, None, None)
