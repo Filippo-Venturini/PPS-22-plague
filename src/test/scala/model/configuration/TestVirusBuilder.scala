@@ -25,4 +25,15 @@ class TestVirusBuilder {
     assertEquals(Some(configuration.coldRegionsInfectivity), virusBuilder.coldRegionsInfectivity)
   }
 
+  @Test
+  def testWarmRegionsInfectivityIsUnsetByDefault: Unit = {
+    assertEquals(None, virusBuilder.warmRegionsInfectivity)
+  }
+
+  @Test
+  def testSetWarmRegionsInfectivity: Unit = {
+    virusBuilder = virusBuilder.setWarmRegionInfectivity(configuration.warmRegionsInfectivity)
+    assertEquals(Some(configuration.warmRegionsInfectivity), virusBuilder.warmRegionsInfectivity)
+  }
+
 }

@@ -3,7 +3,7 @@ package model.configuration
 import model.configuration.Builders.RegionBuilder
 import model.world.{BasicRegion, Region}
 import model.world.RegionTypes.*
-import model.infection.{ColdRegionsInfectivity}
+import model.infection.{ColdRegionsInfectivity, WarmRegionsInfectivity}
 object Builders:
   trait ConfigurationBuilder
   case class RegionBuilder(name: Option[Name],
@@ -48,11 +48,16 @@ object Builders:
   object RegionBuilder:
     def apply() = new RegionBuilder(None, None, None, None, None, None, None, List(), false, false)
 
-  case class VirusBuilder(coldRegionsInfectivity: Option[ColdRegionsInfectivity]) extends ConfigurationBuilder:
-    private def copy(coldRegionsInfectivity: Option[ColdRegionsInfectivity] = coldRegionsInfectivity): VirusBuilder =
-      new VirusBuilder(coldRegionsInfectivity)
+  case class VirusBuilder(coldRegionsInfectivity: Option[ColdRegionsInfectivity],
+                          warmRegionsInfectivity: Option[WarmRegionsInfectivity]) extends ConfigurationBuilder:
+    private def copy(coldRegionsInfectivity: Option[ColdRegionsInfectivity] = coldRegionsInfectivity,
+                     warmRegionsInfectivity: Option[WarmRegionsInfectivity] = warmRegionsInfectivity): VirusBuilder =
+      new VirusBuilder(coldRegionsInfectivity, warmRegionsInfectivity)
 
     def setColdRegionInfectivity(coldRegionsInfectivity: ColdRegionsInfectivity): VirusBuilder =
-      copy(coldRegionsInfectivity=Some(coldRegionsInfectivity))
+      copy(coldRegionsInfectivity = Some(coldRegionsInfectivity))
+
+    def setWarmRegionInfectivity(warmRegionsInfectivity: WarmRegionsInfectivity): VirusBuilder =
+      copy(warmRegionsInfectivity = Some(warmRegionsInfectivity))
   object VirusBuilder:
-    def apply() = new VirusBuilder(None)
+    def apply() = new VirusBuilder(None, None)
