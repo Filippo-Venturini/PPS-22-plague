@@ -15,102 +15,122 @@ class TestVirusBuilder {
   }
 
   @Test
-  def testColdRegionsInfectivityIsUnsetByDefault: Unit = {
+  def testColdRegionsInfectivityIsUnsetByDefault(): Unit = {
     assertEquals(None, virusBuilder.coldRegionsInfectivity)
   }
 
   @Test
-  def testSetColdRegionsInfectivity: Unit = {
+  def testSetColdRegionsInfectivity(): Unit = {
     virusBuilder = virusBuilder.setColdRegionInfectivity(configuration.coldRegionsInfectivity)
     assertEquals(Some(configuration.coldRegionsInfectivity), virusBuilder.coldRegionsInfectivity)
   }
 
   @Test
-  def testWarmRegionsInfectivityIsUnsetByDefault: Unit = {
+  def testWarmRegionsInfectivityIsUnsetByDefault(): Unit = {
     assertEquals(None, virusBuilder.warmRegionsInfectivity)
   }
 
   @Test
-  def testSetWarmRegionsInfectivity: Unit = {
+  def testSetWarmRegionsInfectivity(): Unit = {
     virusBuilder = virusBuilder.setWarmRegionInfectivity(configuration.warmRegionsInfectivity)
     assertEquals(Some(configuration.warmRegionsInfectivity), virusBuilder.warmRegionsInfectivity)
   }
 
   @Test
-  def testLowDensityRegionsInfectivityIsUnsetByDefault: Unit = {
+  def testLowDensityRegionsInfectivityIsUnsetByDefault(): Unit = {
     assertEquals(None, virusBuilder.lowDensityRegionsInfectivity)
   }
 
   @Test
-  def testSetLowDensityRegionsInfectivity: Unit = {
+  def testSetLowDensityRegionsInfectivity(): Unit = {
     virusBuilder = virusBuilder.setLowDensityRegionsInfectivity(configuration.lowDensityRegionInfectivity)
     assertEquals(Some(configuration.lowDensityRegionInfectivity), virusBuilder.lowDensityRegionsInfectivity)
   }
 
   @Test
-  def testHighDensityRegionsInfectivityIsUnsetByDefault: Unit = {
+  def testHighDensityRegionsInfectivityIsUnsetByDefault(): Unit = {
     assertEquals(None, virusBuilder.highDensityRegionsInfectivity)
   }
 
   @Test
-  def testSetHighDensityRegionsInfectivity: Unit = {
+  def testSetHighDensityRegionsInfectivity(): Unit = {
     virusBuilder = virusBuilder.setHighDensityRegionsInfectivity(configuration.highDensityRegionsInfectivity)
     assertEquals(Some(configuration.highDensityRegionsInfectivity), virusBuilder.highDensityRegionsInfectivity)
   }
 
   @Test
-  def testRichRegionsInfectivityIsUnsetByDefault: Unit = {
+  def testRichRegionsInfectivityIsUnsetByDefault(): Unit = {
     assertEquals(None, virusBuilder.richRegionsInfectivity)
   }
 
   @Test
-  def testSetRichRegionsInfectivity: Unit = {
+  def testSetRichRegionsInfectivity(): Unit = {
     virusBuilder = virusBuilder.setRichRegionsInfectivity(configuration.richRegionsInfectivity)
     assertEquals(Some(configuration.richRegionsInfectivity), virusBuilder.richRegionsInfectivity)
   }
 
   @Test
-  def testPoorRegionsInfectivityIsUnsetByDefault: Unit = {
+  def testPoorRegionsInfectivityIsUnsetByDefault(): Unit = {
     assertEquals(None, virusBuilder.poorRegionsInfectivity)
   }
 
   @Test
-  def testSetPoorRegionsInfectivity: Unit = {
+  def testSetPoorRegionsInfectivity(): Unit = {
     virusBuilder = virusBuilder.setPoorRegionsInfectivity(configuration.poorRegionsInfectivity)
     assertEquals(Some(configuration.poorRegionsInfectivity), virusBuilder.poorRegionsInfectivity)
   }
 
   @Test
-  def testVaccineResistanceIsUnsetByDefault: Unit = {
+  def testVaccineResistanceIsUnsetByDefault(): Unit = {
     assertEquals(None, virusBuilder.vaccineResistance)
   }
 
   @Test
-  def testSetVaccineResistance: Unit = {
+  def testSetVaccineResistance(): Unit = {
     virusBuilder = virusBuilder.setVaccineResistance(configuration.vaccineResistance)
     assertEquals(Some(configuration.vaccineResistance), virusBuilder.vaccineResistance)
   }
 
   @Test
-  def testAirportEnabledIsUnsetByDefault: Unit = {
+  def testAirportEnabledIsUnsetByDefault(): Unit = {
     assertEquals(None, virusBuilder.airportEnabled)
   }
 
   @Test
-  def testAirportEnabled: Unit = {
+  def testAirportEnabled(): Unit = {
     virusBuilder = virusBuilder.setAirportEnabled(configuration.airportEnabled)
     assertEquals(Some(configuration.airportEnabled), virusBuilder.airportEnabled)
   }
 
   @Test
-  def testPortEnabledIsUnsetByDefault: Unit = {
+  def testPortEnabledIsUnsetByDefault(): Unit = {
     assertEquals(None, virusBuilder.portEnabled)
   }
 
   @Test
-  def testPortEnabled: Unit = {
+  def testPortEnabled(): Unit = {
     virusBuilder = virusBuilder.setPortEnabled(configuration.portEnabled)
     assertEquals(Some(configuration.portEnabled), virusBuilder.portEnabled)
+  }
+
+  @Test
+  def testBuildReturnsNoneIfMandatoryFieldsAreMissing(): Unit = {
+    assertEquals(None, virusBuilder.build())
+  }
+
+  @Test
+  def testVirusBuilderBuild(): Unit = {
+    virusBuilder = virusBuilder
+      .setPortEnabled(configuration.portEnabled)
+      .setAirportEnabled(configuration.airportEnabled)
+      .setVaccineResistance(configuration.vaccineResistance)
+      .setRichRegionsInfectivity(configuration.richRegionsInfectivity)
+      .setPoorRegionsInfectivity(configuration.poorRegionsInfectivity)
+      .setHighDensityRegionsInfectivity(configuration.highDensityRegionsInfectivity)
+      .setLowDensityRegionsInfectivity(configuration.lowDensityRegionInfectivity)
+      .setWarmRegionInfectivity(configuration.warmRegionsInfectivity)
+      .setColdRegionInfectivity(configuration.coldRegionsInfectivity)
+    assertTrue(virusBuilder.build().isDefined)
   }
 
 }

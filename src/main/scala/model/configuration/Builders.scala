@@ -4,6 +4,7 @@ import model.configuration.Builders.RegionBuilder
 import model.world.{BasicRegion, Region}
 import model.world.RegionTypes.*
 import model.infection.{ColdRegionsInfectivity, WarmRegionsInfectivity, LowDensityRegionInfectivity, HighDensityRegionsInfectivity, RichRegionsInfectivity, PoorRegionsInfectivity, VaccineResistance, AirportEnabled, PortEnabled}
+import model.infection.{Virus, VirusConfiguration, BasicVirus}
 object Builders:
   trait ConfigurationBuilder
   case class RegionBuilder(name: Option[Name],
@@ -95,5 +96,21 @@ object Builders:
 
     def setPortEnabled(portEnabled: PortEnabled): VirusBuilder =
       copy(portEnabled = Some(portEnabled))
+
+    def build(): Option[Virus] = this match
+      case VirusBuilder(Some(_), Some(_), Some(_), Some(_), Some(_), Some(_), Some(_), Some(_), Some(_)) =>
+        Some(new BasicVirus(VirusConfiguration(
+          "",
+          coldRegionsInfectivity.get,
+          warmRegionsInfectivity.get,
+          lowDensityRegionsInfectivity.get,
+          highDensityRegionsInfectivity.get,
+          richRegionsInfectivity.get,
+          poorRegionsInfectivity.get,
+          vaccineResistance.get,
+          airportEnabled.get,
+          portEnabled.get
+        )))
+      case _ => None
   object VirusBuilder:
     def apply() = new VirusBuilder(None, None, None, None, None, None, None, None, None)
