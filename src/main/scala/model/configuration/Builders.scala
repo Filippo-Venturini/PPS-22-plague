@@ -53,15 +53,17 @@ object Builders:
                           lowDensityRegionsInfectivity: Option[LowDensityRegionInfectivity],
                           highDensityRegionsInfectivity: Option[HighDensityRegionsInfectivity],
                           richRegionsInfectivity: Option[RichRegionsInfectivity],
-                          poorRegionsInfectivity: Option[PoorRegionsInfectivity]) extends ConfigurationBuilder:
+                          poorRegionsInfectivity: Option[PoorRegionsInfectivity],
+                          vaccineResistance: Option[VaccineResistance]) extends ConfigurationBuilder:
     private def copy(coldRegionsInfectivity: Option[ColdRegionsInfectivity] = coldRegionsInfectivity,
                      warmRegionsInfectivity: Option[WarmRegionsInfectivity] = warmRegionsInfectivity,
                      lowDensityRegionsInfectivity: Option[LowDensityRegionInfectivity],
                      highDensityRegionsInfectivity: Option[HighDensityRegionsInfectivity],
                      richRegionsInfectivity: Option[RichRegionsInfectivity],
-                     poorRegionsInfectivity: Option[PoorRegionsInfectivity]): VirusBuilder =
+                     poorRegionsInfectivity: Option[PoorRegionsInfectivity],
+                     vaccineResistance: Option[VaccineResistance]): VirusBuilder =
       new VirusBuilder(coldRegionsInfectivity, warmRegionsInfectivity, lowDensityRegionsInfectivity, highDensityRegionsInfectivity,
-        richRegionsInfectivity, poorRegionsInfectivity)
+        richRegionsInfectivity, poorRegionsInfectivity, vaccineResistance)
 
     def setColdRegionInfectivity(coldRegionsInfectivity: ColdRegionsInfectivity): VirusBuilder =
       copy(coldRegionsInfectivity = Some(coldRegionsInfectivity))
@@ -80,5 +82,8 @@ object Builders:
 
     def setPoorRegionsInfectivity(poorRegionsInfectivity: PoorRegionsInfectivity): VirusBuilder =
       copy(poorRegionsInfectivity = Some(poorRegionsInfectivity))
+
+    def setVaccineResistance(vaccineResistance: VaccineResistance): VirusBuilder =
+      copy(vaccineResistance = Some(vaccineResistance))
   object VirusBuilder:
-    def apply() = new VirusBuilder(None, None, None, None, None, None)
+    def apply() = new VirusBuilder(None, None, None, None, None, None, None)

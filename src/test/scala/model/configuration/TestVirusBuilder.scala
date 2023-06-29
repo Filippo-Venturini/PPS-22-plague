@@ -80,4 +80,15 @@ class TestVirusBuilder {
     assertEquals(Some(configuration.poorRegionsInfectivity), virusBuilder.poorRegionsInfectivity)
   }
 
+  @Test
+  def testVaccineResistanceIsUnsetByDefault: Unit = {
+    assertEquals(None, virusBuilder.vaccineResistance)
+  }
+
+  @Test
+  def testSetVaccineResistance: Unit = {
+    virusBuilder = virusBuilder.setVaccineResistance(configuration.vaccineResistance)
+    assertEquals(Some(configuration.vaccineResistance), virusBuilder.vaccineResistance)
+  }
+
 }
