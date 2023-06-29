@@ -3,7 +3,7 @@ package model.configuration
 import model.configuration.Builders.RegionBuilder
 import model.world.{BasicRegion, Region}
 import model.world.RegionTypes.*
-import model.infection.{ColdRegionsInfectivity, WarmRegionsInfectivity, LowDensityRegionInfectivity}
+import model.infection.{ColdRegionsInfectivity, WarmRegionsInfectivity, LowDensityRegionInfectivity, HighDensityRegionsInfectivity}
 object Builders:
   trait ConfigurationBuilder
   case class RegionBuilder(name: Option[Name],
@@ -50,11 +50,13 @@ object Builders:
 
   case class VirusBuilder(coldRegionsInfectivity: Option[ColdRegionsInfectivity],
                           warmRegionsInfectivity: Option[WarmRegionsInfectivity],
-                          lowDensityRegionsInfectivity: Option[LowDensityRegionInfectivity]) extends ConfigurationBuilder:
+                          lowDensityRegionsInfectivity: Option[LowDensityRegionInfectivity],
+                          highDensityRegionsInfectivity: Option[HighDensityRegionsInfectivity]) extends ConfigurationBuilder:
     private def copy(coldRegionsInfectivity: Option[ColdRegionsInfectivity] = coldRegionsInfectivity,
                      warmRegionsInfectivity: Option[WarmRegionsInfectivity] = warmRegionsInfectivity,
-                     lowDensityRegionsInfectivity: Option[LowDensityRegionInfectivity]): VirusBuilder =
-      new VirusBuilder(coldRegionsInfectivity, warmRegionsInfectivity, lowDensityRegionsInfectivity)
+                     lowDensityRegionsInfectivity: Option[LowDensityRegionInfectivity],
+                     highDensityRegionsInfectivity: Option[HighDensityRegionsInfectivity]): VirusBuilder =
+      new VirusBuilder(coldRegionsInfectivity, warmRegionsInfectivity, lowDensityRegionsInfectivity, highDensityRegionsInfectivity)
 
     def setColdRegionInfectivity(coldRegionsInfectivity: ColdRegionsInfectivity): VirusBuilder =
       copy(coldRegionsInfectivity = Some(coldRegionsInfectivity))
@@ -64,5 +66,8 @@ object Builders:
 
     def setLowDensityRegionsInfectivity(lowDensityRegionsInfectivity: LowDensityRegionInfectivity): VirusBuilder =
       copy(lowDensityRegionsInfectivity = Some(lowDensityRegionsInfectivity))
+
+    def setHighDensityRegionsInfectivity(highDensityRegionsInfectivity: HighDensityRegionsInfectivity): VirusBuilder =
+      copy(highDensityRegionsInfectivity = Some(highDensityRegionsInfectivity))
   object VirusBuilder:
-    def apply() = new VirusBuilder(None, None, None)
+    def apply() = new VirusBuilder(None, None, None, None)
