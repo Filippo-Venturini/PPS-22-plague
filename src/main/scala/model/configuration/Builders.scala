@@ -3,7 +3,7 @@ package model.configuration
 import model.configuration.Builders.RegionBuilder
 import model.world.{BasicRegion, Region}
 import model.world.RegionTypes.*
-import model.infection.{ColdRegionsInfectivity, WarmRegionsInfectivity}
+import model.infection.{ColdRegionsInfectivity, WarmRegionsInfectivity, LowDensityRegionInfectivity}
 object Builders:
   trait ConfigurationBuilder
   case class RegionBuilder(name: Option[Name],
@@ -49,15 +49,20 @@ object Builders:
     def apply() = new RegionBuilder(None, None, None, None, None, None, None, List(), false, false)
 
   case class VirusBuilder(coldRegionsInfectivity: Option[ColdRegionsInfectivity],
-                          warmRegionsInfectivity: Option[WarmRegionsInfectivity]) extends ConfigurationBuilder:
+                          warmRegionsInfectivity: Option[WarmRegionsInfectivity],
+                          lowDensityRegionInfectivity: Option[LowDensityRegionInfectivity]) extends ConfigurationBuilder:
     private def copy(coldRegionsInfectivity: Option[ColdRegionsInfectivity] = coldRegionsInfectivity,
-                     warmRegionsInfectivity: Option[WarmRegionsInfectivity] = warmRegionsInfectivity): VirusBuilder =
-      new VirusBuilder(coldRegionsInfectivity, warmRegionsInfectivity)
+                     warmRegionsInfectivity: Option[WarmRegionsInfectivity] = warmRegionsInfectivity,
+                     lowDensityRegionInfectivity: Option[LowDensityRegionInfectivity]): VirusBuilder =
+      new VirusBuilder(coldRegionsInfectivity, warmRegionsInfectivity, lowDensityRegionInfectivity)
 
     def setColdRegionInfectivity(coldRegionsInfectivity: ColdRegionsInfectivity): VirusBuilder =
       copy(coldRegionsInfectivity = Some(coldRegionsInfectivity))
 
     def setWarmRegionInfectivity(warmRegionsInfectivity: WarmRegionsInfectivity): VirusBuilder =
       copy(warmRegionsInfectivity = Some(warmRegionsInfectivity))
+
+    def setLowDensityInfectivity(lowDensityRegionInfectivity: LowDensityRegionInfectivity): VirusBuilder =
+      copy(lowDensityRegionInfectivity = Some(lowDensityRegionInfectivity))
   object VirusBuilder:
-    def apply() = new VirusBuilder(None, None)
+    def apply() = new VirusBuilder(None, None, None)

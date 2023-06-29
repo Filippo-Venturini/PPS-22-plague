@@ -36,4 +36,15 @@ class TestVirusBuilder {
     assertEquals(Some(configuration.warmRegionsInfectivity), virusBuilder.warmRegionsInfectivity)
   }
 
+  @Test
+  def testLowDensityRegionsInfectivityIsUnsetByDefault: Unit = {
+    assertEquals(None, virusBuilder.lowDensityRegionInfectivity)
+  }
+
+  @Test
+  def testSetLowDensityRegionsInfectivity: Unit = {
+    virusBuilder = virusBuilder.setLowDensityInfectivity(configuration.lowDensityRegionInfectivity)
+    assertEquals(Some(configuration.lowDensityRegionInfectivity), virusBuilder.lowDensityRegionInfectivity)
+  }
+
 }
