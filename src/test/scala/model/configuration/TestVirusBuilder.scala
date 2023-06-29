@@ -93,13 +93,24 @@ class TestVirusBuilder {
 
   @Test
   def testAirportEnabledIsUnsetByDefault: Unit = {
-    assertEquals(None, virusBuilder.vaccineResistance)
+    assertEquals(None, virusBuilder.airportEnabled)
   }
 
   @Test
   def testAirportEnabled: Unit = {
     virusBuilder = virusBuilder.setAirportEnabled(configuration.airportEnabled)
     assertEquals(Some(configuration.airportEnabled), virusBuilder.airportEnabled)
+  }
+
+  @Test
+  def testPortEnabledIsUnsetByDefault: Unit = {
+    assertEquals(None, virusBuilder.portEnabled)
+  }
+
+  @Test
+  def testPortEnabled: Unit = {
+    virusBuilder = virusBuilder.setPortEnabled(configuration.portEnabled)
+    assertEquals(Some(configuration.portEnabled), virusBuilder.portEnabled)
   }
 
 }

@@ -55,7 +55,8 @@ object Builders:
                           richRegionsInfectivity: Option[RichRegionsInfectivity],
                           poorRegionsInfectivity: Option[PoorRegionsInfectivity],
                           vaccineResistance: Option[VaccineResistance],
-                          airportEnabled: Option[AirportEnabled]) extends ConfigurationBuilder:
+                          airportEnabled: Option[AirportEnabled],
+                          portEnabled: Option[PortEnabled]) extends ConfigurationBuilder:
     private def copy(coldRegionsInfectivity: Option[ColdRegionsInfectivity] = coldRegionsInfectivity,
                      warmRegionsInfectivity: Option[WarmRegionsInfectivity] = warmRegionsInfectivity,
                      lowDensityRegionsInfectivity: Option[LowDensityRegionInfectivity],
@@ -63,9 +64,10 @@ object Builders:
                      richRegionsInfectivity: Option[RichRegionsInfectivity],
                      poorRegionsInfectivity: Option[PoorRegionsInfectivity],
                      vaccineResistance: Option[VaccineResistance],
-                     airportEnabled: Option[AirportEnabled]): VirusBuilder =
+                     airportEnabled: Option[AirportEnabled],
+                     portEnabled: Option[PortEnabled]): VirusBuilder =
       new VirusBuilder(coldRegionsInfectivity, warmRegionsInfectivity, lowDensityRegionsInfectivity, highDensityRegionsInfectivity,
-        richRegionsInfectivity, poorRegionsInfectivity, vaccineResistance, airportEnabled)
+        richRegionsInfectivity, poorRegionsInfectivity, vaccineResistance, airportEnabled, portEnabled)
 
     def setColdRegionInfectivity(coldRegionsInfectivity: ColdRegionsInfectivity): VirusBuilder =
       copy(coldRegionsInfectivity = Some(coldRegionsInfectivity))
@@ -90,5 +92,8 @@ object Builders:
 
     def setAirportEnabled(airportEnabled: AirportEnabled): VirusBuilder =
       copy(airportEnabled = Some(airportEnabled))
+
+    def setPortEnabled(portEnabled: PortEnabled): VirusBuilder =
+      copy(portEnabled = Some(portEnabled))
   object VirusBuilder:
-    def apply() = new VirusBuilder(None, None, None, None, None, None, None, None)
+    def apply() = new VirusBuilder(None, None, None, None, None, None, None, None, None)
