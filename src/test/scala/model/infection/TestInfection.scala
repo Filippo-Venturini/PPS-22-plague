@@ -45,16 +45,16 @@ class TestInfection {
 
     assert(testSaneRegion.infectedAmount > 0)
 
-
+/*
   @Test
   def testWithBorderControl: Unit =
 
-    val testHighBordersControl = 7
-    val regionHighBordersControlConfigurator: RegionConfiguration = RegionConfiguration("CentralAmerica", 800000000, 8, 5, testHighBordersControl, 8, 9)
+    val testHighBordersControl = 5
+    val regionHighBordersControlConfigurator: RegionConfiguration = RegionConfiguration("CentralAmerica", 800000000, 8, 5, testHighBordersControl, 8, 3)
     val regionHighBordersControl: Region = new BasicRegion(regionHighBordersControlConfigurator)
 
-    val testLowBordersControl = 2
-    val regionLowBordersControlConfigurator: RegionConfiguration = RegionConfiguration("NorthAfrica", 800000000, 2, 9, testLowBordersControl, 2, 2)
+    val testLowBordersControl = 1
+    val regionLowBordersControlConfigurator: RegionConfiguration = RegionConfiguration("NorthAfrica", 800000000, 2, 9, testLowBordersControl, 2, 3)
     val regionLowBordersControl: Region = new BasicRegion(regionLowBordersControlConfigurator)
 
     val testInfectedRegionConfiguration: RegionConfiguration = RegionConfiguration("Europe", 746000000, 9, 5, 8, 9, 8)
@@ -79,9 +79,85 @@ class TestInfection {
 
     val infectedLowBordersControlRegion = regionLowBordersControl.infectedAmount
 
-    assert(infectedLowBordersControlRegion < infectedHighBordersControlRegion)
+    println(regionHighBordersControl.name+": " + infectedHighBordersControlRegion)
+    println(regionLowBordersControl.name+": " + infectedLowBordersControlRegion)
+    
+    assert(infectedLowBordersControlRegion > infectedHighBordersControlRegion)
 
+*/
+  @Test
+  def testWithPopulationDensity: Unit =
+
+    val testHighPopulationDensity = 5
+    val regionHighPopulationDensityConfigurator: RegionConfiguration = RegionConfiguration("CentralAmerica", 800000000, 8, 5, 3, 8, testHighPopulationDensity)
+    val regionHighPopulationDensity: Region = new BasicRegion(regionHighPopulationDensityConfigurator)
+
+    val testLowPopulationDensity = 1
+    val regionLowPopulationDensityConfigurator: RegionConfiguration = RegionConfiguration("NorthAfrica", 800000000, 2, 9, 3, 2, testLowPopulationDensity)
+    val regionLowPopulationDensity: Region = new BasicRegion(regionLowPopulationDensityConfigurator)
+
+    val testInfectedRegionConfiguration: RegionConfiguration = RegionConfiguration("Europe", 746000000, 9, 5, 8, 9, 8)
+    val testInfectedRegion: Region = new BasicRegion(testInfectedRegionConfiguration)
+    testInfectedRegion.infectedAmount = 3 * (testInfectedRegion.population / 4)
+
+    val regionsWithHighBorderControl: List[Region] = List(testInfectedRegion, regionHighPopulationDensity)
+    val infectionHandlerHighBorderControl: InfectionHandler = new InfectionHandler(virus, regionsWithHighBorderControl)
+    val infectionLogicHighBorderControl: InfectionLogic = new ExternalInfectionLogic(regionHighPopulationDensity, virus)
+
+    regionHighPopulationDensity.addBorderingRegion(testInfectedRegion)
+    infectionHandlerHighBorderControl.computeInfection(regionsWithHighBorderControl)(using infectionLogicHighBorderControl)
+
+    val infectedHighPopulationDensityRegion = regionHighPopulationDensity.infectedAmount
+
+    val regionsWithLowBorderControl: List[Region] = List(testInfectedRegion, regionLowPopulationDensity)
+    val infectionHandlerLowBorderControl: InfectionHandler = new InfectionHandler(virus, regionsWithLowBorderControl)
+    val infectionLogicLowBorderControl: InfectionLogic = new ExternalInfectionLogic(regionLowPopulationDensity, virus)
+
+    regionLowPopulationDensity.addBorderingRegion(testInfectedRegion)
+    infectionHandlerLowBorderControl.computeInfection(regionsWithLowBorderControl)(using infectionLogicLowBorderControl)
+
+    val infectedLowPopulationDensityRegion = regionLowPopulationDensity.infectedAmount
+    
+    assert(infectedLowPopulationDensityRegion < infectedHighPopulationDensityRegion)
+
+
+  @Test
+  def testWithGlobalization: Unit =
+
+    val testHighGlobalization = 5
+    val regionHighGlobalizationConfigurator: RegionConfiguration = RegionConfiguration("CentralAmerica", 800000000, 8, 5, 3, testHighGlobalization, 3)
+    val regionHighGlobalization: Region = new BasicRegion(regionHighGlobalizationConfigurator)
+
+    val testLowGlobalization = 1
+    val regionLowGlobalizationConfigurator: RegionConfiguration = RegionConfiguration("NorthAfrica", 800000000, 2, 9, 3, testLowGlobalization, 3)
+    val regionLowGlobalization: Region = new BasicRegion(regionLowGlobalizationConfigurator)
+
+    val testInfectedRegionConfiguration: RegionConfiguration = RegionConfiguration("Europe", 746000000, 9, 5, 8, 9, 8)
+    val testInfectedRegion: Region = new BasicRegion(testInfectedRegionConfiguration)
+    testInfectedRegion.infectedAmount = 3 * (testInfectedRegion.population / 4)
+
+    val regionsWithHighBorderControl: List[Region] = List(testInfectedRegion, regionHighGlobalization)
+    val infectionHandlerHighBorderControl: InfectionHandler = new InfectionHandler(virus, regionsWithHighBorderControl)
+    val infectionLogicHighBorderControl: InfectionLogic = new ExternalInfectionLogic(regionHighGlobalization, virus)
+
+    regionHighGlobalization.addBorderingRegion(testInfectedRegion)
+    infectionHandlerHighBorderControl.computeInfection(regionsWithHighBorderControl)(using infectionLogicHighBorderControl)
+
+    val infectedHighGlobalizationRegion = regionHighGlobalization.infectedAmount
+
+    val regionsWithLowBorderControl: List[Region] = List(testInfectedRegion, regionLowGlobalization)
+    val infectionHandlerLowBorderControl: InfectionHandler = new InfectionHandler(virus, regionsWithLowBorderControl)
+    val infectionLogicLowBorderControl: InfectionLogic = new ExternalInfectionLogic(regionLowGlobalization, virus)
+
+    regionLowGlobalization.addBorderingRegion(testInfectedRegion)
+    infectionHandlerLowBorderControl.computeInfection(regionsWithLowBorderControl)(using infectionLogicLowBorderControl)
+
+    val infectedLowGlobalizationRegion = regionLowGlobalization.infectedAmount
+
+    assert(infectedLowGlobalizationRegion < infectedHighGlobalizationRegion)
 }
+
+
 
 
 

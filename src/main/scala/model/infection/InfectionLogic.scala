@@ -12,7 +12,7 @@ trait InfectionLogic:
   def region: Region
   def virus: Virus
   def compute(region: Region, virus: Virus): Unit
-  val infectionRatioIncreaseInside: Int = 1000000
+  val infectionRatioIncreaseInside: Double = 1000000.0
   val infectionRatioIncreaseFromRoute: Double = 0.000001
   def infectedRatio(): Double
   /*
@@ -30,7 +30,7 @@ class InternalInfectionLogic(override val region: Region,
    * Increase the infected amount for a specific factor
    */
   override def compute(region: Region, virus: Virus): Unit = region.infectedAmount match
-    case i if i > 0 => region.infectedAmount = region.infectedAmount + (region.population / infectionRatioIncreaseInside)
+    case i if i > 0 => region.infectedAmount = region.infectedAmount + (region.population / infectionRatioIncreaseInside).toInt
 
   override def infectedRatio(): Double = ???
 
@@ -45,7 +45,12 @@ class ExternalInfectionLogic(override val region: Region,
       (reachableMode == ReachableMode.Border) ||
       (reachableMode == ReachableMode.Airport && virus.airportEnabled) ||
       (reachableMode == ReachableMode.Port && virus.portEnabled)).size > 0
-      then region.infectedAmount = region.infectedAmount + (region.population / (region.population * infectedRatio()).toInt)
+      then
+      region.infectedAmount = region.infectedAmount + (region.population / (region.population * this.infectedRatio()).toInt)
 
   override def infectedRatio(): Double =
-    infectionRatioIncreaseFromRoute / region.bordersControl
+    //println(region.name+": "+0.1 / region.populationDensity)
+    //println(region.name+": "+ (region.bordersControl / 100.0) + (0.1 / region.populationDensity))
+    //region.bordersControl / 100.0
+    //0.1 / region.populationDensity
+    (region.bordersControl / 100.0) + (0.1 / region.populationDensity) + (0.1 / region.globalization)
