@@ -59,6 +59,11 @@ class TestRoutes {
     assertEquals(List(Route(unitedStates, japan, ReachableMode.Port), Route(unitedStates, southAfrica, ReachableMode.Port)), portRouteManager.getAllRoutesOf(unitedStates))
 
   @Test
+  def testAddAirportRouteOfRegionWithoutAirport: Unit =
+    portRouteManager.addRoute(europe, unitedStates)
+    assertEquals(List(), portRouteManager.getAllRoutesOf(europe))
+
+  @Test
   def testAddOneRouteToAirportRouteManager: Unit =
     airportRouteManager.addRoute(australia, northAfrica)
     assertEquals(List(Route(australia, northAfrica, ReachableMode.Airport)), airportRouteManager.getAllRoutesOf(australia))
