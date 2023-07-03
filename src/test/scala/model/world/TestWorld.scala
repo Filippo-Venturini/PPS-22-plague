@@ -2,12 +2,11 @@ package model.world
 
 import model.world.RegionTypes.RegionConfiguration
 import model.world.Filters.{infectedRegions, notInfectedRegions, totallyInfectedRegions, given}
+import model.world.TestRegionConfigurations.*
 import org.junit.{Before, Test}
 import org.junit.Assert.assertEquals
 
 class TestWorld {
-  val europeConfiguration: RegionConfiguration = RegionConfiguration("Europe", 746000000, 9, 5, 8, 9, 8)
-  val unitedStatesConfiguration: RegionConfiguration = RegionConfiguration("United States", 746000000, 9, 5, 8, 9, 8)
   var notInfectedRegion: Region = new BasicRegion(europeConfiguration)
   var infectedRegion: Region = new BasicRegion(europeConfiguration)
   val world: World = new World(List(notInfectedRegion, infectedRegion))
