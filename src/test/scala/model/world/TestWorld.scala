@@ -7,13 +7,14 @@ import org.junit.{Before, Test}
 import org.junit.Assert.assertEquals
 
 class TestWorld {
-  var notInfectedRegion: Region = new BasicRegion(europeConfiguration)
+  val infectedAmount: Int = 100
+  var notInfectedRegion: Region = new BasicRegion(unitedStatesConfiguration)
   var infectedRegion: Region = new BasicRegion(europeConfiguration)
   val world: World = new World(List(notInfectedRegion, infectedRegion))
 
   @Before
   def init(): Unit =
-    infectedRegion.infectedAmount = 100
+    infectedRegion.infectedAmount = infectedAmount
 
   @Test
   def testGetAllRegions(): Unit =
