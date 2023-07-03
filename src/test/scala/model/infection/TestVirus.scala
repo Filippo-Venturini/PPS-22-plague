@@ -8,6 +8,8 @@ import org.junit.{Before, Test}
 class TestVirus {
   val testVirusConfiguration: VirusConfiguration = VirusConfiguration("DHT11", 0, 0, 0, 0, 0, 0, 0, false, false)
   val virus: Virus = new BasicVirus(testVirusConfiguration)
+
+  //TODO aggiungere test per modificare i parametri del virus
   @Test
   def testVirusName: Unit =
     assertEquals(testVirusConfiguration.name, virus.name)
@@ -15,6 +17,7 @@ class TestVirus {
   @Test
   def testVirusColdRegionsInfectivity: Unit =
     assertEquals(testVirusConfiguration.coldRegionsInfectivity, virus.coldRegionsInfectivity)
+
 
   @Test
   def testVirusWarmRegionsInfectivity: Unit =
