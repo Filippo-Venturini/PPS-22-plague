@@ -6,7 +6,6 @@ import org.junit.{Before, Test}
 class TestRoutes {
   var portRouteManager: PortRouteManager = new PortRouteManager()
   var airportRouteManager: AirportRouteManager = new AirportRouteManager()
-
   val europeConfiguration: RegionConfiguration = RegionConfiguration("Europe", 747000000, 9, 5, 8, 9, 8)
   val unitedStatesConfiguration: RegionConfiguration = RegionConfiguration("United States", 331000000, 10, 2, 8, 1, 3)
   val russiaConfiguration: RegionConfiguration = RegionConfiguration("Russia", 143000000, 2, 3, 6, 9, 5)
@@ -14,25 +13,24 @@ class TestRoutes {
   val australiaConfiguration: RegionConfiguration = RegionConfiguration("Australia", 25000000, 6, 2, 1, 3, 5)
   val northAfricaConfiguration: RegionConfiguration = RegionConfiguration("North Africa", 178000000, 3, 7, 3, 9, 2)
   val southAfricaConfiguration: RegionConfiguration = RegionConfiguration("South Africa", 59000000, 7, 2, 5, 5, 7)
-  var europe: Region = new BasicRegion(europeConfiguration)
-  var russia: Region = new BasicRegion(russiaConfiguration)
-  var japan: Region = new RegionWithPort(japanConfiguration, portRouteManager)
-  var unitedStates: Region = new RegionWithPort(unitedStatesConfiguration, portRouteManager)
-  var australia: Region = new RegionWithAirport(australiaConfiguration, airportRouteManager)
-  var northAfrica: Region = new RegionWithAirport(northAfricaConfiguration, airportRouteManager)
-  var southAfrica: Region = new RegionWithAirportAndPort(northAfricaConfiguration, airportRouteManager, portRouteManager)
-
-  val testRoute: Route = Route(europe, unitedStates, ReachableMode.Border)
-  val portTestRoute: Route = Route(japan, unitedStates, ReachableMode.Port)
-  val airportTestRoute: Route = Route(australia, northAfrica, ReachableMode.Airport)
+  var firstBasicRegion: Region = new BasicRegion(europeConfiguration)
+  var secondBasicRegion: Region = new BasicRegion(russiaConfiguration)
+  var firstRegionWithPort: Region = new RegionWithPort(japanConfiguration, portRouteManager)
+  var secondRegionWithPort: Region = new RegionWithPort(unitedStatesConfiguration, portRouteManager)
+  var firstRegionWithAirport: Region = new RegionWithAirport(australiaConfiguration, airportRouteManager)
+  var secondRegionWithAirport: Region = new RegionWithAirport(northAfricaConfiguration, airportRouteManager)
+  var regionWithAirportAndPort: Region = new RegionWithAirportAndPort(northAfricaConfiguration, airportRouteManager, portRouteManager)
+  val testRoute: Route = Route(firstBasicRegion, secondRegionWithPort, ReachableMode.Border)
+  val portTestRoute: Route = Route(firstRegionWithPort, secondRegionWithPort, ReachableMode.Port)
+  val airportTestRoute: Route = Route(firstRegionWithAirport, secondRegionWithAirport, ReachableMode.Airport)
 
   @Test
   def testFirstRegion: Unit =
-    assertEquals(europe, testRoute.fromRegion)
+    assertEquals(firstBasicRegion, testRoute.fromRegion)
 
   @Test
   def testSecondRegion: Unit =
-    assertEquals(unitedStates, testRoute.toRegion)
+    assertEquals(secondRegionWithPort, testRoute.toRegion)
 
   @Test
   def testPortRoute: Unit =
@@ -44,33 +42,33 @@ class TestRoutes {
 
   @Test
   def testAddPortRouteOfRegionWithoutPort: Unit =
-    portRouteManager.addRoute(europe, unitedStates)
-    assertEquals(List(), portRouteManager.getAllRoutesOf(europe))
+    portRouteManager.addRoute(firstBasicRegion, secondRegionWithPort)
+    assertEquals(List(), portRouteManager.getAllRoutesOf(firstBasicRegion))
 
   @Test
   def testAddOneRouteToPortRouteManager: Unit =
-    portRouteManager.addRoute(japan, southAfrica)
-    assertEquals(List(Route(japan, southAfrica, ReachableMode.Port)), portRouteManager.getAllRoutesOf(japan))
+    portRouteManager.addRoute(firstRegionWithPort, regionWithAirportAndPort)
+    assertEquals(List(Route(firstRegionWithPort, regionWithAirportAndPort, ReachableMode.Port)), portRouteManager.getAllRoutesOf(firstRegionWithPort))
 
   @Test
   def testAddMultipleRouteToPortRouteManager: Unit =
-    portRouteManager.addRoute(unitedStates, japan)
-    portRouteManager.addRoute(unitedStates, southAfrica)
-    assertEquals(List(Route(unitedStates, japan, ReachableMode.Port), Route(unitedStates, southAfrica, ReachableMode.Port)), portRouteManager.getAllRoutesOf(unitedStates))
+    portRouteManager.addRoute(secondRegionWithPort, firstRegionWithPort)
+    portRouteManager.addRoute(secondRegionWithPort, regionWithAirportAndPort)
+    assertEquals(List(Route(secondRegionWithPort, firstRegionWithPort, ReachableMode.Port), Route(secondRegionWithPort, regionWithAirportAndPort, ReachableMode.Port)), portRouteManager.getAllRoutesOf(secondRegionWithPort))
 
   @Test
   def testAddAirportRouteOfRegionWithoutAirport: Unit =
-    portRouteManager.addRoute(europe, unitedStates)
-    assertEquals(List(), portRouteManager.getAllRoutesOf(europe))
+    portRouteManager.addRoute(firstBasicRegion, secondRegionWithPort)
+    assertEquals(List(), portRouteManager.getAllRoutesOf(firstBasicRegion))
 
   @Test
   def testAddOneRouteToAirportRouteManager: Unit =
-    airportRouteManager.addRoute(australia, northAfrica)
-    assertEquals(List(Route(australia, northAfrica, ReachableMode.Airport)), airportRouteManager.getAllRoutesOf(australia))
+    airportRouteManager.addRoute(firstRegionWithAirport, secondRegionWithAirport)
+    assertEquals(List(Route(firstRegionWithAirport, secondRegionWithAirport, ReachableMode.Airport)), airportRouteManager.getAllRoutesOf(firstRegionWithAirport))
 
   @Test
   def testAddMultipleRouteToAirportRouteManager: Unit =
-    airportRouteManager.addRoute(australia, northAfrica)
-    airportRouteManager.addRoute(australia, southAfrica)
-    assertEquals(List(Route(australia, northAfrica, ReachableMode.Airport), Route(australia, southAfrica, ReachableMode.Airport)), airportRouteManager.getAllRoutesOf(australia))
+    airportRouteManager.addRoute(firstRegionWithAirport, secondRegionWithAirport)
+    airportRouteManager.addRoute(firstRegionWithAirport, regionWithAirportAndPort)
+    assertEquals(List(Route(firstRegionWithAirport, secondRegionWithAirport, ReachableMode.Airport), Route(firstRegionWithAirport, regionWithAirportAndPort, ReachableMode.Airport)), airportRouteManager.getAllRoutesOf(firstRegionWithAirport))
 }
