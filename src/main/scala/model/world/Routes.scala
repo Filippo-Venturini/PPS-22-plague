@@ -41,7 +41,12 @@ class PortRouteManager extends RouteManager:
   override def addRoute(fromRegion: Region, toRegion: Region): Unit = (fromRegion, toRegion) match
     case (fromRegion, toRegion) if this.hasPort(fromRegion) && this.hasPort(toRegion) => this.allRoutes = this.allRoutes :+ Route(fromRegion, toRegion, ReachableMode.Port)
     case _ =>
-    
+
+  /**
+   * @param region the region to be checked
+   * @tparam P check that the type of the region is allowed to have a port
+   * @return true if the region has a port
+   */
   def hasPort[P <: Port](region: Region): Boolean = region match
     case _ : P => true
     case _ => false
@@ -60,6 +65,11 @@ class AirportRouteManager extends RouteManager:
     case (fromRegion, toRegion) if this.hasAirport(fromRegion) && this.hasAirport(toRegion) => this.allRoutes = this.allRoutes :+ Route(fromRegion, toRegion, ReachableMode.Airport)
     case _ =>
 
+  /**
+   * @param region the region to be checked
+   * @tparam A check that the type of the region is allowed to have an airport
+   * @return true if the region has an airport
+   */
   def hasAirport[A <: Airport](region: Region): Boolean = region match
     case _ : A => true
     case _ => false
