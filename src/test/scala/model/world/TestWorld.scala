@@ -10,24 +10,25 @@ class TestWorld {
   val infectedAmount: Int = 100
   var notInfectedRegion: Region = new BasicRegion(unitedStatesConfiguration)
   var infectedRegion: Region = new BasicRegion(europeConfiguration)
-  val world: World = new World(List(notInfectedRegion, infectedRegion))
+  var totallyInfectedRegion: Region = new BasicRegion(japanConfiguration)
+  val world: World = new World(List(notInfectedRegion, infectedRegion, totallyInfectedRegion))
 
   @Before
   def init(): Unit =
     infectedRegion.infectedAmount = infectedAmount
+    totallyInfectedRegion.infectedAmount = totallyInfectedRegion.population
 
   @Test
   def testGetAllRegions(): Unit =
-    assertEquals(List(notInfectedRegion, infectedRegion), world.getRegions)
+    assertEquals(List(notInfectedRegion, infectedRegion, totallyInfectedRegion), world.getRegions)
 
   @Test
   def testGetInfectedRegions(): Unit =
-    assertEquals(List(infectedRegion), world.getRegions(using infectedRegions))
+    assertEquals(List(infectedRegion, totallyInfectedRegion), world.getRegions(using infectedRegions))
 
   @Test
   def testGetTotallyInfectedRegions(): Unit =
-    infectedRegion.infectedAmount = infectedRegion.population
-    assertEquals(List(infectedRegion), world.getRegions(using totallyInfectedRegions))
+    assertEquals(List(totallyInfectedRegion), world.getRegions(using totallyInfectedRegions))
 
   @Test
   def testGetNotInfectedRegions(): Unit =
