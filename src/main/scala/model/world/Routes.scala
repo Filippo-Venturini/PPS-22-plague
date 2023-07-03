@@ -31,7 +31,7 @@ abstract class RouteManager:
 /**
  * Class that represent a route manager that handle only port routes
  */
-class PortRouteManager extends RouteManager:
+private class PortRouteManager extends RouteManager:
   /**
    * Add a new port route between the two regions
    *

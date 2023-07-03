@@ -4,7 +4,7 @@ import org.junit.Assert.assertEquals
 import org.junit.{Before, Test}
 
 class TestRoutes {
-  var portRouteManager: PortRouteManager = new PortRouteManager()
+  var portRouteManager: PortRouteManager = PortRouteManager()
   var airportRouteManager: AirportRouteManager = new AirportRouteManager()
   val europeConfiguration: RegionConfiguration = RegionConfiguration("Europe", 747000000, 9, 5, 8, 9, 8)
   val unitedStatesConfiguration: RegionConfiguration = RegionConfiguration("United States", 331000000, 10, 2, 8, 1, 3)

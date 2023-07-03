@@ -15,7 +15,7 @@ class TestWorld {
   @Before
   def init(): Unit =
     infectedRegion.infectedAmount = 100
-  
+
   @Test
   def testGetAllRegions(): Unit =
     assertEquals(List(notInfectedRegion, infectedRegion), world.getRegions)
