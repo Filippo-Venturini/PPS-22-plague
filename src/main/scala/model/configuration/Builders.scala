@@ -1,10 +1,10 @@
 package model.configuration
 
 import model.configuration.Builders.RegionBuilder
-import model.world.{BasicRegion, Region}
+import model.world.{AirportRouteManager, BasicRegion, PortRouteManager, Region, RegionWithAirport, RegionWithPort, RegionWithAirportAndPort}
 import model.world.RegionTypes.*
-import model.infection.{ColdRegionsInfectivity, WarmRegionsInfectivity, LowDensityRegionInfectivity, HighDensityRegionsInfectivity, RichRegionsInfectivity, PoorRegionsInfectivity, VaccineResistance, AirportEnabled, PortEnabled}
-import model.infection.{Virus, VirusConfiguration, BasicVirus}
+import model.infection.{AirportEnabled, ColdRegionsInfectivity, HighDensityRegionsInfectivity, LowDensityRegionInfectivity, PoorRegionsInfectivity, PortEnabled, RichRegionsInfectivity, VaccineResistance, WarmRegionsInfectivity}
+import model.infection.{BasicVirus, Virus, VirusConfiguration}
 object Builders:
   trait ConfigurationBuilder
   case class RegionBuilder(name: Option[Name],
@@ -36,15 +36,17 @@ object Builders:
     def setGlobalization(globalization: Globalization): RegionBuilder = copy(globalization=Some(globalization))
     def setPopulationDensity(populationDensity: PopulationDensity): RegionBuilder = copy(populationDensity=Some(populationDensity))
     def setBorderingRegions(borderingRegionsIds: List[Name]): RegionBuilder = copy(borderingRegionsIds=borderingRegionsIds)
+    def addPort: RegionBuilder = copy(hasPort = true)
+    def addAirport: RegionBuilder = copy(hasAirport = true)
     def build(): Option[Region] = this match
-      case RegionBuilder(Some(_), Some(_), Some(_), Some(_), Some(_), Some(_), Some(_), _, _, _) =>
-        Some(new BasicRegion(RegionConfiguration(name.get,
-          population.get,
-          richness.get,
-          climate.get,
-          bordersControl.get,
-          globalization.get,
-          populationDensity.get)))
+      case RegionBuilder(Some(_), Some(_), Some(_), Some(_), Some(_), Some(_), Some(_), _, false, false) =>
+        Some(new BasicRegion(RegionConfiguration(name.get, population.get, richness.get, climate.get, bordersControl.get, globalization.get, populationDensity.get)))
+      case RegionBuilder(Some(_), Some(_), Some(_), Some(_), Some(_), Some(_), Some(_), _, true, false) =>
+        Some(new RegionWithAirport(RegionConfiguration(name.get, population.get, richness.get, climate.get, bordersControl.get, globalization.get, populationDensity.get), AirportRouteManager()))
+      case RegionBuilder(Some(_), Some(_), Some(_), Some(_), Some(_), Some(_), Some(_), _, false, true) =>
+        Some(new RegionWithPort(RegionConfiguration(name.get, population.get, richness.get, climate.get, bordersControl.get, globalization.get, populationDensity.get), PortRouteManager()))
+      case RegionBuilder(Some(_), Some(_), Some(_), Some(_), Some(_), Some(_), Some(_), _, true, true) =>
+        Some(new RegionWithAirportAndPort(RegionConfiguration(name.get, population.get, richness.get, climate.get, bordersControl.get, globalization.get, populationDensity.get), AirportRouteManager(), PortRouteManager()))
       case _ => None
   object RegionBuilder:
     def apply() = new RegionBuilder(None, None, None, None, None, None, None, List(), false, false)

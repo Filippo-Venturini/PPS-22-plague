@@ -1,9 +1,9 @@
 package model.configuration
 
 import model.configuration.Builders.RegionBuilder
-import model.world.BasicRegion
+import model.world.{BasicRegion, RegionWithAirport, RegionWithAirportAndPort, RegionWithPort}
 import model.world.RegionTypes.*
-import org.junit.Assert.{assertEquals, assertTrue}
+import org.junit.Assert.{assertEquals, assertFalse, assertTrue}
 import org.junit.{Before, Test}
 
 class TestRegionBuilder {
@@ -103,13 +103,32 @@ class TestRegionBuilder {
   }
 
   @Test
+  def testHasPortIsFalseByDefault(): Unit = {
+    assertFalse(regionBuilder.hasPort)
+  }
+
+  @Test
+  def testHasAirportIsFalseByDefault(): Unit = {
+    assertFalse(regionBuilder.hasAirport)
+  }
+
+  @Test
+  def testSetHasPort(): Unit = {
+    assertTrue(regionBuilder.addPort.hasPort)
+  }
+
+  @Test
+  def testSetHasAirport(): Unit = {
+    assertTrue(regionBuilder.addAirport.hasAirport)
+  }
+
+  @Test
   def testBuildReturnsNoneIfMandatoryFieldsAreMissing(): Unit = {
     assertEquals(None, regionBuilder.build())
   }
 
-  @Test
-  def testBuildReturnsBasicRegionIfMandatoryFieldsAreGiven(): Unit = {
-    regionBuilder = regionBuilder
+  private def setMandatoryParameters(regionBuilder: RegionBuilder): RegionBuilder = {
+    regionBuilder
       .setName(configuration.name)
       .setClimate(configuration.climate)
       .setRichness(configuration.richness)
@@ -117,7 +136,30 @@ class TestRegionBuilder {
       .setPopulationDensity(configuration.populationDensity)
       .setPopulation(configuration.population)
       .setGlobalization(configuration.globalization)
+  }
+
+  @Test
+  def testBuildBasicRegion(): Unit = {
+    regionBuilder = setMandatoryParameters(regionBuilder)
     assertTrue(regionBuilder.build().get.isInstanceOf[BasicRegion])
+  }
+
+  @Test
+  def testBuildRegionWithPort(): Unit = {
+    regionBuilder = setMandatoryParameters(regionBuilder).addPort
+    assertTrue(regionBuilder.build().get.isInstanceOf[RegionWithPort])
+  }
+
+  @Test
+  def testBuildRegionWithAirport(): Unit = {
+    regionBuilder = setMandatoryParameters(regionBuilder).addAirport
+    assertTrue(regionBuilder.build().get.isInstanceOf[RegionWithAirport])
+  }
+
+  @Test
+  def testBuildRegionWithAirportAndPort(): Unit = {
+    regionBuilder = setMandatoryParameters(regionBuilder).addPort.addAirport
+    assertTrue(regionBuilder.build().get.isInstanceOf[RegionWithAirportAndPort])
   }
 
 }
