@@ -6,7 +6,7 @@ import org.junit.{Before, Test}
 
 class TestRoutes {
   var portRouteManager: PortRouteManager = PortRouteManager()
-  var airportRouteManager: AirportRouteManager = new AirportRouteManager()
+  var airportRouteManager: AirportRouteManager = AirportRouteManager()
   var firstBasicRegion: Region = new BasicRegion(europeConfiguration)
   var secondBasicRegion: Region = new BasicRegion(russiaConfiguration)
   var firstRegionWithPort: Region = new RegionWithPort(japanConfiguration, portRouteManager)

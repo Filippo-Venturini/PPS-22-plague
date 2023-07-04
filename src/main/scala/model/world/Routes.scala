@@ -59,25 +59,33 @@ object PortRouteManager:
       case _ : P => true
       case _ => false
 
-/**
- * Class that represent a route manager that handle only airport routes
- */
-class AirportRouteManager extends RouteManager:
-  /**
-   * Add a new airport route between the two regions
-   *
-   * @param fromRegion the starting region
-   * @param toRegion the ending region
-   */
-  override def addRoute(fromRegion: Region, toRegion: Region): Unit = (fromRegion, toRegion) match
-    case (fromRegion, toRegion) if this.hasAirport(fromRegion) && this.hasAirport(toRegion) => this.allRoutes = this.allRoutes :+ Route(fromRegion, toRegion, ReachableMode.Airport)
-    case _ =>
+trait AirportRouteManager extends RouteManager:
+  def hasAirport[A <: Airport](region: Region): Boolean
+  
+object AirportRouteManager:
 
+  private val airportRouteManager: AirportRouteManager = new BasicAirportRouteManager
+
+  def apply(): AirportRouteManager = this.airportRouteManager
   /**
-   * @param region the region to be checked
-   * @tparam A check that the type of the region is allowed to have an airport
-   * @return true if the region has an airport
+   * Class that represent a route manager that handle only airport routes
    */
-  def hasAirport[A <: Airport](region: Region): Boolean = region match
-    case _ : A => true
-    case _ => false
+  private class BasicAirportRouteManager extends AirportRouteManager:
+    /**
+     * Add a new airport route between the two regions
+     *
+     * @param fromRegion the starting region
+     * @param toRegion the ending region
+     */
+    override def addRoute(fromRegion: Region, toRegion: Region): Unit = (fromRegion, toRegion) match
+      case (fromRegion, toRegion) if this.hasAirport(fromRegion) && this.hasAirport(toRegion) => this.allRoutes = this.allRoutes :+ Route(fromRegion, toRegion, ReachableMode.Airport)
+      case _ =>
+  
+    /**
+     * @param region the region to be checked
+     * @tparam A check that the type of the region is allowed to have an airport
+     * @return true if the region has an airport
+     */
+    def hasAirport[A <: Airport](region: Region): Boolean = region match
+      case _ : A => true
+      case _ => false
