@@ -37,4 +37,19 @@ class TestPowerUp {
     virus.consumePowerUp(PowerUpLogics.coldResistanceII)
     val actualValueColdResistance = virus.coldRegionsInfectivity
     assert(valueColdResistanceI < actualValueColdResistance)
+
+  @Test
+  def testHotResistanceI: Unit =
+    val startValueWarmResistance = virus.warmRegionsInfectivity
+    virus.consumePowerUp(PowerUpLogics.warmResistanceI)
+    val actualValueWarmResistance = virus.warmRegionsInfectivity
+    assert(startValueWarmResistance < actualValueWarmResistance)
+
+  @Test
+  def testHotResistanceII: Unit =
+    virus.consumePowerUp(PowerUpLogics.warmResistanceI)
+    val valueWarmResistanceI = virus.warmRegionsInfectivity
+    virus.consumePowerUp(PowerUpLogics.warmResistanceII)
+    val actualValueWarmResistance = virus.warmRegionsInfectivity
+    assert(valueWarmResistanceI < actualValueWarmResistance)
 }

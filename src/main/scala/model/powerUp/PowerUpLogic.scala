@@ -12,13 +12,15 @@ object PowerUpLogics:
   val coldResistanceII: PowerUpLogic = new PowerUpLogic :
     override def applyTo(virus: Virus): Unit =
       virus.coldRegionsInfectivity = virus.coldRegionsInfectivity + 3
+
+  val warmResistanceI: PowerUpLogic = new PowerUpLogic :
+    override def applyTo(virus: Virus): Unit =
+      virus.warmRegionsInfectivity = virus.warmRegionsInfectivity + 5
+
+  val warmResistanceII: PowerUpLogic = new PowerUpLogic :
+    override def applyTo(virus: Virus): Unit =
+      virus.warmRegionsInfectivity = virus.warmRegionsInfectivity + 3
 /*
-  val HotResistanceI: PowerUpLogic = new PowerUpLogic :
-    override def applyTo(virus: Any): Unit = ???
-
-  val HotResistanceII: PowerUpLogic = new PowerUpLogic :
-    override def applyTo(virus: Any): Unit = ???
-
   val BacterialResistance: PowerUpLogic = new PowerUpLogic :
     override def applyTo(virus: Any): Unit = ???
 
