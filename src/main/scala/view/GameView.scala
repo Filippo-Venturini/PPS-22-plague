@@ -23,7 +23,6 @@ class GameView (val gameEngine: GameEngine):
     new Thread{
       override def run(): Unit =
         while (true) {
-          println(gameEngine.getRegions())
           allRegionsPanel.updateRegions(gameEngine.getRegions())
           Thread.sleep(1000)
         }

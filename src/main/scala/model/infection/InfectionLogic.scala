@@ -9,12 +9,10 @@ import model.world.RegionTypes.ReachableMode
  */
 
 trait InfectionLogic:
-  def region: Region
-  def virus: Virus
   def compute(region: Region, virus: Virus): Unit
   val infectionRatioIncreaseInside: Double = 1000000.0
   val infectionRatioIncreaseFromRoute: Double = 0.000001
-  def infectedRatio(): Double
+
   /*
   val population: Population = regionConfiguration.population
   val richness: Richness = regionConfiguration.richness
@@ -24,19 +22,17 @@ trait InfectionLogic:
   val populationDensity: PopulationDensity = regionConfiguration.populationDensity
   */
 
-class InternalInfectionLogic(override val region: Region,
-                     override val virus: Virus) extends InfectionLogic:
+class InternalInfectionLogic extends InfectionLogic:
   /**
    * Increase the infected amount for a specific factor
    */
   override def compute(region: Region, virus: Virus): Unit = region.infectedAmount match
     case i if i > 0 => region.infectedAmount = region.infectedAmount + (region.population / infectionRatioIncreaseInside).toInt
+    case _ =>
 
-  override def infectedRatio(): Double = ???
 
 
-class ExternalInfectionLogic(override val region: Region,
-                             override val virus: Virus) extends InfectionLogic:
+class ExternalInfectionLogic extends InfectionLogic:
   /**
    * Increase the infected amount for a specific factor
    */
@@ -46,9 +42,9 @@ class ExternalInfectionLogic(override val region: Region,
       (reachableMode == ReachableMode.Airport && virus.airportEnabled) ||
       (reachableMode == ReachableMode.Port && virus.portEnabled)).size > 0
       then
-      region.infectedAmount = region.infectedAmount + (region.population / (region.population * this.infectedRatio()).toInt)
+      region.infectedAmount = region.infectedAmount + (region.population / (region.population * this.infectedRatio(region)).toInt)
 
-  override def infectedRatio(): Double =
+  def infectedRatio(region: Region): Double =
     //println(region.name+": "+0.1 / region.populationDensity)
     //println(region.name+": "+ (region.bordersControl / 100.0) + (0.1 / region.populationDensity))
     //region.bordersControl / 100.0
