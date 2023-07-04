@@ -17,16 +17,6 @@ class TestRegion {
   var northAfrica: Region = new RegionWithAirport(northAfricaConfiguration, airportRouteManager)
   var southAfrica: Region = new RegionWithAirportAndPort(northAfricaConfiguration, airportRouteManager, portRouteManager)
 
-  @Before
-  def init: Unit =
-    europe = new BasicRegion(europeConfiguration)
-    russia = new BasicRegion(russiaConfiguration)
-    unitedStates = new RegionWithPort(unitedStatesConfiguration, portRouteManager)
-    japan = new RegionWithPort(japanConfiguration, portRouteManager)
-    australia = new RegionWithAirport(australiaConfiguration, airportRouteManager)
-    northAfrica = new RegionWithAirport(northAfricaConfiguration, airportRouteManager)
-    southAfrica = new RegionWithAirportAndPort(northAfricaConfiguration, airportRouteManager, portRouteManager)
-
   def configureWorld: Unit =
     europe.addBorderingRegion(russia)
     russia.addBorderingRegion(europe)
