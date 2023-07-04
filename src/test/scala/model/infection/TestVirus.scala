@@ -1,6 +1,7 @@
 package model.infection
 
 import model.infection.{InfectionLogic, InternalInfectionLogic}
+import model.powerUp.PowerUpLogics
 import model.world.{BasicRegion, Region}
 import org.junit.Assert.assertEquals
 import org.junit.{Before, Test}
