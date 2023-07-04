@@ -1,7 +1,9 @@
 package model.configuration
 
 import Parsers.Parser
+import model.configuration.Builders.RawRoute
 import model.configuration.Loader.RegionFile
+import model.configuration.Parsers.RawRoute.RawRouteParser
 import model.configuration.Parsers.Region.RegionParser
 import model.configuration.Parsers.Virus.VirusParser
 import model.infection.Virus
@@ -25,10 +27,12 @@ object Loader:
 
   case class RegionFile(override val path: String) extends ConfigurationFile[Region]
   case class VirusFile(override val path: String) extends ConfigurationFile[Virus]
+  case class RouteFile(override val path: String) extends ConfigurationFile[RawRoute]
 
   object ConfigurationsLoader:
     given Parser[Region] = RegionParser()
     given Parser[Virus] = VirusParser()
+    given Parser[RawRoute] = RawRouteParser()
 
     def load[T](file: ConfigurationFile[T])(using parser: Parser[T]): List[T] =
       File.readLinesFromResources(file.path)
@@ -41,5 +45,5 @@ object Loader:
     def loadWorld(regionFile: RegionFile = RegionFile("configs/regions.txt")): World =
       val world: World = new World(load(regionFile))
       //TODO load routes
-      //add routes to 
+      //add routes to
       ???
