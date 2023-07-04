@@ -9,7 +9,7 @@ class TestRegion {
   val newInfectedAmount: Int = 10
   var europe: Region = new BasicRegion(europeConfiguration)
   var russia: Region = new BasicRegion(russiaConfiguration)
-  var portRouteManager: PortRouteManager = new PortRouteManager()
+  var portRouteManager: PortRouteManager = PortRouteManager()
   var airportRouteManager: AirportRouteManager = new AirportRouteManager()
   var unitedStates: Region = new RegionWithPort(unitedStatesConfiguration, portRouteManager)
   var japan: Region = new RegionWithPort(japanConfiguration, portRouteManager)
@@ -21,7 +21,6 @@ class TestRegion {
   def init: Unit =
     europe = new BasicRegion(europeConfiguration)
     russia = new BasicRegion(russiaConfiguration)
-    portRouteManager = new PortRouteManager()
     airportRouteManager = new AirportRouteManager()
     unitedStates = new RegionWithPort(unitedStatesConfiguration, portRouteManager)
     japan = new RegionWithPort(japanConfiguration, portRouteManager)

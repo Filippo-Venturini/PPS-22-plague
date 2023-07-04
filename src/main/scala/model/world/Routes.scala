@@ -27,29 +27,37 @@ abstract class RouteManager:
    * @return all the routes corresponding to the region
    */
   def getAllRoutesOf(region: Region): List[Route] = this.allRoutes.filter(r => r.fromRegion equals region)
+  
+trait PortRouteManager extends RouteManager:
+  def hasPort[P <: Port](region: Region): Boolean 
+  
+object PortRouteManager:
+  private val portRouteManager: PortRouteManager = new BasicPortRouteManger
 
-/**
- * Class that represent a route manager that handle only port routes
- */
-private class PortRouteManager extends RouteManager:
-  /**
-   * Add a new port route between the two regions
-   *
-   * @param fromRegion the starting region
-   * @param toRegion the ending region
-   */
-  override def addRoute(fromRegion: Region, toRegion: Region): Unit = (fromRegion, toRegion) match
-    case (fromRegion, toRegion) if this.hasPort(fromRegion) && this.hasPort(toRegion) => this.allRoutes = this.allRoutes :+ Route(fromRegion, toRegion, ReachableMode.Port)
-    case _ =>
+  def apply(): PortRouteManager = this.portRouteManager
 
   /**
-   * @param region the region to be checked
-   * @tparam P check that the type of the region is allowed to have a port
-   * @return true if the region has a port
+   * Class that represent a route manager that handle only port routes
    */
-  def hasPort[P <: Port](region: Region): Boolean = region match
-    case _ : P => true
-    case _ => false
+  private class BasicPortRouteManger extends PortRouteManager:
+    /**
+     * Add a new port route between the two regions
+     *
+     * @param fromRegion the starting region
+     * @param toRegion the ending region
+     */
+    override def addRoute(fromRegion: Region, toRegion: Region): Unit = (fromRegion, toRegion) match
+      case (fromRegion, toRegion) if this.hasPort(fromRegion) && this.hasPort(toRegion) => this.allRoutes = this.allRoutes :+ Route(fromRegion, toRegion, ReachableMode.Port)
+      case _ =>
+  
+    /**
+     * @param region the region to be checked
+     * @tparam P check that the type of the region is allowed to have a port
+     * @return true if the region has a port
+     */
+    def hasPort[P <: Port](region: Region): Boolean = region match
+      case _ : P => true
+      case _ => false
 
 /**
  * Class that represent a route manager that handle only airport routes
