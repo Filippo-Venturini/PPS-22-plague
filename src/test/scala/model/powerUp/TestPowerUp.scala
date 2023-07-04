@@ -52,4 +52,16 @@ class TestPowerUp {
     virus.consumePowerUp(PowerUpLogics.warmResistanceII)
     val actualValueWarmResistance = virus.warmRegionsInfectivity
     assert(valueWarmResistanceI < actualValueWarmResistance)
+
+  @Test
+  def testEnabledAirport: Unit =
+    assertFalse(virus.airportEnabled)
+    virus.consumePowerUp(PowerUpLogics.AirportEnablement)
+    assertTrue(virus.airportEnabled)
+
+  @Test
+  def testEnabledPort: Unit =
+    assertFalse(virus.portEnabled)
+    virus.consumePowerUp(PowerUpLogics.PortEnablement)
+    assertTrue(virus.portEnabled)
 }
