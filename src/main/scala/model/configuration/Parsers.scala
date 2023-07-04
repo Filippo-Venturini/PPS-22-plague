@@ -1,9 +1,10 @@
 package model.configuration
 
-import model.configuration.Builders.RegionBuilder
+import model.configuration.Builders.{RegionBuilder, VirusBuilder}
 import model.world.Region
 import model.world.RegionTypes.{BordersControl, Climate, Globalization, Population, Richness, *}
 import model.configuration.Parsers.Cast.*
+import model.infection.Virus
 
 object Parsers:
 
@@ -35,6 +36,32 @@ object Parsers:
           val params = line.split(",").toList
           RegionConfigurationFileFormat.values
             .foldLeft(RegionBuilder())((builder, field) => field.ordinal < params.size && field.castCondition.apply(params(field.ordinal)) match
+              case true => field.setter.apply(builder, params(field.ordinal))
+              case false => builder)
+            .build()
+
+  object Virus:
+    private enum VirusConfigurationFileFormat(val castCondition: String => Boolean, val setter: (VirusBuilder, String) => VirusBuilder):
+      case COLD_REGIONS_INF extends VirusConfigurationFileFormat(canBeInt, (b, s) => b.setColdRegionInfectivity(castInt(s)))
+      case HOT_REGIONS_INF extends VirusConfigurationFileFormat(canBeInt, (b, s) => b.setWarmRegionInfectivity(castInt(s)))
+      case RICH_REGIONS_INF extends VirusConfigurationFileFormat(canBeInt, (b, s) => b.setRichRegionsInfectivity(castInt(s)))
+      case POOR_REGIONS_INF extends VirusConfigurationFileFormat(canBeInt, (b, s) => b.setPoorRegionsInfectivity(castInt(s)))
+      case LOW_DENSITY_REGIONS_INF extends VirusConfigurationFileFormat(canBeInt, (b, s) => b.setLowDensityRegionsInfectivity(castInt(s)))
+      case HIGH_DENSITY_REGIONS_INF extends VirusConfigurationFileFormat(canBeInt, (b, s) => b.setHighDensityRegionsInfectivity(castInt(s)))
+      case VACCINE_RESISTANCE extends VirusConfigurationFileFormat(canBeInt, (b, s) => b.setVaccineResistance(castInt(s)))
+      case AIRPORT_ENABLED extends VirusConfigurationFileFormat(canBeBool, (b, s) => b.setAirportEnabled(castBool(s)))
+      case PORT_ENABLED extends VirusConfigurationFileFormat(canBeBool, (b, s) => b.setPortEnabled(castBool(s)))
+
+    trait VirusParser extends Parser[Virus]
+
+    object VirusParser:
+      def apply(): VirusParser = new SimpleVirusParser
+
+      private class SimpleVirusParser extends VirusParser :
+        def parse(line: String): Option[Virus] =
+          val params = line.split(",").toList
+          VirusConfigurationFileFormat.values
+            .foldLeft(VirusBuilder())((builder, field) => field.ordinal < params.size && field.castCondition.apply(params(field.ordinal)) match
               case true => field.setter.apply(builder, params(field.ordinal))
               case false => builder)
             .build()
