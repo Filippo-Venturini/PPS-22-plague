@@ -116,3 +116,4 @@ object Builders:
       case _ => None
   object VirusBuilder:
     def apply() = new VirusBuilder(None, None, None, None, None, None, None, None, None)
+
