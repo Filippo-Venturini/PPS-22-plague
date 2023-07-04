@@ -28,6 +28,11 @@ class TestRegionBuilder {
   }
 
   @Test
+  def testNameCantContainDigits(): Unit = {
+    assertEquals(None, regionBuilder.setName("foo1").name)
+  }
+
+  @Test
   def testPopulationIsUnsetByDefault(): Unit = {
     assertEquals(None, regionBuilder.name)
   }

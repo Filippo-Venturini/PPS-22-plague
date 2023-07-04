@@ -1,9 +1,12 @@
 package model.configuration
 
 import Parsers.Parser
+import model.configuration.Parsers.Region.RegionParser
+import model.infection.Virus
+import model.world.Region
 
 import scala.io.Source
-import scala.util.{Success, Failure, Using, Try}
+import scala.util.{Failure, Success, Try, Using}
 
 object File:
   def readLinesFromResources(path: String): Iterable[String] =
@@ -12,13 +15,17 @@ object File:
       case Failure(_) => Seq()
 
 object Loader:
-  trait ConfigurationFile:
+  trait ConfigurationFile[T]:
     def path: String
 
-  case class RegionFile(override val path: String) extends ConfigurationFile
+  case class RegionFile(override val path: String) extends ConfigurationFile[Region]
+  case class VirusFile(override val path: String) extends ConfigurationFile[Virus]
 
   object ConfigurationsLoader:
-    def load[T](file: ConfigurationFile)(using parser: Parser[T]): Iterable[T] =
+    given Parser[Region] = RegionParser()
+    //given Parser[Virus] = VirusParser()
+
+    def load[T](file: ConfigurationFile[T])(using parser: Parser[T]): Iterable[T] =
       File.readLinesFromResources(file.path)
         .filter(line => !line.startsWith("#"))
         .map(line => parser.parse(line))

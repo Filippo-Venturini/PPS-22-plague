@@ -28,7 +28,7 @@ object Builders:
                      hasAirport: Boolean = hasAirport,
                      hasPort: Boolean = hasPort): RegionBuilder =
       new RegionBuilder(name, population, richness, climate, bordersControl, globalization, populationDensity, borderingRegionsIds, hasAirport, hasPort)
-    def setName(name: Name): RegionBuilder = copy(name=Some(name))
+    def setName(name: Name): RegionBuilder = if name.exists(c => c.isDigit) then this else copy(name=Some(name))
     def setPopulation(population: Population): RegionBuilder = copy(population=Some(population))
     def setRichness(richness: Richness): RegionBuilder = copy(richness=Some(richness))
     def setClimate(climate: Climate): RegionBuilder = copy(climate=Some(climate))

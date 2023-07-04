@@ -6,6 +6,7 @@ import org.junit.{Before, Test}
 import model.configuration.File
 import model.configuration.Loader.{ConfigurationsLoader, RegionFile}
 import model.configuration.Parsers.Region.RegionParser
+import model.configuration.Loader.ConfigurationsLoader.given
 
 class TestConfigurationsLoader:
 
@@ -21,5 +22,5 @@ class TestConfigurationsLoader:
   @Test
   def testLoadRegions(): Unit = {
     val regionsFile: RegionFile = RegionFile("configs/regions.txt")
-    assertFalse(ConfigurationsLoader.load(regionsFile)(using RegionParser()).isEmpty)
+    assertFalse(ConfigurationsLoader.load(regionsFile).isEmpty)
   }
