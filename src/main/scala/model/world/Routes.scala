@@ -27,17 +27,31 @@ abstract class RouteManager:
    * @return all the routes corresponding to the region
    */
   def getAllRoutesOf(region: Region): List[Route] = this.allRoutes.filter(r => r.fromRegion equals region)
-  
+
+/**
+ * Trait that represent a route manager that handle port routes
+ */
 trait PortRouteManager extends RouteManager:
-  def hasPort[P <: Port](region: Region): Boolean 
-  
+  /**
+   * @param region the region to be checked
+   * @tparam P check that the type of the region is allowed to have a port
+   * @return true if the region has a port
+   */
+  def hasPort[P <: Port](region: Region): Boolean
+
+/**
+ * Companion Object that returns the singleton of the PortRouteManager
+ */
 object PortRouteManager:
   private val portRouteManager: PortRouteManager = new BasicPortRouteManger
 
+  /**
+   * @return the singleton of the PortRouteManager
+   */
   def apply(): PortRouteManager = this.portRouteManager
 
   /**
-   * Class that represent a route manager that handle only port routes
+   * Class that hide the implementation of the PortRouteManager
    */
   private class BasicPortRouteManger extends PortRouteManager:
     /**
@@ -49,26 +63,34 @@ object PortRouteManager:
     override def addRoute(fromRegion: Region, toRegion: Region): Unit = (fromRegion, toRegion) match
       case (fromRegion, toRegion) if this.hasPort(fromRegion) && this.hasPort(toRegion) => this.allRoutes = this.allRoutes :+ Route(fromRegion, toRegion, ReachableMode.Port)
       case _ =>
-  
-    /**
-     * @param region the region to be checked
-     * @tparam P check that the type of the region is allowed to have a port
-     * @return true if the region has a port
-     */
+
     def hasPort[P <: Port](region: Region): Boolean = region match
       case _ : P => true
       case _ => false
 
+/**
+ * Trait that represent a route manager that handle airport routes
+ */
 trait AirportRouteManager extends RouteManager:
+  /**
+   * @param region the region to be checked
+   * @tparam A check that the type of the region is allowed to have an airport
+   * @return true if the region has an airport
+   */
   def hasAirport[A <: Airport](region: Region): Boolean
-  
-object AirportRouteManager:
 
+/**
+ * Companion Object that returns the singleton of the AirportRouteManager
+ */
+object AirportRouteManager:
   private val airportRouteManager: AirportRouteManager = new BasicAirportRouteManager
 
+  /**
+   * @return the singleton of the AirportRouteManager
+   */
   def apply(): AirportRouteManager = this.airportRouteManager
   /**
-   * Class that represent a route manager that handle only airport routes
+   * Class that hide the implementation of the AirportRouteManager
    */
   private class BasicAirportRouteManager extends AirportRouteManager:
     /**
@@ -80,12 +102,7 @@ object AirportRouteManager:
     override def addRoute(fromRegion: Region, toRegion: Region): Unit = (fromRegion, toRegion) match
       case (fromRegion, toRegion) if this.hasAirport(fromRegion) && this.hasAirport(toRegion) => this.allRoutes = this.allRoutes :+ Route(fromRegion, toRegion, ReachableMode.Airport)
       case _ =>
-  
-    /**
-     * @param region the region to be checked
-     * @tparam A check that the type of the region is allowed to have an airport
-     * @return true if the region has an airport
-     */
+
     def hasAirport[A <: Airport](region: Region): Boolean = region match
       case _ : A => true
       case _ => false
