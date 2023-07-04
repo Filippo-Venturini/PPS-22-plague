@@ -1,6 +1,6 @@
 package model.configuration
 
-import model.configuration.Builders.{RegionBuilder, VirusBuilder}
+import model.configuration.Builders.{RawRoute, RawRouteBuilder, RegionBuilder, VirusBuilder}
 import model.world.Region
 import model.world.RegionTypes.{BordersControl, Climate, Globalization, Population, Richness, *}
 import model.configuration.Parsers.Cast.*
@@ -65,12 +65,21 @@ object Parsers:
               case true => field.setter.apply(builder, params(field.ordinal))
               case false => builder)
             .build()
-/*
-  object Route:
 
-    case class RouteConfiguration(region1Name: String, region2Name: String, reachableMode: ReachableMode)
-    trait RouteConfigurationParser extends Parser[RouteConfiguration]
-    object RouteParser:
-      private class SimpleRouteConfigurationParser extends RouteConfigurationParser:
-        def parse(line: String): Option[RouteConfiguration] =
-          */
+  object RawRoute:
+
+    private enum RouteConfigurationFileFormat(val castCondition: String => Boolean, val setter: (RawRouteBuilder, String) => RawRouteBuilder):
+      case NAME_REGION_1 extends RouteConfigurationFileFormat(s => true, (b, s) => b.setNameRegion1(s))
+      case NAME_REGION_2 extends RouteConfigurationFileFormat(s => true, (b, s) => b.setNameRegion2(s))
+      case REACHABLE_MODE extends RouteConfigurationFileFormat(s => ReachableMode.values.exists(_.toString == s), (b, s) => b.setReachableMode(ReachableMode.valueOf(s)))
+    trait RawRouteParser extends Parser[RawRoute]
+    object RawRouteParser:
+      def apply(): RawRouteParser = new SimpleRawRouteConfigurationParser
+      private class SimpleRawRouteConfigurationParser extends RawRouteParser:
+        def parse(line: String): Option[RawRoute] =
+          val params = line.split(",").toList
+          RouteConfigurationFileFormat.values
+            .foldLeft(RawRouteBuilder())((builder, field) => field.ordinal < params.size && field.castCondition.apply(params(field.ordinal)) match
+              case true => field.setter.apply(builder, params(field.ordinal))
+              case false => builder)
+            .build()
