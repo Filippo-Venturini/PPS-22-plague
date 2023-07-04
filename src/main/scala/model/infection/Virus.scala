@@ -1,4 +1,5 @@
 package model.infection
+import model.powerUp.PowerUpLogic
 import model.world.RegionTypes.*
 
 type Name = String
@@ -36,5 +37,8 @@ abstract class Virus:
   var vaccineResistance: VaccineResistance = virusConfiguration.vaccineResistance
   var airportEnabled: AirportEnabled = virusConfiguration.airportEnabled
   var portEnabled: PortEnabled = virusConfiguration.portEnabled
+
+  def consumePowerUp(logic: PowerUpLogic): Unit =
+    logic.applyTo(this)
 
 class BasicVirus(override val virusConfiguration: VirusConfiguration) extends Virus
