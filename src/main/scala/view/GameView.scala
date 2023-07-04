@@ -1,14 +1,16 @@
 package view
 
-import java.awt.{Dimension, Toolkit}
-import javax.swing.{JFrame, JPanel}
+import java.awt.{BorderLayout, Dimension, GridBagLayout, Toolkit}
+import javax.swing.{BoxLayout, JFrame, JPanel}
 
 class GameView:
   val frame = new JFrame()
-  val panel = new WorldMapPanel
+  val worldMapPanel = new WorldMapPanel
+  val allRegionsPanel = new AllRegionsPanel
 
   def start(): Unit =
-    frame.add(panel)
+    frame.add(worldMapPanel, BorderLayout.CENTER)
+    frame.add(allRegionsPanel, BorderLayout.EAST)
     frame.setPreferredSize(new Dimension(Toolkit.getDefaultToolkit.getScreenSize.width, Toolkit.getDefaultToolkit.getScreenSize.width))
     frame.setDefaultCloseOperation(3)
     frame.pack()
