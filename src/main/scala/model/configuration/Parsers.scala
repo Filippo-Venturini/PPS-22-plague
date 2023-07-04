@@ -65,3 +65,12 @@ object Parsers:
               case true => field.setter.apply(builder, params(field.ordinal))
               case false => builder)
             .build()
+/*
+  object Route:
+
+    case class RouteConfiguration(region1Name: String, region2Name: String, reachableMode: ReachableMode)
+    trait RouteConfigurationParser extends Parser[RouteConfiguration]
+    object RouteParser:
+      private class SimpleRouteConfigurationParser extends RouteConfigurationParser:
+        def parse(line: String): Option[RouteConfiguration] =
+          */

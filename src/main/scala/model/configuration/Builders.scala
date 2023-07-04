@@ -117,3 +117,20 @@ object Builders:
   object VirusBuilder:
     def apply() = new VirusBuilder(None, None, None, None, None, None, None, None, None)
 
+  case class RawRoute(nameRegion1: String, nameRegion2: String, reachableMode: ReachableMode)
+  case class RawRouteBuilder(nameRegion1: Option[String], nameRegion2: Option[String], reachableMode: Option[ReachableMode]):
+    private def copy(nameRegion1: Option[String] = nameRegion1,
+                     nameRegion2: Option[String] = nameRegion2,
+                     reachableMode: Option[ReachableMode] = reachableMode): RawRouteBuilder =
+      RawRouteBuilder(nameRegion1, nameRegion2, reachableMode)
+
+    def setNameRegion1(name: String): RawRouteBuilder = copy(nameRegion1 = Some(name))
+    def setNameRegion2(name: String): RawRouteBuilder = copy(nameRegion2 = Some(name))
+    def setReachableMode(reachableMode: ReachableMode): RawRouteBuilder = copy(reachableMode = Some(reachableMode))
+
+    def build(): Option[RawRoute] = this match
+      case RawRouteBuilder(Some(_), Some(_), Some(_)) => Some(RawRoute(nameRegion1.get, nameRegion2.get, reachableMode.get))
+      case _ => None
+
+  object RawRouteBuilder:
+    def apply() = new RawRouteBuilder(None, None, None)
