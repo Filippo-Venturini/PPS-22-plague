@@ -19,13 +19,15 @@ object Parsers:
 
   object Region:
     private enum RegionConfigurationFileFormat(val castCondition: String => Boolean, val setter: (RegionBuilder, String) => RegionBuilder):
-      case NAME extends RegionConfigurationFileFormat(_ => true, (b, s) => b.setName(s))
-      case POPULATION extends RegionConfigurationFileFormat(canBeInt, (b, s) => b.setPopulation(castInt(s)))
-      case DENSITY extends RegionConfigurationFileFormat(canBeInt, (b, s) => b.setPopulationDensity(castInt(s)))
-      case CLIMATE extends RegionConfigurationFileFormat(canBeInt, (b, s) => b.setClimate(castInt(s)))
-      case RICHNESS extends RegionConfigurationFileFormat(canBeInt, (b, s) => b.setRichness(castInt(s)))
-      case BORDERS_CONTROL extends RegionConfigurationFileFormat(canBeInt, (b, s) => b.setBordersControl(castInt(s)))
-      case GLOBALIZATION extends RegionConfigurationFileFormat(canBeInt, (b, s) => b.setGlobalization(castInt(s)))
+      case Name extends RegionConfigurationFileFormat(_ => true, (b, s) => b.setName(s))
+      case Population extends RegionConfigurationFileFormat(canBeInt, (b, s) => b.setPopulation(castInt(s)))
+      case Density extends RegionConfigurationFileFormat(canBeInt, (b, s) => b.setPopulationDensity(castInt(s)))
+      case Climate extends RegionConfigurationFileFormat(canBeInt, (b, s) => b.setClimate(castInt(s)))
+      case Richness extends RegionConfigurationFileFormat(canBeInt, (b, s) => b.setRichness(castInt(s)))
+      case BordersControl extends RegionConfigurationFileFormat(canBeInt, (b, s) => b.setBordersControl(castInt(s)))
+      case Globalization extends RegionConfigurationFileFormat(canBeInt, (b, s) => b.setGlobalization(castInt(s)))
+      case HasAirport extends RegionConfigurationFileFormat(canBeBool, (b, s) => b.addAirport)
+      case HasPort extends RegionConfigurationFileFormat(canBeBool, (b, s) => b.addPort)
 
     trait RegionParser extends Parser[Region]
 
@@ -42,15 +44,15 @@ object Parsers:
 
   object Virus:
     private enum VirusConfigurationFileFormat(val castCondition: String => Boolean, val setter: (VirusBuilder, String) => VirusBuilder):
-      case COLD_REGIONS_INF extends VirusConfigurationFileFormat(canBeInt, (b, s) => b.setColdRegionInfectivity(castInt(s)))
-      case HOT_REGIONS_INF extends VirusConfigurationFileFormat(canBeInt, (b, s) => b.setWarmRegionInfectivity(castInt(s)))
-      case RICH_REGIONS_INF extends VirusConfigurationFileFormat(canBeInt, (b, s) => b.setRichRegionsInfectivity(castInt(s)))
-      case POOR_REGIONS_INF extends VirusConfigurationFileFormat(canBeInt, (b, s) => b.setPoorRegionsInfectivity(castInt(s)))
-      case LOW_DENSITY_REGIONS_INF extends VirusConfigurationFileFormat(canBeInt, (b, s) => b.setLowDensityRegionsInfectivity(castInt(s)))
-      case HIGH_DENSITY_REGIONS_INF extends VirusConfigurationFileFormat(canBeInt, (b, s) => b.setHighDensityRegionsInfectivity(castInt(s)))
-      case VACCINE_RESISTANCE extends VirusConfigurationFileFormat(canBeInt, (b, s) => b.setVaccineResistance(castInt(s)))
-      case AIRPORT_ENABLED extends VirusConfigurationFileFormat(canBeBool, (b, s) => b.setAirportEnabled(castBool(s)))
-      case PORT_ENABLED extends VirusConfigurationFileFormat(canBeBool, (b, s) => b.setPortEnabled(castBool(s)))
+      case ColdRegionsInfection extends VirusConfigurationFileFormat(canBeInt, (b, s) => b.setColdRegionInfectivity(castInt(s)))
+      case HotRegionsInfection extends VirusConfigurationFileFormat(canBeInt, (b, s) => b.setWarmRegionInfectivity(castInt(s)))
+      case RichRegionsInfection extends VirusConfigurationFileFormat(canBeInt, (b, s) => b.setRichRegionsInfectivity(castInt(s)))
+      case PoorRegionsInfection extends VirusConfigurationFileFormat(canBeInt, (b, s) => b.setPoorRegionsInfectivity(castInt(s)))
+      case LowDensityRegionsInfection extends VirusConfigurationFileFormat(canBeInt, (b, s) => b.setLowDensityRegionsInfectivity(castInt(s)))
+      case HighDensityRegionInfection extends VirusConfigurationFileFormat(canBeInt, (b, s) => b.setHighDensityRegionsInfectivity(castInt(s)))
+      case VaccineResistance extends VirusConfigurationFileFormat(canBeInt, (b, s) => b.setVaccineResistance(castInt(s)))
+      case AirportEnabled extends VirusConfigurationFileFormat(canBeBool, (b, s) => b.setAirportEnabled(castBool(s)))
+      case PortEnabled extends VirusConfigurationFileFormat(canBeBool, (b, s) => b.setPortEnabled(castBool(s)))
 
     trait VirusParser extends Parser[Virus]
 
@@ -69,9 +71,9 @@ object Parsers:
   object RawRoute:
 
     private enum RouteConfigurationFileFormat(val castCondition: String => Boolean, val setter: (RawRouteBuilder, String) => RawRouteBuilder):
-      case NAME_REGION_1 extends RouteConfigurationFileFormat(s => true, (b, s) => b.setNameRegion1(s))
-      case NAME_REGION_2 extends RouteConfigurationFileFormat(s => true, (b, s) => b.setNameRegion2(s))
-      case REACHABLE_MODE extends RouteConfigurationFileFormat(s => ReachableMode.values.exists(_.toString == s), (b, s) => b.setReachableMode(ReachableMode.valueOf(s)))
+      case NameRegion1 extends RouteConfigurationFileFormat(s => true, (b, s) => b.setNameRegion1(s))
+      case NameRegion2 extends RouteConfigurationFileFormat(s => true, (b, s) => b.setNameRegion2(s))
+      case Mode extends RouteConfigurationFileFormat(s => ReachableMode.values.exists(_.toString == s), (b, s) => b.setReachableMode(ReachableMode.valueOf(s)))
     trait RawRouteParser extends Parser[RawRoute]
     object RawRouteParser:
       def apply(): RawRouteParser = new SimpleRawRouteConfigurationParser

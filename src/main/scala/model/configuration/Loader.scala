@@ -7,15 +7,17 @@ import model.configuration.Parsers.RawRoute.RawRouteParser
 import model.configuration.Parsers.Region.RegionParser
 import model.configuration.Parsers.Virus.VirusParser
 import model.infection.Virus
-import model.world.{Region, World}
+import model.world.RegionTypes.ReachableMode
+import model.world.{AirportRouteManager, PortRouteManager, Region, World}
 
 import scala.io.Source
 import scala.util.{Failure, Success, Try, Using}
 
 object Loader:
 
-  val regionFile: RegionFile = RegionFile("configs/regions.txt")
-  val virusFile: VirusFile = VirusFile("configs/virus.txt")
+  val regionFilePath: String = "configs/regions.txt"
+  val virusFilePath: String = "configs/virus.txt"
+  val routesFilePath: String = "configs/routes.txt"
   object File:
     def readLinesFromResources(path: String): Iterable[String] =
       Try(Source.fromResource(path).getLines()) match
@@ -42,8 +44,15 @@ object Loader:
         .map(opt => opt.get)
         .toList
 
-    def loadWorld(regionFile: RegionFile = RegionFile("configs/regions.txt")): World =
+    def loadWorld(regionFile: RegionFile = RegionFile(regionFilePath)): World =
       val world: World = new World(load(regionFile))
-      //TODO load routes
-      //add routes to
-      ???
+      val routes: Iterable[RawRoute] = this.load(RouteFile(routesFilePath))
+      routes.foreach(r => (world.getRegion(r.nameRegion1), world.getRegion(r.nameRegion2), r.reachableMode) match
+        case (Some(a), Some(b), ReachableMode.Port) => {PortRouteManager().addRoute(a, b); PortRouteManager().addRoute(b, a)}
+        case (Some(a), Some(b), ReachableMode.Airport) => {AirportRouteManager().addRoute(a, b); AirportRouteManager().addRoute(b,a)}
+        case (Some(a), Some(b), ReachableMode.Border) => {a.addBorderingRegion(b); b.addBorderingRegion(a)}
+        case _ =>  )
+      world
+
+    def loadVirus(virusFile: VirusFile = VirusFile(virusFilePath)): Option[Virus] =
+      this.load(virusFile).headOption
