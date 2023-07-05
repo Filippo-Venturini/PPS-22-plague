@@ -29,11 +29,11 @@ Sprint 2: 1-7 July
 |I want to add the possibility to power-up the virus|define power-up structure|Di Girolamo|4|2|1||||
 ||define different power-ups' type and behaviour|Di Girolamo|7|7|4||||
 ||model a way to apply power-ups to the virus|Di Girolamo|6|4|2||||
-|I want to complete the configuration loading |define the configuration files structure for routes|Malucelli|3||||||
-||convert the loaded routes in model entities|Malucelli|6||||||
-||complete regions' configuration loading|Malucelli|8||||||
-|I want a way to identify the regions in the map|define a strategy for the regions' identification|Malucelli|6||||||
-||associate click on map to the corresponding region|Malucelli|4||||||
+|I want to complete the configuration loading |define the configuration files structure for routes|Malucelli|3|3|0||||
+||convert the loaded routes in model entities|Malucelli|6|6|0||||
+||complete regions' configuration loading|Malucelli|8|8|4||||
+|I want a way to identify the regions in the map|define a strategy for the regions' identification|Malucelli|6|5|5||||
+||associate click on map to the corresponding region|Malucelli|4|4|4||||
 |I want to improve route handling|design a better route handler|Venturini|2|2|0||||
 |I want to have a way for interact with the regions|define the structure of the world|Venturini|6|3|3||||
 ||I want to make available information about regions in different ways|Venturini|7|5|4||||
