@@ -35,3 +35,8 @@ class TestConfigurationsLoader:
     val routeFile: RouteFile = RouteFile("configs/routes.txt")
     assertFalse(ConfigurationsLoader.load(routeFile).isEmpty)
   }
+
+  @Test
+  def testDefaultLoadVirus(): Unit = {
+    assertTrue(ConfigurationsLoader.loadVirus().isDefined)
+  }

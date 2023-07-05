@@ -7,7 +7,8 @@ import model.configuration.Parsers.RawRoute.RawRouteParser
 import model.configuration.Parsers.Region.RegionParser
 import model.configuration.Parsers.Virus.VirusParser
 import model.infection.Virus
-import model.world.{Region, World}
+import model.world.RegionTypes.ReachableMode
+import model.world.{PortRouteManager, Region, World}
 
 import scala.io.Source
 import scala.util.{Failure, Success, Try, Using}
@@ -41,9 +42,18 @@ object Loader:
         .filter(opt => opt.isDefined)
         .map(opt => opt.get)
         .toList
-
+/*
     def loadWorld(regionFile: RegionFile = RegionFile("configs/regions.txt")): World =
       val world: World = new World(load(regionFile))
+      val routes: Iterable[RawRoute] = this.load(RouteFile("configs/routes.txt"))
+      routes.foreach(r => r.reachableMode match
+        case ReachableMode.Port => PortRouteManager().addRoute()
+        case ReachableMode.Airport => ???
+        case ReachableMode.Border => ???)
       //TODO load routes
       //add routes to
       ???
+*/
+
+    def loadVirus(virusFile: VirusFile = VirusFile("configs/virus.txt")): Option[Virus] =
+      this.load(virusFile).headOption
