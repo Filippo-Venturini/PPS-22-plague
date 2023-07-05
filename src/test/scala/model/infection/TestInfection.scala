@@ -13,10 +13,10 @@ class TestInfection {
 
   @Test
   def testInternalIncrementInfection: Unit =
-    val testRegionConfiguration: RegionConfiguration = RegionConfiguration("Europe", 746000000, 9, 5, 8, 9, 8)
+    val testRegionConfiguration: RegionConfiguration = RegionConfiguration("Europe", 746_000_000, 9, 5, 8, 9, 8)
     val testRegion: Region = new BasicRegion(testRegionConfiguration)
 
-    testRegion.infectedAmount = 1
+    testRegion.infectedAmount = 400_000_000
 
     val regions: List[Region] = List(testRegion)
     val infectionHandler: InfectionHandler = new InfectionHandler(virus, regions)
@@ -24,7 +24,9 @@ class TestInfection {
     val infectionLogic: InfectionLogic = new InternalInfectionLogic()
 
     infectionHandler.computeInfection(regions)(using infectionLogic)
+
     assert(testRegion.infectedAmount > 1)
+
 
   @Test
   def testSimpleExternalIncrementInfection: Unit =
