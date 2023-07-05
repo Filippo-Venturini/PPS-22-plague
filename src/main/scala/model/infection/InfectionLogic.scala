@@ -45,5 +45,4 @@ class ExternalInfectionLogic extends InfectionLogic:
       region.infectedAmount = region.infectedAmount + ((region.population * (this.infectedRatio(region) / region.population )).toInt)
 
   def infectedRatio(region: Region): Double =
-    println(region.name+": "+ (region.globalization / 2.0 ))
-    (2.0 / region.bordersControl) + (region.populationDensity / 2.0 ) + (region.globalization / 2.0 )
+    (2.0 / region.bordersControl) + (region.populationDensity / 2.0 ) + (region.globalization / 2.0 ) + (2.0 / region.richness)
