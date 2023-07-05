@@ -4,7 +4,7 @@ import RegionTypes.*
 /**
  * Class that represent the definition of a region
  */
-abstract class Region:
+abstract class Region extends Ordered[Region]:
   def regionConfiguration: RegionConfiguration
   
   val name: Name = regionConfiguration.name
@@ -32,6 +32,8 @@ abstract class Region:
    * @return the list of all the region reachable
    */
   def getReachableRegions: List[ReachableRegion]
+
+  override def compare(that: Region): Int = (this.name) compare (that.name)
 
 /**
  * Class that represent a basic region without ports or airports
