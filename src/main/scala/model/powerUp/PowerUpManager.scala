@@ -7,6 +7,6 @@ object Filters:
 
   given PowerUpFilter = _ => true
 
-class PowerUpManager:
-  private val powerUps: List[PowerUp] = PowerUpType.values.map(powerUpType => PowerUp(powerUpType)).toList
-  def getPowerUps(using filter: PowerUpFilter): List[PowerUp] = powerUps.filter(filter)
+class PowerUpManager
+  //private val powerUps: List[PowerUp] = PowerUpType.values.map(powerUpType => PowerUp(powerUpType)).toList
+  //def getPowerUps(using filter: PowerUpFilter): List[PowerUp] = powerUps.filter(filter)
