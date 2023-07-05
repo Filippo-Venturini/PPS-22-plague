@@ -8,6 +8,7 @@ import model.configuration.Parsers.Region.RegionParser
 import model.configuration.Loader.ConfigurationsLoader.given
 import model.world.{AirportRouteManager, PortRouteManager, World}
 import model.world.Filters.given
+import model.world.RegionTypes.ReachableMode
 
 class TestConfigurationsLoader:
 
@@ -56,7 +57,9 @@ class TestConfigurationsLoader:
     val numberOfConfigurationLines: Int = File.readLinesFromResources(Loader.routesFilePath)
       .filterNot(_.startsWith("#"))
       .count(_.contains(",Border"))
-    assertEquals(numberOfConfigurationLines*2, ConfigurationsLoader.loadWorld().getRegions.map(r => r.getReachableRegions.size).sum)
+    assertEquals(numberOfConfigurationLines*2, ConfigurationsLoader.loadWorld().getRegions
+      .flatMap(r => r.getReachableRegions)
+      .count(r => r._2 == ReachableMode.Border))
   }
 
   @Test
