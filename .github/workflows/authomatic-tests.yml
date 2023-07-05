@@ -1,5 +1,5 @@
 name: Test runner
-run-name: ${{ github.actor }} have pushed. Running all the test 🚀
+run-name: ${{ github.actor }} has pushed. Running all the test 🚀
 on: push
 jobs:
   test:
