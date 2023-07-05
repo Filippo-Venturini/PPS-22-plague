@@ -1,2 +1,39 @@
 #REGION_A,REGION_B,CONNECTION_MODE
-Europe,Balkans,Border
+#BORDERING REGIONS
+North-America,United States,Border
+United States,Central-America,Border
+Central-America,Brazil,Border
+Brazil,Argentina,Border
+South-Africa,Central-Africa,Border
+Central-Africa,North-Africa,Border
+North-Africa,Middle-East,Border
+Middle-East,Balkans,Border
+Middle-East,India,Border
+Middle-East,Russia,Border
+Middle-East,China,Border
+Balkans,Europe,Border
+Balkans,Russia,Border
+Balkans,Scandinavia,Border
+Europe,Scandinavia,Border
+Scandinavia,Russia,Border
+Russia,China,Border
+India,China,Border
+India,Indonesia,Border
+China,Indonesia,Border
+#REACHABLE BY AIRPORT
+United States,Argentina,Airport
+United States,Australia,Airport
+United States,Europe,Airport
+Argentina,Russia,Airport
+Europe,China,Airport
+Europe,Japan,Airport
+Europe,Russia,Airport
+China,Japan,Airport
+China,Australia,Airport
+#REACHABLE BY PORT
+United States,India,Port
+Brazil,North-Africa,Port
+North-Africa,Europe,Port
+Europe,Greenland,Port
+Europe,China,Port
+Indonesia,Australia,Port
