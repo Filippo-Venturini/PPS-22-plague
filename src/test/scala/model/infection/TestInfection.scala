@@ -45,16 +45,16 @@ class TestInfection {
 
     assert(testSaneRegion.infectedAmount > 0)
 
-/*
+
   @Test
   def testWithBorderControl: Unit =
 
     val testHighBordersControl = 5
-    val regionHighBordersControlConfigurator: RegionConfiguration = RegionConfiguration("CentralAmerica", 800000000, 8, 5, testHighBordersControl, 8, 3)
+    val regionHighBordersControlConfigurator: RegionConfiguration = RegionConfiguration("CentralAmerica", 800000000, 8, 5, testHighBordersControl, 3, 3)
     val regionHighBordersControl: Region = new BasicRegion(regionHighBordersControlConfigurator)
 
     val testLowBordersControl = 1
-    val regionLowBordersControlConfigurator: RegionConfiguration = RegionConfiguration("NorthAfrica", 800000000, 2, 9, testLowBordersControl, 2, 3)
+    val regionLowBordersControlConfigurator: RegionConfiguration = RegionConfiguration("NorthAfrica", 800000000, 2, 9, testLowBordersControl, 3, 3)
     val regionLowBordersControl: Region = new BasicRegion(regionLowBordersControlConfigurator)
 
     val testInfectedRegionConfiguration: RegionConfiguration = RegionConfiguration("Europe", 746000000, 9, 5, 8, 9, 8)
@@ -78,13 +78,10 @@ class TestInfection {
     infectionHandlerLowBorderControl.computeInfection(regionsWithLowBorderControl)(using infectionLogicLowBorderControl)
 
     val infectedLowBordersControlRegion = regionLowBordersControl.infectedAmount
-
-    println(regionHighBordersControl.name+": " + infectedHighBordersControlRegion)
-    println(regionLowBordersControl.name+": " + infectedLowBordersControlRegion)
     
     assert(infectedLowBordersControlRegion > infectedHighBordersControlRegion)
 
-*/
+
   @Test
   def testWithPopulationDensity: Unit =
 
