@@ -6,7 +6,7 @@ import org.junit.{Before, Test}
 import model.configuration.Loader.{ConfigurationsLoader, File, RegionFile, RouteFile, VirusFile}
 import model.configuration.Parsers.Region.RegionParser
 import model.configuration.Loader.ConfigurationsLoader.given
-import model.world.{PortRouteManager, World}
+import model.world.{AirportRouteManager, PortRouteManager, World}
 import model.world.Filters.given
 
 class TestConfigurationsLoader:
@@ -58,7 +58,7 @@ class TestConfigurationsLoader:
       .count(_.contains(",Border"))
     assertEquals(numberOfConfigurationLines*2, ConfigurationsLoader.loadWorld().getRegions.map(r => r.getReachableRegions.size).sum)
   }
-/*
+
   @Test
   def testAllPortRoutesAreLoaded(): Unit = {
     import model.world.Filters.given
@@ -66,4 +66,13 @@ class TestConfigurationsLoader:
       .filterNot(_.startsWith("#"))
       .count(_.contains(",Port"))
     assertEquals(numberOfConfigurationLines * 2, ConfigurationsLoader.loadWorld().getRegions.map(r => PortRouteManager().getAllRoutesOf(r).size).sum)
-  }*/
+  }
+
+  @Test
+  def testAllAirportRoutesAreLoaded(): Unit = {
+    import model.world.Filters.given
+    val numberOfConfigurationLines: Int = File.readLinesFromResources("configs/routes.txt")
+      .filterNot(_.startsWith("#"))
+      .count(_.contains(",Airport"))
+    assertEquals(numberOfConfigurationLines * 2, ConfigurationsLoader.loadWorld().getRegions.map(r => AirportRouteManager().getAllRoutesOf(r).size).sum)
+  }
