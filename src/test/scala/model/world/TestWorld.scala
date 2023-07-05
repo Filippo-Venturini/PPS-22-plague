@@ -33,4 +33,8 @@ class TestWorld {
   @Test
   def testGetNotInfectedRegions(): Unit =
     assertEquals(List(notInfectedRegion), world.getRegions(using notInfectedRegions))
+
+  @Test
+  def testGetRegionByName(): Unit =
+    assertEquals(Some(notInfectedRegion), world.getRegion("United States"))
 }

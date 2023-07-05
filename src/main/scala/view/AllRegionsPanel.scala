@@ -8,11 +8,14 @@ import java.awt.Dimension
 
 class AllRegionsPanel(var regions: List[Region]) extends JPanel:
   var progressBars: Map[Region, JProgressBar] = Map()
-  this.setBackground(new Color(255,255,0))
+  this.setBackground(new Color(217,217,217))
   this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS))
+  val pb: JProgressBar = new JProgressBar
 
   regions.foreach(r => progressBars = progressBars + (r -> new JProgressBar()))
   progressBars.foreach((r, p) => {
+    p.setMaximum(r.population)
+    //p.setBackground()
     p.setStringPainted(true)
     this.add(Box.createRigidArea(new Dimension(320, 30)))
     val regionNameLabel: JLabel = new JLabel(r.name, SwingConstants.CENTER)

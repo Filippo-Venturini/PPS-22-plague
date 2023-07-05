@@ -27,7 +27,7 @@ class InternalInfectionLogic extends InfectionLogic:
    * Increase the infected amount for a specific factor
    */
   override def compute(region: Region, virus: Virus): Unit = region.infectedAmount match
-    case i if i > 0 => region.infectedAmount = region.infectedAmount + (region.population / infectionRatioIncreaseInside).toInt
+    case i if i > 0 => region.infectedAmount = 10000 + region.infectedAmount + (region.population / infectionRatioIncreaseInside).toInt
     case _ =>
 
 
