@@ -33,7 +33,11 @@ abstract class Region extends Ordered[Region]:
    */
   def getReachableRegions: List[ReachableRegion]
 
-  override def compare(that: Region): Int = (this.name) compare (that.name)
+  /**
+   * @param that the region to compare with
+   * @return the Int value corresponding to the comparison of the region's names
+   */
+  override def compare(that: Region): Int = this.name compare that.name
 
 /**
  * Class that represent a basic region without ports or airports
