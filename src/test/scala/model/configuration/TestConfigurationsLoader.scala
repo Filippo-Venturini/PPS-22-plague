@@ -40,3 +40,10 @@ class TestConfigurationsLoader:
   def testDefaultLoadVirus(): Unit = {
     assertTrue(ConfigurationsLoader.loadVirus().isDefined)
   }
+
+  @Test
+  def testLoadWorld(): Unit = {
+    import model.world.Filters.given
+
+    assertFalse(ConfigurationsLoader.loadWorld().getRegions.isEmpty)
+  }
