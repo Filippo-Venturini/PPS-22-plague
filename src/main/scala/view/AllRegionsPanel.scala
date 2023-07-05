@@ -6,9 +6,10 @@ import java.awt.{Color, Component}
 import javax.swing.{Box, BoxLayout, JComponent, JLabel, JPanel, JProgressBar, SwingConstants}
 import java.awt.Dimension
 import javax.swing.plaf.basic.BasicProgressBarUI
+import scala.collection.immutable.SortedMap
 
 class AllRegionsPanel(var regions: List[Region]) extends JPanel:
-  var progressBars: Map[Region, JProgressBar] = Map()
+  var progressBars: Map[Region, JProgressBar] = SortedMap()
   val backgroundColor: Color = new Color(217,217,217)
   val barBackgroundColor: Color = new Color(35, 187, 197)
   val barForegroundColor: Color = new Color(215, 19, 19)
