@@ -4,7 +4,7 @@ import model.world.{BasicRegion, Region}
 import model.world.RegionTypes.*
 import org.junit.Assert.assertEquals
 import org.junit.{Before, Test}
-//import model.infection.InfectionHandler.Infection.given
+import model.infection.InfectionLogics.given
 
 class TestInfection {
 
@@ -21,9 +21,7 @@ class TestInfection {
     val regions: List[Region] = List(testRegion)
     val infectionHandler: InfectionHandler = new InfectionHandler(virus, regions)
 
-    val infectionLogic: InfectionLogic = new InternalInfectionLogic()
-
-    infectionHandler.computeInfection(regions)(using infectionLogic)
+    infectionHandler.computeInfection(regions)
 
     assert(testRegion.infectedAmount > 1)
 
@@ -36,7 +34,7 @@ class TestInfection {
 
     val borderControl = 0
     val testSaneRegionConfiguration: RegionConfiguration = RegionConfiguration("NorthAfrica", 243000000, 2, 9, borderControl, 2, 2)
-    val testSaneRegion: Region = new BasicRegion(testInfectedRegionConfiguration)
+    val testSaneRegion: Region = new BasicRegion(testSaneRegionConfiguration)
 
     val regions: List[Region] = List(testInfectedRegion, testSaneRegion)
     val infectionHandler: InfectionHandler = new InfectionHandler(virus, regions)

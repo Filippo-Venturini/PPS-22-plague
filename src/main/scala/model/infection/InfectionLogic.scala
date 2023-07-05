@@ -13,15 +13,6 @@ trait InfectionLogic:
   val infectionRatioIncreaseInside: Double = 1000000.0
   val infectionRatioIncreaseFromRoute: Double = 0.000001
 
-/*
-val population: Population = regionConfiguration.population
-val richness: Richness = regionConfiguration.richness
-val climate: Climate = regionConfiguration.climate
-val bordersControl: BordersControl = regionConfiguration.bordersControl
-val globalization: Globalization = regionConfiguration.globalization
-val populationDensity: PopulationDensity = regionConfiguration.populationDensity
-*/
-
 class InternalInfectionLogic extends InfectionLogic:
   /**
    * Increase the infected amount for a specific factor
@@ -32,10 +23,6 @@ class InternalInfectionLogic extends InfectionLogic:
     case i if i < 0.5 => region.infectedAmount = region.infectedAmount + (region.infectedAmount / infectionRatioIncreaseInside * 19).toInt
     case i if i < 1 => region.infectedAmount = region.infectedAmount + (region.infectedAmount / infectionRatioIncreaseInside * 29).toInt
     case _ =>
-
-
-
-
 
 class ExternalInfectionLogic extends InfectionLogic:
   /**
@@ -51,3 +38,5 @@ class ExternalInfectionLogic extends InfectionLogic:
 
   def infectedRatio(region: Region): Double =
     (2.0 / region.bordersControl) + (region.populationDensity / 2.0 ) + (region.globalization / 2.0 ) + (2.0 / region.richness)
+
+  //TODO climate deve influenzare con l'avanzamento dell'infezione?
