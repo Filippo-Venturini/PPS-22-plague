@@ -4,7 +4,7 @@ import model.world.RegionTypes.RegionConfiguration
 import model.world.Filters.{infectedRegions, notInfectedRegions, totallyInfectedRegions, given}
 import model.world.TestRegionConfigurations.*
 import org.junit.{Before, Test}
-import org.junit.Assert.assertEquals
+import org.junit.Assert.{assertEquals, assertTrue}
 
 class TestWorld {
   val infectedAmount: Int = 100
@@ -35,6 +35,11 @@ class TestWorld {
     assertEquals(List(notInfectedRegion), world.getRegions(using notInfectedRegions))
 
   @Test
-  def testGetRegionByName(): Unit =
+  def testGetNotExistingRegionByName(): Unit =
+    assertTrue(world.getRegion("Australia").isEmpty)
+
+  @Test
+  def testGetExistingRegionByName(): Unit =
+    assertTrue(world.getRegion("United States").isDefined)
     assertEquals(Some(notInfectedRegion), world.getRegion("United States"))
 }

@@ -41,4 +41,9 @@ class World (private val regions: List[Region]):
    * @return the collection of the regions filtered
    */
   def getRegions(using filter: RegionFilter): List[Region] = regions.filter(filter)
+
+  /**
+   * @param name the name of the region
+   * @return a filled Option if the region is present
+   */
   def getRegion(name: String): Option[Region] = regions.find(r => r.name == name)

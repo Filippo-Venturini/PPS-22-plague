@@ -62,6 +62,11 @@ class TestRegion {
     assertEquals(newInfectedAmount, europe.infectedAmount)
 
   @Test
+  def testSortRegions: Unit =
+    val regions: List[Region] = List(unitedStates, europe, japan)
+    assertEquals(List(europe, japan, unitedStates), regions.sorted)
+
+  @Test
   def testInitiallyEmptyBorderingRegions: Unit =
     assertEquals(List(), europe.getReachableRegions)
 
