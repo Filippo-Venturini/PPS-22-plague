@@ -36,7 +36,6 @@ object Filters:
 class World (private val regions: List[Region]):
 
   /**
-   *
    * @param filter the filter to apply for obtaining the regions deired
    * @return the collection of the regions filtered
    */
