@@ -72,6 +72,15 @@ class TestPowerUp {
   def testPresenceOfPrerequisites: Unit =
     assertTrue(PowerUpType.ColdResistanceI.prerequisite.isEmpty)
     assertTrue(PowerUpType.ColdResistanceII.prerequisite.nonEmpty)
-
+    assertTrue(PowerUpType.HotResistanceI.prerequisite.isEmpty)
+    assertTrue(PowerUpType.HotResistanceII.prerequisite.nonEmpty)
+    assertTrue(PowerUpType.BacterialResistance.prerequisite.isEmpty)
+    assertTrue(PowerUpType.AirportEnablement.prerequisite.isEmpty)
+    assertTrue(PowerUpType.PortEnablement.prerequisite.isEmpty)
+    assertTrue(PowerUpType.InfectionThroughAnimals.prerequisite.nonEmpty)
+    assertTrue(PowerUpType.InfectionThroughRespiratoryTract.prerequisite.nonEmpty)
+    assertTrue(PowerUpType.MedicinesResistance.prerequisite.nonEmpty)
+    assertTrue(PowerUpType.InfectedDrinkingWater.prerequisite.nonEmpty)
+    assertTrue(PowerUpType.SpontaneousMutations.prerequisite.nonEmpty)
 
 }
