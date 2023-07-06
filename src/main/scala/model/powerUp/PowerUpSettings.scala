@@ -2,9 +2,9 @@ package model.powerUp
 
 import model.powerUp.PowerUpSettings.ColdResistanceI
 
-enum PowerUpSettings(val price: Int, val prerequisite: Option[PowerUpSettings]):
-  case ColdResistanceI extends PowerUpSettings(2, None)
-  case ColdResistanceII extends PowerUpSettings(2, Some(PowerUpSettings.ColdResistanceI))
+enum PowerUpSettings(val price: Int, val prerequisite: List[PowerUpSettings]):
+  case ColdResistanceI extends PowerUpSettings(2, List())
+  case ColdResistanceII extends PowerUpSettings(2, List(PowerUpSettings.ColdResistanceI))
   /*case HotResistanceI extends PowerUpType(2)
   case HotResistanceII extends PowerUpType(2)
   case BacterialResistance extends PowerUpType(2)
