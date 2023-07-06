@@ -98,7 +98,7 @@ object TestReaders {
       assertEquals(None, parser.parse("Europe"))
 
   }
-/*
+
   class TestRegionIdentifierParser() {
     val parser: RegionIdentifierParser = RegionIdentifierParser()
 
@@ -115,5 +115,5 @@ object TestReaders {
     def testUncompletedString(): Unit =
       assertEquals(None, parser.parse("Europe"))
   }
-*/
+
 }

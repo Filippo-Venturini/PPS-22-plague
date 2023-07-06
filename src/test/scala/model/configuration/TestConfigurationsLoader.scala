@@ -79,3 +79,8 @@ class TestConfigurationsLoader:
       .count(_.contains(",Airport"))
     assertEquals(numberOfConfigurationLines * 2, ConfigurationsLoader.loadWorld().getRegions.map(r => AirportRouteManager().getAllRoutesOf(r).size).sum)
   }
+
+  @Test
+  def testLoadRegionsIdentifiers(): Unit = {
+    assertFalse(ConfigurationsLoader.load(RegionFile(regionFilePath)).isEmpty)
+  }
