@@ -2,11 +2,11 @@ package model.powerUp
 
 
 trait PowerUp:
-  def powerUpSetting: PowerUpSettings
+  def powerUpType: PowerUpType
   var hasBeenBought: Boolean = false
 
 object PowerUp:
-  def apply(powerUpSetting: PowerUpSettings): PowerUp =
-    PowerUpImpl(powerUpSetting)
+  def apply(powerUpType: PowerUpType): PowerUp =
+    PowerUpImpl(powerUpType)
 
-  private class PowerUpImpl(override val powerUpSetting: PowerUpSettings) extends PowerUp
+  private class PowerUpImpl(override val powerUpType: PowerUpType) extends PowerUp

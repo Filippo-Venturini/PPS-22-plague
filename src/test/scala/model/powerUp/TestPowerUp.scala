@@ -6,22 +6,22 @@ import model.infection
 import model.infection.*
 
 class TestPowerUp {
-  import PowerUpSettings.*
+  import PowerUpType.*
 
 
   val testVirusConfiguration: VirusConfiguration = VirusConfiguration("DHT11", 0, 0, 0, 0, 0, 0, 0, false, false)
   val virus: Virus = new BasicVirus(testVirusConfiguration)
   @Test
   def testGetPricePowerUp: Unit =
-    val powerUp: PowerUp = PowerUp(PowerUpSettings.ColdResistanceI)
+    val powerUp: PowerUp = PowerUp(PowerUpType.ColdResistanceI)
 
-    println(powerUp.powerUpSetting)
+    println(powerUp.powerUpType)
 
-    assertEquals(2, powerUp.powerUpSetting.price)
+    assertEquals(2, powerUp.powerUpType.price)
 
   @Test
   def testHasBought: Unit =
-    val powerUp: PowerUp = PowerUp(PowerUpSettings.ColdResistanceII)
+    val powerUp: PowerUp = PowerUp(PowerUpType.ColdResistanceII)
     assertFalse(powerUp.hasBeenBought)
     powerUp.hasBeenBought = true
     assertTrue(powerUp.hasBeenBought)
