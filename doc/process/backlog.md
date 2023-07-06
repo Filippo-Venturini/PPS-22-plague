@@ -24,11 +24,11 @@ Sprint 2: 1-7 July
 ||||||||||
 |------|-------|------|------|------|------|------|------|------|
 |Product Backlog Item |Sprint Task |Volunteer | Initial Estimate of Effort | 1 | 2 | 3 | 4 | 5 |
-|I want a better infection logic|Improve internal infection logic|Di Girolamo|4|4|4|2|||
-||Improve external infection logic|Di Girolamo|5|5|5|3|||
-|I want to add the possibility to power-up the virus|define power-up structure|Di Girolamo|4|2|1|1|||
-||define different power-ups' type and behaviour|Di Girolamo|7|7|4|3|||
-||model a way to apply power-ups to the virus|Di Girolamo|6|4|2|1|||
+|I want a better infection logic|Improve internal infection logic|Di Girolamo|4|4|4|2|2||
+||Improve external infection logic|Di Girolamo|5|5|5|3|3||
+|I want to add the possibility to power-up the virus|define power-up structure|Di Girolamo|4|2|1|1|0||
+||define different power-ups' type and behaviour|Di Girolamo|7|7|4|3|0||
+||model a way to apply power-ups to the virus|Di Girolamo|6|4|2|1|0||
 |I want to complete the configuration loading |define the configuration files structure for routes|Malucelli|3|3|0|0|0||
 ||convert the loaded routes in model entities|Malucelli|6|6|0|0|0||
 ||complete regions' configuration loading|Malucelli|8|8|4|0|0||
