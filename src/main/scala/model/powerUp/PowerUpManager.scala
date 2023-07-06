@@ -13,3 +13,5 @@ object PowerUpManager:
   def arePrerequisiteSatisfied(powerUp: PowerUp): Boolean =
     powerUp.powerUpSetting.prerequisite.isEmpty ||
       !powerUp.powerUpSetting.prerequisite.forall(prerequisite => powerUps.find(_.powerUpSetting == prerequisite).get.hasBeenBought)
+  def buyPowerUp(powerUpName: PowerUpSettings): Unit =
+    this.powerUps.find(powerUp => powerUp.powerUpSetting == powerUpName).get.hasBeenBought = true
