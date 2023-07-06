@@ -11,6 +11,7 @@ object Filters:
 object PowerUpManager:
   private val powerUps: List[PowerUp] = PowerUpType.values.map(powerUpType => PowerUp(powerUpType)).toList
   def getPowerUps(using filter: PowerUpFilter): List[PowerUp] = powerUps.filter(filter)
+  def getPowerUp(powerUpType: PowerUpType): Option[PowerUp] = powerUps.find(powerUp => powerUp.powerUpType == powerUpType)
   def arePrerequisiteSatisfied(powerUp: PowerUp): Boolean =
     powerUp.powerUpType.prerequisite.isEmpty ||
       powerUp.powerUpType.prerequisite.forall(prerequisite => powerUps.find(_.powerUpType == prerequisite).get.hasBeenBought)
