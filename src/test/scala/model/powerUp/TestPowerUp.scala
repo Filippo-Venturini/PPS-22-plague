@@ -59,12 +59,12 @@ class TestPowerUp {
   @Test
   def testEnabledAirport: Unit =
     assertFalse(virus.airportEnabled)
-    virus.consumePowerUp(PowerUpLogics.AirportEnablement)
+    virus.consumePowerUp(PowerUpLogics.airportEnablement)
     assertTrue(virus.airportEnabled)
 
   @Test
   def testEnabledPort: Unit =
     assertFalse(virus.portEnabled)
-    virus.consumePowerUp(PowerUpLogics.PortEnablement)
+    virus.consumePowerUp(PowerUpLogics.portEnablement)
     assertTrue(virus.portEnabled)
 }
