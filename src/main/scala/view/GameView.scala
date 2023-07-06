@@ -7,7 +7,7 @@ import javax.swing.{BoxLayout, JFrame, JPanel, JScrollPane}
 
 class GameView (val gameEngine: GameEngine):
   val frame = new JFrame()
-  val worldMapPanel: WorldMapPanel = new WorldMapPanel
+  val worldMapPanel: WorldMapPanel = new WorldMapPanel(gameEngine)
   val allRegionsPanel: AllRegionsPanel = new AllRegionsPanel(gameEngine.getRegions())
   val regionsScrollPanel: JScrollPane = new JScrollPane()
 
