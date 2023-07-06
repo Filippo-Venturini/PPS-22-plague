@@ -17,13 +17,25 @@ class TestRegionIdentifierBuilder {
   }
 
   @Test
-  def testRegionNameIsUnsetByDefault = {
+  def testRegionNameIsUnsetByDefault(): Unit = {
     assertEquals(None, builder.regionName)
   }
 
   @Test
-  def testIdentifierIsUnsetByDefault = {
+  def testIdentifierIsUnsetByDefault(): Unit = {
     assertEquals(None, builder.identifier)
+  }
+
+  @Test
+  def testCantBuildWithoutSettingsMandatoryFields(): Unit = {
+    assertEquals(None, builder.build())
+  }
+
+  @Test
+  def testBuild(): Unit = {
+    builder = builder.setIdentifier(configuration.identifier)
+      .setRegionName(configuration.regionName)
+    assertEquals(Some(configuration), builder.build())
   }
 
 }
