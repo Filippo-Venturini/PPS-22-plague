@@ -22,7 +22,7 @@ class TestVirus {
 
   @Test
   def testVirusWarmRegionsInfectivity: Unit =
-    assertEquals(testVirusConfiguration.warmRegionsInfectivity, virus.warmRegionsInfectivity)
+    assertEquals(testVirusConfiguration.warmRegionsInfectivity, virus.hotRegionsInfectivity)
 
   @Test
   def testVirusLowDensityRegionInfectivity: Unit =

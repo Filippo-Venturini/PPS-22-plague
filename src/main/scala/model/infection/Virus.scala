@@ -45,7 +45,7 @@ abstract class Virus:
 
   val name: Name = virusConfiguration.name
   var coldRegionsInfectivity: ColdRegionsInfectivity = virusConfiguration.coldRegionsInfectivity
-  var warmRegionsInfectivity: WarmRegionsInfectivity = virusConfiguration.warmRegionsInfectivity
+  var hotRegionsInfectivity: WarmRegionsInfectivity = virusConfiguration.warmRegionsInfectivity
   var lowDensityRegionInfectivity: LowDensityRegionInfectivity = virusConfiguration.lowDensityRegionInfectivity
   var highDensityRegionsInfectivity: HighDensityRegionsInfectivity = virusConfiguration.highDensityRegionsInfectivity
   var richRegionsInfectivity: RichRegionsInfectivity = virusConfiguration.richRegionsInfectivity

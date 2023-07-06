@@ -43,17 +43,17 @@ class TestPowerUp {
 
   @Test
   def testHotResistanceI: Unit =
-    val startValueWarmResistance = virus.warmRegionsInfectivity
-    virus.consumePowerUp(PowerUpLogics.warmResistanceI)
-    val actualValueWarmResistance = virus.warmRegionsInfectivity
+    val startValueWarmResistance = virus.hotRegionsInfectivity
+    virus.consumePowerUp(PowerUpLogics.hotResistanceI)
+    val actualValueWarmResistance = virus.hotRegionsInfectivity
     assert(startValueWarmResistance < actualValueWarmResistance)
 
   @Test
   def testHotResistanceII: Unit =
-    virus.consumePowerUp(PowerUpLogics.warmResistanceI)
-    val valueWarmResistanceI = virus.warmRegionsInfectivity
-    virus.consumePowerUp(PowerUpLogics.warmResistanceII)
-    val actualValueWarmResistance = virus.warmRegionsInfectivity
+    virus.consumePowerUp(PowerUpLogics.hotResistanceI)
+    val valueWarmResistanceI = virus.hotRegionsInfectivity
+    virus.consumePowerUp(PowerUpLogics.hotResistanceII)
+    val actualValueWarmResistance = virus.hotRegionsInfectivity
     assert(valueWarmResistanceI < actualValueWarmResistance)
 
   @Test
