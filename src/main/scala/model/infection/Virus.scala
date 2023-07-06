@@ -13,6 +13,19 @@ type VaccineResistance = Int
 type AirportEnabled = Boolean
 type PortEnabled = Boolean
 
+/**
+ * Case class that represent the virus configuration. It contains all the virus's properties
+ * @param name is the name of the virus, it is chosen by the user
+ * @param coldRegionsInfectivity is the level of virus infection
+ * @param warmRegionsInfectivity
+ * @param lowDensityRegionInfectivity
+ * @param highDensityRegionsInfectivity
+ * @param richRegionsInfectivity
+ * @param poorRegionsInfectivity
+ * @param vaccineResistance
+ * @param airportEnabled
+ * @param portEnabled
+ */
 case class VirusConfiguration(name: Name,
                               coldRegionsInfectivity: ColdRegionsInfectivity,
                               warmRegionsInfectivity: WarmRegionsInfectivity,
