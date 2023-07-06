@@ -63,6 +63,6 @@ abstract class Virus:
 
 /**
  * Class that represent basic virus in case of next itself implementations
- * @param virusConfiguration contains the virus configurations, set all the value
+ * @param virusConfiguration contains the virus configurations, set all the value virus property
  */
 class BasicVirus(override val virusConfiguration: VirusConfiguration) extends Virus
