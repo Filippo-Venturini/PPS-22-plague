@@ -6,6 +6,7 @@ object Filters:
   type PowerUpFilter = PowerUp => Boolean
   given PowerUpFilter = _ => true
   val purchasablePowerUps: PowerUpFilter = powerUp => !powerUp.hasBeenBought && PowerUpManager.arePrerequisiteSatisfied(powerUp)
+  val purchasedPowerUps: PowerUpFilter = powerUp => powerUp.hasBeenBought
 
 object PowerUpManager:
   private val powerUps: List[PowerUp] = PowerUpType.values.map(powerUpType => PowerUp(powerUpType)).toList
