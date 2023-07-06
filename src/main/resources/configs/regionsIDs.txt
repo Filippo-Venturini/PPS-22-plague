@@ -1,0 +1,21 @@
+#REGION_NAME,IDENTIFIER
+Greenland,#BCD2DB
+North-America,
+United States,
+Central-America,
+Brazil,
+Argentina,
+Madagascar,
+South-Africa,
+Central-Africa,
+North-Africa,
+Europe,
+Balkans,
+Scandinavia,
+Russia,
+Middle-East,
+India,
+China,
+Japan,
+Indonesia
+Australia,

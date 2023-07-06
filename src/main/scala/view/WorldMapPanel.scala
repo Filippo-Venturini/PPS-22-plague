@@ -25,4 +25,5 @@ class MapMouseListener(val image: BufferedImage) extends MouseListener:
 extension(image: BufferedImage)
   def getRGBCode(x: Int, y: Int): RGBCode =
     val rgbValue: Int = image.getRGB(x, y)
+    println(rgbValue.toHexString.substring(2).toUpperCase)
     ((rgbValue & 0x00ff0000) >> 16, (rgbValue & 0x0000ff00) >> 8, rgbValue & 0x000000ff)
