@@ -16,7 +16,7 @@ type PortEnabled = Boolean
 /**
  * Case class that represent the virus configuration. It contains all the virus's properties
  * @param name is the name of the virus, it is chosen by the user
- * @param coldRegionsInfectivity is the level of virus infection
+ * @param coldRegionsInfectivity is the level of virus infection about the regions with a cold climate
  * @param warmRegionsInfectivity
  * @param lowDensityRegionInfectivity
  * @param highDensityRegionsInfectivity
