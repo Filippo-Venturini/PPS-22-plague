@@ -138,8 +138,9 @@ object Builders:
   case class RegionIdentifier(regionName: String, identifier: String)
 
   case class RegionIdentifierBuilder(regionName: Option[String], identifier: Option[String]):
+    private def isIdValid(str: String): Boolean = str.toUpperCase.matches("#[0-9A-F]{6}")
     def setRegionName(name: Name): RegionIdentifierBuilder = RegionIdentifierBuilder(Some(name), identifier)
-    def setIdentifier(identifier: String): RegionIdentifierBuilder = RegionIdentifierBuilder(regionName, Some(identifier))
+    def setIdentifier(identifier: String): RegionIdentifierBuilder = if isIdValid(identifier) then RegionIdentifierBuilder(regionName, Some(identifier)) else this
     def build(): Option[RegionIdentifier] = this match
       case RegionIdentifierBuilder(Some(name), Some(identifier)) => Some(RegionIdentifier(name, identifier))
       case _ => None
