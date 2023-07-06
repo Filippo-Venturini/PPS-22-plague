@@ -67,4 +67,11 @@ class TestPowerUp {
     assertFalse(virus.portEnabled)
     virus.consumePowerUp(PowerUpLogics.portEnablement)
     assertTrue(virus.portEnabled)
+
+  @Test
+  def testPresenceOfPrerequisites: Unit =
+    assertTrue(PowerUpType.ColdResistanceI.prerequisite.isEmpty)
+    assertTrue(PowerUpType.ColdResistanceII.prerequisite.nonEmpty)
+
+
 }
