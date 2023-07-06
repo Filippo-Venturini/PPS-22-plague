@@ -1,5 +1,6 @@
 package model.configuration
 
+import model.configuration.Builders.RegionIdentifier
 import org.junit.Test
 import org.junit.Assert.{assertEquals, assertFalse, assertTrue}
 import org.junit.{Before, Test}
@@ -82,5 +83,14 @@ class TestConfigurationsLoader:
 
   @Test
   def testLoadRegionsIdentifiers(): Unit = {
-    assertFalse(ConfigurationsLoader.load(RegionFile(regionFilePath)).isEmpty)
+    val numberOfConfigurationLines: Int = File.readLinesFromResources(Loader.regionFilePath)
+      .filterNot(_.startsWith("#"))
+      .size
+    assertEquals(numberOfConfigurationLines, ConfigurationsLoader.load(RegionFile(Loader.regionFilePath)).size)
+  }
+
+  @Test
+  def testEachRegionHasAnIdentifier(): Unit = {
+    assertEquals(ConfigurationsLoader.loadWorld().getRegions.map(r => r.name),
+      ConfigurationsLoader.load(RegionFile(Loader.regionFilePath)).map(r => r.name))
   }
