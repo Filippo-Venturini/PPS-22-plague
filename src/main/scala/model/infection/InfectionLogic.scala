@@ -14,15 +14,45 @@ trait InfectionLogic:
   val infectionRatioIncreaseFromRoute: Double = 0.000001
 
 class InternalInfectionLogic extends InfectionLogic:
+  private def normalize(value: Double, min: Double, max: Double): Double = (value - min) / (max - min)
+
+  private def getRichRegionInfectivityIndex(regionRichness: Int, richRegionsInfectivity: Int): Double =
+    normalize(regionRichness, 1, 5) * normalize(richRegionsInfectivity,0 ,100)
+
+  private def getPoorRegionInfectivityIndex(regionRichness: Int, poorRegionsInfectivity: Int): Double =
+    normalize(5 - regionRichness + 1, 1, 5) * normalize(poorRegionsInfectivity, 0, 100)
+
+  private def getColdRegionInfectivityIndex(climate: Int, coldRegionsInfectivity: Int): Double =
+    normalize(3 - climate + 1, 1, 3) * normalize(coldRegionsInfectivity, 0, 100)
+
+  private def getHotRegionInfectivityIndex(climate: Int, warmRegionsInfectivity: Int): Double =
+    normalize(climate, 1, 3) * normalize(warmRegionsInfectivity, 0, 100)
+
+  private def getLowDensityRegionInfectivityIndex(populationDensity: Int, lowDensityRegionInfectivity: Int): Double =
+    normalize(5 - populationDensity + 1, 1, 5) * normalize(lowDensityRegionInfectivity, 0, 100)
+
+  private def getHighDensityRegionInfectivityIndex(populationDensity: Int, highDensityRegionInfectivity: Int): Double =
+    normalize(populationDensity, 1, 5) * normalize(highDensityRegionInfectivity, 0, 100)
+
+  private def getVirusInfectionRate(region: Region, virus: Virus): Double = (getRichRegionInfectivityIndex(region.richness, virus.richRegionsInfectivity) + getPoorRegionInfectivityIndex(region.richness, virus.poorRegionsInfectivity) +
+    getHighDensityRegionInfectivityIndex(region.populationDensity, virus.highDensityRegionsInfectivity) + getLowDensityRegionInfectivityIndex(region.populationDensity, virus.lowDensityRegionInfectivity) +
+    getColdRegionInfectivityIndex(region.climate, virus.coldRegionsInfectivity) + getHotRegionInfectivityIndex(region.climate, virus.hotRegionsInfectivity)) / 6
+
+  private def getInfectionFactor(infectedPercentage: Int) : Double = infectedPercentage match
+    case infectedPercentage if infectedPercentage <= 1 => 2.4
+    case infectedPercentage if infectedPercentage <= 10 => 0.3
+    case _ => 0.1
+
+
+
   /**
    * Increase the infected amount for a specific factor
    */
-  override def compute(region: Region, virus: Virus): Unit = region.infectedAmount.toFloat / region.population match
-    case i if i > 0 && i < 0.1 => region.infectedAmount = region.infectedAmount + (region.infectedAmount / infectionRatioIncreaseInside).toInt
-    case i if i < 0.3 => region.infectedAmount = region.infectedAmount + (region.infectedAmount / infectionRatioIncreaseInside * 9).toInt
-    case i if i < 0.5 => region.infectedAmount = region.infectedAmount + (region.infectedAmount / infectionRatioIncreaseInside * 19).toInt
-    case i if i < 1 => region.infectedAmount = region.infectedAmount + (region.infectedAmount / infectionRatioIncreaseInside * 29).toInt
-    case _ =>
+  override def compute(region: Region, virus: Virus): Unit =
+    region.infectedAmount = region.infectedAmount + getVirusInfectionRate(region, virus) * region.infectedAmount * getInfectionFactor(region.infectedAmount / region.population)
+
+
+
 
 class ExternalInfectionLogic extends InfectionLogic:
   /**
