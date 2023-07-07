@@ -24,19 +24,19 @@ Sprint 2: 1-7 July
 ||||||||||
 |------|-------|------|------|------|------|------|------|------|
 |Product Backlog Item |Sprint Task |Volunteer | Initial Estimate of Effort | 1 | 2 | 3 | 4 | 5 |
-|I want a better infection logic|Improve internal infection logic|Di Girolamo|4|4|4|2|2||
-||Improve external infection logic|Di Girolamo|5|5|5|3|3||
-|I want to add the possibility to power-up the virus|define power-up structure|Di Girolamo|4|2|1|1|0||
-||define different power-ups' type and behaviour|Di Girolamo|7|7|4|3|0||
-||model a way to apply power-ups to the virus|Di Girolamo|6|4|2|1|0||
-|I want to complete the configuration loading |define the configuration files structure for routes|Malucelli|3|3|0|0|0||
-||convert the loaded routes in model entities|Malucelli|6|6|0|0|0||
-||complete regions' configuration loading|Malucelli|8|8|4|0|0||
-|I want a way to identify the regions in the map|define a strategy for the regions' identification|Malucelli|6|5|5|5|0||
-||associate click on map to the corresponding region|Malucelli|4|4|4|4|4||
-|I want to improve route handling|design a better route handler|Venturini|2|2|0|0|0||
-|I want to have a way for interact with the regions|define the structure of the world|Venturini|6|3|3|1|0||
-||I want to make available information about regions in different ways|Venturini|7|5|4|1|0||
-|I want a way to handle power-ups|define a power-up manager structure|Venturini|3|3|3|2|1||
-||make possible to buy power-ups|Venturini|5|5|5|5|3||
-|I want to show information about regions|model a way for show the infection situation in every region|Venturini|5|5|2|1|0||
+|I want a better infection logic|Improve internal infection logic|Di Girolamo|4|4|4|2|2|1|
+||Improve external infection logic|Di Girolamo|5|5|5|3|3|3|
+|I want to add the possibility to power-up the virus|define power-up structure|Di Girolamo|4|2|1|1|0|0|
+||define different power-ups' type and behaviour|Di Girolamo|7|7|4|3|0|0|
+||model a way to apply power-ups to the virus|Di Girolamo|6|4|2|1|0|0|
+|I want to complete the configuration loading |define the configuration files structure for routes|Malucelli|3|3|0|0|0|0|
+||convert the loaded routes in model entities|Malucelli|6|6|0|0|0|0|
+||complete regions' configuration loading|Malucelli|8|8|4|0|0|0|
+|I want a way to identify the regions in the map|define a strategy for the regions' identification|Malucelli|6|5|5|5|0|0|
+||associate click on map to the corresponding region|Malucelli|4|4|4|4|4|0|
+|I want to improve route handling|design a better route handler|Venturini|2|2|0|0|0|0|
+|I want to have a way for interact with the regions|define the structure of the world|Venturini|6|3|3|1|0|0|
+||I want to make available information about regions in different ways|Venturini|7|5|4|1|0|0|
+|I want a way to handle power-ups|define a power-up manager structure|Venturini|3|3|3|2|1|0|
+||make possible to buy power-ups|Venturini|5|5|5|5|3|0|
+|I want to show information about regions|model a way for show the infection situation in every region|Venturini|5|5|2|1|0|0|
