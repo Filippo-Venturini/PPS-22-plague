@@ -40,3 +40,20 @@ Sprint 2: 1-7 July
 |I want a way to handle power-ups|define a power-up manager structure|Venturini|3|3|3|2|1|0|
 ||make possible to buy power-ups|Venturini|5|5|5|5|3|0|
 |I want to show information about regions|model a way for show the infection situation in every region|Venturini|5|5|2|1|0|0|
+
+Sprint 3: 8-14 July
+||||||||||
+|------|-------|------|------|------|------|------|------|------|
+|Product Backlog Item |Sprint Task |Volunteer | Initial Estimate of Effort | 1 | 2 | 3 | 4 | 5 |
+|I want a Power-ups' menu|Model the structure for visualize and buy power-ups|Di Girolamo, Venturini|8||||||
+|I want to improve the infection logic|Improve external infection logic|Di Girolamo|7||||||
+||Complete the internal infection logic|Di Girolamo|3||||||
+|I want to interact with the Power-up menu|I want a way to show the power-up hierarchy|Di Girolamo|5||||||
+||I want to know wich power-ups are purchasable|Di Girolamo|4||||||
+|I want to add functionalities to the power-ups' menu|I want to model a way to show power-ups' details|Venturini|6||||||
+||I want to know the virus characteristics during the game|Venturini|6||||||
+||I want to make power-ups purchasable|Venturini|7||||||
+|I want a system that handle DNA-points|I want a way to spawn the DNA-points on the map|Malucelli|5||||||
+||I want a way to make DNA-points collectables|Malucelli|4||||||
+||I want a way to handle DNA-points usage|Malucelli|7||||||
+|I want to know details about a single region|I want a way to show information about a single region|Malucelli|5||||||
