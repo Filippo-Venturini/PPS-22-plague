@@ -2,12 +2,13 @@ package view.menu
 
 import controller.GameEngine
 
-import java.awt.{BorderLayout, Dimension, Toolkit}
+import java.awt.{BorderLayout, Color, Dimension, Toolkit}
 import javax.swing.JFrame
 
 class MenuView (val gameEngine: GameEngine):
   val frame: JFrame = new JFrame()
-  val virusPanel: VirusPanel = new VirusPanel
+  frame.setBackground(new Color(255,255,255))
+  val virusPanel: VirusPanel = new VirusPanel(gameEngine.getVirusConfiguration())
   val powerUpsGridPanel: PowerUpsGridPanel = new PowerUpsGridPanel
   val powerUpDetailsPanel: PowerUpDetailsPanel = new PowerUpDetailsPanel
 

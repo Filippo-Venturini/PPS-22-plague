@@ -6,7 +6,7 @@ import model.world.Filters.{RegionFilter, notInfectedRegions, given}
 import model.configuration.Loader.ConfigurationsLoader.given
 import model.configuration.Loader.{ConfigurationsLoader, RegionFile}
 import model.configuration.Loader
-import model.infection.{InfectionHandler, Virus}
+import model.infection.{InfectionHandler, Virus, VirusConfiguration}
 import model.infection.InfectionLogics.given
 
 class GameEngine():
@@ -19,7 +19,6 @@ class GameEngine():
     world.getRegion("Balkans").get.infectedAmount = 2
     gameLoop()
 
-
   private def gameLoop(): Void =
     val startTime: Long = System.currentTimeMillis()
     infectionHandler.computeInfection(world.getRegions)
@@ -30,3 +29,4 @@ class GameEngine():
     gameLoop()
 
   def getRegions(): List[Region] = this.world.getRegions
+  def getVirusConfiguration(): VirusConfiguration = this.virus.getActualConfiguration
