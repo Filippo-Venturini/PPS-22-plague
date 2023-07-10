@@ -22,4 +22,13 @@ class TestDNAPoints {
     val dnaPoint: DnaPoint = dnaPointsHandler.spawnDnaPoint()
     dnaPoint.collect()
     assertEquals(beforeCollectAmount+1, dnaPointsHandler.collectedPoints)
+
+  @Test
+  def testCantCollectADnaPointMultipleTime(): Unit =
+    val initialAmount: Int = dnaPointsHandler.collectedPoints
+    val dnaPoint: DnaPoint = dnaPointsHandler.spawnDnaPoint()
+    dnaPoint.collect()
+    dnaPoint.collect()
+    dnaPoint.collect()
+    assertEquals(initialAmount + 1, dnaPointsHandler.collectedPoints)
 }

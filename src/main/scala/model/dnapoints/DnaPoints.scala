@@ -16,5 +16,8 @@ object DnaPoints {
       override def spawnDnaPoint(): DnaPoint = DnaPoint(this)
 
   case class DnaPoint(handler: DnaPointsHandler):
-    def collect(): Unit = handler.collectedPoints = handler.collectedPoints + 1
+    private var collected = false
+    def collect(): Unit = this.collected match
+      case false => {this.collected = true; handler.collectedPoints = handler.collectedPoints + 1}
+      case _ => 
 }
