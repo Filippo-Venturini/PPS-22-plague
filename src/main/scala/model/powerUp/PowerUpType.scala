@@ -20,4 +20,4 @@ enum PowerUpType(val price: Int, val prerequisite: List[PowerUpType], val logic:
   case InfectionThroughRespiratoryTract extends PowerUpType(2, List(ColdResistanceII, HotResistanceII, AirportEnablement), infectionThroughRespiratoryTract)
   case MedicinesResistance extends PowerUpType(2, List(BacterialResistance, PortEnablement, AirportEnablement), medicinesResistance)
   case InfectedDrinkingWater extends PowerUpType(2, List(BacterialResistance, InfectionThroughAnimals), infectedDrinkingWater)
-  case SpontaneousMutations extends PowerUpType(2, List(InfectionThroughRespiratoryTract, MedicinesResistance, InfectedDrinkingWater), spontaneousMutations)
+  case SpontaneousMutCations extends PowerUpType(2, List(InfectionThroughRespiratoryTract, MedicinesResistance, InfectedDrinkingWater), spontaneousMutations)

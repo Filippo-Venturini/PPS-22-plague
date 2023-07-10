@@ -2,6 +2,7 @@ package view
 
 import controller.GameEngine
 
+import java.awt.event.{KeyAdapter, KeyEvent}
 import java.awt.{BorderLayout, Dimension, GridBagLayout, Toolkit}
 import javax.swing.{BoxLayout, JFrame, JPanel, JScrollPane}
 
@@ -10,6 +11,7 @@ class GameView (val gameEngine: GameEngine):
   val worldMapPanel: WorldMapPanel = new WorldMapPanel
   val allRegionsPanel: AllRegionsPanel = new AllRegionsPanel(gameEngine.getRegions())
   val regionsScrollPanel: JScrollPane = new JScrollPane()
+  val keyListener: GameViewKeyListener = new GameViewKeyListener
 
   def start(): Unit =
     regionsScrollPanel.setViewportView(allRegionsPanel)
@@ -17,6 +19,7 @@ class GameView (val gameEngine: GameEngine):
     frame.add(regionsScrollPanel, BorderLayout.EAST)
     frame.setPreferredSize(new Dimension(Toolkit.getDefaultToolkit.getScreenSize.width, Toolkit.getDefaultToolkit.getScreenSize.width))
     frame.setDefaultCloseOperation(3)
+    frame.addKeyListener(keyListener)
     frame.pack()
     frame.setVisible(true)
     renderLoop()
@@ -29,3 +32,9 @@ class GameView (val gameEngine: GameEngine):
           Thread.sleep(1000)
         }
     }.start()
+
+
+class GameViewKeyListener extends KeyAdapter:
+  override def keyPressed(evt :KeyEvent): Unit = evt match
+    case evt if evt.getKeyChar() == 'm' => println("cliccato")
+    case _ => 
