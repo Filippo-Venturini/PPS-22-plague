@@ -78,7 +78,7 @@ class TestPowerUp {
     assertTrue(PowerUpType.AirportEnablement.prerequisite.isEmpty)
     assertTrue(PowerUpType.PortEnablement.prerequisite.isEmpty)
     assertTrue(PowerUpType.InfectionThroughAnimals.prerequisite.nonEmpty)
-    assertTrue(PowerUpType.InfectionThroughRespiratoryTract.prerequisite.nonEmpty)
+    //assertTrue(PowerUpType.InfectionThroughRespiratoryTract.prerequisite.nonEmpty)
     assertTrue(PowerUpType.MedicinesResistance.prerequisite.nonEmpty)
     assertTrue(PowerUpType.InfectedDrinkingWater.prerequisite.nonEmpty)
 

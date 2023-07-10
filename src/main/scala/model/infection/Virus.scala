@@ -61,6 +61,10 @@ abstract class Virus:
   def consumePowerUp(logic: PowerUpLogic): Unit =
     logic.applyTo(this)
 
+  def getActualConfiguration: VirusConfiguration =
+    new VirusConfiguration(this.name, this.coldRegionsInfectivity, this.hotRegionsInfectivity, this.lowDensityRegionInfectivity,
+      this.highDensityRegionsInfectivity, this.richRegionsInfectivity, this.poorRegionsInfectivity, this.vaccineResistance, this.airportEnabled, this.portEnabled)
+
 /**
  * Class that represent basic virus in case of next itself implementations
  * @param virusConfiguration contains the virus configurations, set all the value virus property

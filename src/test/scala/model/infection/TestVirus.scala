@@ -52,4 +52,18 @@ class TestVirus {
   def testVirusPortEnabled: Unit =
     assertEquals(testVirusConfiguration.portEnabled, virus.portEnabled)
 
+  @Test
+  def testGetVirusConfiguration: Unit =
+    assertEquals(testVirusConfiguration.name, virus.getActualConfiguration.name)
+    assertEquals(testVirusConfiguration.coldRegionsInfectivity, virus.getActualConfiguration.coldRegionsInfectivity)
+    assertEquals(testVirusConfiguration.warmRegionsInfectivity, virus.getActualConfiguration.warmRegionsInfectivity)
+    assertEquals(testVirusConfiguration.lowDensityRegionInfectivity, virus.getActualConfiguration.lowDensityRegionInfectivity)
+    assertEquals(testVirusConfiguration.highDensityRegionsInfectivity, virus.getActualConfiguration.highDensityRegionsInfectivity)
+    assertEquals(testVirusConfiguration.richRegionsInfectivity, virus.getActualConfiguration.richRegionsInfectivity)
+    assertEquals(testVirusConfiguration.poorRegionsInfectivity, virus.getActualConfiguration.poorRegionsInfectivity)
+    assertEquals(testVirusConfiguration.vaccineResistance, virus.getActualConfiguration.vaccineResistance)
+    assertEquals(testVirusConfiguration.airportEnabled, virus.getActualConfiguration.airportEnabled)
+    assertEquals(testVirusConfiguration.portEnabled, virus.getActualConfiguration.portEnabled)
+
+
 }
