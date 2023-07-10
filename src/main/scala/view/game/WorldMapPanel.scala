@@ -1,4 +1,6 @@
-package view
+package view.game
+
+import view.game.MapMouseListener
 
 import java.awt.event.{MouseEvent, MouseListener}
 import java.awt.image.BufferedImage

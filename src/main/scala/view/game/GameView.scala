@@ -1,6 +1,7 @@
-package view
+package view.game
 
 import controller.GameEngine
+import view.menu.MenuView
 
 import java.awt.event.{KeyAdapter, KeyEvent}
 import java.awt.{BorderLayout, Dimension, GridBagLayout, Toolkit}

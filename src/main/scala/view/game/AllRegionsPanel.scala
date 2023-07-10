@@ -1,11 +1,10 @@
-package view
+package view.game
 
 import model.world.Region
 
-import java.awt.{Color, Component}
-import javax.swing.{Box, BoxLayout, JComponent, JLabel, JPanel, JProgressBar, SwingConstants}
-import java.awt.Dimension
+import java.awt.{Color, Component, Dimension}
 import javax.swing.plaf.basic.BasicProgressBarUI
+import javax.swing.*
 import scala.collection.immutable.SortedMap
 
 class AllRegionsPanel(var regions: List[Region]) extends JPanel:
