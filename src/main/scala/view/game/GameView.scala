@@ -1,13 +1,14 @@
 package view.game
 
 import controller.GameEngine
+import model.dnapoints.DnaPoints.DnaPointSpawnObserver
 import view.menu.MenuView
 
 import java.awt.event.{KeyAdapter, KeyEvent}
 import java.awt.{BorderLayout, Dimension, GridBagLayout, Toolkit}
 import javax.swing.{BoxLayout, JFrame, JPanel, JScrollPane}
 
-class GameView (val gameEngine: GameEngine):
+class GameView (val gameEngine: GameEngine) extends DnaPointSpawnObserver:
   val frame = new JFrame()
   val worldMapPanel: WorldMapPanel = new WorldMapPanel(gameEngine)
   val allRegionsPanel: AllRegionsPanel = new AllRegionsPanel(gameEngine.getRegions())
@@ -34,6 +35,7 @@ class GameView (val gameEngine: GameEngine):
         }
     }.start()
 
+  override def onDnaPointSpawn(regionName: String): Unit = ???//TODO
 
 class GameViewKeyListener(val gameEngine: GameEngine) extends KeyAdapter:
   override def keyPressed(evt :KeyEvent): Unit = evt match
