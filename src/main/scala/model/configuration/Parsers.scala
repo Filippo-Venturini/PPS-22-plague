@@ -1,9 +1,10 @@
 package model.configuration
 
-import model.configuration.Builders.{RawRoute, RawRouteBuilder, RegionBuilder, VirusBuilder}
+import model.configuration.Builders.{RawRoute, RawRouteBuilder, RegionBuilder, RegionIdentifier, RegionIdentifierBuilder, VirusBuilder}
 import model.world.Region
 import model.world.RegionTypes.{BordersControl, Climate, Globalization, Population, Richness, *}
 import model.configuration.Parsers.Cast.*
+import model.configuration.Parsers.RawRoute.RouteConfigurationFileFormat
 import model.infection.Virus
 
 object Parsers:
@@ -85,3 +86,23 @@ object Parsers:
               case true => field.setter.apply(builder, params(field.ordinal))
               case false => builder)
             .build()
+
+  object RegionIdentifier:
+    private enum RegionIdentifierFileFormat(val castCondition: String => Boolean, val setter: (RegionIdentifierBuilder, String) => RegionIdentifierBuilder):
+      case Name extends RegionIdentifierFileFormat(s => true, (b, s) => b.setRegionName(s))
+      case Identifier extends RegionIdentifierFileFormat(s => true, (b, s) => b.setIdentifier(s))
+
+    trait RegionIdentifierParser extends Parser[RegionIdentifier]
+
+    object RegionIdentifierParser:
+      def apply(): RegionIdentifierParser = new SimpleRegionIdentifierParser
+
+      private class SimpleRegionIdentifierParser extends RegionIdentifierParser :
+        def parse(line: String): Option[RegionIdentifier] =
+          val params = line.split(",").toList
+          RegionIdentifierFileFormat.values
+            .foldLeft(RegionIdentifierBuilder())((builder, field) => field.ordinal < params.size && field.castCondition.apply(params(field.ordinal)) match
+              case true => field.setter.apply(builder, params(field.ordinal))
+              case false => builder)
+            .build()
+    

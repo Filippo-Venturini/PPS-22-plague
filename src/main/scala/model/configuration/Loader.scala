@@ -1,10 +1,11 @@
 package model.configuration
 
 import Parsers.Parser
-import model.configuration.Builders.RawRoute
+import model.configuration.Builders.{RawRoute, RegionIdentifier}
 import model.configuration.Loader.RegionFile
 import model.configuration.Parsers.RawRoute.RawRouteParser
 import model.configuration.Parsers.Region.RegionParser
+import model.configuration.Parsers.RegionIdentifier.RegionIdentifierParser
 import model.configuration.Parsers.Virus.VirusParser
 import model.infection.Virus
 import model.world.RegionTypes.ReachableMode
@@ -18,6 +19,7 @@ object Loader:
   val regionFilePath: String = "configs/regions.txt"
   val virusFilePath: String = "configs/virus.txt"
   val routesFilePath: String = "configs/routes.txt"
+  val regionIdentifierFilePath: String = "configs/regionsIDs.txt"
   object File:
     def readLinesFromResources(path: String): Iterable[String] =
       Try(Source.fromResource(path).getLines()) match
@@ -30,11 +32,13 @@ object Loader:
   case class RegionFile(override val path: String) extends ConfigurationFile[Region]
   case class VirusFile(override val path: String) extends ConfigurationFile[Virus]
   case class RouteFile(override val path: String) extends ConfigurationFile[RawRoute]
+  case class RegionIdentifierFile(override val path: String) extends ConfigurationFile[RegionIdentifier]
 
   object ConfigurationsLoader:
     given Parser[Region] = RegionParser()
     given Parser[Virus] = VirusParser()
     given Parser[RawRoute] = RawRouteParser()
+    given Parser[RegionIdentifier] = RegionIdentifierParser()
 
     def load[T](file: ConfigurationFile[T])(using parser: Parser[T]): List[T] =
       File.readLinesFromResources(file.path)

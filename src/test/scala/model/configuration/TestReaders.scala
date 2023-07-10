@@ -1,8 +1,9 @@
 package model.configuration
 
-import model.configuration.Builders.RawRoute
+import model.configuration.Builders.{RawRoute, RegionIdentifier}
 import model.configuration.Parsers.RawRoute.RawRouteParser
 import model.configuration.Parsers.Region.RegionParser
+import model.configuration.Parsers.RegionIdentifier.RegionIdentifierParser
 import model.configuration.Parsers.Virus.VirusParser
 import model.infection.{Virus, VirusConfiguration}
 import model.world.Region
@@ -97,4 +98,22 @@ object TestReaders {
       assertEquals(None, parser.parse("Europe"))
 
   }
+
+  class TestRegionIdentifierParser() {
+    val parser: RegionIdentifierParser = RegionIdentifierParser()
+
+    @Test
+    def testCorrectRowRead(): Unit =
+      val conf: RegionIdentifier = RegionIdentifier("Europe", "#AB12EF")
+      assertEquals(conf, parser.parse(s"${conf.regionName},${conf.identifier}").get)
+
+    @Test
+    def testBadComposedString(): Unit =
+      assertEquals(None, parser.parse("Europe,foo"))
+
+    @Test
+    def testUncompletedString(): Unit =
+      assertEquals(None, parser.parse("Europe"))
+  }
+
 }

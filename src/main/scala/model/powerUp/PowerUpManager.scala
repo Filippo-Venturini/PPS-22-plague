@@ -1,6 +1,7 @@
 package model.powerUp
 
 import model.infection.Virus
+import model.dnapoints.DnaPoints.DnaPointsHandler
 
 /**
  * Class that represent a manager for handling the PowerUps.
@@ -8,7 +9,7 @@ import model.infection.Virus
  *
  * @param virus the virus that is infecting the world
  */
-class PowerUpManager(private val virus: Virus):
+class PowerUpManager(private val virus: Virus, private val dnaPointsHandler: DnaPointsHandler):
   private val powerUps: List[PowerUp] = PowerUpType.values.map(powerUpType => PowerUp(powerUpType)).toList
 
   /**
@@ -19,7 +20,11 @@ class PowerUpManager(private val virus: Virus):
   /**
    * @return only the purchasable PowerUps basing on the hierarchy.
    */
-  def getPurchasablePowerUps(): List[PowerUp] = this.powerUps.filter(powerUp => !powerUp.hasBeenBought && this.arePrerequisiteSatisfied(powerUp))
+  def getPurchasablePowerUps(): List[PowerUp] =
+    this.powerUps
+      .filter(!_.hasBeenBought)
+      .filter(this.arePrerequisiteSatisfied)
+      .filter(_.powerUpType.price <= dnaPointsHandler.collectedPoints)
 
   /**
    * @return the list of the all the purchased PowerUps.

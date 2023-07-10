@@ -1,0 +1,21 @@
+#REGION_NAME,IDENTIFIER
+Greenland,#bcd2db
+North-America,#1c8bbc
+United States,#bc461c
+Central-America,#430c7d
+Brazil,#e2bd17
+Argentina,#26941a
+Madagascar,#97a132
+South-Africa,#6e1387
+Central-Africa,#985239
+North-Africa,#4ba4be
+Europe,#3a6d1d
+Balkans,#724178
+Scandinavia,#76b4c6
+Russia,#b14461
+Middle-East,#76c683
+India,#b1ac44
+China,#1e577e
+Japan,#345d13
+Indonesia,#a01d88
+Australia,#c4e22d
