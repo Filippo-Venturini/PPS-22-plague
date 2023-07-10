@@ -1,5 +1,6 @@
 package model.powerUp
 
+import model.dnapoints.DnaPoints.DnaPointsHandler
 import model.infection.{BasicVirus, ColdRegionsInfectivity, Virus, VirusConfiguration}
 import org.junit.{Before, Test}
 import org.junit.Assert.{assertEquals, assertFalse, assertTrue}
@@ -7,11 +8,14 @@ import org.junit.Assert.{assertEquals, assertFalse, assertTrue}
 class TestPowerUpManager {
   val testVirusConfiguration: VirusConfiguration = VirusConfiguration("DHT11", 0, 0, 0, 0, 0, 0, 0, false, false)
   val virus: Virus = new BasicVirus(testVirusConfiguration)
-  var powerUpManager: PowerUpManager = new PowerUpManager(this.virus)
+  var dnaPointsHandler = DnaPointsHandler()
+  var powerUpManager: PowerUpManager = new PowerUpManager(this.virus, dnaPointsHandler)
 
   @Before
   def init(): Unit =
-    this.powerUpManager = new PowerUpManager(this.virus)
+    dnaPointsHandler = DnaPointsHandler()
+    dnaPointsHandler.collectedPoints = 100
+    this.powerUpManager = new PowerUpManager(this.virus, dnaPointsHandler)
 
   @Test
   def testGetAllPowerUps(): Unit =
@@ -49,5 +53,15 @@ class TestPowerUpManager {
     val initialColdRegionInfectivity: ColdRegionsInfectivity = this.virus.coldRegionsInfectivity
     powerUpManager.purchasePowerUp(PowerUpType.ColdResistanceI)
     assertEquals(initialColdRegionInfectivity + 5, this.virus.coldRegionsInfectivity)
+
+  @Test
+  def cantBuyPowerUpWithNotEnoughMoney(): Unit =
+    dnaPointsHandler.collectedPoints = 0
+    assertTrue(powerUpManager.getPurchasablePowerUps().isEmpty)
+
+  @Test
+  def canBuyPowerUpWithEnoughMoney(): Unit =
+    dnaPointsHandler.collectedPoints = 100
+    assertFalse(powerUpManager.getPurchasablePowerUps().isEmpty)
 
 }

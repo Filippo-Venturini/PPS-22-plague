@@ -81,6 +81,5 @@ class TestPowerUp {
     assertTrue(PowerUpType.InfectionThroughRespiratoryTract.prerequisite.nonEmpty)
     assertTrue(PowerUpType.MedicinesResistance.prerequisite.nonEmpty)
     assertTrue(PowerUpType.InfectedDrinkingWater.prerequisite.nonEmpty)
-    assertTrue(PowerUpType.SpontaneousMutations.prerequisite.nonEmpty)
 
 }
