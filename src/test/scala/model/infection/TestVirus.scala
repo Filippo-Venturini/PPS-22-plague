@@ -52,4 +52,8 @@ class TestVirus {
   def testVirusPortEnabled: Unit =
     assertEquals(testVirusConfiguration.portEnabled, virus.portEnabled)
 
+  /*@Test
+  def testGetVirusConfiguration: Unit =
+    assertEquals(testVirusConfiguration, virus.getActualConfiguration)*/
+
 }

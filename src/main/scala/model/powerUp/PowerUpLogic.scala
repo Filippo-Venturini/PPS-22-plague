@@ -54,8 +54,8 @@ object PowerUpLogics:
      * @param virus is the virus inside the game
      */
     override def applyTo(virus: Virus): Unit =
-      virus.richRegionsInfectivity = virus.richRegionsInfectivity + 3
-      virus.highDensityRegionsInfectivity = virus.highDensityRegionsInfectivity + 1
+      virus.hotRegionsInfectivity = virus.hotRegionsInfectivity + 3
+      virus.coldRegionsInfectivity = virus.coldRegionsInfectivity + 3
 
   val airportEnablement: PowerUpLogic = new PowerUpLogic:
     /**
@@ -82,9 +82,7 @@ object PowerUpLogics:
      * @param virus is the virus inside the game
      */
     override def applyTo(virus: Virus): Unit =
-      virus.hotRegionsInfectivity = virus.hotRegionsInfectivity + 1
-      virus.poorRegionsInfectivity = virus.poorRegionsInfectivity + 3
-      virus.highDensityRegionsInfectivity = virus.highDensityRegionsInfectivity + 1
+      virus.lowDensityRegionInfectivity = virus.lowDensityRegionInfectivity + 3
 
   val infectionThroughRespiratoryTract: PowerUpLogic = new PowerUpLogic:
     /**
@@ -117,7 +115,29 @@ object PowerUpLogics:
       virus.richRegionsInfectivity = virus.poorRegionsInfectivity + 2
       virus.poorRegionsInfectivity = virus.poorRegionsInfectivity + 1
 
-  val spontaneousMutations: PowerUpLogic = new PowerUpLogic:
+  val alphaMutations: PowerUpLogic = new PowerUpLogic:
+    /**
+     * Modify the characteristics of the virus according to the power up spontaneousMutations
+     *
+     * @param virus is the virus inside the game
+     */
+    override def applyTo(virus: Virus): Unit =
+      virus.vaccineResistance = virus.vaccineResistance + 3
+      virus.poorRegionsInfectivity = virus.poorRegionsInfectivity + 1
+      virus.richRegionsInfectivity = virus.poorRegionsInfectivity + 1
+
+  val betaMutations: PowerUpLogic = new PowerUpLogic :
+    /**
+     * Modify the characteristics of the virus according to the power up spontaneousMutations
+     *
+     * @param virus is the virus inside the game
+     */
+    override def applyTo(virus: Virus): Unit =
+      virus.vaccineResistance = virus.vaccineResistance + 3
+      virus.poorRegionsInfectivity = virus.poorRegionsInfectivity + 1
+      virus.richRegionsInfectivity = virus.poorRegionsInfectivity + 1
+
+  val gammaMutations: PowerUpLogic = new PowerUpLogic :
     /**
      * Modify the characteristics of the virus according to the power up spontaneousMutations
      *
