@@ -1,12 +1,51 @@
 package model.powerUp
 
-import model.powerUp.Filters.PowerUpFilter
+import model.infection.Virus
 
-object Filters:
-  type PowerUpFilter = PowerUp => Boolean
+/**
+ * Class that represent a manager for handling the PowerUps.
+ * It offer the possibility to get the available PowerUps or purchase some of them basing on the hierarchy.
+ *
+ * @param virus the virus that is infecting the world
+ */
+class PowerUpManager(private val virus: Virus):
+  private val powerUps: List[PowerUp] = PowerUpType.values.map(powerUpType => PowerUp(powerUpType)).toList
 
-  given PowerUpFilter = _ => true
+  /**
+   * @return all the PowerUps of the game
+   */
+  def getAllPowerUps(): List[PowerUp] = this.powerUps
 
-class PowerUpManager
-  //private val powerUps: List[PowerUp] = PowerUpType.values.map(powerUpType => PowerUp(powerUpType)).toList
-  //def getPowerUps(using filter: PowerUpFilter): List[PowerUp] = powerUps.filter(filter)
+  /**
+   * @return only the purchasable PowerUps basing on the hierarchy.
+   */
+  def getPurchasablePowerUps(): List[PowerUp] = this.powerUps.filter(powerUp => !powerUp.hasBeenBought && this.arePrerequisiteSatisfied(powerUp))
+
+  /**
+   * @return the list of the all the purchased PowerUps.
+   */
+  def getPurchasedPowerUps(): List[PowerUp] = this.powerUps.filter(powerUp => powerUp.hasBeenBought)
+
+  /**
+   * @param powerUpType the type of the PowerUp requested.
+   * @return the corresponding PowerUp based on the type specified as input.
+   */
+  def getPowerUp(powerUpType: PowerUpType): Option[PowerUp] = this.powerUps.find(powerUp => powerUp.powerUpType == powerUpType)
+
+  /**
+   * It purchase the PowerUp specified and make the virus automatically consume it.
+   * @param powerUpType the type of the PowerUp that is requested to buy.
+   */
+  def purchasePowerUp(powerUpType: PowerUpType): Unit =
+    this.getPurchasablePowerUps().find(powerUp => powerUp.powerUpType == powerUpType).get.hasBeenBought = true
+    this.virus.consumePowerUp(powerUpType.logic)
+
+  /**
+   * @param powerUp the PowerUp that must be checked.
+   * @return true if all the prerequisite of the PowerUp are satisfied
+   */
+  private def arePrerequisiteSatisfied(powerUp: PowerUp): Boolean =
+    powerUp.powerUpType.prerequisite.isEmpty ||
+      powerUp.powerUpType.prerequisite.forall(prerequisite => powerUps.find(_.powerUpType == prerequisite).get.hasBeenBought)
+
+

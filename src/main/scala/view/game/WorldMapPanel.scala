@@ -1,4 +1,6 @@
-package view
+package view.game
+
+import view.game.MapMouseListener
 
 import controller.GameEngine
 import model.configuration.Builders.RegionIdentifier

@@ -1,12 +1,23 @@
 package model.powerUp
 
-
+/**
+ * Represent a single Power Up instance. It contains the its type of Power Up and if is already bought
+ */
 trait PowerUp:
-  def powerUpSetting: PowerUpSettings
+  def powerUpType: PowerUpType
   var hasBeenBought: Boolean = false
 
 object PowerUp:
-  def apply(powerUpSetting: PowerUpSettings): PowerUp =
-    PowerUpImpl(powerUpSetting)
+  /**
+   * Create a Power Up instance with determined characteristic
+   * @param powerUpType represent the specific kind of Power Up
+   * @return the Power Up instance in base of the Power Ups type passed
+   */
+  def apply(powerUpType: PowerUpType): PowerUp =
+    PowerUpImpl(powerUpType)
 
-  private class PowerUpImpl(override val powerUpSetting: PowerUpSettings) extends PowerUp
+  /**
+   * Private class to implement the Power Up type
+   * @param powerUpType represent the specific kind of Power Up
+   */
+  private class PowerUpImpl(override val powerUpType: PowerUpType) extends PowerUp

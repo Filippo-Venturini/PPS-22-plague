@@ -6,22 +6,22 @@ import model.infection
 import model.infection.*
 
 class TestPowerUp {
-  import PowerUpSettings.*
+  import PowerUpType.*
 
 
   val testVirusConfiguration: VirusConfiguration = VirusConfiguration("DHT11", 0, 0, 0, 0, 0, 0, 0, false, false)
   val virus: Virus = new BasicVirus(testVirusConfiguration)
   @Test
   def testGetPricePowerUp: Unit =
-    val powerUp: PowerUp = PowerUp(PowerUpSettings.ColdResistanceI)
+    val powerUp: PowerUp = PowerUp(PowerUpType.ColdResistanceI)
 
-    println(powerUp.powerUpSetting)
+    println(powerUp.powerUpType)
 
-    assertEquals(2, powerUp.powerUpSetting.price)
+    assertEquals(2, powerUp.powerUpType.price)
 
   @Test
   def testHasBought: Unit =
-    val powerUp: PowerUp = PowerUp(PowerUpSettings.ColdResistanceII)
+    val powerUp: PowerUp = PowerUp(PowerUpType.ColdResistanceII)
     assertFalse(powerUp.hasBeenBought)
     powerUp.hasBeenBought = true
     assertTrue(powerUp.hasBeenBought)
@@ -43,28 +43,44 @@ class TestPowerUp {
 
   @Test
   def testHotResistanceI: Unit =
-    val startValueWarmResistance = virus.warmRegionsInfectivity
-    virus.consumePowerUp(PowerUpLogics.warmResistanceI)
-    val actualValueWarmResistance = virus.warmRegionsInfectivity
+    val startValueWarmResistance = virus.hotRegionsInfectivity
+    virus.consumePowerUp(PowerUpLogics.hotResistanceI)
+    val actualValueWarmResistance = virus.hotRegionsInfectivity
     assert(startValueWarmResistance < actualValueWarmResistance)
 
   @Test
   def testHotResistanceII: Unit =
-    virus.consumePowerUp(PowerUpLogics.warmResistanceI)
-    val valueWarmResistanceI = virus.warmRegionsInfectivity
-    virus.consumePowerUp(PowerUpLogics.warmResistanceII)
-    val actualValueWarmResistance = virus.warmRegionsInfectivity
+    virus.consumePowerUp(PowerUpLogics.hotResistanceI)
+    val valueWarmResistanceI = virus.hotRegionsInfectivity
+    virus.consumePowerUp(PowerUpLogics.hotResistanceII)
+    val actualValueWarmResistance = virus.hotRegionsInfectivity
     assert(valueWarmResistanceI < actualValueWarmResistance)
 
   @Test
   def testEnabledAirport: Unit =
     assertFalse(virus.airportEnabled)
-    virus.consumePowerUp(PowerUpLogics.AirportEnablement)
+    virus.consumePowerUp(PowerUpLogics.airportEnablement)
     assertTrue(virus.airportEnabled)
 
   @Test
   def testEnabledPort: Unit =
     assertFalse(virus.portEnabled)
-    virus.consumePowerUp(PowerUpLogics.PortEnablement)
+    virus.consumePowerUp(PowerUpLogics.portEnablement)
     assertTrue(virus.portEnabled)
+
+  @Test
+  def testPresenceOfPrerequisites: Unit =
+    assertTrue(PowerUpType.ColdResistanceI.prerequisite.isEmpty)
+    assertTrue(PowerUpType.ColdResistanceII.prerequisite.nonEmpty)
+    assertTrue(PowerUpType.HotResistanceI.prerequisite.isEmpty)
+    assertTrue(PowerUpType.HotResistanceII.prerequisite.nonEmpty)
+    assertTrue(PowerUpType.BacterialResistance.prerequisite.isEmpty)
+    assertTrue(PowerUpType.AirportEnablement.prerequisite.isEmpty)
+    assertTrue(PowerUpType.PortEnablement.prerequisite.isEmpty)
+    assertTrue(PowerUpType.InfectionThroughAnimals.prerequisite.nonEmpty)
+    assertTrue(PowerUpType.InfectionThroughRespiratoryTract.prerequisite.nonEmpty)
+    assertTrue(PowerUpType.MedicinesResistance.prerequisite.nonEmpty)
+    assertTrue(PowerUpType.InfectedDrinkingWater.prerequisite.nonEmpty)
+    assertTrue(PowerUpType.SpontaneousMutations.prerequisite.nonEmpty)
+
 }

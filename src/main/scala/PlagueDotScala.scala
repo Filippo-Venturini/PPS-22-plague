@@ -1,5 +1,5 @@
 import controller.GameEngine
-import view.GameView
+import view.game.GameView
 
 object PlagueDotScala extends App:
   val gameEngine: GameEngine = new GameEngine()
