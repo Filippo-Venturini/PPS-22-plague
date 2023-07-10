@@ -62,7 +62,8 @@ abstract class Virus:
     logic.applyTo(this)
 
   def getActualConfiguration: VirusConfiguration =
-    this.virusConfiguration
+    new VirusConfiguration(this.name, this.coldRegionsInfectivity, this.hotRegionsInfectivity, this.lowDensityRegionInfectivity,
+      this.highDensityRegionsInfectivity, this.richRegionsInfectivity, this.poorRegionsInfectivity, this.vaccineResistance, this.airportEnabled, this.portEnabled)
 
 /**
  * Class that represent basic virus in case of next itself implementations
