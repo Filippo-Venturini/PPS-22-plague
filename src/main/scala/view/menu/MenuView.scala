@@ -9,8 +9,8 @@ class MenuView (val gameEngine: GameEngine):
   val frame: JFrame = new JFrame()
   frame.setBackground(new Color(255,255,255))
   val virusPanel: VirusPanel = new VirusPanel(gameEngine.getVirusConfiguration())
-  val powerUpsGridPanel: PowerUpsGridPanel = new PowerUpsGridPanel
   val powerUpDetailsPanel: PowerUpDetailsPanel = new PowerUpDetailsPanel
+  val powerUpsGridPanel: PowerUpsGridPanel = new PowerUpsGridPanel(powerUpDetailsPanel)
 
   frame.add(virusPanel, BorderLayout.NORTH)
   frame.add(powerUpsGridPanel, BorderLayout.CENTER)
