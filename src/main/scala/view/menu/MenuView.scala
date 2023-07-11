@@ -2,7 +2,7 @@ package view.menu
 
 import controller.GameEngine
 
-import java.awt.{BorderLayout, Color, Dimension, Toolkit}
+import java.awt.{BorderLayout, Color, Dimension, Frame, Toolkit}
 import javax.swing.JFrame
 
 class MenuView (val gameEngine: GameEngine):
@@ -15,7 +15,6 @@ class MenuView (val gameEngine: GameEngine):
   frame.add(virusPanel, BorderLayout.NORTH)
   frame.add(powerUpsGridPanel, BorderLayout.CENTER)
   frame.add(powerUpDetailsPanel, BorderLayout.SOUTH)
-
-  frame.setPreferredSize(new Dimension(Toolkit.getDefaultToolkit.getScreenSize.width, Toolkit.getDefaultToolkit.getScreenSize.height))
   frame.pack()
+  frame.setExtendedState(Frame.MAXIMIZED_BOTH)
   frame.setVisible(true)

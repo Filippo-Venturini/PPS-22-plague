@@ -10,6 +10,8 @@ class VirusPanel(var virusConfiguration: VirusConfiguration) extends JPanel:
   this.setLayout(new GridLayout(0,3))
   this.setBorder(new EmptyBorder(20,300,20,10))
   this.setBackground(new Color(217,217,217))
+  val firstEmptyLabel: JLabel = new JLabel()
+  val secondEmptyLabel: JLabel = new JLabel()
   val virusNameLabel: JLabel = new JLabel("VIRUS: NAME")
   val coldRegionsInfectivityLabel: JLabel = new JLabel("Cold Regions Infectivity: " + virusConfiguration.coldRegionsInfectivity)
   val poorRegionsInfectivityLabel: JLabel = new JLabel("Poor Regions Infectivity: " + virusConfiguration.poorRegionsInfectivity)
@@ -21,18 +23,11 @@ class VirusPanel(var virusConfiguration: VirusConfiguration) extends JPanel:
   val portEnabledLabel: JLabel = new JLabel("Port Enabled: " + virusConfiguration.portEnabled)
   val airPortEnabledLabel: JLabel = new JLabel("Airport Enabled: " + virusConfiguration.airportEnabled)
 
-  this.add(virusNameLabel)
-  this.add(new JLabel())
-  this.add(new JLabel())
-  this.add(coldRegionsInfectivityLabel)
-  this.add(poorRegionsInfectivityLabel)
-  this.add(lowDensityRegionsInfectivityLabel)
-  this.add(hotRegionsInfectivityLabel)
-  this.add(richRegionsInfectivityLabel)
-  this.add(highDensityRegionsInfectivityLabel)
-  this.add(vaccineResistanceLabel)
-  this.add(portEnabledLabel)
-  this.add(airPortEnabledLabel)
+  addLabels(virusNameLabel, firstEmptyLabel, secondEmptyLabel, coldRegionsInfectivityLabel, poorRegionsInfectivityLabel,
+    lowDensityRegionsInfectivityLabel, hotRegionsInfectivityLabel,richRegionsInfectivityLabel,
+    highDensityRegionsInfectivityLabel,vaccineResistanceLabel,portEnabledLabel,airPortEnabledLabel)
+
+  def addLabels(labels: JLabel*): Unit = labels.foreach(l => this.add(l))
 
   def refreshVirusCharacteristics(virusConfiguration: VirusConfiguration): Unit =
     this.coldRegionsInfectivityLabel.setText(virusConfiguration.coldRegionsInfectivity.toString)

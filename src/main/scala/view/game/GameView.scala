@@ -5,7 +5,7 @@ import model.dnapoints.DnaPoints.DnaPointSpawnObserver
 import view.menu.MenuView
 
 import java.awt.event.{KeyAdapter, KeyEvent}
-import java.awt.{BorderLayout, Dimension, GridBagLayout, Toolkit}
+import java.awt.{BorderLayout, Dimension, Frame, GridBagLayout, Toolkit}
 import javax.swing.{BoxLayout, JFrame, JPanel, JScrollPane}
 
 class GameView (val gameEngine: GameEngine) extends DnaPointSpawnObserver:
@@ -19,10 +19,10 @@ class GameView (val gameEngine: GameEngine) extends DnaPointSpawnObserver:
     regionsScrollPanel.setViewportView(allRegionsPanel)
     frame.add(worldMapPanel, BorderLayout.CENTER)
     frame.add(regionsScrollPanel, BorderLayout.EAST)
-    frame.setPreferredSize(new Dimension(Toolkit.getDefaultToolkit.getScreenSize.width, Toolkit.getDefaultToolkit.getScreenSize.height))
     frame.setDefaultCloseOperation(3)
     frame.addKeyListener(keyListener)
     frame.pack()
+    frame.setExtendedState(Frame.MAXIMIZED_BOTH)
     frame.setVisible(true)
     renderLoop()
 
