@@ -5,7 +5,7 @@ import model.world.{BasicRegion, Region, World}
 import org.junit.{Before, Test}
 import org.junit.Assert.{assertEquals, assertFalse, assertTrue}
 import model.world.RegionTypes.RegionConfiguration
-import model.dnapoints.DnaPoints.SpawnLogic.{EmptyLogic, EveryXSecondsLogic, OnNewInfectedRegions, OnNewInfectedRegionsLogic, SpawnPointLogic}
+import model.dnapoints.DnaPoints.SpawnLogic.{BasicLogic, EmptyLogic, EveryXSecondsLogic, OnNewInfectedRegions, OnNewInfectedRegionsLogic, SpawnPointLogic}
 import model.dnapoints.DnaPoints.{DnaPoint, DnaPointsHandler}
 
 class TestSpawnLogic {
@@ -84,5 +84,10 @@ class TestSpawnLogic {
       assertFalse(logic.evaluate().intersect(List(russia, usa)).isEmpty)
 
 
+  @Test
+  def testBasicLogicWithNoInfectedCountries(): Unit =
+    val logic: SpawnPointLogic = BasicLogic(world, refreshTime)
+    Thread.sleep(refreshTime)
+    assertEquals(List(), logic.evaluate())
 
 }

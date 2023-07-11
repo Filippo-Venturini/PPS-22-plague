@@ -6,8 +6,6 @@ import org.junit.{Before, Test}
 import utils.Iterables.*
 
 class TestIterables {
-
-
   @Test
   def testGetRandomOnEmptyList(): Unit =
     val list: List[Int] = List()
