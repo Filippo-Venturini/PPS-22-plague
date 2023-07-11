@@ -30,20 +30,20 @@ class TestSpawnLogic {
   @Test
   def testOnNewInfectedRegionsWithNoInfectedCountries(): Unit =
     val logic: SpawnPointLogic = OnNewInfectedRegionsLogic(world)
-    assertEquals(List(), logic.evaluate())
+    assertEquals(Set(), logic.evaluate())
 
   @Test
   def testOnNewInfectedRegionsWithOneInfectedCountry(): Unit =
     val logic: SpawnPointLogic = OnNewInfectedRegionsLogic(world)
     russia.infectedAmount = 1
-    assertEquals(List(russia), logic.evaluate())
+    assertEquals(Set(russia), logic.evaluate())
 
   @Test
   def testOnNewInfectedRegionsWithMultipleInfectedCountries(): Unit =
     val logic: SpawnPointLogic = OnNewInfectedRegionsLogic(world)
     russia.infectedAmount = 1
     usa.infectedAmount = 100
-    assertEquals(List(russia, usa), logic.evaluate())
+    assertEquals(Set(russia, usa), logic.evaluate())
 
   @Test
   def testOnNewInfectedRegionsCountriesAreDetectedOnlyOnce(): Unit =
@@ -51,20 +51,20 @@ class TestSpawnLogic {
     russia.infectedAmount = 1
     logic.evaluate()
     russia.infectedAmount = 100
-    assertEquals(List(), logic.evaluate())
+    assertEquals(Set(), logic.evaluate())
 
   @Test
   def testEveryXSecondsWithNoInfectedCountries(): Unit =
     val logic: SpawnPointLogic = EveryXSecondsLogic(world, refreshTime)
     Thread.sleep(refreshTime)
-    assertEquals(List(), logic.evaluate())
+    assertEquals(Set(), logic.evaluate())
 
   @Test
   def testEveryXSecondsWithOneInfectedCountry(): Unit =
     russia.infectedAmount = 1
     val logic: SpawnPointLogic = EveryXSecondsLogic(world, refreshTime)
     Thread.sleep(refreshTime)
-    assertEquals(List(russia), logic.evaluate())
+    assertEquals(Set(russia), logic.evaluate())
 
   @Test
   def testEveryXSecondsWithMultipleInfectedCountries(): Unit =
@@ -72,7 +72,7 @@ class TestSpawnLogic {
     usa.infectedAmount = 1
     val logic: SpawnPointLogic = EveryXSecondsLogic(world, refreshTime)
     Thread.sleep(refreshTime)
-    assertFalse(logic.evaluate().intersect(List(russia, usa)).isEmpty)
+    assertFalse(logic.evaluate().intersect(Set(russia, usa)).isEmpty)
 
   @Test
   def testEveryXSecondsMultipleTimes(): Unit =
@@ -81,13 +81,13 @@ class TestSpawnLogic {
     val logic: SpawnPointLogic = EveryXSecondsLogic(world, refreshTime)
     for _ <- 0 to 5 do
       Thread.sleep(refreshTime)
-      assertFalse(logic.evaluate().intersect(List(russia, usa)).isEmpty)
+      assertFalse(logic.evaluate().intersect(Set(russia, usa)).isEmpty)
 
 
   @Test
   def testBasicLogicWithNoInfectedCountries(): Unit =
     val logic: SpawnPointLogic = BasicLogic(world, refreshTime)
     Thread.sleep(refreshTime)
-    assertEquals(List(), logic.evaluate())
+    assertEquals(Set(), logic.evaluate())
 
 }

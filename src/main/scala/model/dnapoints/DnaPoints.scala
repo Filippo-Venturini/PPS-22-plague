@@ -49,25 +49,25 @@ object DnaPoints {
   object SpawnLogic:
     private var infectedRegionsOnLastStep: List[Region] = List()
     abstract class SpawnPointLogic:
-      def evaluate(): List[Region]
+      def evaluate(): Set[Region]
 
     class EmptyLogic extends SpawnPointLogic:
-      override def evaluate(): List[Region] = List()
+      override def evaluate(): Set[Region] = Set()
 
     trait OnNewInfectedRegions(private val world: World) extends SpawnPointLogic:
-      abstract override def evaluate(): List[Region] =
+      abstract override def evaluate(): Set[Region] =
         val infectedRegions = world.getRegions(using Filters.infectedRegions)
         val newlyInfectedRegions = infectedRegions.diff(infectedRegionsOnLastStep)
         infectedRegionsOnLastStep = infectedRegions
-        newlyInfectedRegions ::: super.evaluate()
+        newlyInfectedRegions.toSet ++ super.evaluate()
 
     trait EveryXSeconds(private val world: World, private val spawnRate: Int) extends SpawnPointLogic:
       import utils.Iterables.getRandomElement
       private var lastStepTime = System.currentTimeMillis()
-      abstract override def evaluate(): List[Region] = (System.currentTimeMillis()-lastStepTime) >= spawnRate match
+      abstract override def evaluate(): Set[Region] = (System.currentTimeMillis()-lastStepTime) >= spawnRate match
         case true =>
           lastStepTime = System.currentTimeMillis()
-          world.getRegions(using Filters.infectedRegions).getRandomElement().toList ::: super.evaluate()
+          world.getRegions(using Filters.infectedRegions).getRandomElement().toSet ++ super.evaluate()
         case _ => super.evaluate()
 
     case class OnNewInfectedRegionsLogic(world: World) extends EmptyLogic with OnNewInfectedRegions(world)
