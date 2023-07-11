@@ -11,6 +11,7 @@ import model.dnapoints.DnaPoints.Logic.BasicLogic
 import model.infection.{InfectionHandler, Virus, VirusConfiguration}
 import model.infection.InfectionLogics.given
 import model.powerUp.PowerUpManager
+import model.dnapoints.DnaPoints.DnaPointSpawnObserver
 
 class GameEngine():
   private val refreshTime: Int = 500
@@ -20,6 +21,8 @@ class GameEngine():
   private val dnaPointsHandler = DnaPointsHandler(BasicLogic(world, 60))//TODO move 60 to a better place
   private val powerUpManager = new PowerUpManager(virus, dnaPointsHandler)
 
+  def addObserver(observer: DnaPointSpawnObserver): Unit =
+    dnaPointsHandler.addObserver(observer)
   def start(): Void =
     world.getRegion("Balkans").get.infectedAmount = 2
     gameLoop()
