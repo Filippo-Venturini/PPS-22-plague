@@ -2,18 +2,20 @@ package model.powerUp
 
 import model.dnapoints.DnaPoints.DnaPointsHandler
 import model.infection.{BasicVirus, ColdRegionsInfectivity, Virus, VirusConfiguration}
+import model.world.World
 import org.junit.{Before, Test}
 import org.junit.Assert.{assertEquals, assertFalse, assertTrue}
 
 class TestPowerUpManager {
+  val world = new World(List())
   val testVirusConfiguration: VirusConfiguration = VirusConfiguration("DHT11", 0, 0, 0, 0, 0, 0, 0, false, false)
   val virus: Virus = new BasicVirus(testVirusConfiguration)
-  var dnaPointsHandler = DnaPointsHandler(???)
+  var dnaPointsHandler = DnaPointsHandler(world)
   var powerUpManager: PowerUpManager = new PowerUpManager(this.virus, dnaPointsHandler)
 
   @Before
   def init(): Unit =
-    dnaPointsHandler = DnaPointsHandler(???)
+    dnaPointsHandler = DnaPointsHandler(world)
     dnaPointsHandler.collectedPoints = 100
     this.powerUpManager = new PowerUpManager(this.virus, dnaPointsHandler)
 

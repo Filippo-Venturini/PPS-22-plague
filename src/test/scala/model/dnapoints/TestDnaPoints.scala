@@ -9,12 +9,12 @@ import org.junit.Assert.{assertEquals, assertFalse, assertTrue}
 
 class TestDNAPoints {
 
-  private var dnaPointsHandler: DnaPointsHandler = DnaPointsHandler(???)
+  private var dnaPointsHandler: DnaPointsHandler = DnaPointsHandler(new World(List()))
   private val region: Region = new BasicRegion(RegionConfiguration("Central-Europe", 60_000_000, 6, 6, 8, 9, 10))
 
   @Before
   def before(): Unit =
-    dnaPointsHandler = DnaPointsHandler(???)
+    dnaPointsHandler = DnaPointsHandler(new World(List()))
 
   @Test
   def testCollectedDnaPointsIsZeroAtStarts(): Unit =

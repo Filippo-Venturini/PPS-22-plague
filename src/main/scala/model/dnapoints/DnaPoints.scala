@@ -18,13 +18,14 @@ object DnaPoints {
     def computeDnaPointSpawn(): Unit
 
   object DnaPointsHandler:
-    def apply(world: World): DnaPointsHandler = new BasicDnaPointsHandler(0, world)
+    val spawnRate: Int = 60//TODO move to a better place
+    def apply(world: World): DnaPointsHandler = new BasicDnaPointsHandler(0, BasicLogic(world, spawnRate))
 
-    private class BasicDnaPointsHandler(override var collectedPoints: Int, private val world: World) extends DnaPointsHandler :
+    private class BasicDnaPointsHandler(override var collectedPoints: Int, private val logic: SpawnPointLogic) extends DnaPointsHandler :
       import model.world.Filters.given_RegionFilter
       private var spawnedPoints: List[DnaPoint] = List()
       private var observers: List[DnaPointSpawnObserver] = List()
-      private val spawnPointLogic: SpawnPointLogic = ???//SpawnPointOnNewInfectedRegions(world)
+      private val spawnPointLogic: SpawnPointLogic = logic
 
       override def spawnDnaPoint(region: Region): DnaPoint =
         spawnedPoints = BasicDnaPoint(this, region.name) +: spawnedPoints
