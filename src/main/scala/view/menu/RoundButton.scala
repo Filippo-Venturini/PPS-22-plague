@@ -1,35 +1,24 @@
 package view.menu
 
-import javax.swing.JButton
-import javax.swing.JFrame
-import java.awt.Color
-import java.awt.Dimension
-import java.awt.FlowLayout
-import java.awt.Graphics
-import java.awt.geom.Ellipse2D
+import javax.swing.{BorderFactory, JButton, JFrame}
+import java.awt.{Color, Dimension, FlowLayout, Font, Graphics, Graphics2D}
+import java.awt.geom.{Ellipse2D, Point2D}
 import scala.collection.StepperShape.Shape
 
-class RoundButton(val label: String) extends JButton(label):
-  this.setFocusable(false)
-  this.setContentAreaFilled(false)
-  
-  override def paintComponent(g: Graphics): Unit =
-    if (getModel.isArmed){
-      g.setColor(Color.gray)
-    }else{
-      g.setColor(getBackground)
-    }
-    g.fillOval(0,0,getSize().width - 1, getSize().height - 1)
-    super.paintComponent(g)
+class RoundButton() extends JButton():
+  setBorder(BorderFactory.createEmptyBorder())
+  setContentAreaFilled(false) // Rimuove lo sfondo del bottone
+  setForeground(Color.BLACK) // Imposta il colore del testo
+  setFocusPainted(false) // Rimuove l'effetto di focuss
+  setText("buy")
+  setFont(new Font("Arial", 12, 10))
 
-  override def paintBorder(g: Graphics): Unit =
-    g.setColor(Color.darkGray)
-    g.drawOval(0,0,getSize().width - 1, getSize().height -1)
-    
-  /*var shape: Shape
-  
-  def contains(x: Int, y: Int): Boolean =
-    if(shape == null || !shape.getBounds().equals(getBounds())){
-      shape = new Ellipse2D.Float(0,0,getWidth,getHeight)
-    }
-    return shape.contains(x,y)*/
+  override def paintComponent(g: Graphics): Unit = {
+    val g2d = g.asInstanceOf[Graphics2D]
+    val center = new Point2D.Float(getWidth / 2.0f, getHeight / 2.0f)
+    val radius = Math.min(getWidth, getHeight) / 2.0f
+    val circle = new Ellipse2D.Float(center.x - radius, center.y - radius, 2.0f * radius, 2.0f * radius)
+    g2d.setColor(Color.YELLOW) // Imposta il colore del cerchio
+    g2d.fill(circle) // Disegna il cerchio
+    super.paintComponent(g) // Disegna il testo del bottone
+  }
