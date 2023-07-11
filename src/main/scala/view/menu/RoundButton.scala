@@ -1,8 +1,9 @@
 package view.menu
 
-import javax.swing.{BorderFactory, JButton, JFrame}
-import java.awt.{Color, Dimension, FlowLayout, Font, Graphics, Graphics2D}
+import javax.swing.{BorderFactory, ImageIcon, JButton, JFrame}
+import java.awt.{Color, Dimension, FlowLayout, Font, Graphics, Graphics2D, Image}
 import java.awt.geom.{Ellipse2D, Point2D}
+import javax.imageio.ImageIO
 import scala.collection.StepperShape.Shape
 
 class RoundButton() extends JButton():
@@ -10,6 +11,8 @@ class RoundButton() extends JButton():
   setContentAreaFilled(false) // Rimuove lo sfondo del bottone
   setForeground(Color.BLACK) // Imposta il colore del testo
   setFocusPainted(false) // Rimuove l'effetto di focuss
+  val img: Image = ImageIO.read(getClass.getResource("/dna.jpg"))
+  //this.setIcon(new ImageIcon(img))
   setText("buy")
   setFont(new Font("Arial", 12, 10))
 
