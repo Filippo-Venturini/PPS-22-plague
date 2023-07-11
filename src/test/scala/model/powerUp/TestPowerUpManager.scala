@@ -8,12 +8,12 @@ import org.junit.Assert.{assertEquals, assertFalse, assertTrue}
 class TestPowerUpManager {
   val testVirusConfiguration: VirusConfiguration = VirusConfiguration("DHT11", 0, 0, 0, 0, 0, 0, 0, false, false)
   val virus: Virus = new BasicVirus(testVirusConfiguration)
-  var dnaPointsHandler = DnaPointsHandler()
+  var dnaPointsHandler = DnaPointsHandler(???)
   var powerUpManager: PowerUpManager = new PowerUpManager(this.virus, dnaPointsHandler)
 
   @Before
   def init(): Unit =
-    dnaPointsHandler = DnaPointsHandler()
+    dnaPointsHandler = DnaPointsHandler(???)
     dnaPointsHandler.collectedPoints = 100
     this.powerUpManager = new PowerUpManager(this.virus, dnaPointsHandler)
 
