@@ -1,6 +1,7 @@
 package model.infection
 import model.world.Region
 import model.world.RegionTypes.ReachableMode
+import scala.math._
 
 /**
  * Class that contains infection logic.
@@ -38,7 +39,7 @@ class InternalInfectionLogic extends InfectionLogic:
     getHighDensityRegionInfectivityIndex(region.populationDensity, virus.highDensityRegionsInfectivity) + getLowDensityRegionInfectivityIndex(region.populationDensity, virus.lowDensityRegionInfectivity) +
     getColdRegionInfectivityIndex(region.climate, virus.coldRegionsInfectivity) + getHotRegionInfectivityIndex(region.climate, virus.hotRegionsInfectivity)) / 6
 
-  private def getInfectionFactor(infectedPercentage: Int) : Double = infectedPercentage match
+  private def getInfectionFactor(infectedPercentage: Double) : Double = infectedPercentage match
     case infectedPercentage if infectedPercentage <= 1 => 2.4
     case infectedPercentage if infectedPercentage <= 10 => 0.3
     case _ => 0.1
@@ -49,7 +50,9 @@ class InternalInfectionLogic extends InfectionLogic:
    * Increase the infected amount for a specific factor
    */
   override def compute(region: Region, virus: Virus): Unit =
-    region.infectedAmount = (region.infectedAmount + getVirusInfectionRate(region, virus) * region.infectedAmount * getInfectionFactor(region.infectedAmount / region.population)).toInt
+    region.infectedAmount = ceil(region.infectedAmount + (getVirusInfectionRate(region, virus) * region.infectedAmount *
+      getInfectionFactor(region.infectedAmount.toFloat / region.population))).toInt
+
 
 
 
@@ -66,7 +69,6 @@ class ExternalInfectionLogic extends InfectionLogic:
     then
       region.infectedAmount = region.infectedAmount + ((region.population * (this.infectedRatio(region) / region.population )).toInt)
 
+
   def infectedRatio(region: Region): Double =
     (2.0 / region.bordersControl) + (region.populationDensity / 2.0 ) + (region.globalization / 2.0 ) + (2.0 / region.richness)
-
-  //TODO climate deve influenzare con l'avanzamento dell'infezione?
