@@ -71,6 +71,7 @@ object DnaPoints {
         case _ => super.evaluate()
 
     case class OnNewInfectedRegionsLogic(world: World) extends EmptyLogic with OnNewInfectedRegions(world)
+    case class EveryXSecondsLogic(world: World, spawnRate: Int) extends EmptyLogic with EveryXSeconds(world, spawnRate)
     case class BasicLogic(world: World, spawnRate: Int) extends EmptyLogic with OnNewInfectedRegions(world) with EveryXSeconds(world, spawnRate)
 
   trait DnaPointSpawnObserver:
