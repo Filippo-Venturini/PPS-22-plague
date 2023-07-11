@@ -12,6 +12,7 @@ class MenuView (val gameEngine: GameEngine):
   val powerUpDetailsPanel: PowerUpDetailsPanel = new PowerUpDetailsPanel
   val powerUpsGridPanel: PowerUpsGridPanel = new PowerUpsGridPanel(powerUpDetailsPanel)
 
+  frame.setTitle("Menu")
   frame.add(virusPanel, BorderLayout.NORTH)
   frame.add(powerUpsGridPanel, BorderLayout.CENTER)
   frame.add(powerUpDetailsPanel, BorderLayout.SOUTH)
