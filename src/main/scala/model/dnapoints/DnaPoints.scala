@@ -64,7 +64,8 @@ object DnaPoints {
     trait EveryXSeconds(private val world: World, private val spawnRate: Int) extends SpawnPointLogic:
       import utils.Iterables.getRandomElement
       private var lastStepTime = System.currentTimeMillis()
-      abstract override def evaluate(): Set[Region] = (System.currentTimeMillis()-lastStepTime) >= spawnRate match
+      private val secondsToMillis = 1000;
+      abstract override def evaluate(): Set[Region] = (System.currentTimeMillis()-lastStepTime) >= spawnRate*secondsToMillis match
         case true =>
           lastStepTime = System.currentTimeMillis()
           world.getRegions(using Filters.infectedRegions).getRandomElement().toSet ++ super.evaluate()
