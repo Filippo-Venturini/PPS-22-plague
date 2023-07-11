@@ -15,7 +15,7 @@ class AllRegionsPanel(var regions: List[Region]) extends JPanel:
   this.setBackground(backgroundColor)
   this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS))
 
-  regions.foreach(r => progressBars = progressBars + (r -> new JProgressBar()))
+  regions.foreach(r => progressBars = progressBars + (r -> new DecimalProgressBar()))
 
   progressBars.foreach((r, p) => {
     p.setMaximum(r.population)
@@ -38,3 +38,6 @@ class AllRegionsPanel(var regions: List[Region]) extends JPanel:
 
   def updateRegions(updatedRegions: List[Region]): Unit =
     updatedRegions.foreach(region => progressBars(region).setValue(region.infectedAmount))
+
+class DecimalProgressBar extends JProgressBar:
+  override def setValue(n: Int): Unit = this.setString(BigDecimal(1.0 * n / this.getMaximum).setScale(2, BigDecimal.RoundingMode.CEILING).toString + "%")
