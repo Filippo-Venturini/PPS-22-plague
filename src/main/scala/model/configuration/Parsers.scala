@@ -27,8 +27,8 @@ object Parsers:
       case Richness extends RegionConfigurationFileFormat(canBeInt, (b, s) => b.setRichness(castInt(s)))
       case BordersControl extends RegionConfigurationFileFormat(canBeInt, (b, s) => b.setBordersControl(castInt(s)))
       case Globalization extends RegionConfigurationFileFormat(canBeInt, (b, s) => b.setGlobalization(castInt(s)))
-      case HasAirport extends RegionConfigurationFileFormat(canBeBool, (b, s) => b.addAirport)
-      case HasPort extends RegionConfigurationFileFormat(canBeBool, (b, s) => b.addPort)
+      case HasAirport extends RegionConfigurationFileFormat(canBeBool, (b, s) => if castBool(s) then b.addAirport else b)
+      case HasPort extends RegionConfigurationFileFormat(canBeBool, (b, s) => if castBool(s) then b.addPort else b)
 
     trait RegionParser extends Parser[Region]
 

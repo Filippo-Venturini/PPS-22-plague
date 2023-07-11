@@ -32,7 +32,7 @@ object DnaPoints {
         spawnedPoints.head
 
       override def computeDnaPointSpawn(): Unit =
-        spawnPointLogic.evaluate().foreach(spawnDnaPoint)
+        spawnPointLogic.evaluate().map(p => {println(p.name); p}).foreach(spawnDnaPoint)
 
 
       override def addObserver(observer: DnaPointSpawnObserver): Unit = observers = observer +: observers
