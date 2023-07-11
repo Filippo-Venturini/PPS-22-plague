@@ -10,7 +10,7 @@ import model.infection.{InfectionHandler, Virus, VirusConfiguration}
 import model.infection.InfectionLogics.given
 
 class GameEngine():
-  private val refreshTime: Int = 100
+  private val refreshTime: Int = 500
   private val world: World = ConfigurationsLoader.loadWorld()
   private val virus: Virus = ConfigurationsLoader.loadVirus().get
   private val infectionHandler = new InfectionHandler(virus, world.getRegions)
@@ -22,6 +22,7 @@ class GameEngine():
   private def gameLoop(): Void =
     val startTime: Long = System.currentTimeMillis()
     infectionHandler.computeInfection(world.getRegions)
+    //println(world.getRegion("Balkans").get.infectedAmount)
     //Compute Internal Infection
     //Compute External Infection
     //Compute Vaccine
