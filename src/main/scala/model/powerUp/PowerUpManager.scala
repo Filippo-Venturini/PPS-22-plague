@@ -52,5 +52,3 @@ class PowerUpManager(private val virus: Virus, private val dnaPointsHandler: Dna
   private def arePrerequisiteSatisfied(powerUp: PowerUp): Boolean =
     powerUp.powerUpType.prerequisite.isEmpty ||
       powerUp.powerUpType.prerequisite.forall(prerequisite => powerUps.find(_.powerUpType == prerequisite).get.hasBeenBought)
-
-

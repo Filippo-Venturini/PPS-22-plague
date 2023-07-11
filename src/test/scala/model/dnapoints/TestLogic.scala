@@ -5,10 +5,10 @@ import model.world.{BasicRegion, Region, World}
 import org.junit.{Before, Test}
 import org.junit.Assert.{assertEquals, assertFalse, assertTrue}
 import model.world.RegionTypes.RegionConfiguration
-import model.dnapoints.DnaPoints.SpawnLogic.{BasicLogic, EmptyLogic, EveryXSecondsLogic, OnNewInfectedRegions, OnNewInfectedRegionsLogic, SpawnPointLogic}
+import model.dnapoints.DnaPoints.Logic.{BasicLogic, EmptyLogic, EveryXSecondsLogic, OnNewInfectedRegions, OnNewInfectedRegionsLogic, SpawnPointLogic}
 import model.dnapoints.DnaPoints.{DnaPoint, DnaPointsHandler}
 
-class TestSpawnLogic {
+class TestLogic {
 
   private var russia: Region = BasicRegion(RegionConfiguration("Russia", 0, 0, 0, 0, 0, 0))
   private var usa: Region = BasicRegion(RegionConfiguration("USA", 0, 0, 0, 0, 0, 0))

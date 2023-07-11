@@ -1,6 +1,6 @@
 package model.dnapoints
 
-import model.dnapoints.DnaPoints.SpawnLogic.*
+import model.dnapoints.DnaPoints.Logic.*
 import model.world.{Filters, Region, World}
 
 object DnaPoints {
@@ -18,8 +18,7 @@ object DnaPoints {
     def computeDnaPointSpawn(): Unit
 
   object DnaPointsHandler:
-    val spawnRate: Int = 60//TODO move to a better place
-    def apply(world: World): DnaPointsHandler = new BasicDnaPointsHandler(0, BasicLogic(world, spawnRate))
+    def apply(spawnLogic: SpawnPointLogic): DnaPointsHandler = new BasicDnaPointsHandler(0, spawnLogic)
 
     private class BasicDnaPointsHandler(override var collectedPoints: Int, private val logic: SpawnPointLogic) extends DnaPointsHandler :
       import model.world.Filters.given_RegionFilter
@@ -47,7 +46,7 @@ object DnaPoints {
             handler.spawnedPoints = handler.spawnedPoints.filterNot(_ == this)
           case _ =>
 
-  object SpawnLogic:
+  object Logic:
     private var infectedRegionsOnLastStep: List[Region] = List()
     abstract class SpawnPointLogic:
       def evaluate(): Set[Region]

@@ -35,7 +35,7 @@ class GameView (val gameEngine: GameEngine) extends DnaPointSpawnObserver:
         }
     }.start()
 
-  override def onDnaPointSpawn(regionName: String): Unit = ???//TODO
+  override def onDnaPointSpawn(regionName: String): Unit = println("Dna point spawned in " + regionName)
 
 class GameViewKeyListener(val gameEngine: GameEngine) extends KeyAdapter:
   override def keyPressed(evt :KeyEvent): Unit = evt match

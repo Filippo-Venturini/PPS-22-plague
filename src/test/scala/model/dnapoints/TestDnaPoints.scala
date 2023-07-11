@@ -1,20 +1,21 @@
 package model.dnapoints
 
-import model.dnapoints.DnaPoints.SpawnLogic.{EmptyLogic, OnNewInfectedRegions, OnNewInfectedRegionsLogic, SpawnPointLogic}
+import model.dnapoints.DnaPoints.Logic.{EmptyLogic, OnNewInfectedRegions, OnNewInfectedRegionsLogic, SpawnPointLogic}
 import model.dnapoints.DnaPoints.{DnaPoint, DnaPointsHandler}
 import model.world.RegionTypes.RegionConfiguration
 import model.world.{BasicRegion, Region, World}
 import org.junit.{Before, Test}
 import org.junit.Assert.{assertEquals, assertFalse, assertTrue}
+import model.dnapoints.DnaPoints.Logic.EmptyLogic
 
 class TestDNAPoints {
 
-  private var dnaPointsHandler: DnaPointsHandler = DnaPointsHandler(new World(List()))
+  private var dnaPointsHandler: DnaPointsHandler = DnaPointsHandler(EmptyLogic())
   private val region: Region = new BasicRegion(RegionConfiguration("Central-Europe", 60_000_000, 6, 6, 8, 9, 10))
 
   @Before
   def before(): Unit =
-    dnaPointsHandler = DnaPointsHandler(new World(List()))
+    dnaPointsHandler = DnaPointsHandler(EmptyLogic())
 
   @Test
   def testCollectedDnaPointsIsZeroAtStarts(): Unit =
