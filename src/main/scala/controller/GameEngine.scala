@@ -2,7 +2,7 @@ package controller
 
 import model.world.RegionTypes.RegionConfiguration
 import model.world.{BasicRegion, Region, World}
-import model.world.Filters.{RegionFilter, notInfectedRegions, given}
+import model.world.Filters.{RegionFilter, infectedRegions, notInfectedRegions, given}
 import model.configuration.Loader.ConfigurationsLoader.given
 import model.configuration.Loader.{ConfigurationsLoader, RegionFile}
 import model.configuration.Loader
@@ -29,7 +29,8 @@ class GameEngine():
 
   private def gameLoop(): Void =
     val startTime: Long = System.currentTimeMillis()
-    infectionHandler.computeInfection(world.getRegions)
+    infectionHandler.computeInfection(world.getRegions(using infectedRegions))
+    //infectionHandler.computeInfection(world.getRegions(using infectedRegions))(Extern)
     dnaPointsHandler.computeDnaPointSpawn()
     //println(world.getRegion("Balkans").get.infectedAmount)
     //Compute Internal Infection

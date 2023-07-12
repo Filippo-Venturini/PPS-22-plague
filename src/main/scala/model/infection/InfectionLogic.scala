@@ -11,11 +11,10 @@ import scala.math._
 
 trait InfectionLogic:
   def compute(region: Region, virus: Virus): Unit
-  val infectionRatioIncreaseInside: Double = 1000000.0
-  val infectionRatioIncreaseFromRoute: Double = 0.000001
+  def normalize(value: Double, min: Double, max: Double): Double = (value - min) / (max - min)
 
 class InternalInfectionLogic extends InfectionLogic:
-  private def normalize(value: Double, min: Double, max: Double): Double = (value - min) / (max - min)
+
 
   private def getRichRegionInfectivityIndex(regionRichness: Int, richRegionsInfectivity: Int): Double =
     normalize(regionRichness, 1, 5) * normalize(richRegionsInfectivity,0 ,100)
@@ -50,25 +49,30 @@ class InternalInfectionLogic extends InfectionLogic:
    * Increase the infected amount for a specific factor
    */
   override def compute(region: Region, virus: Virus): Unit =
-    region.infectedAmount = ceil(region.infectedAmount + (getVirusInfectionRate(region, virus) * region.infectedAmount *
-      getInfectionFactor(region.infectedAmount.toFloat / region.population))).toInt
+    region.infectedAmount = max(ceil(region.infectedAmount + (getVirusInfectionRate(region, virus) * region.infectedAmount *
+      getInfectionFactor(region.infectedAmount.toFloat / region.population))).toInt, region.population)
 
 
 
 
 
 class ExternalInfectionLogic extends InfectionLogic:
+
+  def getExternalInfectionIndex(region: Region): Double =
+    val normalizedGlobalization: Double = normalize(region.globalization, -4, 7)
+    val normalizedBorderControl = normalize(5 - region.bordersControl + 1, -4, 7)
+    val infectedPercentage: Double = normalize(region.infectedAmount, 0, region.population)
+    min(1, infectedPercentage + (normalizedGlobalization * normalizedBorderControl + 0.2))
+
+
+
+
   /**
    * Increase the infected amount for a specific factor
    */
   override def compute(region: Region, virus: Virus): Unit =
-    if region.getReachableRegions.filter((region, reachableMode) => (region.infectedAmount.toFloat / region.population) > 0.5 &&
-      (reachableMode == ReachableMode.Border) ||
-      (reachableMode == ReachableMode.Airport && virus.airportEnabled) ||
-      (reachableMode == ReachableMode.Port && virus.portEnabled)).size > 0
-    then
-      region.infectedAmount = region.infectedAmount + ((region.population * (this.infectedRatio(region) / region.population )).toInt)
+    val res: Double = getExternalInfectionIndex(region)
+    if (res == 1)
+      region.infectedAmount = region.infectedAmount + 1
 
 
-  def infectedRatio(region: Region): Double =
-    (2.0 / region.bordersControl) + (region.populationDensity / 2.0 ) + (region.globalization / 2.0 ) + (2.0 / region.richness)
