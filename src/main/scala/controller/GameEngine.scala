@@ -30,7 +30,7 @@ class GameEngine():
   private def gameLoop(): Void =
     val startTime: Long = System.currentTimeMillis()
     infectionHandler.computeInfection(world.getRegions(using infectedRegions))
-    //infectionHandler.computeInfection(world.getRegions(using infectedRegions))(Extern)
+    //infectionHandler.computeInfection(world.getRegions(using infectedRegions))(using new ExternalInfectionLogic())
     dnaPointsHandler.computeDnaPointSpawn()
     //println(world.getRegion("Balkans").get.infectedAmount)
     //Compute Internal Infection
