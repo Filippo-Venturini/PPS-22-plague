@@ -14,7 +14,7 @@ import model.powerUp.PowerUpManager
 import model.dnapoints.DnaPoints.DnaPointSpawnObserver
 
 class GameEngine():
-  private val refreshTime: Int = 500
+  private val refreshTime: Int = 150
   private val world: World = ConfigurationsLoader.loadWorld()
   private val virus: Virus = ConfigurationsLoader.loadVirus().get
   private val infectionHandler = new InfectionHandler(virus, world.getRegions)
@@ -36,7 +36,7 @@ class GameEngine():
     //Compute Internal Infection
     //Compute External Infection
     //Compute Vaccine
-    Thread.sleep(refreshTime - (System.currentTimeMillis() - startTime))
+    if (System.currentTimeMillis() - startTime) < refreshTime then Thread.sleep(refreshTime - (System.currentTimeMillis() - startTime))
     gameLoop()
 
   def getRegions(): List[Region] = this.world.getRegions
