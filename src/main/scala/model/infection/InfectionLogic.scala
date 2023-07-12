@@ -58,21 +58,24 @@ class InternalInfectionLogic extends InfectionLogic:
 
 class ExternalInfectionLogic extends InfectionLogic:
 
-  def getExternalInfectionIndex(region: Region): Double =
-    val normalizedGlobalization: Double = normalize(region.globalization, -4, 7)
-    val normalizedBorderControl = normalize(5 - region.bordersControl + 1, -4, 7)
-    val infectedPercentage: Double = normalize(region.infectedAmount, 0, region.population)
+  def getExternalInfectionIndex(infectedRegion: Region, regionToInfect: Region): Double =
+    val normalizedGlobalization: Double = normalize(infectedRegion.globalization, -4, 7)
+    val normalizedBorderControl = normalize(5 - regionToInfect.bordersControl + 1, -4, 7)
+    val infectedPercentage: Double = normalize(infectedRegion.infectedAmount, 0, infectedRegion.population)
     min(1, infectedPercentage + (normalizedGlobalization * normalizedBorderControl + 0.2))
-
-
 
 
   /**
    * Increase the infected amount for a specific factor
    */
-  override def compute(region: Region, virus: Virus): Unit =
-    val res: Double = getExternalInfectionIndex(region)
-    if (res == 1)
-      region.infectedAmount = region.infectedAmount + 1
+  override def compute(infectedRegion: Region, virus: Virus): Unit =
+    infectedRegion.getReachableRegions.filter((_, mode) => mode match
+      case ReachableMode.Border => true
+      case ReachableMode.Airport if virus.airportEnabled => true
+      case ReachableMode.Port if virus.portEnabled => true
+      case _ => false
+    ).filter((region, _) => region.infectedAmount == 0)
+      .foreach((regionToInfect, _) => if getExternalInfectionIndex(infectedRegion, regionToInfect) == 1 then regionToInfect.infectedAmount = 1)
+
 
 
