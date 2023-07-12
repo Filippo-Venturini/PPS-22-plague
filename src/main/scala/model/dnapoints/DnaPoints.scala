@@ -6,14 +6,13 @@ import model.world.{Filters, Region, World}
 object DnaPoints {
 
   trait DnaPoint:
+    def regionName: String
     def collect(): Unit
 
   trait DnaPointsHandler:
     def collectedPoints: Int
-
     def collectedPoints_=(newAmount: Int): Unit
-
-    def spawnDnaPoint(region: Region): DnaPoint
+    def spawnDnaPoint(region: Region): Option[DnaPoint]
     def addObserver(observer: DnaPointSpawnObserver): Unit
     def computeDnaPointSpawn(): Unit
 
@@ -26,10 +25,12 @@ object DnaPoints {
       private var observers: List[DnaPointSpawnObserver] = List()
       private val spawnPointLogic: SpawnPointLogic = logic
 
-      override def spawnDnaPoint(region: Region): DnaPoint =
-        spawnedPoints = BasicDnaPoint(this, region.name) +: spawnedPoints
-        observers.foreach(_.onDnaPointSpawn(region.name))
-        spawnedPoints.head
+      override def spawnDnaPoint(region: Region): Option[DnaPoint] = spawnedPoints.map(_.regionName).contains(region.name) match
+        case true => None
+        case _ =>
+          spawnedPoints = BasicDnaPoint(this, region.name) +: spawnedPoints
+          observers.foreach(_.onDnaPointSpawn(region.name))
+          Some(spawnedPoints.head)
 
       override def computeDnaPointSpawn(): Unit =
         spawnPointLogic.evaluate().foreach(spawnDnaPoint)
@@ -37,7 +38,7 @@ object DnaPoints {
 
       override def addObserver(observer: DnaPointSpawnObserver): Unit = observers = observer +: observers
 
-      case class BasicDnaPoint(handler: BasicDnaPointsHandler, regionName: String) extends DnaPoint:
+      case class BasicDnaPoint(handler: BasicDnaPointsHandler, override val regionName: String) extends DnaPoint:
         private var collected = false
         def collect(): Unit = this.collected match
           case false =>
