@@ -32,7 +32,7 @@ class GameView (val gameEngine: GameEngine) extends DnaPointSpawnObserver:
       override def run(): Unit =
         while (true) {
           allRegionsPanel.updateRegions(gameEngine.getRegions())
-          Thread.sleep(1000)
+          Thread.sleep(100)
         }
     }.start()
 

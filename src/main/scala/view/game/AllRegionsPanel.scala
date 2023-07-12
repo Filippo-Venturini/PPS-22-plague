@@ -40,4 +40,6 @@ class AllRegionsPanel(var regions: List[Region]) extends JPanel:
     updatedRegions.foreach(region => progressBars(region).setValue(region.infectedAmount))
 
 class DecimalProgressBar extends JProgressBar:
-  override def setValue(n: Int): Unit = this.setString(BigDecimal(1.0 * n / this.getMaximum).setScale(2, BigDecimal.RoundingMode.CEILING).toString + "%")
+  override def setValue(n: Int): Unit =
+    super.setValue(n)
+    this.setString(BigDecimal(100.0 * n / this.getMaximum).setScale(2, BigDecimal.RoundingMode.CEILING).toString + "%")
