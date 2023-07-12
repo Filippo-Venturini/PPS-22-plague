@@ -1,6 +1,6 @@
 package view.game
 
-import controller.GameEngine
+import controller.{GameEngine, MenuController}
 import model.dnapoints.DnaPoints.DnaPointSpawnObserver
 import view.menu.MenuView
 
@@ -40,5 +40,5 @@ class GameView (val gameEngine: GameEngine) extends DnaPointSpawnObserver:
 
 class GameViewKeyListener(val gameEngine: GameEngine) extends KeyAdapter:
   override def keyPressed(evt :KeyEvent): Unit = evt match
-    case evt if evt.getKeyChar() == 'm' => new MenuView(gameEngine)
+    case evt if evt.getKeyChar() == 'm' => gameEngine.loadMenu()
     case _ =>
