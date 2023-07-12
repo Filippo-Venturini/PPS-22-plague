@@ -28,6 +28,11 @@ object Filters:
    */
   val totallyInfectedRegions: RegionFilter = region => region.infectedAmount == region.population
 
+  /**
+   * Filter for obtaining all the regions infected but not completely
+   */
+  val infectedButNotCompletelyRegions: RegionFilter = region => region.infectedAmount > 0 && region.infectedAmount < region.population
+
 /**
  * A class that represent the world
  *

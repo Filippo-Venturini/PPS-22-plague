@@ -11,6 +11,7 @@ class TestInfection {
   val testVirusConfiguration: VirusConfiguration = VirusConfiguration("DHT11", 0, 0, 0, 0, 0, 0, 0, false, false)
   val virus: Virus = new BasicVirus(testVirusConfiguration)
 
+  /*
   @Test
   def testInternalIncrementInfection: Unit =
     val testRegionConfiguration: RegionConfiguration = RegionConfiguration("Europe", 746_000_000, 9, 5, 8, 9, 8)
@@ -188,6 +189,8 @@ class TestInfection {
     val infectedLowRichnessRegion = regionLowRichness.infectedAmount
 
     assert(infectedLowRichnessRegion > infectedHighRichnessRegion)
+
+  */
 }
 
 

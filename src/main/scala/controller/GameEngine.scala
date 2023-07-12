@@ -8,10 +8,11 @@ import model.configuration.Loader.{ConfigurationsLoader, RegionFile}
 import model.configuration.Loader
 import model.dnapoints.DnaPoints.DnaPointsHandler
 import model.dnapoints.DnaPoints.Logic.BasicLogic
-import model.infection.{InfectionHandler, Virus, VirusConfiguration}
+import model.infection.{ExternalInfectionLogic, InfectionHandler, Virus, VirusConfiguration}
 import model.infection.InfectionLogics.given
 import model.powerUp.PowerUpManager
 import model.dnapoints.DnaPoints.DnaPointSpawnObserver
+//import model.infection.InfectionLogics.
 
 class GameEngine():
   private val refreshTime: Int = 150
@@ -30,7 +31,7 @@ class GameEngine():
   private def gameLoop(): Void =
     val startTime: Long = System.currentTimeMillis()
     infectionHandler.computeInfection(world.getRegions(using infectedRegions))
-    //infectionHandler.computeInfection(world.getRegions(using infectedRegions))(Extern)
+    infectionHandler.computeInfection(world.getRegions(using infectedRegions))(using new ExternalInfectionLogic())
     dnaPointsHandler.computeDnaPointSpawn()
     //println(world.getRegion("Balkans").get.infectedAmount)
     //Compute Internal Infection
