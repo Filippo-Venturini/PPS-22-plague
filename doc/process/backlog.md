@@ -53,7 +53,7 @@ Sprint 3: 8-14 July
 |I want to add functionalities to the power-ups' menu|I want to model a way to show power-ups' details|Venturini|6|5|4||||
 ||I want to know the virus characteristics during the game|Venturini|6|3|3||||
 ||I want to make power-ups purchasable|Venturini|7|7|5||||
-|I want a system that handle DNA-points|I want a way to spawn the DNA-points on the map|Malucelli|7|5|0||||
-||I want a way to make DNA-points collectables|Malucelli|4|2|2||||
-||I want a way to handle DNA-points usage|Malucelli|7|4|2||||
-|I want to know details about a single region|I want a way to show information about a single region|Malucelli|5|5|5||||
+|I want a system that handle DNA-points|I want a way to spawn the DNA-points on the map|Malucelli|7|5|2|2|||
+||I want a way to make DNA-points collectables|Malucelli|4|2|2|2|||
+||I want a way to handle DNA-points usage|Malucelli|7|4|2|2|||
+|I want to know details about a single region|I want a way to show information about a single region|Malucelli|5|5|5|5|||
