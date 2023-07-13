@@ -15,6 +15,7 @@ import model.dnapoints.DnaPoints.Logic.EmptyLogic
 
 class PowerUpsGridPanel(powerUpDetailsPanel: PowerUpDetailsPanel, menuController: MenuController) extends JPanel:
   this.setBackground(new Color(0,0,255))
+  powerUpDetailsPanel.refreshPowerUpInformation(menuController.getPowerUp(PowerUpType.ColdResistanceI).get)
 
   var powerUps: List[PowerUp] = menuController.getPowerUps
 
@@ -29,63 +30,63 @@ class PowerUpsGridPanel(powerUpDetailsPanel: PowerUpDetailsPanel, menuController
   var buttons: List[JButton] = List.empty[JButton]
 
   val btnColdResistanceI: JButton = new JButton("ColdResistanceI")
-  btnColdResistanceI.addActionListener((e: ActionEvent) => powerUpDetailsPanel.refreshPowerUpInformations(menuController.getPowerUp(PowerUpType.ColdResistanceI).get))
+  btnColdResistanceI.addActionListener((e: ActionEvent) => powerUpDetailsPanel.refreshPowerUpInformation(menuController.getPowerUp(PowerUpType.ColdResistanceI).get))
   buttonPanel.add(btnColdResistanceI)
 
   val btnInfectedDrinkingWater: JButton = new JButton("InfectedDrinkingWater")
-  btnInfectedDrinkingWater.addActionListener((e: ActionEvent) => powerUpDetailsPanel.refreshPowerUpInformations(menuController.getPowerUp(PowerUpType.InfectedDrinkingWater).get))
+  btnInfectedDrinkingWater.addActionListener((e: ActionEvent) => powerUpDetailsPanel.refreshPowerUpInformation(menuController.getPowerUp(PowerUpType.InfectedDrinkingWater).get))
   buttonPanel.add(btnInfectedDrinkingWater)
 
   val btnHotResistanceI: JButton = new JButton("HotResistanceI")
-  btnHotResistanceI.addActionListener((e: ActionEvent) => powerUpDetailsPanel.refreshPowerUpInformations(menuController.getPowerUp(PowerUpType.HotResistanceI).get))
+  btnHotResistanceI.addActionListener((e: ActionEvent) => powerUpDetailsPanel.refreshPowerUpInformation(menuController.getPowerUp(PowerUpType.HotResistanceI).get))
   buttonPanel.add(btnHotResistanceI)
 
   val btnAlphaMutations: JButton = new JButton("AlphaMutations")
-  btnAlphaMutations.addActionListener((e: ActionEvent) => powerUpDetailsPanel.refreshPowerUpInformations(menuController.getPowerUp(PowerUpType.AlphaMutations).get))
+  btnAlphaMutations.addActionListener((e: ActionEvent) => powerUpDetailsPanel.refreshPowerUpInformation(menuController.getPowerUp(PowerUpType.AlphaMutations).get))
   buttonPanel.add(btnAlphaMutations)
 
   val btnMedicinesResistance: JButton = new JButton("MedicinesResistance")
-  btnMedicinesResistance.addActionListener((e: ActionEvent) => powerUpDetailsPanel.refreshPowerUpInformations(menuController.getPowerUp(PowerUpType.MedicinesResistance).get))
+  btnMedicinesResistance.addActionListener((e: ActionEvent) => powerUpDetailsPanel.refreshPowerUpInformation(menuController.getPowerUp(PowerUpType.MedicinesResistance).get))
   buttonPanel.add(btnMedicinesResistance)
 
   val btnColdResistanceII: JButton = new JButton("ColdResistanceII")
-  btnColdResistanceII.addActionListener((e: ActionEvent) => powerUpDetailsPanel.refreshPowerUpInformations(menuController.getPowerUp(PowerUpType.ColdResistanceII).get))
+  btnColdResistanceII.addActionListener((e: ActionEvent) => powerUpDetailsPanel.refreshPowerUpInformation(menuController.getPowerUp(PowerUpType.ColdResistanceII).get))
   buttonPanel.add(btnColdResistanceII)
 
   val btnInfectionThroughAnimals: JButton = new JButton("InfectionThroughAnimals")
-  btnInfectionThroughAnimals.addActionListener((e: ActionEvent) => powerUpDetailsPanel.refreshPowerUpInformations(menuController.getPowerUp(PowerUpType.InfectionThroughAnimals).get))
+  btnInfectionThroughAnimals.addActionListener((e: ActionEvent) => powerUpDetailsPanel.refreshPowerUpInformation(menuController.getPowerUp(PowerUpType.InfectionThroughAnimals).get))
   buttonPanel.add(btnInfectionThroughAnimals)
 
   val btnHotResistanceII: JButton = new JButton("HotResistanceII")
-  btnHotResistanceII.addActionListener((e: ActionEvent) => powerUpDetailsPanel.refreshPowerUpInformations(menuController.getPowerUp(PowerUpType.HotResistanceII).get))
+  btnHotResistanceII.addActionListener((e: ActionEvent) => powerUpDetailsPanel.refreshPowerUpInformation(menuController.getPowerUp(PowerUpType.HotResistanceII).get))
   buttonPanel.add(btnHotResistanceII)
 
   val btnBetaMutations: JButton = new JButton("BetaMutations")
-  btnBetaMutations.addActionListener((e: ActionEvent) => powerUpDetailsPanel.refreshPowerUpInformations(menuController.getPowerUp(PowerUpType.BetaMutations).get))
+  btnBetaMutations.addActionListener((e: ActionEvent) => powerUpDetailsPanel.refreshPowerUpInformation(menuController.getPowerUp(PowerUpType.BetaMutations).get))
   buttonPanel.add(btnBetaMutations)
 
   val btnInfectionThroughRespiratoryTract: JButton = new JButton("InfectionThroughRespiratoryTract")
-  btnInfectionThroughRespiratoryTract.addActionListener((e: ActionEvent) => powerUpDetailsPanel.refreshPowerUpInformations(menuController.getPowerUp(PowerUpType.InfectionThroughRespiratoryTract).get))
+  btnInfectionThroughRespiratoryTract.addActionListener((e: ActionEvent) => powerUpDetailsPanel.refreshPowerUpInformation(menuController.getPowerUp(PowerUpType.InfectionThroughRespiratoryTract).get))
   buttonPanel.add(btnInfectionThroughRespiratoryTract)
 
   val btnAirportEnablement: JButton = new JButton("AirportEnablement")
-  btnAirportEnablement.addActionListener((e: ActionEvent) => powerUpDetailsPanel.refreshPowerUpInformations(menuController.getPowerUp(PowerUpType.AirportEnablement).get))
+  btnAirportEnablement.addActionListener((e: ActionEvent) => powerUpDetailsPanel.refreshPowerUpInformation(menuController.getPowerUp(PowerUpType.AirportEnablement).get))
   buttonPanel.add(btnAirportEnablement)
 
   val btnBacterialResistance: JButton = new JButton("BacterialResistance")
-  btnBacterialResistance.addActionListener((e: ActionEvent) => powerUpDetailsPanel.refreshPowerUpInformations(menuController.getPowerUp(PowerUpType.BacterialResistance).get))
+  btnBacterialResistance.addActionListener((e: ActionEvent) => powerUpDetailsPanel.refreshPowerUpInformation(menuController.getPowerUp(PowerUpType.BacterialResistance).get))
   buttonPanel.add(btnBacterialResistance)
 
   val btnOmegaMutations: JButton = new JButton("OmegaMutations")
-  btnOmegaMutations.addActionListener((e: ActionEvent) => powerUpDetailsPanel.refreshPowerUpInformations(menuController.getPowerUp(PowerUpType.OmegaMutations).get))
+  btnOmegaMutations.addActionListener((e: ActionEvent) => powerUpDetailsPanel.refreshPowerUpInformation(menuController.getPowerUp(PowerUpType.OmegaMutations).get))
   buttonPanel.add(btnOmegaMutations)
 
   val btnGammaMutations: JButton = new JButton("GammaMutations")
-  btnGammaMutations.addActionListener((e: ActionEvent) => powerUpDetailsPanel.refreshPowerUpInformations(menuController.getPowerUp(PowerUpType.GammaMutations).get))
+  btnGammaMutations.addActionListener((e: ActionEvent) => powerUpDetailsPanel.refreshPowerUpInformation(menuController.getPowerUp(PowerUpType.GammaMutations).get))
   buttonPanel.add(btnGammaMutations)
 
   val btnPortEnablement: JButton = new JButton("PortEnablement")
-  btnPortEnablement.addActionListener((e: ActionEvent) => powerUpDetailsPanel.refreshPowerUpInformations(menuController.getPowerUp(PowerUpType.PortEnablement).get))
+  btnPortEnablement.addActionListener((e: ActionEvent) => powerUpDetailsPanel.refreshPowerUpInformation(menuController.getPowerUp(PowerUpType.PortEnablement).get))
   buttonPanel.add(btnPortEnablement)
 
   this.add(buttonPanel)

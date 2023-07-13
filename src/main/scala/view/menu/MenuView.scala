@@ -9,7 +9,7 @@ class MenuView (val menuController: MenuController):
   val frame: JFrame = new JFrame()
   frame.setBackground(new Color(255,255,255))
   val virusPanel: VirusPanel = new VirusPanel(menuController.getVirusConfiguration())
-  val powerUpDetailsPanel: PowerUpDetailsPanel = new PowerUpDetailsPanel
+  val powerUpDetailsPanel: PowerUpDetailsPanel = new PowerUpDetailsPanel(menuController)
   val powerUpsGridPanel: PowerUpsGridPanel = new PowerUpsGridPanel(powerUpDetailsPanel, menuController)
 
   frame.setTitle("Menu")
