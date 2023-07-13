@@ -1,7 +1,7 @@
 package model.world
 
 import model.world.RegionTypes.RegionConfiguration
-import model.world.Filters.{infectedRegions, notInfectedRegions, totallyInfectedRegions, given}
+import model.world.Filters.{infectedButNotCompletelyRegions, infectedRegions, notInfectedRegions, totallyInfectedRegions, given}
 import model.world.TestRegionConfigurations.*
 import org.junit.{Before, Test}
 import org.junit.Assert.{assertEquals, assertTrue}
@@ -33,6 +33,10 @@ class TestWorld {
   @Test
   def testGetNotInfectedRegions(): Unit =
     assertEquals(List(notInfectedRegion), world.getRegions(using notInfectedRegions))
+
+  @Test
+  def testGetInfectedButNotCompletelyRegions(): Unit =
+    assertEquals(List(infectedRegion), world.getRegions(using infectedButNotCompletelyRegions))
 
   @Test
   def testGetNotExistingRegionByName(): Unit =
