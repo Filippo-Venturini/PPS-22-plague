@@ -36,5 +36,4 @@ class MenuController(val gameModel: GameModel):
    * @param powerUpType the type of the power up to purchase
    */
   def purchasePowerUp(powerUpType: PowerUpType): Unit = this.gameModel.powerUpManager.purchasePowerUp(powerUpType)
-  this.gameModel.dnaPointsHandler.collectedPoints = 10
    
