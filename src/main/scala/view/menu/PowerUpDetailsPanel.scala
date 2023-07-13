@@ -8,7 +8,7 @@ import javax.imageio.ImageIO
 import javax.swing.border.EmptyBorder
 import javax.swing.{BoxLayout, ImageIcon, JButton, JComponent, JLabel, JPanel}
 
-class PowerUpDetailsPanel(val menuController: MenuController) extends JPanel:
+class PowerUpDetailsPanel(val virusPanel: VirusPanel, val menuController: MenuController) extends JPanel:
   this.setBackground(new Color(217,217,217))
   this.setBorder(new EmptyBorder(20,300,20,300))
   this.setLayout(new GridBagLayout())
@@ -23,7 +23,6 @@ class PowerUpDetailsPanel(val menuController: MenuController) extends JPanel:
   val buyImage: Image = ImageIO.read(getClass.getResource("/buyPowerUp.png"))
   val buyButton: JButton = new JButton()
   buyButton.setIcon(new ImageIcon(buyImage))
-  buyButton.setSize(50,50)
   buyButton.setBackground(new Color(255,255,255))
   buyButton.setFocusPainted(false)
 
@@ -54,6 +53,7 @@ class PowerUpDetailsPanel(val menuController: MenuController) extends JPanel:
     this.menuController.purchasePowerUp(this.powerUpShowed.powerUpType)
     this.DNAPointsLabel.setText("DNA Points: " + this.menuController.getCollectedDNAPoints())
     this.buyButton.setEnabled(false)
+    this.virusPanel.refreshVirusCharacteristics(this.menuController.getVirusConfiguration())
   })
 
   def refreshPowerUpInformation(powerUp: PowerUp, arePrerequisiteSatisfied: Boolean): Unit =
