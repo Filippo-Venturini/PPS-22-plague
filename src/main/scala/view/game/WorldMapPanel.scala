@@ -5,7 +5,7 @@ import controller.GameEngine
 import model.configuration.Builders.RegionIdentifier
 import model.configuration.Loader
 import model.configuration.Loader.{ConfigurationsLoader, RegionIdentifierFile, regionIdentifierFilePath}
-import view.game.Regions.RegionsPanel
+import view.game.RegionsView.RegionsPanel
 
 import java.awt.event.{MouseEvent, MouseListener}
 import java.awt.image.BufferedImage

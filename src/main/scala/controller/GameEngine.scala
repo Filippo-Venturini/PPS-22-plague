@@ -17,12 +17,12 @@ import view.menu.MenuView
 //import model.infection.InfectionLogics.
 
 class GameEngine(val gameModel: GameModel):
-  private val refreshTime: Int = 150
+  private val refreshTime: Int = 300
 
   def addObserver(observer: DnaPointSpawnObserver): Unit =
     gameModel.dnaPointsHandler.addObserver(observer)
   def start(): Void =
-    gameModel.world.getRegion("Balkans").get.infectedAmount = 2
+    gameModel.world.getRegion("Europe").get.infectedAmount = 1
     gameLoop()
 
   private def gameLoop(): Void =

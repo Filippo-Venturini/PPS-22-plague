@@ -2,7 +2,7 @@ package view.game
 
 import controller.{GameEngine, MenuController}
 import model.dnapoints.DnaPoints.DnaPointSpawnObserver
-import view.game.Regions.{WrapWithScrollBar, RegionsPanel}
+import view.game.RegionsView.{WrapWithScrollBar, RegionsPanel}
 import view.menu.MenuView
 
 import java.awt.event.{KeyAdapter, KeyEvent}
@@ -30,7 +30,7 @@ class GameView (val gameEngine: GameEngine) extends DnaPointSpawnObserver:
     new Thread{
       override def run(): Unit =
         while (true) {
-          //allRegionsPanel.updateRegions(gameEngine.getRegions())
+          regionsPanel.refresh()
           Thread.sleep(100)
         }
     }.start()
