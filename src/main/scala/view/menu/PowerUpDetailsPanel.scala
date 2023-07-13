@@ -3,12 +3,13 @@ package view.menu
 import controller.MenuController
 import model.powerUp.PowerUp
 
-import java.awt.{BorderLayout, Color, Component, GridBagConstraints, GridBagLayout, GridLayout, Image, Insets}
+import java.awt.{BorderLayout, Color, Component, Font, GridBagConstraints, GridBagLayout, GridLayout, Image, Insets}
 import javax.imageio.ImageIO
 import javax.swing.border.EmptyBorder
 import javax.swing.{BoxLayout, ImageIcon, JButton, JComponent, JLabel, JPanel}
 
 class PowerUpDetailsPanel(val virusPanel: VirusPanel, val menuController: MenuController) extends JPanel:
+  val titleFont: Font = new Font("Courier", Font.BOLD, 16)
   this.setBackground(new Color(217,217,217))
   this.setBorder(new EmptyBorder(20,300,20,300))
   this.setLayout(new GridBagLayout())
@@ -26,6 +27,7 @@ class PowerUpDetailsPanel(val virusPanel: VirusPanel, val menuController: MenuCo
   buyButton.setBackground(new Color(255,255,255))
   buyButton.setFocusPainted(false)
 
+  this.powerUpNameLabel.setFont(this.titleFont)
   this.constraint.gridx = 0
   this.constraint.gridy = 0
   this.constraint.gridwidth = 2
@@ -47,8 +49,10 @@ class PowerUpDetailsPanel(val virusPanel: VirusPanel, val menuController: MenuCo
   this.constraint.gridy = 3
   this.constraint.gridwidth = 2
   this.add(powerUpDescriptionLabel, this.constraint)
-  this.constraint.gridx = 2
+  this.constraint.gridx = 1
   this.constraint.gridy = 4
+  this.constraint.fill = GridBagConstraints.LINE_END
+  this.constraint.anchor = GridBagConstraints.LINE_END
   this.add(buyButton, this.constraint)
 
   this.buyButton.addActionListener(_ => {

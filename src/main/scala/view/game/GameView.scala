@@ -23,6 +23,7 @@ class GameView (val gameEngine: GameEngine) extends DnaPointSpawnObserver:
     frame.addKeyListener(keyListener)
     frame.pack()
     frame.setExtendedState(Frame.MAXIMIZED_BOTH)
+    frame.setResizable(false)
     frame.setVisible(true)
     renderLoop()
 
