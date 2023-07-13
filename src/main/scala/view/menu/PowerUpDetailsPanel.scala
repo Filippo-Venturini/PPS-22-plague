@@ -14,6 +14,7 @@ class PowerUpDetailsPanel(val menuController: MenuController) extends JPanel:
   this.setLayout(new GridBagLayout())
   val constraint: GridBagConstraints = new GridBagConstraints()
   this.constraint.fill = GridBagConstraints.HORIZONTAL
+  var powerUpShowed: PowerUp = null
   val powerUpNameLabel: JLabel = new JLabel("POWER UP NAME")
   val powerUpPriceLabel: JLabel = new JLabel("Price: 5")
   val DNAPointsLabel: JLabel = new JLabel("DNA Points: " + menuController.getCollectedDNAPoints())
@@ -49,11 +50,18 @@ class PowerUpDetailsPanel(val menuController: MenuController) extends JPanel:
   this.constraint.gridy = 4
   this.add(buyButton, this.constraint)
 
-  def refreshPowerUpInformation(powerUp: PowerUp): Unit =
+  this.buyButton.addActionListener(_ => {
+    this.menuController.purchasePowerUp(this.powerUpShowed.powerUpType)
+    this.DNAPointsLabel.setText("DNA Points: " + this.menuController.getCollectedDNAPoints())
+    this.buyButton.setEnabled(false)
+  })
+
+  def refreshPowerUpInformation(powerUp: PowerUp, arePrerequisiteSatisfied: Boolean): Unit =
+    this.powerUpShowed = powerUp
     this.powerUpNameLabel.setText(powerUp.powerUpType.toString)
     this.powerUpPriceLabel.setText("Price: " + powerUp.powerUpType.price.toString)
     this.powerUpEffectLabel.setText(powerUp.powerUpType.information.effect)
     this.powerUpDescriptionLabel.setText(powerUp.powerUpType.information.description)
-    this.buyButton.setEnabled(this.menuController.getCollectedDNAPoints() >= powerUp.powerUpType.price)
+    this.buyButton.setEnabled(this.menuController.getCollectedDNAPoints() >= powerUp.powerUpType.price && !powerUp.hasBeenBought && arePrerequisiteSatisfied)
 
 
