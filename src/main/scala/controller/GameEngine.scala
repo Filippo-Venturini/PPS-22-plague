@@ -30,7 +30,7 @@ class GameEngine(val gameModel: GameModel):
     gameModel.infectionHandler.computeInfection(gameModel.world.getRegions(using infectedRegions))
     gameModel.infectionHandler.computeInfection(gameModel.world.getRegions(using infectedRegions))(using new ExternalInfectionLogic())
     gameModel.dnaPointsHandler.computeDnaPointSpawn()
-    //println(world.getRegion("Balkans").get.infectedAmount)
+    //println(gameModel.world.getRegion("Balkans").get.infectedAmount)
     //Compute Internal Infection
     //Compute External Infection
     //Compute Vaccine
