@@ -8,6 +8,9 @@ import model.powerUp.PowerUpManager
 import model.world.World
 import model.world.Filters.given
 
+/**
+ * Class that contains all the entities that are part of the Model of PlagueDotScala
+ */
 class GameModel:
   val world: World = ConfigurationsLoader.loadWorld()
   val virus: Virus = ConfigurationsLoader.loadVirus().get

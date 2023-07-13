@@ -9,7 +9,7 @@ class MenuView (val menuController: MenuController):
   val frame: JFrame = new JFrame()
   frame.setBackground(new Color(255,255,255))
   val virusPanel: VirusPanel = new VirusPanel(menuController.getVirusConfiguration())
-  val powerUpDetailsPanel: PowerUpDetailsPanel = new PowerUpDetailsPanel
+  val powerUpDetailsPanel: PowerUpDetailsPanel = new PowerUpDetailsPanel(virusPanel, menuController)
   val powerUpsGridPanel: PowerUpsGridPanel = new PowerUpsGridPanel(powerUpDetailsPanel, menuController)
 
   frame.setTitle("Menu")
@@ -18,4 +18,5 @@ class MenuView (val menuController: MenuController):
   frame.add(powerUpDetailsPanel, BorderLayout.SOUTH)
   frame.pack()
   frame.setExtendedState(Frame.MAXIMIZED_BOTH)
+  frame.setResizable(false)
   frame.setVisible(true)

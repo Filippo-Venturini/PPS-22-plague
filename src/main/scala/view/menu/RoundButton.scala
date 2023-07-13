@@ -11,7 +11,7 @@ class RoundButton() extends JButton():
   setContentAreaFilled(false) // Rimuove lo sfondo del bottone
   setForeground(Color.BLACK) // Imposta il colore del testo
   setFocusPainted(false) // Rimuove l'effetto di focuss
-  val img: Image = ImageIO.read(getClass.getResource("/dna.jpg"))
+  val img: Image = ImageIO.read(getClass.getResource("/buyPowerUp.png"))
   //this.setIcon(new ImageIcon(img))
   setText("buy")
   setFont(new Font("Arial", 12, 10))

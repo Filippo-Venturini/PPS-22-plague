@@ -39,9 +39,14 @@ class InternalInfectionLogic extends InfectionLogic:
     getColdRegionInfectivityIndex(region.climate, virus.coldRegionsInfectivity) + getHotRegionInfectivityIndex(region.climate, virus.hotRegionsInfectivity)) / 6
 
   private def getInfectionFactor(infectedPercentage: Double) : Double = infectedPercentage match
-    case infectedPercentage if infectedPercentage <= 1 => 2.4
+    case infectedPercentage if infectedPercentage <= 0.1 => 5.5
+    case infectedPercentage if infectedPercentage <= 1 => 0.6
     case infectedPercentage if infectedPercentage <= 10 => 0.3
-    case _ => 0.1
+    case infectedPercentage if infectedPercentage <= 20 => 0.08
+    case infectedPercentage if infectedPercentage <= 30 => 0.06
+    case infectedPercentage if infectedPercentage <= 40 => 0.048
+    case infectedPercentage if infectedPercentage <= 50 => 0.039
+    case _ => 0.035
 
 
 

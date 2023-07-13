@@ -2,11 +2,12 @@ package view.menu
 
 import model.infection.VirusConfiguration
 
-import java.awt.{Color, GridLayout}
+import java.awt.{Color, Font, GridLayout}
 import javax.swing.border.EmptyBorder
 import javax.swing.{JLabel, JPanel}
 
 class VirusPanel(var virusConfiguration: VirusConfiguration) extends JPanel:
+  val titleFont: Font = new Font("Courier", Font.BOLD, 16)
   this.setLayout(new GridLayout(0,3))
   this.setBorder(new EmptyBorder(20,300,20,10))
   this.setBackground(new Color(217,217,217))
@@ -23,6 +24,8 @@ class VirusPanel(var virusConfiguration: VirusConfiguration) extends JPanel:
   val portEnabledLabel: JLabel = new JLabel("Port Enabled: " + virusConfiguration.portEnabled)
   val airPortEnabledLabel: JLabel = new JLabel("Airport Enabled: " + virusConfiguration.airportEnabled)
 
+  this.virusNameLabel.setFont(this.titleFont)
+
   addLabels(virusNameLabel, firstEmptyLabel, secondEmptyLabel, coldRegionsInfectivityLabel, poorRegionsInfectivityLabel,
     lowDensityRegionsInfectivityLabel, hotRegionsInfectivityLabel,richRegionsInfectivityLabel,
     highDensityRegionsInfectivityLabel,vaccineResistanceLabel,portEnabledLabel,airPortEnabledLabel)
@@ -30,12 +33,12 @@ class VirusPanel(var virusConfiguration: VirusConfiguration) extends JPanel:
   def addLabels(labels: JLabel*): Unit = labels.foreach(l => this.add(l))
 
   def refreshVirusCharacteristics(virusConfiguration: VirusConfiguration): Unit =
-    this.coldRegionsInfectivityLabel.setText(virusConfiguration.coldRegionsInfectivity.toString)
-    this.poorRegionsInfectivityLabel.setText(virusConfiguration.poorRegionsInfectivity.toString)
-    this.lowDensityRegionsInfectivityLabel.setText(virusConfiguration.lowDensityRegionInfectivity.toString)
-    this.hotRegionsInfectivityLabel.setText(virusConfiguration.warmRegionsInfectivity.toString)
-    this.richRegionsInfectivityLabel.setText(virusConfiguration.richRegionsInfectivity.toString)
-    this.highDensityRegionsInfectivityLabel.setText(virusConfiguration.highDensityRegionsInfectivity.toString)
-    this.vaccineResistanceLabel.setText(virusConfiguration.vaccineResistance.toString)
-    this.portEnabledLabel.setText(virusConfiguration.portEnabled.toString)
-    this.airPortEnabledLabel.setText(virusConfiguration.airportEnabled.toString)
+    this.coldRegionsInfectivityLabel.setText("Cold Regions Infectivity: " + virusConfiguration.coldRegionsInfectivity.toString)
+    this.poorRegionsInfectivityLabel.setText("Poor Regions Infectivity: " + virusConfiguration.poorRegionsInfectivity.toString)
+    this.lowDensityRegionsInfectivityLabel.setText("Low Density Regions Infectivity: " + virusConfiguration.lowDensityRegionInfectivity.toString)
+    this.hotRegionsInfectivityLabel.setText("Hot Regions Infectivity: " + virusConfiguration.warmRegionsInfectivity.toString)
+    this.richRegionsInfectivityLabel.setText("Rich Regions Infectivity: " + virusConfiguration.richRegionsInfectivity.toString)
+    this.highDensityRegionsInfectivityLabel.setText("High Density Regions Infectivity: " + virusConfiguration.highDensityRegionsInfectivity.toString)
+    this.vaccineResistanceLabel.setText("Vaccine Resistance: " + virusConfiguration.vaccineResistance.toString)
+    this.portEnabledLabel.setText("Port Enabled: " + virusConfiguration.portEnabled.toString)
+    this.airPortEnabledLabel.setText("Airport Enabled: " + virusConfiguration.airportEnabled.toString)

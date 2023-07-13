@@ -43,6 +43,7 @@ class PowerUpManager(private val virus: Virus, private val dnaPointsHandler: Dna
    */
   def purchasePowerUp(powerUpType: PowerUpType): Unit =
     this.getPurchasablePowerUps().find(powerUp => powerUp.powerUpType == powerUpType).get.hasBeenBought = true
+    this.dnaPointsHandler.collectedPoints = this.dnaPointsHandler.collectedPoints - powerUpType.price
     this.virus.consumePowerUp(powerUpType.logic)
 
   /**
