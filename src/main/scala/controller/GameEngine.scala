@@ -38,5 +38,5 @@ class GameEngine(val gameModel: GameModel):
     gameLoop()
 
   def getRegions(): List[Region] = this.gameModel.world.getRegions
-  
+  def getRegion(name: String): Option[Region] = this.gameModel.world.getRegion(name)
   def loadMenu(): Unit = new MenuView(new MenuController(gameModel))

@@ -2,24 +2,23 @@ package view.game
 
 import controller.{GameEngine, MenuController}
 import model.dnapoints.DnaPoints.DnaPointSpawnObserver
+import view.game.Regions.{WrapWithScrollBar, RegionsPanel}
 import view.menu.MenuView
 
 import java.awt.event.{KeyAdapter, KeyEvent}
 import java.awt.{BorderLayout, Dimension, Frame, GridBagLayout, Toolkit}
-import javax.swing.{BoxLayout, JFrame, JPanel, JScrollPane}
+import javax.swing.{BoxLayout, JFrame, JPanel, JScrollPane, ScrollPaneConstants}
 
 class GameView (val gameEngine: GameEngine) extends DnaPointSpawnObserver:
   val frame = new JFrame()
-  val worldMapPanel: WorldMapPanel = new WorldMapPanel(gameEngine)
-  val allRegionsPanel: AllRegionsPanel = new AllRegionsPanel(gameEngine.getRegions())
-  val regionsScrollPanel: JScrollPane = new JScrollPane()
+  val regionsPanel: RegionsPanel = new RegionsPanel(gameEngine)
+  val worldMapPanel: WorldMapPanel = new WorldMapPanel(gameEngine, regionsPanel)
   val keyListener: GameViewKeyListener = new GameViewKeyListener(gameEngine)
 
   def start(): Unit =
-    regionsScrollPanel.setViewportView(allRegionsPanel)
     frame.setTitle("PlagueDotScala")
     frame.add(worldMapPanel, BorderLayout.CENTER)
-    frame.add(regionsScrollPanel, BorderLayout.EAST)
+    frame.add(WrapWithScrollBar(regionsPanel), BorderLayout.EAST)
     frame.setDefaultCloseOperation(3)
     frame.addKeyListener(keyListener)
     frame.pack()
@@ -31,7 +30,7 @@ class GameView (val gameEngine: GameEngine) extends DnaPointSpawnObserver:
     new Thread{
       override def run(): Unit =
         while (true) {
-          allRegionsPanel.updateRegions(gameEngine.getRegions())
+          //allRegionsPanel.updateRegions(gameEngine.getRegions())
           Thread.sleep(100)
         }
     }.start()
