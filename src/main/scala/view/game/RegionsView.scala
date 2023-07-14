@@ -4,7 +4,7 @@ import controller.GameEngine
 import model.world.Region
 
 import javax.swing.{JPanel, JProgressBar}
-import java.awt.{Color, Component, Dimension, Graphics, Graphics2D}
+import java.awt.{Color, Component, Dimension, Font, Graphics, Graphics2D, GridLayout}
 import javax.swing.plaf.basic.BasicProgressBarUI
 import javax.swing.*
 import scala.collection.immutable.SortedMap
@@ -37,11 +37,10 @@ object RegionsView:
     this.setBackground(backgroundColor)
     this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS))
 
-    regions.foreach(r => progressBars = progressBars + (r -> new DecimalProgressBar()))
+    regions.foreach(r => progressBars = progressBars + (r -> new DecimalProgressBar(barBackgroundColor, barForegroundColor)))
 
     progressBars.foreach((r, p) => {
       p.setMaximum(r.population)
-      this.configureProgressBarLayout(p)
       this.add(Box.createRigidArea(new Dimension(320, 30)))
       val regionNameLabel: JLabel = new JLabel(r.name, SwingConstants.CENTER)
       regionNameLabel.setBackground(new Color(255, 0, 0))
@@ -49,28 +48,54 @@ object RegionsView:
       this.add(p)
     })
 
-    def configureProgressBarLayout(progressBar: JProgressBar): Unit =
-      progressBar.setBackground(barBackgroundColor)
-      progressBar.setForeground(barForegroundColor)
-      progressBar.setStringPainted(true)
-      progressBar.setUI(new BasicProgressBarUI() {
-        override def getSelectionBackground: Color = Color.white
-
-        override def getSelectionForeground: Color = Color.white
-      })
     override def refresh(): Unit =
       regions.foreach(region => progressBars(region).setValue(region.infectedAmount))
-  class DecimalProgressBar extends JProgressBar :
+  class DecimalProgressBar(bgColor: Color, fgColor: Color) extends JProgressBar :
+    this.setBackground(bgColor)
+    this.setForeground(fgColor)
+    this.setStringPainted(true)
+    this.setUI(new BasicProgressBarUI() {
+      override def getSelectionBackground: Color = Color.white
+      override def getSelectionForeground: Color = Color.white
+    })
     override def setValue(n: Int): Unit =
       super.setValue(n)
       this.setString(BigDecimal(100.0 * n / this.getMaximum).setScale(2, BigDecimal.RoundingMode.CEILING).toString + "%")
 
   case class SingleRegionPanel(region: Region) extends RefreshablePanel:
+    this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS))
 
     val infectedAmountLabel: JLabel = new JLabel(region.infectedAmount.toString)
-    this.add(infectedAmountLabel)
+    val infectionBar: JProgressBar = new DecimalProgressBar(new Color(35, 187, 197), new Color(215, 19, 19))
+    infectionBar.setMaximum(region.population)
 
-    override def refresh(): Unit = infectedAmountLabel.setText(region.infectedAmount.toString)
+    val lblName = new JLabel(region.name)
+    lblName.setFont(new Font("Arial", Font.PLAIN, 30))
+
+    this.addCenter(lblName)
+
+    val statisticsPanel: JPanel = new JPanel(new GridLayout(3, 2, 20, 15))
+    statisticsPanel.add(new JLabel("population: " + String.format("%,d", region.population)))
+    statisticsPanel.add(new JLabel("population density: " + region.populationDensity + "/5"))
+    statisticsPanel.add(new JLabel("richness: " + region.richness + "/5"))
+    statisticsPanel.add(new JLabel("climate: " + region.climate + "/3"))
+    statisticsPanel.add(new JLabel("borders control: " + region.bordersControl + "/5"))
+    statisticsPanel.add(new JLabel("globalization: " + region.globalization + "/5"))
+
+    this.addCenter(statisticsPanel)
+    //this.add(new JLabel("climate: " + region.climate))
+
+    private def addCenter(comp: JComponent): Unit =
+      val container: JPanel = new JPanel()
+      container.add(comp)
+      this.add(container)
+
+    this.addCenter(infectedAmountLabel)
+    this.add(infectionBar)
+
+    override def refresh(): Unit =
+      infectionBar.setValue(region.infectedAmount)
+      infectedAmountLabel.setText(String.format("population infected: %,d", region.infectedAmount))
 
   case class WrapWithScrollBar(component: Component) extends JScrollPane:
     this.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED)
