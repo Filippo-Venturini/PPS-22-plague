@@ -12,6 +12,7 @@ import javax.swing.{BoxLayout, JFrame, JPanel, JScrollPane, ScrollPaneConstants}
 class GameView (val gameEngine: GameEngine) extends DnaPointSpawnObserver:
   val frame = new JFrame()
   val regionsPanel: RegionsPanel = new RegionsPanel(gameEngine)
+  val generalInfectionPanel: GeneralInfectionPanel = new GeneralInfectionPanel(gameEngine)
   val worldMapPanel: WorldMapPanel = new WorldMapPanel(gameEngine, regionsPanel)
   val keyListener: GameViewKeyListener = new GameViewKeyListener(gameEngine)
 
@@ -19,6 +20,7 @@ class GameView (val gameEngine: GameEngine) extends DnaPointSpawnObserver:
     frame.setTitle("PlagueDotScala")
     frame.add(worldMapPanel, BorderLayout.CENTER)
     frame.add(WrapWithScrollBar(regionsPanel), BorderLayout.EAST)
+    frame.add(generalInfectionPanel, BorderLayout.SOUTH)
     frame.setDefaultCloseOperation(3)
     frame.addKeyListener(keyListener)
     frame.pack()
@@ -32,6 +34,7 @@ class GameView (val gameEngine: GameEngine) extends DnaPointSpawnObserver:
       override def run(): Unit =
         while (true) {
           regionsPanel.refresh()
+          generalInfectionPanel.refresh()
           Thread.sleep(100)
         }
     }.start()
