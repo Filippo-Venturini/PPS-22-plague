@@ -20,14 +20,17 @@ class PowerUpsGridPanel(powerUpDetailsPanel: PowerUpDetailsPanel, menuController
   powerUpDetailsPanel.refreshPowerUpInformation(menuController.getPowerUp(PowerUpType.ColdResistanceI).get, true)
   val buttonPanel: JPanel = new JPanel()
 
-  val numRows = 3
-  val numCols = 5
+  val numRows = 4
+  val numCols = 4
   buttonPanel.setLayout(new GridLayout(numRows, numCols, 50, 50))
   var buttons: List[JButton] = List.empty[JButton]
+
 
   val btnColdResistanceI: JButton = new JButton("ColdResistanceI")
   val powerUpColdResistanceI: PowerUp = menuController.getPowerUp(PowerUpType.ColdResistanceI).get
   btnColdResistanceI.addActionListener((e: ActionEvent) => powerUpDetailsPanel.refreshPowerUpInformation(powerUpColdResistanceI, this.menuController.powerUpsAvailableForPurchase.contains(powerUpColdResistanceI)))
+  btnColdResistanceI.setPreferredSize(new Dimension(50, 50))
+  btnColdResistanceI.setMinimumSize(new Dimension(50, 50))
   buttonPanel.add(btnColdResistanceI)
 
   val btnInfectedDrinkingWater: JButton = new JButton("InfectedDrinkingWater")
@@ -38,8 +41,6 @@ class PowerUpsGridPanel(powerUpDetailsPanel: PowerUpDetailsPanel, menuController
   val btnHotResistanceI: JButton = new JButton("HotResistanceI")
   val powerHotResistanceI: PowerUp = menuController.getPowerUp(PowerUpType.HotResistanceI).get
   btnHotResistanceI.addActionListener((e: ActionEvent) => powerUpDetailsPanel.refreshPowerUpInformation(powerHotResistanceI, true))
-  btnHotResistanceI.setIcon(new ImageIcon(ImageIO.read(getClass.getResource("/hot.jpeg"))))
-  btnHotResistanceI.setBackground(new Color(255, 255, 255))
   //btnHotResistanceI.setPreferredSize(new Dimension(100, 100))
 
   buttonPanel.add(btnHotResistanceI)
@@ -49,10 +50,6 @@ class PowerUpsGridPanel(powerUpDetailsPanel: PowerUpDetailsPanel, menuController
   btnAlphaMutations.addActionListener((e: ActionEvent) => powerUpDetailsPanel.refreshPowerUpInformation(powerAlphaMutations, this.menuController.powerUpsAvailableForPurchase.contains(powerAlphaMutations)))
   buttonPanel.add(btnAlphaMutations)
 
-  val btnMedicinesResistance: JButton = new JButton("MedicinesResistance")
-  val powerUpMedicinesResistance: PowerUp = menuController.getPowerUp(PowerUpType.MedicinesResistance).get
-  btnMedicinesResistance.addActionListener((e: ActionEvent) => powerUpDetailsPanel.refreshPowerUpInformation(powerUpMedicinesResistance, this.menuController.powerUpsAvailableForPurchase.contains(powerUpMedicinesResistance)))
-  buttonPanel.add(btnMedicinesResistance)
 
   val btnColdResistanceII: JButton = new JButton("ColdResistanceII")
   val powerUpColdResistanceII: PowerUp = menuController.getPowerUp(PowerUpType.ColdResistanceII).get
@@ -67,9 +64,6 @@ class PowerUpsGridPanel(powerUpDetailsPanel: PowerUpDetailsPanel, menuController
   val btnHotResistanceII: JButton = new JButton("HotResistanceII")
   val powerUpHotResistanceII: PowerUp = menuController.getPowerUp(PowerUpType.HotResistanceII).get
   btnHotResistanceII.addActionListener((e: ActionEvent) => powerUpDetailsPanel.refreshPowerUpInformation(powerUpHotResistanceII, this.menuController.powerUpsAvailableForPurchase.contains(powerUpHotResistanceII)))
-
-  btnHotResistanceII.setIcon(new ImageIcon(ImageIO.read(getClass.getResource("/hotPlusG.jpeg"))))
-  btnHotResistanceII.setBackground(new Color(155, 155, 155))
   //btnHotResistanceII.setPreferredSize(new Dimension(100, 100))
 
   buttonPanel.add(btnHotResistanceII)
@@ -79,10 +73,6 @@ class PowerUpsGridPanel(powerUpDetailsPanel: PowerUpDetailsPanel, menuController
   btnBetaMutations.addActionListener((e: ActionEvent) => powerUpDetailsPanel.refreshPowerUpInformation(powerUpBetaMutations, this.menuController.powerUpsAvailableForPurchase.contains(powerUpBetaMutations)))
   buttonPanel.add(btnBetaMutations)
 
-  val btnInfectionThroughRespiratoryTract: JButton = new JButton("InfectionThroughRespiratoryTract")
-  val powerUpInfectionThroughRespiratoryTract: PowerUp = menuController.getPowerUp(PowerUpType.InfectionThroughRespiratoryTract).get
-  btnInfectionThroughRespiratoryTract.addActionListener((e: ActionEvent) => powerUpDetailsPanel.refreshPowerUpInformation(powerUpInfectionThroughRespiratoryTract, this.menuController.powerUpsAvailableForPurchase.contains(powerUpInfectionThroughRespiratoryTract)))
-  buttonPanel.add(btnInfectionThroughRespiratoryTract)
 
   val btnAirportEnablement: JButton = new JButton("AirportEnablement")
   val powerUpAirportEnablement: PowerUp = menuController.getPowerUp(PowerUpType.AirportEnablement).get
@@ -105,11 +95,24 @@ class PowerUpsGridPanel(powerUpDetailsPanel: PowerUpDetailsPanel, menuController
   buttonPanel.add(btnGammaMutations)
 
 
+  val btnMedicinesResistance: JButton = new JButton("MedicinesResistance")
+  val powerUpMedicinesResistance: PowerUp = menuController.getPowerUp(PowerUpType.MedicinesResistance).get
+  btnMedicinesResistance.addActionListener((e: ActionEvent) => powerUpDetailsPanel.refreshPowerUpInformation(powerUpMedicinesResistance, this.menuController.powerUpsAvailableForPurchase.contains(powerUpMedicinesResistance)))
+  buttonPanel.add(btnMedicinesResistance)
+
+  val btnInfectionThroughRespiratoryTract: JButton = new JButton("InfectionThroughRespiratoryTract")
+  val powerUpInfectionThroughRespiratoryTract: PowerUp = menuController.getPowerUp(PowerUpType.InfectionThroughRespiratoryTract).get
+  btnInfectionThroughRespiratoryTract.addActionListener((e: ActionEvent) => powerUpDetailsPanel.refreshPowerUpInformation(powerUpInfectionThroughRespiratoryTract, this.menuController.powerUpsAvailableForPurchase.contains(powerUpInfectionThroughRespiratoryTract)))
+  buttonPanel.add(btnInfectionThroughRespiratoryTract)
+
   val btnPortEnablement: JButton = new JButton("ciao")
   val powerUpPortEnablement: PowerUp = menuController.getPowerUp(PowerUpType.PortEnablement).get
   btnPortEnablement.addActionListener((e: ActionEvent) => powerUpDetailsPanel.refreshPowerUpInformation(powerUpPortEnablement, this.menuController.powerUpsAvailableForPurchase.contains(powerUpPortEnablement)))
-  btnPortEnablement.setBackground(new Color(255, 0, 0))
+
+
+  btnPortEnablement.setBackground(new Color(196, 29, 29))
   btnPortEnablement.setOpaque(true)
+  btnPortEnablement.setBorderPainted(false)
   buttonPanel.add(btnPortEnablement)
 
   /*
@@ -117,8 +120,8 @@ class PowerUpsGridPanel(powerUpDetailsPanel: PowerUpDetailsPanel, menuController
 */
   override def paintComponent(g: Graphics): Unit =
     super.paintComponent(g)
-    g.drawLine(btnHotResistanceI.getX, btnHotResistanceI.getY + btnHotResistanceI.getHeight / 2,
-      btnHotResistanceII.getX, btnHotResistanceII.getY + btnHotResistanceII.getHeight / 2)
+    g.drawLine(btnHotResistanceI.getX + btnHotResistanceI.getWidth / 2, btnHotResistanceI.getY + btnHotResistanceI.getHeight / 2,
+      btnHotResistanceII.getX + btnHotResistanceII.getWidth / 2, btnHotResistanceII.getY + btnHotResistanceI.getHeight / 2)
     g.drawLine(btnAlphaMutations.getX, btnAlphaMutations.getY,
       btnBetaMutations.getX, btnBetaMutations.getY)
     g.drawLine(btnOmegaMutations.getX, btnOmegaMutations.getY,
@@ -128,17 +131,8 @@ class PowerUpsGridPanel(powerUpDetailsPanel: PowerUpDetailsPanel, menuController
 
   buttonPanel.setOpaque(false)
   this.add(buttonPanel)
-  buttonPanel.getComponents.foreach(btn => buttons = buttons.appended(btn.asInstanceOf[javax.swing.JButton]))
+  //buttonPanel.getComponents.foreach(btn => buttons = buttons.appended(btn.asInstanceOf[javax.swing.JButton]))
 
-
-  //TODO powerUpsAvailableForPurchase NON funziona
-
-  /*
-  println(this.menuController.powerUpsAvailableForPurchase.contains(powerUpColdResistanceI))
-  println(this.menuController.powerUpsAvailableForPurchase.contains(powerUpColdResistanceII))
-  println(this.menuController.powerUpsAvailableForPurchase.length)
-  */
-  //TODO cambiare il background di un bottone sui dispositivi non windws è un gran casino
   def refreshPowerUpGridPanel(): Unit =
     buttons.foreach(btn => btn.setBackground(new Color(0,255,0)))
 
