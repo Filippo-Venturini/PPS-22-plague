@@ -16,6 +16,7 @@ import javax.imageio.ImageIO
 
 
 class PowerUpsGridPanel(powerUpDetailsPanel: PowerUpDetailsPanel, menuController: MenuController) extends JPanel:
+  powerUpDetailsPanel.refreshPowerUpInformation(menuController.getPowerUp(PowerUpType.ColdResistanceI).get, true)
   val buttonPanel: JPanel = new JPanel()
 
   val numRows = 3
@@ -106,6 +107,7 @@ class PowerUpsGridPanel(powerUpDetailsPanel: PowerUpDetailsPanel, menuController
   val btnPortEnablement: JButton = new JButton("ciao")
   val powerUpPortEnablement: PowerUp = menuController.getPowerUp(PowerUpType.PortEnablement).get
   btnPortEnablement.addActionListener((e: ActionEvent) => powerUpDetailsPanel.refreshPowerUpInformation(powerUpPortEnablement, this.menuController.powerUpsAvailableForPurchase.contains(powerUpPortEnablement)))
+  btnPortEnablement.setBackground(new Color(255, 0, 0))
   buttonPanel.add(btnPortEnablement)
 
   this.add(buttonPanel)
