@@ -18,13 +18,21 @@ class PowerUpManager(private val virus: Virus, private val dnaPointsHandler: Dna
   def getAllPowerUps(): List[PowerUp] = this.powerUps
 
   /**
-   * @return only the purchasable PowerUps basing on the hierarchy.
+   * @return only the purchasable PowerUps basing on the hierarchy and the DNAPoint collected.
    */
   def getPurchasablePowerUps(): List[PowerUp] =
     this.powerUps
       .filter(!_.hasBeenBought)
       .filter(this.arePrerequisiteSatisfied)
       .filter(_.powerUpType.price <= dnaPointsHandler.collectedPoints)
+
+  /**
+   * @return only the PowerUps with prerequisite satisfied basing on the hierarchy.
+   */
+  def getPrerequisiteSatisfiedPowerUps(): List[PowerUp] =
+    this.powerUps
+      .filter(!_.hasBeenBought)
+      .filter(this.arePrerequisiteSatisfied)
 
   /**
    * @return the list of the all the purchased PowerUps.
