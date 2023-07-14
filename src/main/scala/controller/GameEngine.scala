@@ -37,6 +37,8 @@ class GameEngine(val gameModel: GameModel):
     if (System.currentTimeMillis() - startTime) < refreshTime then Thread.sleep(refreshTime - (System.currentTimeMillis() - startTime))
     gameLoop()
 
-  def getRegions(): List[Region] = this.gameModel.world.getRegions
+  def getRegions: List[Region] = this.gameModel.world.getRegions
   def getRegion(name: String): Option[Region] = this.gameModel.world.getRegion(name)
   def loadMenu(): Unit = new MenuView(new MenuController(gameModel))
+  def getWorldPopulation: Long = this.gameModel.world.getRegions.foldRight(0L)((region, population) => population + region.population)
+  def getWorldInfectedAmount: Long = this.gameModel.world.getRegions(using infectedRegions).foldRight(0L)((region, infectedAmount) => infectedAmount + region.infectedAmount)

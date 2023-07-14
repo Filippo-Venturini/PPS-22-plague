@@ -30,6 +30,12 @@ class TestPowerUpManager {
     assertEquals(PowerUpType.HotResistanceI, powerUpManager.getPowerUp(PowerUpType.HotResistanceI).get.powerUpType)
 
   @Test
+  def testGetPowerUpWithPrerequisiteSatisfied(): Unit =
+    assertFalse(powerUpManager.getPrerequisiteSatisfiedPowerUps().map(p => p.powerUpType).contains(PowerUpType.BetaMutations))
+    powerUpManager.purchasePowerUp(PowerUpType.AlphaMutations)
+    assertTrue(powerUpManager.getPurchasablePowerUps().map(p => p.powerUpType).contains(PowerUpType.BetaMutations))
+
+  @Test
   def testGetPurchasablePowerUpsWithoutPrerequisites(): Unit =
     assertEquals(PowerUpType.values.filter(p => p.prerequisite.isEmpty).toList, powerUpManager.getPurchasablePowerUps().map(p => p.powerUpType))
 
