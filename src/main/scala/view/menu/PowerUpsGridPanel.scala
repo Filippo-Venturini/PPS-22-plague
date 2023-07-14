@@ -117,8 +117,8 @@ class PowerUpsGridPanel(powerUpDetailsPanel: PowerUpDetailsPanel, menuController
 */
   override def paintComponent(g: Graphics): Unit =
     super.paintComponent(g)
-    g.drawLine(btnHotResistanceI.getX, btnHotResistanceI.getY,
-      btnHotResistanceII.getX, btnHotResistanceII.getY )
+    g.drawLine(btnHotResistanceI.getX, btnHotResistanceI.getY + btnHotResistanceI.getHeight / 2,
+      btnHotResistanceII.getX, btnHotResistanceII.getY + btnHotResistanceII.getHeight / 2)
     g.drawLine(btnAlphaMutations.getX, btnAlphaMutations.getY,
       btnBetaMutations.getX, btnBetaMutations.getY)
     g.drawLine(btnOmegaMutations.getX, btnOmegaMutations.getY,
