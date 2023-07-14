@@ -122,11 +122,24 @@ class PowerUpsGridPanel(powerUpDetailsPanel: PowerUpDetailsPanel, menuController
     super.paintComponent(g)
     g.drawLine(btnHotResistanceI.getX + btnHotResistanceI.getWidth / 2, btnHotResistanceI.getY + btnHotResistanceI.getHeight / 2,
       btnHotResistanceII.getX + btnHotResistanceII.getWidth / 2, btnHotResistanceII.getY + btnHotResistanceI.getHeight / 2)
-    g.drawLine(btnAlphaMutations.getX, btnAlphaMutations.getY,
-      btnBetaMutations.getX, btnBetaMutations.getY)
-    g.drawLine(btnOmegaMutations.getX, btnOmegaMutations.getY,
-      btnGammaMutations.getX, btnGammaMutations.getY)
-    //g.drawImage(mapImage, 0, 0, this.getWidth, this.getHeight, null)
+    g.drawLine(btnColdResistanceI.getX + btnColdResistanceI.getWidth / 2, btnColdResistanceI.getY + btnColdResistanceI.getHeight / 2,
+      btnColdResistanceII.getX + btnColdResistanceII.getWidth / 2, btnColdResistanceII.getY + btnColdResistanceII.getHeight / 2)
+    g.drawLine(btnInfectedDrinkingWater.getX + btnInfectedDrinkingWater.getWidth / 2, btnInfectedDrinkingWater.getY + btnInfectedDrinkingWater.getHeight / 2,
+      btnInfectionThroughAnimals.getX + btnInfectionThroughAnimals.getWidth / 2, btnInfectionThroughAnimals.getY + btnInfectionThroughAnimals.getHeight / 2)
+    g.drawLine(btnAlphaMutations.getX + btnAlphaMutations.getWidth / 2, btnAlphaMutations.getY + btnAlphaMutations.getHeight / 2,
+      btnBetaMutations.getX + btnBetaMutations.getWidth / 2, btnBetaMutations.getY + btnBetaMutations.getHeight / 2)
+    g.drawLine(btnColdResistanceII.getX + btnColdResistanceII.getWidth / 2, btnColdResistanceII.getY + btnColdResistanceII.getHeight / 2,
+      btnBacterialResistance.getX + btnBacterialResistance.getWidth / 2, btnBacterialResistance.getY + btnBacterialResistance.getHeight / 2)
+    g.drawLine(btnHotResistanceII.getX + btnHotResistanceII.getWidth / 2, btnHotResistanceII.getY + btnHotResistanceII.getHeight / 2,
+      btnBacterialResistance.getX + btnBacterialResistance.getWidth / 2, btnBacterialResistance.getY + btnBacterialResistance.getHeight / 2)
+    g.drawLine(btnBetaMutations.getX + btnBetaMutations.getWidth / 2, btnBetaMutations.getY + btnBetaMutations.getHeight / 2,
+      btnGammaMutations.getX + btnGammaMutations.getWidth / 2, btnGammaMutations.getY + btnGammaMutations.getHeight / 2)
+    g.drawLine(btnOmegaMutations.getX + btnOmegaMutations.getWidth / 2, btnOmegaMutations.getY + btnOmegaMutations.getHeight / 2,
+      btnGammaMutations.getX + btnGammaMutations.getWidth / 2, btnGammaMutations.getY + btnGammaMutations.getHeight / 2)
+    g.drawLine(btnMedicinesResistance.getX + btnMedicinesResistance.getWidth / 2, btnMedicinesResistance.getY + btnMedicinesResistance.getHeight / 2,
+      btnInfectionThroughRespiratoryTract.getX + btnInfectionThroughRespiratoryTract.getWidth / 2, btnInfectionThroughRespiratoryTract.getY + btnInfectionThroughRespiratoryTract.getHeight / 2)
+
+  //g.drawImage(mapImage, 0, 0, this.getWidth, this.getHeight, null)
 
 
   buttonPanel.setOpaque(false)
