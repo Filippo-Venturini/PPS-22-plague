@@ -2,7 +2,7 @@ package view.menu
 
 import controller.MenuController
 
-import java.awt.{BorderLayout, Color, Dimension, GridLayout, Image}
+import java.awt.{BorderLayout, Color, Dimension, GridLayout, Image, Graphics}
 import javax.swing.{ImageIcon, JButton, JLabel, JPanel}
 import model.powerUp.{PowerUp, PowerUpManager, PowerUpType}
 import model.infection.{BasicVirus, ColdRegionsInfectivity, Virus, VirusConfiguration}
@@ -11,6 +11,7 @@ import model.dnapoints.DnaPoints.DnaPointsHandler
 import java.awt.event.{ActionEvent, ActionListener}
 import model.dnapoints.DnaPoints.Logic.EmptyLogic
 
+import java.awt.image.BufferedImage
 import javax.imageio.ImageIO
 
 
@@ -108,8 +109,17 @@ class PowerUpsGridPanel(powerUpDetailsPanel: PowerUpDetailsPanel, menuController
   val powerUpPortEnablement: PowerUp = menuController.getPowerUp(PowerUpType.PortEnablement).get
   btnPortEnablement.addActionListener((e: ActionEvent) => powerUpDetailsPanel.refreshPowerUpInformation(powerUpPortEnablement, this.menuController.powerUpsAvailableForPurchase.contains(powerUpPortEnablement)))
   btnPortEnablement.setBackground(new Color(255, 0, 0))
+  btnPortEnablement.setOpaque(true)
   buttonPanel.add(btnPortEnablement)
 
+  val mapImage: BufferedImage = ImageIO.read(getClass().getResource("/map.png"))
+
+  override def paintComponent(g: Graphics): Unit =
+    super.paintComponent(g)
+    g.drawImage(mapImage, 0, 0, this.getWidth, this.getHeight, null)
+
+
+  buttonPanel.setOpaque(false)
   this.add(buttonPanel)
   buttonPanel.getComponents.foreach(btn => buttons = buttons.appended(btn.asInstanceOf[javax.swing.JButton]))
 
