@@ -46,10 +46,10 @@ Sprint 3: 8-14 July
 |------|-------|------|------|------|------|------|------|------|
 |Product Backlog Item |Sprint Task |Volunteer | Initial Estimate of Effort | 1 | 2 | 3 | 4 | 5 |
 |I want a Power-ups' menu|Model the structure for visualize and buy power-ups|Di Girolamo, Venturini|8|4|4|2|2||
-|I want to improve the infection logic|Improve external infection logic|Di Girolamo|7|7|7|3|||
+|I want to improve the infection logic|Improve external infection logic|Di Girolamo|7|7|7|3|1||
 ||Complete the internal infection logic|Di Girolamo|3|3|0|0|0|0|
-|I want to interact with the Power-up menu|I want a way to show the power-up hierarchy|Di Girolamo|5|4|2|2|||
-||I want to know wich power-ups are purchasable|Di Girolamo|4|4|4|4|||
+|I want to interact with the Power-up menu|I want a way to show the power-up hierarchy|Di Girolamo|5|4|2|2|1||
+||I want to know wich power-ups are purchasable|Di Girolamo|4|4|4|4|2||
 |I want to add functionalities to the power-ups' menu|I want to model a way to show power-ups' details|Venturini|6|5|4|2|1||
 ||I want to know the virus characteristics during the game|Venturini|6|3|3|3|0|0|
 ||I want to make power-ups purchasable|Venturini|7|7|5|5|2||
