@@ -17,6 +17,7 @@ class MenuView (val menuController: MenuController):
   frame.add(powerUpsGridPanel, BorderLayout.CENTER)
   frame.add(powerUpDetailsPanel, BorderLayout.SOUTH)
   frame.pack()
-  frame.setExtendedState(Frame.MAXIMIZED_BOTH)
+  frame.setSize(1200,800)
+  //frame.setExtendedState(Frame.MAXIMIZED_BOTH)
   frame.setResizable(false)
   frame.setVisible(true)
