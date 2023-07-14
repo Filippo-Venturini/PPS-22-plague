@@ -40,7 +40,7 @@ class PowerUpsGridPanel(powerUpDetailsPanel: PowerUpDetailsPanel, menuController
   btnHotResistanceI.addActionListener((e: ActionEvent) => powerUpDetailsPanel.refreshPowerUpInformation(powerHotResistanceI, true))
   btnHotResistanceI.setIcon(new ImageIcon(ImageIO.read(getClass.getResource("/hot.jpeg"))))
   btnHotResistanceI.setBackground(new Color(255, 255, 255))
-  btnHotResistanceI.setPreferredSize(new Dimension(100, 100))
+  //btnHotResistanceI.setPreferredSize(new Dimension(100, 100))
 
   buttonPanel.add(btnHotResistanceI)
 
@@ -70,7 +70,7 @@ class PowerUpsGridPanel(powerUpDetailsPanel: PowerUpDetailsPanel, menuController
 
   btnHotResistanceII.setIcon(new ImageIcon(ImageIO.read(getClass.getResource("/hotPlusG.jpeg"))))
   btnHotResistanceII.setBackground(new Color(155, 155, 155))
-  btnHotResistanceII.setPreferredSize(new Dimension(100, 100))
+  //btnHotResistanceII.setPreferredSize(new Dimension(100, 100))
 
   buttonPanel.add(btnHotResistanceII)
 
@@ -112,11 +112,18 @@ class PowerUpsGridPanel(powerUpDetailsPanel: PowerUpDetailsPanel, menuController
   btnPortEnablement.setOpaque(true)
   buttonPanel.add(btnPortEnablement)
 
+  /*
   val mapImage: BufferedImage = ImageIO.read(getClass().getResource("/map.png"))
-
+*/
   override def paintComponent(g: Graphics): Unit =
     super.paintComponent(g)
-    g.drawImage(mapImage, 0, 0, this.getWidth, this.getHeight, null)
+    g.drawLine(btnHotResistanceI.getX, btnHotResistanceI.getY,
+      btnHotResistanceII.getX, btnHotResistanceII.getY )
+    g.drawLine(btnAlphaMutations.getX, btnAlphaMutations.getY,
+      btnBetaMutations.getX, btnBetaMutations.getY)
+    g.drawLine(btnOmegaMutations.getX, btnOmegaMutations.getY,
+      btnGammaMutations.getX, btnGammaMutations.getY)
+    //g.drawImage(mapImage, 0, 0, this.getWidth, this.getHeight, null)
 
 
   buttonPanel.setOpaque(false)
