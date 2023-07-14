@@ -9,11 +9,10 @@ import javax.swing.plaf.basic.BasicProgressBarUI
 import javax.swing.*
 import scala.collection.immutable.SortedMap
 import javax.swing.ScrollPaneConstants
-
 object RegionsView:
 
   class RegionsPanel(gameEngine: GameEngine) extends RefreshablePanel:
-    private var activePanel: RefreshablePanel = new AllRegionsPanel(gameEngine.getRegions())
+    private var activePanel: RefreshablePanel = new AllRegionsPanel(gameEngine.getRegions)
     this.showAllRegionsDetails()
 
     private def setNewPanel(panel: RefreshablePanel): Unit =
@@ -23,7 +22,7 @@ object RegionsView:
       this.revalidate()
       this.repaint()
 
-    def showAllRegionsDetails(): Unit = this.setNewPanel(new AllRegionsPanel(gameEngine.getRegions()))
+    def showAllRegionsDetails(): Unit = this.setNewPanel(new AllRegionsPanel(gameEngine.getRegions))
 
     def showRegionDetails(region: Region): Unit = this.setNewPanel(SingleRegionPanel(region))
 
