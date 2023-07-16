@@ -59,7 +59,7 @@ Sprint 3: 8-14 July
 ||I want a way to handle DNA-points usage|Malucelli|7|4|2|2|2|0|
 |I want to know details about a single region|I want a way to show information about a single region|Malucelli|5|5|5|5|5|0|
 
-Sprint 4: 15-21 July
+Sprint 4: 15-24 July
 ||||||||||
 |------|-------|------|------|------|------|------|------|------|
 |Product Backlog Item |Sprint Task |Volunteer | Initial Estimate of Effort | 1 | 2 | 3 | 4 | 5 |
