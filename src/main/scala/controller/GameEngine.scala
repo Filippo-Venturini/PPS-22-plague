@@ -19,7 +19,7 @@ import model.vaccine.VaccineLogics.given
 
 class GameEngine(val gameModel: GameModel):
   private val refreshTime: Int = 5//300
-  private var days: Int = 1;
+  var days: Int = 1;
 
   def addObserver(observer: DnaPointSpawnObserver): Unit =
     gameModel.dnaPointsHandler.addObserver(observer)
@@ -35,7 +35,7 @@ class GameEngine(val gameModel: GameModel):
     gameModel.infectionHandler.computeInfection(gameModel.world.getRegions(using infectedRegions))
     gameModel.infectionHandler.computeInfection(gameModel.world.getRegions(using infectedRegions))(using new ExternalInfectionLogic())
     gameModel.dnaPointsHandler.computeDnaPointSpawn()
-    gameModel.vaccineHandler.computeResearchStep(this.getWorldInfectedAmount / this.getWorldPopulation)
+    gameModel.vaccineHandler.computeResearchStep(1.0 * this.getWorldInfectedAmount / this.getWorldPopulation)
 
     //println(gameModel.world.getRegion("Balkans").get.infectedAmount)
     //Compute Internal Infection
@@ -49,3 +49,4 @@ class GameEngine(val gameModel: GameModel):
   def loadMenu(): Unit = new MenuView(new MenuController(gameModel))
   def getWorldPopulation: Long = this.gameModel.world.getRegions.foldRight(0L)((region, population) => population + region.population)
   def getWorldInfectedAmount: Long = this.gameModel.world.getRegions(using infectedRegions).foldRight(0L)((region, infectedAmount) => infectedAmount + region.infectedAmount.toLong)
+  def getVaccineProgression: Double = this.gameModel.vaccineHandler.vaccineProgression

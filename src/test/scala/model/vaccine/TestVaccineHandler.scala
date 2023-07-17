@@ -8,7 +8,7 @@ class TestVaccineHandler {
   val vaccineHandler: VaccineHandler = new VaccineHandler
   val notEnoughInfectedPercentage: Double = 0.1
   val enoughInfectedPercentage: Double = 0.25
-  val basicVaccineLogicFactor: Double = 1.0 / 600
+  val basicVaccineLogicFactor: Double = 1.0 / 6
 
   @Test
   def testVaccineProgressionInitiallyZero: Unit =
