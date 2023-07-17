@@ -63,14 +63,14 @@ Sprint 4: 15-24 July
 ||||||||||
 |------|-------|------|------|------|------|------|------|------|
 |Product Backlog Item |Sprint Task |Volunteer | Initial Estimate of Effort | 1 | 2 | 3 | 4 | 5 |
-|I want to complete the power up grid|I want to change the bottom style depending on bonus' state|Di Girolamo|7||||||
-|I want to start the game|I want to create a start menu|Di Girolamo|8||||||
-|I want to have a balanced game|I want to balance the power ups' effect|Di Girolamo|5||||||
-|I want to collect dna points|I want to show dna points' buttons|Malucelli|7||||||
-||I want to collect showed dna points|Malucelli|4||||||
-|I want to know port and airport's routes|I want to visualize port and airport on the map|Malucelli|3||||||
-|I want to add vaccine in the game|I want to define a vaccine logic|Di Girolamo, Malucelli, Venturini|7||||||
-||I want to integrate the logic in the game|Venturini|8||||||
-||I want to visualize the vaccine progression|Venturini|3||||||
-|I want to win or lose the game|I want to define the end game logic|Venturini|5|||||
+|I want to complete the power up grid|I want to change the bottom style depending on bonus' state|Di Girolamo|7|2|||||
+|I want to start the game|I want to create a start menu|Di Girolamo|8|7|||||
+|I want to have a balanced game|I want to balance the power ups' effect|Di Girolamo|5|5|||||
+|I want to collect dna points|I want to show dna points' buttons|Malucelli|7|3|||||
+||I want to collect showed dna points|Malucelli|4|4|||||
+|I want to know port and airport's routes|I want to visualize port and airport on the map|Malucelli|3|3|||||
+|I want to add vaccine in the game|I want to define a vaccine logic|Di Girolamo, Malucelli, Venturini|7|4|||||
+||I want to integrate the logic in the game|Venturini|8|4|||||
+||I want to visualize the vaccine progression|Venturini|3|2|||||
+|I want to win or lose the game|I want to define the end game logic|Venturini|5|5||||
 
