@@ -14,6 +14,7 @@ import model.infection.InfectionLogics.given
 import model.powerUp.PowerUpManager
 import model.dnapoints.DnaPoints.DnaPointSpawnObserver
 import view.menu.MenuView
+import model.vaccine.VaccineLogics.given
 //import model.infection.InfectionLogics.
 
 class GameEngine(val gameModel: GameModel):
@@ -34,6 +35,7 @@ class GameEngine(val gameModel: GameModel):
     gameModel.infectionHandler.computeInfection(gameModel.world.getRegions(using infectedRegions))
     gameModel.infectionHandler.computeInfection(gameModel.world.getRegions(using infectedRegions))(using new ExternalInfectionLogic())
     gameModel.dnaPointsHandler.computeDnaPointSpawn()
+    gameModel.vaccineHandler.computeResearchStep(this.getWorldInfectedAmount / this.getWorldPopulation)
 
     //println(gameModel.world.getRegion("Balkans").get.infectedAmount)
     //Compute Internal Infection
