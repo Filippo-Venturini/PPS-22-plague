@@ -20,9 +20,9 @@ import model.vaccine.VaccineLogics.given
 class GameEngine(val gameModel: GameModel):
   private val refreshTime: Int = 5//300
   var days: Int = 1;
+  val loseCondition: Boolean = this.getWorldInfectionPercentage < 100.0 && this.gameModel.vaccineHandler.vaccineProgression >= 100.0
+  val winCondition: Boolean = this.getWorldInfectionPercentage >= 100.0 && this.gameModel.vaccineHandler.vaccineProgression < 100.0
 
-  def addObserver(observer: DnaPointSpawnObserver): Unit =
-    gameModel.dnaPointsHandler.addObserver(observer)
   def start(): Unit =
     gameModel.world.getRegion("Europe").get.infectedAmount = 1
     gameLoop()
@@ -36,20 +36,16 @@ class GameEngine(val gameModel: GameModel):
     gameModel.vaccineHandler.computeResearchStep(this.getWorldInfectionPercentage)
     days = days + 1
 
-    if this.getWorldInfectionPercentage < 100.0 && this.gameModel.vaccineHandler.vaccineProgression >= 100.0 then
+    if loseCondition then
       println("PERSO")
-    else if this.getWorldInfectionPercentage >= 100.0 && this.gameModel.vaccineHandler.vaccineProgression < 100.0 then
+    else if winCondition then
       println("VINTO")
     else
       if (System.currentTimeMillis() - startTime) < refreshTime then Thread.sleep(refreshTime - (System.currentTimeMillis() - startTime))
       gameLoop()
 
-    //println(gameModel.world.getRegion("Balkans").get.infectedAmount)
-    //Compute Internal Infection
-    //Compute External Infection
-    //Compute Vaccine
-
-
+  def addObserver(observer: DnaPointSpawnObserver): Unit =
+    gameModel.dnaPointsHandler.addObserver(observer)
   def getRegions: List[Region] = this.gameModel.world.getRegions
   def getRegion(name: String): Option[Region] = this.gameModel.world.getRegion(name)
   def loadMenu(): Unit = new MenuView(new MenuController(gameModel))
