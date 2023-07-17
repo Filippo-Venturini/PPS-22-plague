@@ -37,4 +37,7 @@ class MenuController(val gameModel: GameModel):
    */
   def purchasePowerUp(powerUpType: PowerUpType): Unit = this.gameModel.powerUpManager.purchasePowerUp(powerUpType)
 
-  def powerUpsAvailableForPurchase: List[PowerUp] = this.gameModel.powerUpManager.getPrerequisiteSatisfiedPowerUps()   
+  def powerUpsAvailableForPurchase(powerUp: PowerUp): Boolean=
+    this.gameModel.powerUpManager.getPrerequisiteSatisfiedPowerUps().contains(powerUp)
+  
+  def powerUpsAlreadyPurchasedPowerUps: List[PowerUp] = this.gameModel.powerUpManager.getPurchasedPowerUps()
