@@ -20,8 +20,8 @@ import model.vaccine.VaccineLogics.given
 class GameEngine(val gameModel: GameModel):
   private val refreshTime: Int = 5//300
   var days: Int = 1;
-  val loseCondition: Boolean = this.getWorldInfectionPercentage < 100.0 && this.gameModel.vaccineHandler.vaccineProgression >= 100.0
-  val winCondition: Boolean = this.getWorldInfectionPercentage >= 100.0 && this.gameModel.vaccineHandler.vaccineProgression < 100.0
+  def isLost: Boolean = this.getWorldInfectionPercentage < 100.0 && this.gameModel.vaccineHandler.vaccineProgression >= 100.0
+  def isWon: Boolean = this.getWorldInfectionPercentage >= 100.0 && this.gameModel.vaccineHandler.vaccineProgression < 100.0
 
   def start(): Unit =
     gameModel.world.getRegion("Europe").get.infectedAmount = 1
@@ -36,9 +36,9 @@ class GameEngine(val gameModel: GameModel):
     gameModel.vaccineHandler.computeResearchStep(this.getWorldInfectionPercentage)
     days = days + 1
 
-    if loseCondition then
+    if isLost then
       println("PERSO")
-    else if winCondition then
+    else if isWon then
       println("VINTO")
     else
       if (System.currentTimeMillis() - startTime) < refreshTime then Thread.sleep(refreshTime - (System.currentTimeMillis() - startTime))

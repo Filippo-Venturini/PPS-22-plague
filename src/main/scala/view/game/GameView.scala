@@ -2,11 +2,11 @@ package view.game
 
 import controller.{GameEngine, MenuController}
 import model.dnapoints.DnaPoints.DnaPointSpawnObserver
-import view.game.RegionsView.{WrapWithScrollBar, RegionsPanel}
+import view.game.RegionsView.{RegionsPanel, WrapWithScrollBar}
 import view.menu.MenuView
 
 import java.awt.event.{KeyAdapter, KeyEvent}
-import java.awt.{BorderLayout, Dimension, Frame, GridBagLayout, Toolkit}
+import java.awt.{BorderLayout, Color, Dimension, Frame, GridBagLayout, Toolkit}
 import javax.swing.{BoxLayout, JFrame, JPanel, JScrollPane, ScrollPaneConstants}
 
 class GameView (val gameEngine: GameEngine) extends DnaPointSpawnObserver:
