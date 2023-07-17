@@ -14,6 +14,7 @@ import model.infection.InfectionLogics.given
 import model.powerUp.PowerUpManager
 import model.dnapoints.DnaPoints.DnaPointSpawnObserver
 import view.menu.MenuView
+import view.startMenu.StartMenuView
 //import model.infection.InfectionLogics.
 
 class GameEngine(val gameModel: GameModel):
@@ -45,5 +46,6 @@ class GameEngine(val gameModel: GameModel):
   def getRegions: List[Region] = this.gameModel.world.getRegions
   def getRegion(name: String): Option[Region] = this.gameModel.world.getRegion(name)
   def loadMenu(): Unit = new MenuView(new MenuController(gameModel))
+  def loadStartMenu(): Unit = new StartMenuView(new StartMenuController(gameModel))
   def getWorldPopulation: Long = this.gameModel.world.getRegions.foldRight(0L)((region, population) => population + region.population)
   def getWorldInfectedAmount: Long = this.gameModel.world.getRegions(using infectedRegions).foldRight(0L)((region, infectedAmount) => infectedAmount + region.infectedAmount.toLong)
