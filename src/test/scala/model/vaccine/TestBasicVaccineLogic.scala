@@ -7,11 +7,8 @@ class TestBasicVaccineLogic {
   val notEnoughInfectedPercentage: Double = 0.1
   val enoughInfectedPercentage: Double = 0.25
   val basicResearchFactor: Double = 1.0 / 600
+  var vaccineProgression: Double = 0.0
   val vaccineLogic: VaccineLogic = new BasicVaccineLogic
-
-  @Test
-  def testVaccineProgressionInitiallyZero: Unit =
-    assertTrue(Math.abs(vaccineLogic.getVaccineProgression) <= 0.01)
 
   @Test
   def testCantStartResearch: Unit =
@@ -23,7 +20,5 @@ class TestBasicVaccineLogic {
 
   @Test
   def testComputeResearchStep: Unit =
-    assertTrue(Math.abs(vaccineLogic.getVaccineProgression) <= 0.01)
-    vaccineLogic.researchStep()
-    assertTrue(Math.abs(vaccineLogic.getVaccineProgression - basicResearchFactor) <= 0.01)
+    assertTrue(Math.abs(vaccineLogic.researchStep(vaccineProgression) - basicResearchFactor) <= 0.01)
 }
