@@ -6,8 +6,10 @@ object VaccineLogics:
 class VaccineHandler:
   private var isResearchStarted: Boolean = false
   
-  def computeResearchStep(using vaccineLogic: VaccineLogic): Unit =
-    if !isResearchStarted then tryStartResearch(vaccineLogic) else vaccineLogic.researchStep()
-  
-  def tryStartResearch(vaccineLogic: VaccineLogic): Unit = 
-    if vaccineLogic.canResearchStart(10.0) then vaccineLogic.researchStep(); this.isResearchStarted = true
+  def getVaccineProgress: Double = 
+
+  def computeResearchStep(worldInfectionPercentage: Double)(using vaccineLogic: VaccineLogic): Unit =
+    if !isResearchStarted then tryStartResearch(worldInfectionPercentage)(vaccineLogic) else vaccineLogic.researchStep()
+
+  private def tryStartResearch(worldInfectionPercentage: Double)(vaccineLogic: VaccineLogic): Unit =
+    if vaccineLogic.canResearchStart(worldInfectionPercentage) then vaccineLogic.researchStep(); this.isResearchStarted = true
