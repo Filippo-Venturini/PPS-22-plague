@@ -8,16 +8,16 @@ import model.infection.InfectionLogics.given
 
 class TestInfection {
 
-  val testVirusConfiguration: VirusConfiguration = VirusConfiguration("DHT11", 0, 0, 0, 0, 0, 0, 0, false, false)
+  val testVirusConfiguration: VirusConfiguration = VirusConfiguration("DHT11", 30, 30, 30, 30, 30, 30, 30, false, false)
   val virus: Virus = new BasicVirus(testVirusConfiguration)
 
-  /*
+
   @Test
   def testInternalIncrementInfection: Unit =
-    val testRegionConfiguration: RegionConfiguration = RegionConfiguration("Europe", 746_000_000, 9, 5, 8, 9, 8)
+    val testRegionConfiguration: RegionConfiguration = RegionConfiguration("Europe", 646_134_245, 5, 2, 5, 4, 4)
     val testRegion: Region = new BasicRegion(testRegionConfiguration)
 
-    testRegion.infectedAmount = 400_000_000
+    testRegion.infectedAmount = 1
 
     val regions: List[Region] = List(testRegion)
     val infectionHandler: InfectionHandler = new InfectionHandler(virus, regions)
@@ -26,15 +26,16 @@ class TestInfection {
 
     assert(testRegion.infectedAmount > 1)
 
-
+/*
   @Test
   def testSimpleExternalIncrementInfection: Unit =
-    val testInfectedRegionConfiguration: RegionConfiguration = RegionConfiguration("Europe", 746000000, 9, 5, 8, 9, 8)
+    val testInfectedRegionConfiguration: RegionConfiguration = RegionConfiguration("Europe", 646_134_245, 5, 2, 5, 4, 4)
     val testInfectedRegion: Region = new BasicRegion(testInfectedRegionConfiguration)
-    testInfectedRegion.infectedAmount = 3 * (testInfectedRegion.population / 4)
+    testInfectedRegion.infectedAmount = testInfectedRegion.population
+    //testInfectedRegion.infectedAmount = 3 * (testInfectedRegion.population / 4)
 
-    val borderControl = 0
-    val testSaneRegionConfiguration: RegionConfiguration = RegionConfiguration("NorthAfrica", 243000000, 2, 9, borderControl, 2, 2)
+    val borderControl = 1
+    val testSaneRegionConfiguration: RegionConfiguration = RegionConfiguration("North-Africa", 412_245_211, 2, 2, borderControl, 2, 2)
     val testSaneRegion: Region = new BasicRegion(testSaneRegionConfiguration)
 
     val regions: List[Region] = List(testInfectedRegion, testSaneRegion)
@@ -43,6 +44,8 @@ class TestInfection {
 
     testSaneRegion.addBorderingRegion(testInfectedRegion)
     infectionHandler.computeInfection(regions)(using infectionLogic)
+
+    testInfectedRegion.getReachableRegions.foreach((region, mode) => println(region))
 
     assert(testSaneRegion.infectedAmount > 0)
 
@@ -58,7 +61,7 @@ class TestInfection {
     val regionLowBordersControlConfigurator: RegionConfiguration = RegionConfiguration("NorthAfrica", 800000000, 2, 9, testLowBordersControl, 3, 3)
     val regionLowBordersControl: Region = new BasicRegion(regionLowBordersControlConfigurator)
 
-    val testInfectedRegionConfiguration: RegionConfiguration = RegionConfiguration("Europe", 746000000, 9, 5, 8, 9, 8)
+    val testInfectedRegionConfiguration: RegionConfiguration = RegionConfiguration("Europe", 646_134_245, 5, 2, 5, 4, 4)
     val testInfectedRegion: Region = new BasicRegion(testInfectedRegionConfiguration)
     testInfectedRegion.infectedAmount = 3 * (testInfectedRegion.population / 4)
 
@@ -94,7 +97,7 @@ class TestInfection {
     val regionLowPopulationDensityConfigurator: RegionConfiguration = RegionConfiguration("NorthAfrica", 800000000, 2, 9, 3, 2, testLowPopulationDensity)
     val regionLowPopulationDensity: Region = new BasicRegion(regionLowPopulationDensityConfigurator)
 
-    val testInfectedRegionConfiguration: RegionConfiguration = RegionConfiguration("Europe", 746000000, 9, 5, 8, 9, 8)
+    val testInfectedRegionConfiguration: RegionConfiguration = RegionConfiguration("Europe", 646_134_245, 5, 2, 5, 4, 4)
     val testInfectedRegion: Region = new BasicRegion(testInfectedRegionConfiguration)
     testInfectedRegion.infectedAmount = 3 * (testInfectedRegion.population / 4)
 
@@ -130,7 +133,7 @@ class TestInfection {
     val regionLowGlobalizationConfigurator: RegionConfiguration = RegionConfiguration("NorthAfrica", 800000000, 2, 9, 3, testLowGlobalization, 3)
     val regionLowGlobalization: Region = new BasicRegion(regionLowGlobalizationConfigurator)
 
-    val testInfectedRegionConfiguration: RegionConfiguration = RegionConfiguration("Europe", 746000000, 9, 5, 8, 9, 8)
+    val testInfectedRegionConfiguration: RegionConfiguration = RegionConfiguration("Europe", 646_134_245, 5, 2, 5, 4, 4)
     val testInfectedRegion: Region = new BasicRegion(testInfectedRegionConfiguration)
     testInfectedRegion.infectedAmount = 3 * (testInfectedRegion.population / 4)
 
@@ -166,7 +169,7 @@ class TestInfection {
     val regionLowRichnessConfigurator: RegionConfiguration = RegionConfiguration("NorthAfrica", 800000000, testLowRichness, 9, 3, 3, 3)
     val regionLowRichness: Region = new BasicRegion(regionLowRichnessConfigurator)
 
-    val testInfectedRegionConfiguration: RegionConfiguration = RegionConfiguration("Europe", 746000000, 9, 5, 8, 9, 8)
+    val testInfectedRegionConfiguration: RegionConfiguration = RegionConfiguration("Europe", 646_134_245, 5, 2, 5, 4, 4)
     val testInfectedRegion: Region = new BasicRegion(testInfectedRegionConfiguration)
     testInfectedRegion.infectedAmount = 3 * (testInfectedRegion.population / 4)
 
@@ -189,8 +192,8 @@ class TestInfection {
     val infectedLowRichnessRegion = regionLowRichness.infectedAmount
 
     assert(infectedLowRichnessRegion > infectedHighRichnessRegion)
+*/
 
-  */
 }
 
 
