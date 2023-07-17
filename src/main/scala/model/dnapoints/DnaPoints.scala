@@ -29,7 +29,7 @@ object DnaPoints {
         case true => None
         case _ =>
           spawnedPoints = BasicDnaPoint(this, region.name) +: spawnedPoints
-          observers.foreach(_.onDnaPointSpawn(region.name))
+          observers.foreach(_.onDnaPointSpawn(spawnedPoints.head))
           Some(spawnedPoints.head)
 
       override def computeDnaPointSpawn(): Unit =
@@ -77,5 +77,5 @@ object DnaPoints {
     case class BasicLogic(world: World, spawnRate: Int) extends EmptyLogic with OnNewInfectedRegions(world) with EveryXSeconds(world, spawnRate)
 
   trait DnaPointSpawnObserver:
-    def onDnaPointSpawn(regionName: String): Unit
+    def onDnaPointSpawn(dnaPoint: DnaPoint): Unit
 }

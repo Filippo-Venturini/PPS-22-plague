@@ -75,7 +75,7 @@ object RegionsView:
     statisticsPanel.add(new JLabel("borders control: " + region.bordersControl + "/5"))
     statisticsPanel.add(new JLabel("globalization: " + region.globalization + "/5"))
 
-    val infectedAmountLabel: JLabel = new JLabel(String.format("population infected: %,d", region.infectedAmount))
+    val infectedAmountLabel: JLabel = new JLabel(String.format("population infected: %,d", region.infectedAmount.ceil.toInt))
 
     val infectionBar: JProgressBar = new DecimalProgressBar(new Color(35, 187, 197), new Color(215, 19, 19))
     infectionBar.setMaximum(region.population)
@@ -110,7 +110,7 @@ object RegionsView:
 
     override def refresh(): Unit =
       infectionBar.setValue(region.infectedAmount.toInt)
-      infectedAmountLabel.setText(String.format("population infected: %,d", region.infectedAmount))
+      infectedAmountLabel.setText(String.format("population infected: %,d", region.infectedAmount.ceil.toInt))
 
   case class WrapWithScrollBar(component: Component) extends JScrollPane:
     this.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED)
