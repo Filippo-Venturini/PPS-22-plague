@@ -48,7 +48,7 @@ object RegionsView:
     })
 
     override def refresh(): Unit =
-      regions.foreach(region => progressBars(region).setValue(region.infectedAmount))
+      regions.foreach(region => progressBars(region).setValue(region.infectedAmount.toInt))
   class DecimalProgressBar(bgColor: Color, fgColor: Color) extends JProgressBar :
     this.setBackground(bgColor)
     this.setForeground(fgColor)
@@ -109,7 +109,7 @@ object RegionsView:
       this
 
     override def refresh(): Unit =
-      infectionBar.setValue(region.infectedAmount)
+      infectionBar.setValue(region.infectedAmount.toInt)
       infectedAmountLabel.setText(String.format("population infected: %,d", region.infectedAmount))
 
   case class WrapWithScrollBar(component: Component) extends JScrollPane:

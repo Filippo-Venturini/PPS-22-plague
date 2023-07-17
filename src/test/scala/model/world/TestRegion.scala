@@ -1,7 +1,7 @@
 package model.world
 import model.world.RegionTypes.*
 import model.world.TestRegionConfigurations.*
-import org.junit.Assert.{assertEquals, assertFalse}
+import org.junit.Assert.{assertEquals, assertFalse, assertTrue}
 import org.junit.{Before, Test}
 
 class TestRegion {
@@ -59,7 +59,7 @@ class TestRegion {
   @Test
   def testIncrementInfectAmount: Unit =
     europe.infectedAmount = newInfectedAmount
-    assertEquals(newInfectedAmount, europe.infectedAmount)
+    assertTrue(Math.abs(europe.infectedAmount - newInfectedAmount) <= 0.01)
 
   @Test
   def testSortRegions: Unit =

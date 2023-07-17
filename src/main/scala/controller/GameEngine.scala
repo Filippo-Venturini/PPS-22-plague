@@ -17,7 +17,8 @@ import view.menu.MenuView
 //import model.infection.InfectionLogics.
 
 class GameEngine(val gameModel: GameModel):
-  private val refreshTime: Int = 300
+  private val refreshTime: Int = 5//300
+  private var days: Int = 1;
 
   def addObserver(observer: DnaPointSpawnObserver): Unit =
     gameModel.dnaPointsHandler.addObserver(observer)
@@ -27,9 +28,13 @@ class GameEngine(val gameModel: GameModel):
 
   private def gameLoop(): Void =
     val startTime: Long = System.currentTimeMillis()
+
+    days = days + 1
+
     gameModel.infectionHandler.computeInfection(gameModel.world.getRegions(using infectedRegions))
     gameModel.infectionHandler.computeInfection(gameModel.world.getRegions(using infectedRegions))(using new ExternalInfectionLogic())
     gameModel.dnaPointsHandler.computeDnaPointSpawn()
+
     //println(gameModel.world.getRegion("Balkans").get.infectedAmount)
     //Compute Internal Infection
     //Compute External Infection
@@ -41,4 +46,4 @@ class GameEngine(val gameModel: GameModel):
   def getRegion(name: String): Option[Region] = this.gameModel.world.getRegion(name)
   def loadMenu(): Unit = new MenuView(new MenuController(gameModel))
   def getWorldPopulation: Long = this.gameModel.world.getRegions.foldRight(0L)((region, population) => population + region.population)
-  def getWorldInfectedAmount: Long = this.gameModel.world.getRegions(using infectedRegions).foldRight(0L)((region, infectedAmount) => infectedAmount + region.infectedAmount)
+  def getWorldInfectedAmount: Long = this.gameModel.world.getRegions(using infectedRegions).foldRight(0L)((region, infectedAmount) => infectedAmount + region.infectedAmount.toLong)

@@ -54,8 +54,8 @@ class InternalInfectionLogic extends InfectionLogic:
    * Increase the infected amount for a specific factor
    */
   override def compute(region: Region, virus: Virus): Unit =
-    region.infectedAmount = min(ceil(region.infectedAmount + (getVirusInfectionRate(region, virus) * region.infectedAmount *
-      getInfectionFactor(region.infectedAmount.toFloat / region.population))).toInt, region.population)
+    region.infectedAmount = min(region.infectedAmount + (getVirusInfectionRate(region, virus) * region.infectedAmount *
+      getInfectionFactor(100*region.infectedAmount.toFloat / region.population)), region.population)
 
 
 

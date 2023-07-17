@@ -15,8 +15,8 @@ abstract class Region extends Ordered[Region]:
   val globalization: Globalization = regionConfiguration.globalization
   val populationDensity: PopulationDensity = regionConfiguration.populationDensity
   protected var borderingRegions: List[Region] = List()
-  def infectedAmount: Int
-  def infectedAmount_= (newAmount: Int): Unit
+  def infectedAmount: Double
+  def infectedAmount_= (newAmount: Double): Unit
 
   /**
    * @param borderingRegion a region that is directly connected by border
@@ -45,7 +45,7 @@ abstract class Region extends Ordered[Region]:
  * @param regionConfiguration the configuration that contains all the region's characteristics
  */
 class BasicRegion (override val regionConfiguration: RegionConfiguration) extends Region:
-  override var infectedAmount: Int = 0
+  override var infectedAmount: Double = 0
 
   /**
    *  @return the list of all the region reachable, so only the bordering ones
