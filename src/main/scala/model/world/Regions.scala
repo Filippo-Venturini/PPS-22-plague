@@ -1,5 +1,5 @@
 package model.world
-import RegionTypes.*
+import RegionParameters.*
 
 /**
  * Class that represent the definition of a region

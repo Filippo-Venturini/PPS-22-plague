@@ -7,10 +7,10 @@ import model.configuration.Parsers.RegionIdentifier.RegionIdentifierParser
 import model.configuration.Parsers.Virus.VirusParser
 import model.infection.{Virus, VirusConfiguration}
 import model.world.Region
-import model.world.RegionTypes.RegionConfiguration
+import model.world.RegionParameters.RegionConfiguration
 import org.junit.Assert.{assertEquals, assertFalse, assertTrue}
 import org.junit.{Before, Test}
-import model.world.RegionTypes.ReachableMode
+import model.world.RegionParameters.ReachableMode
 
 object TestReaders {
 

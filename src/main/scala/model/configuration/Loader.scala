@@ -8,7 +8,7 @@ import model.configuration.Parsers.Region.RegionParser
 import model.configuration.Parsers.RegionIdentifier.RegionIdentifierParser
 import model.configuration.Parsers.Virus.VirusParser
 import model.infection.Virus
-import model.world.RegionTypes.ReachableMode
+import model.world.RegionParameters.ReachableMode
 import model.world.{AirportRouteManager, PortRouteManager, Region, World}
 
 import scala.io.Source

@@ -1,5 +1,5 @@
 package model.world
-import RegionTypes.*
+import RegionParameters.*
 
 /**
  * Case Class that represent a route between two regions

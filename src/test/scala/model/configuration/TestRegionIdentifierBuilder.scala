@@ -1,7 +1,7 @@
 package model.configuration
 
 import model.configuration.Builders.{RegionBuilder, RegionIdentifier, RegionIdentifierBuilder}
-import model.world.RegionTypes.*
+import model.world.RegionParameters.*
 import model.world.{BasicRegion, RegionWithAirport, RegionWithAirportAndPort, RegionWithPort}
 import org.junit.Assert.{assertEquals, assertFalse, assertTrue}
 import org.junit.{Before, Test}

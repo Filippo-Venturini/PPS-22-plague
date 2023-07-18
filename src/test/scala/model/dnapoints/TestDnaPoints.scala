@@ -2,7 +2,7 @@ package model.dnapoints
 
 import model.dnapoints.DnaPoints.Logic.{EmptyLogic, EveryXSecondsLogic, OnNewInfectedRegions, OnNewInfectedRegionsLogic, SpawnPointLogic}
 import model.dnapoints.DnaPoints.{DnaPoint, DnaPointsHandler}
-import model.world.RegionTypes.RegionConfiguration
+import model.world.RegionParameters.RegionConfiguration
 import model.world.{BasicRegion, Region, World}
 import org.junit.{Before, Test}
 import org.junit.Assert.{assertEquals, assertFalse, assertTrue}

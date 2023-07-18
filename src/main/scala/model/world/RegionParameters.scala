@@ -1,6 +1,9 @@
 package model.world
 
-object RegionTypes :
+/**
+ * Object that contains all the type necessary for the regions' parameters
+ */
+object RegionParameters :
   type Name = String
   type Population = Int
   type Richness = Int
@@ -8,7 +11,13 @@ object RegionTypes :
   type BordersControl = Int
   type Globalization = Int
   type PopulationDensity = Int
-
+  
+  val maxRichnessValue: Richness = 5
+  val maxClimateValue: Climate = 3
+  val maxBorderControlValue: BordersControl = 5
+  val maxGlobalizationValue: Globalization = 5
+  val maxPopulationDensityValue: PopulationDensity = 5
+  
   /**
    * Case class that hold the configuration characteristics of a region
    *

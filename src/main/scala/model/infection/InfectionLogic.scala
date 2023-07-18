@@ -1,6 +1,6 @@
 package model.infection
 import model.world.Region
-import model.world.RegionTypes.ReachableMode
+import model.world.RegionParameters.ReachableMode
 import scala.math._
 
 /**

@@ -1,7 +1,7 @@
 package controller
 
 import model.GameModel
-import model.world.RegionTypes.RegionConfiguration
+import model.world.RegionParameters.RegionConfiguration
 import model.world.{BasicRegion, Region, World}
 import model.world.Filters.{RegionFilter, infectedRegions, notInfectedRegions, given}
 import model.configuration.Loader.ConfigurationsLoader.given

@@ -4,7 +4,7 @@ import model.world.World
 import model.world.{BasicRegion, Region, World}
 import org.junit.{Before, Test}
 import org.junit.Assert.{assertEquals, assertFalse, assertTrue}
-import model.world.RegionTypes.RegionConfiguration
+import model.world.RegionParameters.RegionConfiguration
 import model.dnapoints.DnaPoints.Logic.{BasicLogic, EmptyLogic, EveryXSecondsLogic, OnNewInfectedRegions, OnNewInfectedRegionsLogic, SpawnPointLogic}
 import model.dnapoints.DnaPoints.{DnaPoint, DnaPointsHandler}
 

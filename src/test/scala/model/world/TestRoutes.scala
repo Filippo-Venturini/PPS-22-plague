@@ -1,5 +1,5 @@
 package model.world
-import model.world.RegionTypes.*
+import model.world.RegionParameters.*
 import model.world.TestRegionConfigurations.*
 import org.junit.Assert.assertEquals
 import org.junit.{Before, Test}

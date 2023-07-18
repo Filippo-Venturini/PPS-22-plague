@@ -1,7 +1,7 @@
 package model.infection
 
 import model.world.{BasicRegion, Region}
-import model.world.RegionTypes.*
+import model.world.RegionParameters.*
 import org.junit.Assert.assertEquals
 import org.junit.{Before, Test}
 import model.infection.InfectionLogics.given

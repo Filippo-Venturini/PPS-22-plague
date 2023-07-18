@@ -1,6 +1,6 @@
 package model.infection
 import model.powerUp.PowerUpLogic
-import model.world.RegionTypes.*
+import model.world.RegionParameters.*
 
 type Name = String
 type ColdRegionsInfectivity = Int

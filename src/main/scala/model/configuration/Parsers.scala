@@ -2,7 +2,7 @@ package model.configuration
 
 import model.configuration.Builders.{RawRoute, RawRouteBuilder, RegionBuilder, RegionIdentifier, RegionIdentifierBuilder, VirusBuilder}
 import model.world.Region
-import model.world.RegionTypes.{BordersControl, Climate, Globalization, Population, Richness, *}
+import model.world.RegionParameters.*
 import model.configuration.Parsers.Cast.*
 import model.configuration.Parsers.RawRoute.RouteConfigurationFileFormat
 import model.infection.Virus

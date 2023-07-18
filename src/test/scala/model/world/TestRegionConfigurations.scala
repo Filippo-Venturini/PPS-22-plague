@@ -1,6 +1,6 @@
 package model.world
 
-import model.world.RegionTypes.RegionConfiguration
+import model.world.RegionParameters.RegionConfiguration
 
 object TestRegionConfigurations :
   val europeConfiguration: RegionConfiguration = RegionConfiguration("Europe", 746000000, 9, 5, 8, 9, 8)

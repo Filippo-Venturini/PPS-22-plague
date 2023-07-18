@@ -9,7 +9,7 @@ import model.configuration.Parsers.Region.RegionParser
 import model.configuration.Loader.ConfigurationsLoader.given
 import model.world.{AirportRouteManager, PortRouteManager, World}
 import model.world.Filters.given
-import model.world.RegionTypes.ReachableMode
+import model.world.RegionParameters.ReachableMode
 
 class TestConfigurationsLoader:
 

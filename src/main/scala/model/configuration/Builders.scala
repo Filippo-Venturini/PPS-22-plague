@@ -2,7 +2,7 @@ package model.configuration
 
 import model.configuration.Builders.RegionBuilder
 import model.world.{AirportRouteManager, BasicRegion, PortRouteManager, Region, RegionWithAirport, RegionWithPort, RegionWithAirportAndPort}
-import model.world.RegionTypes.*
+import model.world.RegionParameters.*
 import model.infection.{AirportEnabled, ColdRegionsInfectivity, HighDensityRegionsInfectivity, LowDensityRegionInfectivity, PoorRegionsInfectivity, PortEnabled, RichRegionsInfectivity, VaccineResistance, WarmRegionsInfectivity}
 import model.infection.{BasicVirus, Virus, VirusConfiguration}
 object Builders:
