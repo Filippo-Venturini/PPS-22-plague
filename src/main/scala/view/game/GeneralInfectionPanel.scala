@@ -4,10 +4,12 @@ import controller.GameEngine
 import view.game.RegionsView.{DecimalProgressBar, RefreshablePanel}
 
 import java.awt.{Color, Dimension, Font}
+import javax.swing.border.EmptyBorder
 import javax.swing.{BoxLayout, JLabel, JPanel}
 
 class GeneralInfectionPanel(val gameEngine: GameEngine) extends RefreshablePanel:
   this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS))
+  this.setBorder(new EmptyBorder(20,150,20,150))
   val worldInfectionProgressBar: DecimalProgressBar = new DecimalProgressBar(new Color(35, 187, 197), new Color(215, 19, 19))
   this.worldInfectionProgressBar.setMaximum((this.gameEngine.getWorldPopulation / 10).toInt)
   val infectedAmountLabel: JLabel = new JLabel()
@@ -16,7 +18,7 @@ class GeneralInfectionPanel(val gameEngine: GameEngine) extends RefreshablePanel
   worldTitleLabel.setFont(new Font("Arial", Font.PLAIN, 30))
   val vaccineTitleLabel: JLabel = new JLabel("Vaccine")
   vaccineTitleLabel.setFont(new Font("Arial", Font.PLAIN, 30))
-  val vaccineProgressBar: DecimalProgressBar = new DecimalProgressBar(new Color(35, 187, 197), new Color(255,255,255))
+  val vaccineProgressBar: DecimalProgressBar = new DecimalProgressBar(new Color(35, 187, 197), new Color(58, 144, 213))
   this.vaccineProgressBar.setMaximum(100)
   val daysLabel: JLabel = new JLabel("Day: ")
   this.add(worldTitleLabel)

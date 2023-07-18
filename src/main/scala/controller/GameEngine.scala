@@ -39,7 +39,6 @@ class GameEngine(val gameModel: GameModel):
     gameModel.vaccineHandler.computeResearchStep(this.getWorldInfectionPercentage)
     days = days + 1
 
-    println(this.getWorldInfectionPercentage)
     if isLost then
       this.gameView.showLostMessageDialog()
     else if isWon then

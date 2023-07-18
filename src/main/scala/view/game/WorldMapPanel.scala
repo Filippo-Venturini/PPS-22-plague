@@ -11,7 +11,7 @@ import model.dnapoints.DnaPoints.DnaPoint
 
 import java.awt.event.{MouseEvent, MouseListener}
 import java.awt.image.{BufferedImage, DataBufferByte}
-import java.awt.{Graphics, image}
+import java.awt.{Color, Graphics, image}
 import javax.imageio.ImageIO
 import javax.swing.{ImageIcon, JButton, JPanel}
 
@@ -22,7 +22,7 @@ class WorldMapPanel(val gameEngine: GameEngine, val regionsPanel: RegionsPanel) 
   val mapImage: BufferedImage = ImageIO.read(getClass().getResource("/map.png"))
   val regions: List[RegionIdentifier] = ConfigurationsLoader.load(RegionIdentifierFile(Loader.regionIdentifierFilePath))
   val pixelStep: Int = 10;
-
+  this.setBackground(new Color(255,255,255))
   this.setLayout(null)
   this.addMouseListener(this)
 
