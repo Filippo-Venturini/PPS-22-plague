@@ -8,7 +8,7 @@ import org.junit.{Before, Test}
 
 class TestRegionBuilder {
 
-  private val configuration = RegionConfiguration("Central-Europe", 60_000_000, 0, 0 ,0, 0, 0)
+  private val configuration = RegionConfiguration("Central-Europe", 60_000_000, 1, 1 ,1, 1, 1)
   private val borderingRegionsIds = List("Northern-Europe", "Balkans")
   private var regionBuilder: RegionBuilder = RegionBuilder()
 

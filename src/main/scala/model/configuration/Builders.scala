@@ -30,11 +30,16 @@ object Builders:
       new RegionBuilder(name, population, richness, climate, bordersControl, globalization, populationDensity, borderingRegionsIds, hasAirport, hasPort)
     def setName(name: Name): RegionBuilder = if name.exists(c => c.isDigit) then this else copy(name=Some(name))
     def setPopulation(population: Population): RegionBuilder = copy(population=Some(population))
-    def setRichness(richness: Richness): RegionBuilder = copy(richness=Some(richness))
-    def setClimate(climate: Climate): RegionBuilder = copy(climate=Some(climate))
-    def setBordersControl(bordersControl: BordersControl): RegionBuilder = copy(bordersControl=Some(bordersControl))
-    def setGlobalization(globalization: Globalization): RegionBuilder = copy(globalization=Some(globalization))
-    def setPopulationDensity(populationDensity: PopulationDensity): RegionBuilder = copy(populationDensity=Some(populationDensity))
+    def setRichness(richness: Richness): RegionBuilder =
+      if richness >= 1 && richness <= maxRichnessValue then copy(richness=Some(richness)) else this
+    def setClimate(climate: Climate): RegionBuilder =
+      if climate >= 1 && climate <= maxClimateValue then copy(climate=Some(climate)) else this
+    def setBordersControl(bordersControl: BordersControl): RegionBuilder =
+      if bordersControl >= 1 && bordersControl <= maxBorderControlValue then copy(bordersControl=Some(bordersControl)) else this
+    def setGlobalization(globalization: Globalization): RegionBuilder =
+      if globalization >= 1 && globalization <= maxGlobalizationValue then copy(globalization=Some(globalization)) else this
+    def setPopulationDensity(populationDensity: PopulationDensity): RegionBuilder =
+      if populationDensity >= 1  && populationDensity <= maxPopulationDensityValue then copy(populationDensity=Some(populationDensity)) else this
     def setBorderingRegions(borderingRegionsIds: List[Name]): RegionBuilder = copy(borderingRegionsIds=borderingRegionsIds)
     def addPort: RegionBuilder = copy(hasPort = true)
     def addAirport: RegionBuilder = copy(hasAirport = true)

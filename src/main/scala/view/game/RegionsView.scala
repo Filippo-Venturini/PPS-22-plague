@@ -62,6 +62,7 @@ object RegionsView:
       this.setString(BigDecimal(100.0 * n / this.getMaximum).setScale(2, BigDecimal.RoundingMode.CEILING).toString + "%")
 
   case class SingleRegionPanel(region: Region) extends RefreshablePanel:
+    import model.world.RegionParameters.*
     this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS))
 
     val lblName = new JLabel(region.name)
@@ -69,11 +70,11 @@ object RegionsView:
 
     val statisticsPanel: JPanel = new JPanel(new GridLayout(3, 2, 20, 15))
     statisticsPanel.add(new JLabel("population: " + String.format("%,d", region.population)))
-    statisticsPanel.add(new JLabel("population density: " + region.populationDensity + "/5"))
-    statisticsPanel.add(new JLabel("richness: " + region.richness + "/5"))
-    statisticsPanel.add(new JLabel("climate: " + region.climate + "/3"))
-    statisticsPanel.add(new JLabel("borders control: " + region.bordersControl + "/5"))
-    statisticsPanel.add(new JLabel("globalization: " + region.globalization + "/5"))
+    statisticsPanel.add(new JLabel("population density: " + region.populationDensity + "/" + maxPopulationDensityValue))
+    statisticsPanel.add(new JLabel("richness: " + region.richness + "/" + maxRichnessValue))
+    statisticsPanel.add(new JLabel("climate: " + region.climate + "/" + maxClimateValue))
+    statisticsPanel.add(new JLabel("borders control: " + region.bordersControl + "/" + maxBorderControlValue))
+    statisticsPanel.add(new JLabel("globalization: " + region.globalization + "/" + maxGlobalizationValue))
 
     val infectedAmountLabel: JLabel = new JLabel(String.format("population infected: %,d", region.infectedAmount.ceil.toInt))
 

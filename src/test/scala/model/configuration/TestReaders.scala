@@ -20,7 +20,7 @@ object TestReaders {
 
     @Test
     def testCorrectRowRead(): Unit =
-      val conf = RegionConfiguration("Central-Europe", 60_000_000, 6, 6, 8, 9, 10)
+      val conf = RegionConfiguration("Central-Europe", 60_000_000, 1, 2, 3, 4, 5)
       val region: Region = parser.parse(s"${conf.name},${conf.population},${conf.populationDensity},${conf.climate},${conf.richness},${conf.bordersControl},${conf.globalization}").get
       assertEquals(conf.name, region.name)
       assertEquals(conf.population, region.population)
@@ -40,7 +40,7 @@ object TestReaders {
 
     @Test
     def testReadIgnoresAdditionalFields(): Unit =
-      val conf = RegionConfiguration("Central-Europe", 60_000_000, 6, 6, 8, 9, 10)
+      val conf = RegionConfiguration("Central-Europe", 60_000_000, 1, 2, 3, 4, 5)
       val region: Region = parser.parse(s"${conf.name},${conf.population},${conf.populationDensity},${conf.climate},${conf.richness},${conf.bordersControl},${conf.globalization},a,b,c,d,e").get
       assertEquals(conf.name, region.name)
       assertEquals(conf.population, region.population)
