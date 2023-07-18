@@ -11,12 +11,13 @@ import model.dnapoints.DnaPoints.DnaPoint
 
 import java.awt.event.{MouseEvent, MouseListener}
 import java.awt.image.{BufferedImage, DataBufferByte}
-import java.awt.{Graphics, image}
+import java.awt.{Graphics, Image, image}
 import javax.imageio.ImageIO
 import javax.swing.{ImageIcon, JButton, JPanel}
 
 type HexCode = String
 type Position = (Int, Int)
+type Dimension = (Int, Int)
 
 class WorldMapPanel(val gameEngine: GameEngine, val regionsPanel: RegionsPanel) extends JPanel with MouseClickListener:
   val mapImage: BufferedImage = ImageIO.read(getClass().getResource("/map.png"))
@@ -39,17 +40,11 @@ class WorldMapPanel(val gameEngine: GameEngine, val regionsPanel: RegionsPanel) 
   def showDnaPoint(dnaPoint: DnaPoint): Unit = regions.find(_.regionName == dnaPoint.regionName) match
     case Some(regionIdentifier) => colorsMap(regionIdentifier.identifier).getRandomElement() match
       case Some(pos) =>
-        this.add(this.createDnaPointButton(pos))
+        this.add(DnaPointButton(dnaPoint, pos, (30, 30)))//TODO magicnumber
         this.repaint()
         this.revalidate()
       case _ =>
     case _ =>
-
-  def createDnaPointButton(position: Position): JButton =
-    val btn: JButton = new JButton()
-    btn.setBounds(position._1-10, position._2-10, 20, 20)
-    btn.setText("+")
-    btn
 
   override def mouseClicked(e: MouseEvent): Unit = regions.find(_.identifier == mapImage.getHexCode(e.getX, e.getY)) match
     case Some(regionIdentifier) =>
@@ -65,3 +60,19 @@ trait MouseClickListener extends MouseListener:
   override def mouseEntered(e: MouseEvent): Unit = {}
 extension(image: BufferedImage)
   def getHexCode(x: Int, y: Int): HexCode = "#" + image.getRGB(x, y).toHexString.substring(2).toUpperCase
+
+case class DnaPointButton(dnaPoint: DnaPoint, position: Position, dimension: Dimension) extends JButton:
+  val img: Image = ImageIO.read(getClass().getResource("/dnaPoint.png")).getScaledInstance(dimension._1, dimension._2, Image.SCALE_SMOOTH)
+  this.setBounds(position._1-dimension._1/2, position._2-dimension._2/2, dimension._1, dimension._2)
+  this.setOpaque(false)
+  this.setContentAreaFilled(false)
+  this.setBorderPainted(false)
+  this.setFocusable(false)
+
+  this.addActionListener(e => {
+    dnaPoint.collect()
+    this.setVisible(false)
+  })
+  override def paintComponent(g: Graphics): Unit =
+    super.paintComponent(g)
+    g.drawImage(img, 0, 0, null)
