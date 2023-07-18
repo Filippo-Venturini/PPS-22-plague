@@ -21,20 +21,12 @@ class GeneralInfectionPanel(val gameEngine: GameEngine) extends RefreshablePanel
   val vaccineProgressBar: DecimalProgressBar = new DecimalProgressBar(new Color(35, 187, 197), new Color(58, 144, 213))
   this.vaccineProgressBar.setMaximum(100)
   val daysLabel: JLabel = new JLabel("Day: ")
-  this.add(worldTitleLabel)
-  this.add(daysLabel)
-  this.add(totalPopulationLabel)
-  this.add(infectedAmountLabel)
-  this.add(worldInfectionProgressBar)
-  this.add(vaccineTitleLabel)
-  this.add(vaccineProgressBar)
-  
-  def addComponent(components: JComponent*): Unit = components.foreach(c => this.add(c))
+  this.addComponents(worldTitleLabel, daysLabel, totalPopulationLabel, infectedAmountLabel, worldInfectionProgressBar, vaccineTitleLabel, vaccineProgressBar)
+
+  def addComponents(components: JComponent*): Unit = components.foreach(c => this.add(c))
 
   override def refresh(): Unit =
     this.infectedAmountLabel.setText("Infected Amount: " + String.format("%,d",this.gameEngine.getWorldInfectedAmount))
     this.worldInfectionProgressBar.setValue((this.gameEngine.getWorldInfectedAmount / 10).toInt)
     this.vaccineProgressBar.setValue(this.gameEngine.getVaccineProgression.toInt)
     this.daysLabel.setText("Day: " + this.gameEngine.days)
-
-

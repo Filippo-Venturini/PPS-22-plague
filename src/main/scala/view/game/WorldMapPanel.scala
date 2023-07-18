@@ -43,8 +43,8 @@ class WorldMapPanel(val gameEngine: GameEngine, val regionsPanel: RegionsPanel) 
     super.paintComponent(g)
     g.drawImage(mapImage, 0, 0, null)
     g.drawImage(portAndAirportIcons, 0, 0, null)
-    if gameEngine.arePortEnabled then g.drawImage(portRoutes, 0, 0, null)
-    if gameEngine.areAirportEnabled then g.drawImage(airportRoutes, 0, 0, null)
+    if gameEngine.arePortsEnabled then g.drawImage(portRoutes, 0, 0, null)
+    if gameEngine.areAirportsEnabled then g.drawImage(airportRoutes, 0, 0, null)
 
   def showDnaPoint(dnaPoint: DnaPoint): Unit = regions.find(_.regionName == dnaPoint.regionName) match
     case Some(regionIdentifier) => colorsMap(regionIdentifier.identifier).getRandomElement() match

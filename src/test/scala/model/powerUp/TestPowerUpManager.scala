@@ -11,7 +11,7 @@ class TestPowerUpManager {
   val world = new World(List())
   val testVirusConfiguration: VirusConfiguration = VirusConfiguration("DHT11", 0, 0, 0, 0, 0, 0, 0, false, false)
   val virus: Virus = new BasicVirus(testVirusConfiguration)
-  var dnaPointsHandler = DnaPointsHandler(EmptyLogic())
+  var dnaPointsHandler: DnaPointsHandler = DnaPointsHandler(EmptyLogic())
   var powerUpManager: PowerUpManager = new PowerUpManager(this.virus, dnaPointsHandler)
 
   @Before
@@ -23,7 +23,7 @@ class TestPowerUpManager {
   @Test
   def testGetAllPowerUps(): Unit =
     val numberOfPowerUps = PowerUpType.values.map(powerUpType => PowerUp(powerUpType)).length
-    assertEquals(numberOfPowerUps, powerUpManager.getAllPowerUps().length)
+    assertEquals(numberOfPowerUps, powerUpManager.getAllPowerUps.length)
 
   @Test
   def testGetPowerUp(): Unit =
@@ -31,13 +31,13 @@ class TestPowerUpManager {
 
   @Test
   def testGetPowerUpWithPrerequisiteSatisfied(): Unit =
-    assertFalse(powerUpManager.getPrerequisiteSatisfiedPowerUps().map(p => p.powerUpType).contains(PowerUpType.BetaMutations))
+    assertFalse(powerUpManager.getPrerequisiteSatisfiedPowerUps.map(p => p.powerUpType).contains(PowerUpType.BetaMutations))
     powerUpManager.purchasePowerUp(PowerUpType.AlphaMutations)
-    assertTrue(powerUpManager.getPurchasablePowerUps().map(p => p.powerUpType).contains(PowerUpType.BetaMutations))
+    assertTrue(powerUpManager.getPurchasablePowerUps.map(p => p.powerUpType).contains(PowerUpType.BetaMutations))
 
   @Test
   def testGetPurchasablePowerUpsWithoutPrerequisites(): Unit =
-    assertEquals(PowerUpType.values.filter(p => p.prerequisite.isEmpty).toList, powerUpManager.getPurchasablePowerUps().map(p => p.powerUpType))
+    assertEquals(PowerUpType.values.filter(p => p.prerequisite.isEmpty).toList, powerUpManager.getPurchasablePowerUps.map(p => p.powerUpType))
 
   @Test
   def testPurchaseAvailablePowerUp: Unit =
@@ -49,13 +49,13 @@ class TestPowerUpManager {
     powerUpManager.purchasePowerUp(PowerUpType.ColdResistanceI)
     powerUpManager.purchasePowerUp(PowerUpType.AirportEnablement)
     powerUpManager.purchasePowerUp(PowerUpType.PortEnablement)
-    assertEquals(3, powerUpManager.getPurchasedPowerUps().size)
+    assertEquals(3, powerUpManager.getPurchasedPowerUps.size)
 
   @Test
   def testGetPurchasablePowerUpsWithPrerequisites(): Unit =
-    assertFalse(powerUpManager.getPurchasablePowerUps().map(p => p.powerUpType).contains(PowerUpType.HotResistanceII))
+    assertFalse(powerUpManager.getPurchasablePowerUps.map(p => p.powerUpType).contains(PowerUpType.HotResistanceII))
     powerUpManager.purchasePowerUp(PowerUpType.HotResistanceI)
-    assertTrue(powerUpManager.getPurchasablePowerUps().map(p => p.powerUpType).contains(PowerUpType.HotResistanceII))
+    assertTrue(powerUpManager.getPurchasablePowerUps.map(p => p.powerUpType).contains(PowerUpType.HotResistanceII))
 
   @Test
   def testApplyPowerUpsToVirusOnPurchase(): Unit =
@@ -66,11 +66,11 @@ class TestPowerUpManager {
   @Test
   def cantBuyPowerUpWithNotEnoughMoney(): Unit =
     dnaPointsHandler.collectedPoints = 0
-    assertTrue(powerUpManager.getPurchasablePowerUps().isEmpty)
+    assertTrue(powerUpManager.getPurchasablePowerUps.isEmpty)
 
   @Test
   def canBuyPowerUpWithEnoughMoney(): Unit =
     dnaPointsHandler.collectedPoints = 100
-    assertFalse(powerUpManager.getPurchasablePowerUps().isEmpty)
+    assertFalse(powerUpManager.getPurchasablePowerUps.isEmpty)
 
 }
