@@ -6,7 +6,7 @@ import view.game.RegionsView.{RegionsPanel, WrapWithScrollBar}
 import view.menu.MenuView
 
 import java.awt.event.{KeyAdapter, KeyEvent}
-import java.awt.{BorderLayout, Dimension, Frame, GridBagLayout, Toolkit}
+import java.awt.{BorderLayout, Color, Dimension, Frame, GridBagLayout, Toolkit}
 import javax.swing.{BoxLayout, JFrame, JPanel, JScrollPane, ScrollPaneConstants}
 
 class GameView (val gameEngine: GameEngine) extends DnaPointSpawnObserver:
@@ -44,4 +44,5 @@ class GameView (val gameEngine: GameEngine) extends DnaPointSpawnObserver:
 class GameViewKeyListener(val gameEngine: GameEngine) extends KeyAdapter:
   override def keyPressed(evt :KeyEvent): Unit = evt match
     case evt if evt.getKeyChar() == 'm' => gameEngine.loadMenu()
+    case evt if evt.getKeyChar() == 'i' => gameEngine.loadStartMenu()//TODO da eliminare
     case _ =>

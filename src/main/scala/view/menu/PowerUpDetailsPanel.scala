@@ -22,6 +22,8 @@ class PowerUpDetailsPanel(val virusPanel: VirusPanel, val menuController: MenuCo
   val powerUpEffectLabel: JLabel = new JLabel()
   val powerUpDescriptionLabel: JLabel = new JLabel()
   val buyImage: Image = ImageIO.read(getClass.getResource("/buyPowerUp.png"))
+  private var powerUpsGridPanel: PowerUpsGridPanel = null
+  def setPowerUpsGridPanel(powerUpsGridPanel: PowerUpsGridPanel): Unit = this.powerUpsGridPanel = powerUpsGridPanel
   val buyButton: JButton = new JButton()
   buyButton.setIcon(new ImageIcon(buyImage))
   buyButton.setBackground(new Color(255,255,255))
@@ -60,6 +62,7 @@ class PowerUpDetailsPanel(val virusPanel: VirusPanel, val menuController: MenuCo
     this.DNAPointsLabel.setText("DNA Points collected: " + this.menuController.getCollectedDNAPoints())
     this.buyButton.setEnabled(false)
     this.virusPanel.refreshVirusCharacteristics(this.menuController.getVirusConfiguration())
+    this.powerUpsGridPanel.refreshPowerUpGridPanel()
   })
 
   def refreshPowerUpInformation(powerUp: PowerUp, arePrerequisiteSatisfied: Boolean): Unit =

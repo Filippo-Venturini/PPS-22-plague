@@ -67,6 +67,9 @@ class ExternalInfectionLogic extends InfectionLogic:
     val normalizedGlobalization: Double = normalize(infectedRegion.globalization, -4, 7)
     val normalizedBorderControl = normalize(5 - regionToInfect.bordersControl + 1, -4, 7)
     val infectedPercentage: Double = normalize(infectedRegion.infectedAmount, 0, infectedRegion.population)
+    println(infectedPercentage)
+    println(normalizedGlobalization)
+    println(normalizedBorderControl)
     min(1, infectedPercentage + (normalizedGlobalization * normalizedBorderControl + 0.2))
 
 

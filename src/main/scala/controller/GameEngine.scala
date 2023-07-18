@@ -14,36 +14,43 @@ import model.infection.InfectionLogics.given
 import model.powerUp.PowerUpManager
 import model.dnapoints.DnaPoints.DnaPointSpawnObserver
 import view.menu.MenuView
-//import model.infection.InfectionLogics.
+import model.vaccine.VaccineLogics.given
+import view.startMenu.StartMenuView
 
 class GameEngine(val gameModel: GameModel):
   private val refreshTime: Int = 5//300
-  private var days: Int = 1;
+  var days: Int = 1;
+  def isLost: Boolean = this.getWorldInfectionPercentage < 100.0 && this.gameModel.vaccineHandler.vaccineProgression >= 100.0
+  def isWon: Boolean = this.getWorldInfectionPercentage >= 100.0 && this.gameModel.vaccineHandler.vaccineProgression < 100.0
 
-  def addObserver(observer: DnaPointSpawnObserver): Unit =
-    gameModel.dnaPointsHandler.addObserver(observer)
-  def start(): Void =
+  def start(): Unit =
     gameModel.world.getRegion("Europe").get.infectedAmount = 1
     gameLoop()
 
-  private def gameLoop(): Void =
+  private def gameLoop(): Unit =
     val startTime: Long = System.currentTimeMillis()
-
-    days = days + 1
 
     gameModel.infectionHandler.computeInfection(gameModel.world.getRegions(using infectedRegions))
     gameModel.infectionHandler.computeInfection(gameModel.world.getRegions(using infectedRegions))(using new ExternalInfectionLogic())
     gameModel.dnaPointsHandler.computeDnaPointSpawn()
+    gameModel.vaccineHandler.computeResearchStep(this.getWorldInfectionPercentage)
+    days = days + 1
 
-    //println(gameModel.world.getRegion("Balkans").get.infectedAmount)
-    //Compute Internal Infection
-    //Compute External Infection
-    //Compute Vaccine
-    if (System.currentTimeMillis() - startTime) < refreshTime then Thread.sleep(refreshTime - (System.currentTimeMillis() - startTime))
-    gameLoop()
+    if isLost then
+      println("PERSO")
+    else if isWon then
+      println("VINTO")
+    else
+      if (System.currentTimeMillis() - startTime) < refreshTime then Thread.sleep(refreshTime - (System.currentTimeMillis() - startTime))
+      gameLoop()
 
+  def addObserver(observer: DnaPointSpawnObserver): Unit =
+    gameModel.dnaPointsHandler.addObserver(observer)
   def getRegions: List[Region] = this.gameModel.world.getRegions
   def getRegion(name: String): Option[Region] = this.gameModel.world.getRegion(name)
   def loadMenu(): Unit = new MenuView(new MenuController(gameModel))
+  def loadStartMenu(): Unit = new StartMenuView(new StartMenuController(gameModel))
   def getWorldPopulation: Long = this.gameModel.world.getRegions.foldRight(0L)((region, population) => population + region.population)
   def getWorldInfectedAmount: Long = this.gameModel.world.getRegions(using infectedRegions).foldRight(0L)((region, infectedAmount) => infectedAmount + region.infectedAmount.toLong)
+  def getWorldInfectionPercentage: Double = 1.0 * this.getWorldInfectedAmount / this.getWorldPopulation
+  def getVaccineProgression: Double = this.gameModel.vaccineHandler.vaccineProgression

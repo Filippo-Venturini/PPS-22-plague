@@ -11,6 +11,8 @@ class MenuView (val menuController: MenuController):
   val virusPanel: VirusPanel = new VirusPanel(menuController.getVirusConfiguration())
   val powerUpDetailsPanel: PowerUpDetailsPanel = new PowerUpDetailsPanel(virusPanel, menuController)
   val powerUpsGridPanel: PowerUpsGridPanel = new PowerUpsGridPanel(powerUpDetailsPanel, menuController)
+  
+  powerUpDetailsPanel.setPowerUpsGridPanel(powerUpsGridPanel)
 
   frame.setTitle("Menu")
   frame.add(virusPanel, BorderLayout.NORTH)
