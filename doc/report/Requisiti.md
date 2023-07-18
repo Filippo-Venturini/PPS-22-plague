@@ -80,7 +80,7 @@ Superata una determinata soglia di infezione, l'umanità inizia la ricerca di un
 
 - Il virus possiede le seguenti caratteristiche: 
   - **Cold regions infectivity**: determina la velocità di infezione del virus nelle regioni con clima freddo.
-  - **Warm regions infectivity**: determina la velocità di infezione del virus nelle regioni con clima caldo.
+  - **Hot regions infectivity**: determina la velocità di infezione del virus nelle regioni con clima caldo.
   - **Low density regions infectivity**: determina la velocità di infezione del virus nelle regioni con bassa densità di popolazione.
   - **High density regions infectivity**: determina la velocità di infezione del virus nelle regioni con alta densità di popolazione.
   - **Rich regions infectivity**: determina la velocità di infezione del virus nelle regioni ricche.
@@ -96,16 +96,21 @@ Superata una determinata soglia di infezione, l'umanità inizia la ricerca di un
 - I potenziamenti sono organizzati in una gerarchia, alcuni sono acquistabili solamente dopo aver già acquisito quelli soprastanti.
 
 - Di seguito si elencano i potenziamenti disponibili:
-  - Resistenza al freddo I e II
-  - Resistenza al caldo I e II
-  - Resistenza batterica (contro tutti i climi)
-  - Abilitazione aeroporti
-  - Abilitazione porti
-  - Infezione attraverso animali (poco popolate)
-  - Infezione delle vie respiratorie (molto popolate)
-  - Resistenza ai medicinali (zone ricche)
-  - Infezione dell'acqua potabile (zone povere)
-  - Mutazioni spontanee (vaccino)
+  - **Cold Resistance I**: incrementa la **Cold regions infectivity** del virus.
+  - **Cold Resistance II**: incrementa la **Cold regions infectivity** del virus. Acquistabile solamente dopo **Cold Resistance I**
+  - **Hot Resistance I**: incrementa la **Hot regions infectivity** del virus.
+  - **Hot Resistance II**: incrementa la **Hot regions infectivity** del virus. Acquistabile solamente dopo **Hot Resistance I**
+  - **Bacterial Resistance**: incrementa la **Cold regions infectivity** e la **Hot regions infectivity** del virus. Acquistabile solamente dopo **Cold Resistance II** e **Hot Resistance II**
+  - **Port Enabled**: permette al virus di contagiare altri stati utilizzando i porti.
+  - **Airport Enabled**: permette al virus di contagiare altri stati utilizzando gli aeroporti.
+  - **Medicines Resistance**: incrementa la **Rich regions infectivity** del virus.
+  - **Infection through respiratory tract**: incrementa la **High density regions infectivity** del virus.
+  - **Infected Drinking Water**: incrementa la **Poor regions infectivity** del virus.
+  - **Infection throungh animals**: incrementa la **Low density regions infectivity** del virus. Acquistabile solamente dopo **Infected Drinking Water**
+  - **Alpha Mutations**: incrementa la **Vaccine Resistance** del virus.
+  - **Beta Mutations**: incrementa la **Vaccine Resistance** del virus. Acquistabile solamente dopo **Alpha Mutations**.
+  - **Gamma Mutations**: incrementa la **Vaccine Resistance** del virus. Acquistabile solamente dopo **Beta Mutations**.
+  - **Omega Mutations**: incrementa la **Vaccine Resistance** del virus. Acquistabile solamente dopo **Gamma Mutations**.
 
 
 #### Sviluppo del vaccino
