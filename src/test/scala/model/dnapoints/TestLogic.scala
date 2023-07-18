@@ -35,22 +35,22 @@ class TestLogic {
   @Test
   def testOnNewInfectedRegionsWithOneInfectedCountry(): Unit =
     val logic: SpawnPointLogic = OnNewInfectedRegionsLogic(world)
-    russia.numberOfInfected = 1
+    russia.infectedAmount = 1
     assertEquals(Set(russia), logic.evaluate())
 
   @Test
   def testOnNewInfectedRegionsWithMultipleInfectedCountries(): Unit =
     val logic: SpawnPointLogic = OnNewInfectedRegionsLogic(world)
-    russia.numberOfInfected = 1
-    usa.numberOfInfected = 100
+    russia.infectedAmount = 1
+    usa.infectedAmount = 100
     assertEquals(Set(russia, usa), logic.evaluate())
 
   @Test
   def testOnNewInfectedRegionsCountriesAreDetectedOnlyOnce(): Unit =
     val logic: SpawnPointLogic = OnNewInfectedRegionsLogic(world)
-    russia.numberOfInfected = 1
+    russia.infectedAmount = 1
     logic.evaluate()
-    russia.numberOfInfected = 100
+    russia.infectedAmount = 100
     assertEquals(Set(), logic.evaluate())
 
   @Test
@@ -61,23 +61,23 @@ class TestLogic {
 
   @Test
   def testEveryXSecondsWithOneInfectedCountry(): Unit =
-    russia.numberOfInfected = 1
+    russia.infectedAmount = 1
     val logic: SpawnPointLogic = EveryXSecondsLogic(world, refreshTime)
     Thread.sleep(refreshTime*1000)
     assertEquals(Set(russia), logic.evaluate())
 
   @Test
   def testEveryXSecondsWithMultipleInfectedCountries(): Unit =
-    russia.numberOfInfected = 1
-    usa.numberOfInfected = 1
+    russia.infectedAmount = 1
+    usa.infectedAmount = 1
     val logic: SpawnPointLogic = EveryXSecondsLogic(world, refreshTime)
     Thread.sleep(refreshTime*1000)
     assertFalse(logic.evaluate().intersect(Set(russia, usa)).isEmpty)
 
   @Test
   def testEveryXSecondsMultipleTimes(): Unit =
-    russia.numberOfInfected = 1
-    usa.numberOfInfected = 1
+    russia.infectedAmount = 1
+    usa.infectedAmount = 1
     val logic: SpawnPointLogic = EveryXSecondsLogic(world, refreshTime)
     for _ <- 0 to 5 do
       Thread.sleep(refreshTime*1000)
@@ -92,7 +92,7 @@ class TestLogic {
 
   @Test
   def testBasicLogicWithOneInfectedCountry(): Unit =
-    russia.numberOfInfected = 1
+    russia.infectedAmount = 1
     val logic: SpawnPointLogic = BasicLogic(world, refreshTime)
     assertEquals(Set(russia), logic.evaluate())
     Thread.sleep(refreshTime*1000)
@@ -101,10 +101,10 @@ class TestLogic {
 
   @Test
   def testBasicLogicWithMultipleInfectedCountry(): Unit =
-    russia.numberOfInfected = 1
+    russia.infectedAmount = 1
     val logic: SpawnPointLogic = BasicLogic(world, refreshTime)
     logic.evaluate()
-    usa.numberOfInfected = 1
+    usa.infectedAmount = 1
     assertEquals(Set(usa), logic.evaluate())
     Thread.sleep(refreshTime*1000)
     assertFalse(logic.evaluate().intersect(Set(russia, usa)).isEmpty)

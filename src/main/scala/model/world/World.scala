@@ -16,22 +16,22 @@ object Filters:
   /**
    * Filter for obtaining only the infected regions
    */
-  val infectedRegions: RegionFilter = region => region.numberOfInfected > 0
+  val infectedRegions: RegionFilter = region => region.infectedAmount > 0
 
   /**
    * Filter for obtaining only the regions not infected
    */
-  val notInfectedRegions: RegionFilter = region => region.numberOfInfected == 0
+  val notInfectedRegions: RegionFilter = region => region.infectedAmount == 0
 
   /**
    * Filter for obtaining all the regions completely infected
    */
-  val totallyInfectedRegions: RegionFilter = region => region.numberOfInfected == region.population
+  val totallyInfectedRegions: RegionFilter = region => region.infectedAmount == region.population
 
   /**
    * Filter for obtaining all the regions infected but not completely
    */
-  val infectedButNotCompletelyRegions: RegionFilter = region => region.numberOfInfected > 0 && region.numberOfInfected < region.population
+  val infectedButNotCompletelyRegions: RegionFilter = region => region.infectedAmount > 0 && region.infectedAmount < region.population
 
 /**
  * A class that represent the world

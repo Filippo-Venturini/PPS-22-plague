@@ -27,7 +27,7 @@ class GameEngine(val gameModel: GameModel):
   def isWon: Boolean = this.getWorldInfectionPercentage >= 100.0 && this.gameModel.vaccineHandler.vaccineProgression < 100.0
 
   def start(): Unit =
-    gameModel.world.getRegion("Europe").get.numberOfInfected = 1
+    gameModel.world.getRegion("Europe").get.infectedAmount = 1
     gameLoop()
 
   private def gameLoop(): Unit =
@@ -55,6 +55,6 @@ class GameEngine(val gameModel: GameModel):
   def loadMenu(): Unit = new MenuView(new MenuController(gameModel))
   def loadStartMenu(): Unit = new StartMenuView(new StartMenuController(gameModel))
   def getWorldPopulation: Long = this.gameModel.world.getRegions.foldRight(0L)((region, population) => population + region.population)
-  def getWorldInfectedAmount: Long = this.gameModel.world.getRegions(using infectedRegions).foldRight(0L)((region, infectedAmount) => infectedAmount + region.numberOfInfected.toLong)
+  def getWorldInfectedAmount: Long = this.gameModel.world.getRegions(using infectedRegions).foldRight(0L)((region, infectedAmount) => infectedAmount + region.infectedAmount.toLong)
   def getWorldInfectionPercentage: Double = 100.0 * this.getWorldInfectedAmount / this.getWorldPopulation
   def getVaccineProgression: Double = this.gameModel.vaccineHandler.vaccineProgression

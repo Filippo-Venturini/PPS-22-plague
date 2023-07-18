@@ -54,8 +54,8 @@ class InternalInfectionLogic extends InfectionLogic:
    * Increase the infected amount for a specific factor
    */
   override def compute(region: Region, virus: Virus): Unit =
-    region.numberOfInfected = min(region.numberOfInfected + (getVirusInfectionRate(region, virus) * region.numberOfInfected *
-      getInfectionFactor(100*region.numberOfInfected.toFloat / region.population)), region.population)
+    region.infectedAmount = min(region.infectedAmount + (getVirusInfectionRate(region, virus) * region.infectedAmount *
+      getInfectionFactor(100*region.infectedAmount.toFloat / region.population)), region.population)
 
 
 
@@ -66,7 +66,7 @@ class ExternalInfectionLogic extends InfectionLogic:
   def getExternalInfectionIndex(infectedRegion: Region, regionToInfect: Region): Double =
     val normalizedGlobalization: Double = normalize(infectedRegion.globalization, -4, 7)
     val normalizedBorderControl = normalize(5 - regionToInfect.bordersControl + 1, -4, 7)
-    val infectedPercentage: Double = normalize(infectedRegion.numberOfInfected, 0, infectedRegion.population)
+    val infectedPercentage: Double = normalize(infectedRegion.infectedAmount, 0, infectedRegion.population)
     //println(infectedPercentage)
     //println(normalizedGlobalization)
     //println(normalizedBorderControl)
