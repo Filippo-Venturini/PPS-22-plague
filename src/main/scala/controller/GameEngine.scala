@@ -22,7 +22,7 @@ class GameEngine(val gameModel: GameModel):
   private val refreshTime: Int = 5//300
   private var gameView: GameView = null
   var days: Int = 1
-  
+
   def isLost: Boolean = this.getWorldInfectionPercentage < 100.0 && this.gameModel.vaccineHandler.vaccineProgression >= 100.0
   def isWon: Boolean = this.getWorldInfectionPercentage >= 100.0 && this.gameModel.vaccineHandler.vaccineProgression < 100.0
 
@@ -40,14 +40,14 @@ class GameEngine(val gameModel: GameModel):
     days = days + 1
 
     if isLost then
-      println("PERSO")
+      this.gameView.showLostMessageDialog()
     else if isWon then
       println("VINTO")
     else
       if (System.currentTimeMillis() - startTime) < refreshTime then Thread.sleep(refreshTime - (System.currentTimeMillis() - startTime))
       gameLoop()
 
-  def setGameView(gameView: GameView): Unit = 
+  def setGameView(gameView: GameView): Unit =
     this.gameView = gameView
     gameModel.dnaPointsHandler.addObserver(gameView)
   def getRegions: List[Region] = this.gameModel.world.getRegions
