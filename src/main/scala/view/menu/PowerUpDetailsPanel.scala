@@ -72,5 +72,3 @@ class PowerUpDetailsPanel(val virusPanel: VirusPanel, val menuController: MenuCo
     this.powerUpEffectLabel.setText(powerUp.powerUpType.information.effect)
     this.powerUpDescriptionLabel.setText(powerUp.powerUpType.information.description)
     this.buyButton.setEnabled(this.menuController.getCollectedDNAPoints >= powerUp.powerUpType.price && !powerUp.hasBeenBought && arePrerequisiteSatisfied)
-
-
