@@ -22,7 +22,7 @@ class VirusPanel(var virusConfiguration: VirusConfiguration) extends JPanel:
   private val airPortEnabledLabel: JLabel = new JLabel("Airport Enabled: " + virusConfiguration.airportEnabled)
 
   this.setLayout(new GridLayout(0, 3))
-  this.setBorder(new EmptyBorder(20, 300, 20, 10))
+  this.setBorder(new EmptyBorder(20, 300, 20, 200))
   this.setBackground(new Color(217, 217, 217))
   this.virusNameLabel.setFont(this.titleFont)
 
