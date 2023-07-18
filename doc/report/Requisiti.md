@@ -18,7 +18,7 @@ Ogni stato presenta varie caratteristiche che rispecchiano il mondo reale e infl
 
 ### Potenziamenti virus
 
-Il virus possiede varie caratteristiche che ne determinano la velocità di diffusione, che può essere differente in base alle caratteristiche dello stato che sta cercando di infettare. Queste caratteristiche possono essere migliorate acquistando dei potenziamenti attraverso "Punti Evoluzione" collezionabili.
+Il virus possiede varie caratteristiche che ne determinano la velocità di diffusione, che può essere differente in base alle caratteristiche dello stato che sta cercando di infettare. Queste caratteristiche possono essere migliorate acquistando dei potenziamenti attraverso "DNA Points" collezionabili.
 
 ### Diffusione virus
 
@@ -44,7 +44,7 @@ Superata una determinata soglia di infezione, l'umanità inizia la ricerca di un
 
 - Può essere visualizzato lo stato di avanzamento della ricerca del vaccino.
 
-- L'utente ha la possibilità di aprire un menu per l'acquisto dei potenziamenti del virus tramite i "Punti Evoluzione" collezionati. 
+- L'utente ha la possibilità di aprire un menu per l'acquisto dei potenziamenti del virus tramite i "DNA Points" collezionati. 
 
 - L'utente può visualizzare l'avanzamento dei giorni dell'anno durante l'evoluzione della partita.
 
@@ -54,11 +54,11 @@ Superata una determinata soglia di infezione, l'umanità inizia la ricerca di un
 
 - Ogni regione ha una determinata popolazione e un certo numero di infetti che inizialmente è pari a zero.
 - Ogni regione possiede una serie di caratteristiche:
-  -  **Richness**: indica il livello di ricchezza di una regione.
-  -  **Climate**: indica se il clima di una reigone è freddo, mite o caldo.
-  -  **Population density**: indica il livello della densità di popolazione della regione.
-  -  **Borders control**: riporta il controllo sui confini di una determinata regione, se alto risulta più difficile che avvenga l'infezione da parte di un altra regione.
-  -  **Globalization**: riporta il livello di tendenza agli spostamenti della popolazione della regione, se alto è più probabil ne infetti altre.
+  -  **Richness** [1-5]: indica il livello di ricchezza di una regione.
+  -  **Climate** [1-3]: indica se il clima di una reigone è freddo, mite o caldo.
+  -  **Population density** [1-5]: indica il livello della densità di popolazione della regione.
+  -  **Borders control** [1-5]: riporta il controllo sui confini di una determinata regione, se alto risulta più difficile che avvenga l'infezione da parte di un altra regione.
+  -  **Globalization** [1-5]: riporta il livello di tendenza agli spostamenti della popolazione della regione, se alto è più probabile ne infetti altre.
     
 - Ogni stato può confinare con altri stati.
 - Uno stato può possedere un porto e/o un aeroporto che permettono la trasmissione del virus a stati non direttamente confinanti.
@@ -80,7 +80,7 @@ Superata una determinata soglia di infezione, l'umanità inizia la ricerca di un
 
 - Il virus possiede le seguenti caratteristiche: 
   - **Cold regions infectivity**: determina la velocità di infezione del virus nelle regioni con clima freddo.
-  - **Warm regions infectivity**: determina la velocità di infezione del virus nelle regioni con clima caldo.
+  - **Hot regions infectivity**: determina la velocità di infezione del virus nelle regioni con clima caldo.
   - **Low density regions infectivity**: determina la velocità di infezione del virus nelle regioni con bassa densità di popolazione.
   - **High density regions infectivity**: determina la velocità di infezione del virus nelle regioni con alta densità di popolazione.
   - **Rich regions infectivity**: determina la velocità di infezione del virus nelle regioni ricche.
@@ -91,21 +91,26 @@ Superata una determinata soglia di infezione, l'umanità inizia la ricerca di un
 
 #### Gestione potenziamenti
 
-- I potenziamenti acquistabili tramite "Punti Evoluzione" agiscono sulle caratteristiche del virus elencate precedentemente migliorandole.
+- I potenziamenti acquistabili tramite "DNA Points" agiscono sulle caratteristiche del virus elencate precedentemente migliorandole.
 
 - I potenziamenti sono organizzati in una gerarchia, alcuni sono acquistabili solamente dopo aver già acquisito quelli soprastanti.
 
 - Di seguito si elencano i potenziamenti disponibili:
-  - Resistenza al freddo I e II
-  - Resistenza al caldo I e II
-  - Resistenza batterica (contro tutti i climi)
-  - Abilitazione aeroporti
-  - Abilitazione porti
-  - Infezione attraverso animali (poco popolate)
-  - Infezione delle vie respiratorie (molto popolate)
-  - Resistenza ai medicinali (zone ricche)
-  - Infezione dell'acqua potabile (zone povere)
-  - Mutazioni spontanee (vaccino)
+  - **Cold Resistance I**: incrementa la **Cold regions infectivity** del virus.
+  - **Cold Resistance II**: incrementa la **Cold regions infectivity** del virus. Acquistabile solamente dopo **Cold Resistance I**
+  - **Hot Resistance I**: incrementa la **Hot regions infectivity** del virus.
+  - **Hot Resistance II**: incrementa la **Hot regions infectivity** del virus. Acquistabile solamente dopo **Hot Resistance I**
+  - **Bacterial Resistance**: incrementa la **Cold regions infectivity** e la **Hot regions infectivity** del virus. Acquistabile solamente dopo **Cold Resistance II** e **Hot Resistance II**
+  - **Port Enabled**: permette al virus di contagiare altri stati utilizzando i porti.
+  - **Airport Enabled**: permette al virus di contagiare altri stati utilizzando gli aeroporti.
+  - **Medicines Resistance**: incrementa la **Rich regions infectivity** del virus.
+  - **Infection through respiratory tract**: incrementa la **High density regions infectivity** del virus.
+  - **Infected Drinking Water**: incrementa la **Poor regions infectivity** del virus.
+  - **Infection throungh animals**: incrementa la **Low density regions infectivity** del virus. Acquistabile solamente dopo **Infected Drinking Water**
+  - **Alpha Mutations**: incrementa la **Vaccine Resistance** del virus.
+  - **Beta Mutations**: incrementa la **Vaccine Resistance** del virus. Acquistabile solamente dopo **Alpha Mutations**.
+  - **Gamma Mutations**: incrementa la **Vaccine Resistance** del virus. Acquistabile solamente dopo **Beta Mutations**.
+  - **Omega Mutations**: incrementa la **Vaccine Resistance** del virus. Acquistabile solamente dopo **Gamma Mutations**.
 
 
 #### Sviluppo del vaccino
