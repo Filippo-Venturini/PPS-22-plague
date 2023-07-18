@@ -18,7 +18,7 @@ Ogni stato presenta varie caratteristiche che rispecchiano il mondo reale e infl
 
 ### Potenziamenti virus
 
-Il virus possiede varie caratteristiche che ne determinano la velocità di diffusione, che può essere differente in base alle caratteristiche dello stato che sta cercando di infettare. Queste caratteristiche possono essere migliorate acquistando dei potenziamenti attraverso "Punti Evoluzione" collezionabili.
+Il virus possiede varie caratteristiche che ne determinano la velocità di diffusione, che può essere differente in base alle caratteristiche dello stato che sta cercando di infettare. Queste caratteristiche possono essere migliorate acquistando dei potenziamenti attraverso "DNA Points" collezionabili.
 
 ### Diffusione virus
 
@@ -44,7 +44,7 @@ Superata una determinata soglia di infezione, l'umanità inizia la ricerca di un
 
 - Può essere visualizzato lo stato di avanzamento della ricerca del vaccino.
 
-- L'utente ha la possibilità di aprire un menu per l'acquisto dei potenziamenti del virus tramite i "Punti Evoluzione" collezionati. 
+- L'utente ha la possibilità di aprire un menu per l'acquisto dei potenziamenti del virus tramite i "DNA Points" collezionati. 
 
 - L'utente può visualizzare l'avanzamento dei giorni dell'anno durante l'evoluzione della partita.
 
@@ -54,11 +54,11 @@ Superata una determinata soglia di infezione, l'umanità inizia la ricerca di un
 
 - Ogni regione ha una determinata popolazione e un certo numero di infetti che inizialmente è pari a zero.
 - Ogni regione possiede una serie di caratteristiche:
-  -  **Richness**: indica il livello di ricchezza di una regione.
-  -  **Climate**: indica se il clima di una reigone è freddo, mite o caldo.
-  -  **Population density**: indica il livello della densità di popolazione della regione.
-  -  **Borders control**: riporta il controllo sui confini di una determinata regione, se alto risulta più difficile che avvenga l'infezione da parte di un altra regione.
-  -  **Globalization**: riporta il livello di tendenza agli spostamenti della popolazione della regione, se alto è più probabil ne infetti altre.
+  -  **Richness** [1-5]: indica il livello di ricchezza di una regione.
+  -  **Climate** [1-3]: indica se il clima di una reigone è freddo, mite o caldo.
+  -  **Population density** [1-5]: indica il livello della densità di popolazione della regione.
+  -  **Borders control** [1-5]: riporta il controllo sui confini di una determinata regione, se alto risulta più difficile che avvenga l'infezione da parte di un altra regione.
+  -  **Globalization** [1-5]: riporta il livello di tendenza agli spostamenti della popolazione della regione, se alto è più probabile ne infetti altre.
     
 - Ogni stato può confinare con altri stati.
 - Uno stato può possedere un porto e/o un aeroporto che permettono la trasmissione del virus a stati non direttamente confinanti.
@@ -91,7 +91,7 @@ Superata una determinata soglia di infezione, l'umanità inizia la ricerca di un
 
 #### Gestione potenziamenti
 
-- I potenziamenti acquistabili tramite "Punti Evoluzione" agiscono sulle caratteristiche del virus elencate precedentemente migliorandole.
+- I potenziamenti acquistabili tramite "DNA Points" agiscono sulle caratteristiche del virus elencate precedentemente migliorandole.
 
 - I potenziamenti sono organizzati in una gerarchia, alcuni sono acquistabili solamente dopo aver già acquisito quelli soprastanti.
 
