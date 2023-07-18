@@ -20,9 +20,12 @@ type Position = (Int, Int)
 type Dimension = (Int, Int)
 
 class WorldMapPanel(val gameEngine: GameEngine, val regionsPanel: RegionsPanel) extends JPanel with MouseClickListener:
-  val mapImage: BufferedImage = ImageIO.read(getClass().getResource("/map.png"))
+  val mapImage: BufferedImage = ImageIO.read(getClass().getResource("/worldMap.png"))
+  val portAndAirportIcons: BufferedImage = ImageIO.read(getClass().getResource("/portAndAirportIcons.png"))
+  val portRoutes: BufferedImage = ImageIO.read(getClass().getResource("/portRoutes.png"))
   val regions: List[RegionIdentifier] = ConfigurationsLoader.load(RegionIdentifierFile(Loader.regionIdentifierFilePath))
   val pixelStep: Int = 10;
+  val dnaPointButtonsSize: Int = 30;
 
   this.setLayout(null)
   this.addMouseListener(this)
@@ -36,11 +39,13 @@ class WorldMapPanel(val gameEngine: GameEngine, val regionsPanel: RegionsPanel) 
   override def paintComponent(g: Graphics): Unit =
     super.paintComponent(g)
     g.drawImage(mapImage, 0, 0, null)
+    g.drawImage(portAndAirportIcons, 0, 0, null)
+    if false then g.drawImage(portRoutes, 0, 0, null)
 
   def showDnaPoint(dnaPoint: DnaPoint): Unit = regions.find(_.regionName == dnaPoint.regionName) match
     case Some(regionIdentifier) => colorsMap(regionIdentifier.identifier).getRandomElement() match
       case Some(pos) =>
-        this.add(DnaPointButton(dnaPoint, pos, (30, 30)))//TODO magicnumber
+        this.add(DnaPointButton(dnaPoint, pos, (dnaPointButtonsSize, dnaPointButtonsSize)))
         this.repaint()
         this.revalidate()
       case _ =>

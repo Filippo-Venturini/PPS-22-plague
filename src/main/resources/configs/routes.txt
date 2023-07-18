@@ -38,3 +38,4 @@ Europe,Greenland,Port
 Europe,China,Port
 Indonesia,Australia,Port
 South-Africa,Madagascar,Port
+Madagascar,Australia,Port
