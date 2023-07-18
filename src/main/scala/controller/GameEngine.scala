@@ -58,3 +58,5 @@ class GameEngine(val gameModel: GameModel):
   def getWorldInfectedAmount: Long = this.gameModel.world.getRegions(using infectedRegions).foldRight(0L)((region, infectedAmount) => infectedAmount + region.infectedAmount.toLong)
   def getWorldInfectionPercentage: Double = 100.0 * this.getWorldInfectedAmount / this.getWorldPopulation
   def getVaccineProgression: Double = this.gameModel.vaccineHandler.vaccineProgression
+  def arePortEnabled: Boolean = this.gameModel.virus.portEnabled
+  def areAirportEnabled: Boolean = this.gameModel.virus.airportEnabled

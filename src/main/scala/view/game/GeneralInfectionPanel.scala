@@ -5,7 +5,7 @@ import view.game.RegionsView.{DecimalProgressBar, RefreshablePanel}
 
 import java.awt.{Color, Dimension, Font}
 import javax.swing.border.EmptyBorder
-import javax.swing.{BoxLayout, JLabel, JPanel}
+import javax.swing.{BoxLayout, JComponent, JLabel, JPanel}
 
 class GeneralInfectionPanel(val gameEngine: GameEngine) extends RefreshablePanel:
   this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS))
@@ -28,6 +28,8 @@ class GeneralInfectionPanel(val gameEngine: GameEngine) extends RefreshablePanel
   this.add(worldInfectionProgressBar)
   this.add(vaccineTitleLabel)
   this.add(vaccineProgressBar)
+  
+  def addComponent(components: JComponent*): Unit = components.foreach(c => this.add(c))
 
   override def refresh(): Unit =
     this.infectedAmountLabel.setText("Infected Amount: " + String.format("%,d",this.gameEngine.getWorldInfectedAmount))
