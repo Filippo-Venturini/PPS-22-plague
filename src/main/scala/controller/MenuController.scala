@@ -14,12 +14,12 @@ class MenuController(val gameModel: GameModel):
   /**
    * @return the actual virus configuration
    */
-  def getVirusConfiguration(): VirusConfiguration = this.gameModel.virus.getActualConfiguration
+  def getVirusConfiguration: VirusConfiguration = this.gameModel.virus.getActualConfiguration
 
   /**
    * @return the complete list of all the power-ups
    */
-  def getPowerUps: List[PowerUp] = this.gameModel.powerUpManager.getAllPowerUps()
+  def getPowerUps: List[PowerUp] = this.gameModel.powerUpManager.getAllPowerUps
 
   /**
    * @param powerUpType the type of the power up requested
@@ -30,7 +30,7 @@ class MenuController(val gameModel: GameModel):
   /**
    * @return the total amount of collected DNA Points
    */
-  def getCollectedDNAPoints(): Int = this.gameModel.dnaPointsHandler.collectedPoints
+  def getCollectedDNAPoints: Int = this.gameModel.dnaPointsHandler.collectedPoints
 
   /**
    * @param powerUpType the type of the power up to purchase
@@ -38,6 +38,6 @@ class MenuController(val gameModel: GameModel):
   def purchasePowerUp(powerUpType: PowerUpType): Unit = this.gameModel.powerUpManager.purchasePowerUp(powerUpType)
 
   def powerUpsAvailableForPurchase(powerUp: PowerUp): Boolean=
-    this.gameModel.powerUpManager.getPrerequisiteSatisfiedPowerUps().contains(powerUp)
+    this.gameModel.powerUpManager.getPrerequisiteSatisfiedPowerUps.contains(powerUp)
   
-  def powerUpsAlreadyPurchasedPowerUps: List[PowerUp] = this.gameModel.powerUpManager.getPurchasedPowerUps()
+  def powerUpsAlreadyPurchasedPowerUps: List[PowerUp] = this.gameModel.powerUpManager.getPurchasedPowerUps
