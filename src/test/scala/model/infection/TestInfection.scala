@@ -17,14 +17,14 @@ class TestInfection {
     val testRegionConfiguration: RegionConfiguration = RegionConfiguration("Europe", 646_134_245, 5, 2, 5, 4, 4)
     val testRegion: Region = new BasicRegion(testRegionConfiguration)
 
-    testRegion.infectedAmount = 1
+    testRegion.numberOfInfected = 1
 
     val regions: List[Region] = List(testRegion)
     val infectionHandler: InfectionHandler = new InfectionHandler(virus, regions)
 
     infectionHandler.computeInfection(regions)
 
-    assert(testRegion.infectedAmount > 1)
+    assert(testRegion.numberOfInfected > 1)
 
 /*
   @Test

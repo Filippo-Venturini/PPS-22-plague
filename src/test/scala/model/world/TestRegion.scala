@@ -58,8 +58,8 @@ class TestRegion {
 
   @Test
   def testIncrementInfectAmount: Unit =
-    europe.infectedAmount = newInfectedAmount
-    assertTrue(Math.abs(europe.infectedAmount - newInfectedAmount) <= 0.01)
+    europe.numberOfInfected = newInfectedAmount
+    assertTrue(Math.abs(europe.numberOfInfected - newInfectedAmount) <= 0.01)
 
   @Test
   def testSortRegions: Unit =

@@ -15,8 +15,8 @@ class TestWorld {
 
   @Before
   def init(): Unit =
-    infectedRegion.infectedAmount = infectedAmount
-    totallyInfectedRegion.infectedAmount = totallyInfectedRegion.population
+    infectedRegion.numberOfInfected = infectedAmount
+    totallyInfectedRegion.numberOfInfected = totallyInfectedRegion.population
 
   @Test
   def testGetAllRegions(): Unit =
