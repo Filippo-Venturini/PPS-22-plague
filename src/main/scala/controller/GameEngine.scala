@@ -39,10 +39,11 @@ class GameEngine(val gameModel: GameModel):
     gameModel.vaccineHandler.computeResearchStep(this.getWorldInfectionPercentage)
     days = days + 1
 
+    println(this.getWorldInfectionPercentage)
     if isLost then
       this.gameView.showLostMessageDialog()
     else if isWon then
-      println("VINTO")
+      this.gameView.showWonMessageDialog()
     else
       if (System.currentTimeMillis() - startTime) < refreshTime then Thread.sleep(refreshTime - (System.currentTimeMillis() - startTime))
       gameLoop()
@@ -56,5 +57,5 @@ class GameEngine(val gameModel: GameModel):
   def loadStartMenu(): Unit = new StartMenuView(new StartMenuController(gameModel))
   def getWorldPopulation: Long = this.gameModel.world.getRegions.foldRight(0L)((region, population) => population + region.population)
   def getWorldInfectedAmount: Long = this.gameModel.world.getRegions(using infectedRegions).foldRight(0L)((region, infectedAmount) => infectedAmount + region.infectedAmount.toLong)
-  def getWorldInfectionPercentage: Double = 1.0 * this.getWorldInfectedAmount / this.getWorldPopulation
+  def getWorldInfectionPercentage: Double = 100.0 * this.getWorldInfectedAmount / this.getWorldPopulation
   def getVaccineProgression: Double = this.gameModel.vaccineHandler.vaccineProgression
