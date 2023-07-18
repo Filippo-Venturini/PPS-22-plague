@@ -15,11 +15,14 @@ import model.powerUp.PowerUpManager
 import model.dnapoints.DnaPoints.DnaPointSpawnObserver
 import view.menu.MenuView
 import model.vaccine.VaccineLogics.given
+import view.game.GameView
 import view.startMenu.StartMenuView
 
 class GameEngine(val gameModel: GameModel):
   private val refreshTime: Int = 5//300
-  var days: Int = 1;
+  private var gameView: GameView = null
+  var days: Int = 1
+  
   def isLost: Boolean = this.getWorldInfectionPercentage < 100.0 && this.gameModel.vaccineHandler.vaccineProgression >= 100.0
   def isWon: Boolean = this.getWorldInfectionPercentage >= 100.0 && this.gameModel.vaccineHandler.vaccineProgression < 100.0
 
@@ -44,8 +47,9 @@ class GameEngine(val gameModel: GameModel):
       if (System.currentTimeMillis() - startTime) < refreshTime then Thread.sleep(refreshTime - (System.currentTimeMillis() - startTime))
       gameLoop()
 
-  def addObserver(observer: DnaPointSpawnObserver): Unit =
-    gameModel.dnaPointsHandler.addObserver(observer)
+  def setGameView(gameView: GameView): Unit = 
+    this.gameView = gameView
+    gameModel.dnaPointsHandler.addObserver(gameView)
   def getRegions: List[Region] = this.gameModel.world.getRegions
   def getRegion(name: String): Option[Region] = this.gameModel.world.getRegion(name)
   def loadMenu(): Unit = new MenuView(new MenuController(gameModel))
