@@ -1,7 +1,7 @@
 package view.game
 
 import controller.{GameEngine, MenuController}
-import model.dnapoints.DnaPoints.DnaPointSpawnObserver
+import model.dnapoints.DnaPoints.{DnaPoint, DnaPointSpawnObserver}
 import view.game.RegionsView.{RegionsPanel, WrapWithScrollBar}
 import view.menu.MenuView
 
@@ -39,7 +39,7 @@ class GameView (val gameEngine: GameEngine) extends DnaPointSpawnObserver:
         }
     }.start()
 
-  override def onDnaPointSpawn(regionName: String): Unit = println("Dna point spawned in " + regionName)
+  override def onDnaPointSpawn(dnaPoint: DnaPoint): Unit = worldMapPanel.showDnaPoint(dnaPoint)
 
 class GameViewKeyListener(val gameEngine: GameEngine) extends KeyAdapter:
   override def keyPressed(evt :KeyEvent): Unit = evt match

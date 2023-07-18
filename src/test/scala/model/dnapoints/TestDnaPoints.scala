@@ -39,8 +39,8 @@ class TestDNAPoints {
   @Test
   def testDnaPointsSpawnObserver(): Unit =
     var spawnedPoints: Int = 0
-    dnaPointsHandler.addObserver(regionName => {
-      assertEquals(regionName, region.name)
+    dnaPointsHandler.addObserver(dnaPoint => {
+      assertEquals(region.name, dnaPoint.regionName)
       spawnedPoints = spawnedPoints+1
     })
     dnaPointsHandler.spawnDnaPoint(region).get.collect()
@@ -49,8 +49,8 @@ class TestDNAPoints {
   @Test
   def testCantSpawnDnaPointTwiceIfNotCollected(): Unit =
     var spawnedPoints: Int = 0
-    dnaPointsHandler.addObserver(regionName => {
-      assertEquals(regionName, region.name)
+    dnaPointsHandler.addObserver(dnaPoint => {
+      assertEquals(region.name, dnaPoint.regionName)
       spawnedPoints = spawnedPoints + 1
     })
     assertTrue(dnaPointsHandler.spawnDnaPoint(region).isDefined)
@@ -60,8 +60,8 @@ class TestDNAPoints {
   @Test
   def testCanSpawnDnaPointTwiceIfCollected(): Unit =
     var spawnedPoints: Int = 0
-    dnaPointsHandler.addObserver(regionName => {
-      assertEquals(regionName, region.name)
+    dnaPointsHandler.addObserver(dnaPoint => {
+      assertEquals(region.name, dnaPoint.regionName)
       spawnedPoints = spawnedPoints + 1
     })
     dnaPointsHandler.spawnDnaPoint(region).get.collect()
