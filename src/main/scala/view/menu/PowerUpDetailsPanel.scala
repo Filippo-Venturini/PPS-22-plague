@@ -9,27 +9,26 @@ import javax.swing.border.EmptyBorder
 import javax.swing.{BoxLayout, ImageIcon, JButton, JComponent, JLabel, JPanel}
 
 class PowerUpDetailsPanel(val virusPanel: VirusPanel, val menuController: MenuController) extends JPanel:
-  val titleFont: Font = new Font("Courier", Font.BOLD, 16)
-  this.setBackground(new Color(217,217,217))
-  this.setBorder(new EmptyBorder(20,300,20,300))
+  private val titleFont: Font = new Font("Courier", Font.BOLD, 16)
+  private val constraint: GridBagConstraints = new GridBagConstraints()
+  private val powerUpNameLabel: JLabel = new JLabel()
+  private val powerUpPriceLabel: JLabel = new JLabel()
+  private val DNAPointsLabel: JLabel = new JLabel("DNA Points collected: " + this.menuController.getCollectedDNAPoints)
+  private val powerUpEffectLabel: JLabel = new JLabel()
+  private val powerUpDescriptionLabel: JLabel = new JLabel()
+  private val buyImage: Image = ImageIO.read(getClass.getResource("/buyPowerUp.png"))
+  private val buyButton: JButton = new JButton()
+  private var powerUpShowed: PowerUp = _
+  private var powerUpsGridPanel: PowerUpsGridPanel = _
+  this.setBackground(new Color(217, 217, 217))
+  this.setBorder(new EmptyBorder(20, 300, 20, 300))
   this.setLayout(new GridBagLayout())
-  val constraint: GridBagConstraints = new GridBagConstraints()
   this.constraint.fill = GridBagConstraints.HORIZONTAL
-  var powerUpShowed: PowerUp = null
-  val powerUpNameLabel: JLabel = new JLabel()
-  val powerUpPriceLabel: JLabel = new JLabel()
-  val DNAPointsLabel: JLabel = new JLabel("DNA Points collected: " + this.menuController.getCollectedDNAPoints)
-  val powerUpEffectLabel: JLabel = new JLabel()
-  val powerUpDescriptionLabel: JLabel = new JLabel()
-  val buyImage: Image = ImageIO.read(getClass.getResource("/buyPowerUp.png"))
-  private var powerUpsGridPanel: PowerUpsGridPanel = null
-  def setPowerUpsGridPanel(powerUpsGridPanel: PowerUpsGridPanel): Unit = this.powerUpsGridPanel = powerUpsGridPanel
-  val buyButton: JButton = new JButton()
+  this.powerUpNameLabel.setFont(this.titleFont)
   buyButton.setIcon(new ImageIcon(buyImage))
   buyButton.setBackground(new Color(255,255,255))
   buyButton.setFocusPainted(false)
 
-  this.powerUpNameLabel.setFont(this.titleFont)
   this.constraint.gridx = 0
   this.constraint.gridy = 0
   this.constraint.gridwidth = 2
@@ -56,6 +55,8 @@ class PowerUpDetailsPanel(val virusPanel: VirusPanel, val menuController: MenuCo
   this.constraint.fill = GridBagConstraints.LINE_END
   this.constraint.anchor = GridBagConstraints.LINE_END
   this.add(buyButton, this.constraint)
+
+  def setPowerUpsGridPanel(powerUpsGridPanel: PowerUpsGridPanel): Unit = this.powerUpsGridPanel = powerUpsGridPanel
 
   this.buyButton.addActionListener(_ => {
     this.menuController.purchasePowerUp(this.powerUpShowed.powerUpType)
