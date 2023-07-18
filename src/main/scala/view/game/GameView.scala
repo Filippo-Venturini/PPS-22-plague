@@ -7,7 +7,7 @@ import view.menu.MenuView
 
 import java.awt.event.{KeyAdapter, KeyEvent}
 import java.awt.{BorderLayout, Color, Dimension, Frame, GridBagLayout, Toolkit}
-import javax.swing.{BoxLayout, JFrame, JPanel, JScrollPane, ScrollPaneConstants}
+import javax.swing.{BoxLayout, JFrame, JOptionPane, JPanel, JScrollPane, ScrollPaneConstants}
 
 class GameView (val gameEngine: GameEngine) extends DnaPointSpawnObserver:
   val frame = new JFrame()
@@ -40,6 +40,12 @@ class GameView (val gameEngine: GameEngine) extends DnaPointSpawnObserver:
     }.start()
 
   override def onDnaPointSpawn(dnaPoint: DnaPoint): Unit = worldMapPanel.showDnaPoint(dnaPoint)
+
+  def showLostMessageDialog(): Unit =
+    JOptionPane.showMessageDialog(frame, "The vaccine research is completed, you lost!", "You Lost", JOptionPane.WARNING_MESSAGE)
+
+  def showWonMessageDialog(): Unit =
+    JOptionPane.showMessageDialog(frame, "Your virus has infected the whole world, you won!", "You Won", JOptionPane.WARNING_MESSAGE)
 
 class GameViewKeyListener(val gameEngine: GameEngine) extends KeyAdapter:
   override def keyPressed(evt :KeyEvent): Unit = evt match

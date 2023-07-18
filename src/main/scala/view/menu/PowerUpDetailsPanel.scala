@@ -18,7 +18,7 @@ class PowerUpDetailsPanel(val virusPanel: VirusPanel, val menuController: MenuCo
   var powerUpShowed: PowerUp = null
   val powerUpNameLabel: JLabel = new JLabel()
   val powerUpPriceLabel: JLabel = new JLabel()
-  val DNAPointsLabel: JLabel = new JLabel("DNA Points collected: " + this.menuController.getCollectedDNAPoints())
+  val DNAPointsLabel: JLabel = new JLabel("DNA Points collected: " + this.menuController.getCollectedDNAPoints)
   val powerUpEffectLabel: JLabel = new JLabel()
   val powerUpDescriptionLabel: JLabel = new JLabel()
   val buyImage: Image = ImageIO.read(getClass.getResource("/buyPowerUp.png"))
@@ -59,9 +59,9 @@ class PowerUpDetailsPanel(val virusPanel: VirusPanel, val menuController: MenuCo
 
   this.buyButton.addActionListener(_ => {
     this.menuController.purchasePowerUp(this.powerUpShowed.powerUpType)
-    this.DNAPointsLabel.setText("DNA Points collected: " + this.menuController.getCollectedDNAPoints())
+    this.DNAPointsLabel.setText("DNA Points collected: " + this.menuController.getCollectedDNAPoints)
     this.buyButton.setEnabled(false)
-    this.virusPanel.refreshVirusCharacteristics(this.menuController.getVirusConfiguration())
+    this.virusPanel.refreshVirusCharacteristics(this.menuController.getVirusConfiguration)
     this.powerUpsGridPanel.refreshPowerUpGridPanel()
   })
 
@@ -71,6 +71,6 @@ class PowerUpDetailsPanel(val virusPanel: VirusPanel, val menuController: MenuCo
     this.powerUpPriceLabel.setText("Price: " + powerUp.powerUpType.price.toString)
     this.powerUpEffectLabel.setText(powerUp.powerUpType.information.effect)
     this.powerUpDescriptionLabel.setText(powerUp.powerUpType.information.description)
-    this.buyButton.setEnabled(this.menuController.getCollectedDNAPoints() >= powerUp.powerUpType.price && !powerUp.hasBeenBought && arePrerequisiteSatisfied)
+    this.buyButton.setEnabled(this.menuController.getCollectedDNAPoints >= powerUp.powerUpType.price && !powerUp.hasBeenBought && arePrerequisiteSatisfied)
 
 

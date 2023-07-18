@@ -16,7 +16,7 @@ abstract class Region extends Ordered[Region]:
   val populationDensity: PopulationDensity = regionConfiguration.populationDensity
   protected var borderingRegions: List[Region] = List()
   def infectedAmount: Double
-  def infectedAmount_= (newAmount: Double): Unit
+  def infectedAmount_=(newAmount: Double): Unit
 
   /**
    * @param borderingRegion a region that is directly connected by border

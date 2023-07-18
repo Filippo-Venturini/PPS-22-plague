@@ -11,6 +11,7 @@ import model.dnapoints.DnaPoints.DnaPoint
 
 import java.awt.event.{MouseEvent, MouseListener}
 import java.awt.image.{BufferedImage, DataBufferByte}
+import java.awt.{Color, Graphics, image}
 import java.awt.{Graphics, Image, image}
 import javax.imageio.ImageIO
 import javax.swing.{ImageIcon, JButton, JPanel}
@@ -23,10 +24,12 @@ class WorldMapPanel(val gameEngine: GameEngine, val regionsPanel: RegionsPanel) 
   val mapImage: BufferedImage = ImageIO.read(getClass().getResource("/worldMap.png"))
   val portAndAirportIcons: BufferedImage = ImageIO.read(getClass().getResource("/portAndAirportIcons.png"))
   val portRoutes: BufferedImage = ImageIO.read(getClass().getResource("/portRoutes.png"))
+  val airportRoutes: BufferedImage = ImageIO.read(getClass().getResource("/airportRoutes.png"))
   val regions: List[RegionIdentifier] = ConfigurationsLoader.load(RegionIdentifierFile(Loader.regionIdentifierFilePath))
   val pixelStep: Int = 10;
   val dnaPointButtonsSize: Int = 30;
 
+  this.setBackground(new Color(255,255,255))
   this.setLayout(null)
   this.addMouseListener(this)
 
@@ -40,7 +43,8 @@ class WorldMapPanel(val gameEngine: GameEngine, val regionsPanel: RegionsPanel) 
     super.paintComponent(g)
     g.drawImage(mapImage, 0, 0, null)
     g.drawImage(portAndAirportIcons, 0, 0, null)
-    if false then g.drawImage(portRoutes, 0, 0, null)
+    if gameEngine.arePortEnabled then g.drawImage(portRoutes, 0, 0, null)
+    if gameEngine.areAirportEnabled then g.drawImage(airportRoutes, 0, 0, null)
 
   def showDnaPoint(dnaPoint: DnaPoint): Unit = regions.find(_.regionName == dnaPoint.regionName) match
     case Some(regionIdentifier) => colorsMap(regionIdentifier.identifier).getRandomElement() match
@@ -67,7 +71,7 @@ extension(image: BufferedImage)
   def getHexCode(x: Int, y: Int): HexCode = "#" + image.getRGB(x, y).toHexString.substring(2).toUpperCase
 
 case class DnaPointButton(dnaPoint: DnaPoint, position: Position, dimension: Dimension) extends JButton:
-  val img: Image = ImageIO.read(getClass().getResource("/dnaPoint.png")).getScaledInstance(dimension._1, dimension._2, Image.SCALE_SMOOTH)
+  val img: Image = ImageIO.read(getClass().getResource("/dnaPointV2.png")).getScaledInstance(dimension._1, dimension._2, Image.SCALE_SMOOTH)
   this.setBounds(position._1-dimension._1/2, position._2-dimension._2/2, dimension._1, dimension._2)
   this.setOpaque(false)
   this.setContentAreaFilled(false)

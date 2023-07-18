@@ -4,8 +4,8 @@ import org.junit.Test
 import org.junit.Assert.{assertEquals, assertFalse, assertTrue}
 
 class TestBasicVaccineLogic {
-  val notEnoughInfectedPercentage: Double = 0.1
-  val enoughInfectedPercentage: Double = 0.25
+  val notEnoughInfectedPercentage: Double = 10.0 
+  val enoughInfectedPercentage: Double = 25.0
   val basicResearchFactor: Double = 1.0 / 3
   var vaccineProgression: Double = 0.0
   val vaccineLogic: VaccineLogic = new BasicVaccineLogic

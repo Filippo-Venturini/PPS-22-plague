@@ -6,8 +6,8 @@ import model.vaccine.VaccineLogics.given
 
 class TestVaccineHandler {
   val vaccineHandler: VaccineHandler = new VaccineHandler
-  val notEnoughInfectedPercentage: Double = 0.1
-  val enoughInfectedPercentage: Double = 0.25
+  val notEnoughInfectedPercentage: Double = 10.0
+  val enoughInfectedPercentage: Double = 20.0
   val basicVaccineLogicFactor: Double = 1.0 / 3
 
   @Test

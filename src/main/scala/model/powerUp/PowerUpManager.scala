@@ -15,12 +15,12 @@ class PowerUpManager(private val virus: Virus, private val dnaPointsHandler: Dna
   /**
    * @return all the PowerUps of the game
    */
-  def getAllPowerUps(): List[PowerUp] = this.powerUps
+  def getAllPowerUps: List[PowerUp] = this.powerUps
 
   /**
    * @return only the purchasable PowerUps basing on the hierarchy and the DNAPoint collected.
    */
-  def getPurchasablePowerUps(): List[PowerUp] =
+  def getPurchasablePowerUps: List[PowerUp] =
     this.powerUps
       .filter(!_.hasBeenBought)
       .filter(this.arePrerequisiteSatisfied)
@@ -29,7 +29,7 @@ class PowerUpManager(private val virus: Virus, private val dnaPointsHandler: Dna
   /**
    * @return only the PowerUps with prerequisite satisfied basing on the hierarchy.
    */
-  def getPrerequisiteSatisfiedPowerUps(): List[PowerUp] =
+  def getPrerequisiteSatisfiedPowerUps: List[PowerUp] =
     this.powerUps
       .filter(!_.hasBeenBought)
       .filter(this.arePrerequisiteSatisfied)
@@ -37,7 +37,7 @@ class PowerUpManager(private val virus: Virus, private val dnaPointsHandler: Dna
   /**
    * @return the list of the all the purchased PowerUps.
    */
-  def getPurchasedPowerUps(): List[PowerUp] = this.powerUps.filter(powerUp => powerUp.hasBeenBought)
+  def getPurchasedPowerUps: List[PowerUp] = this.powerUps.filter(powerUp => powerUp.hasBeenBought)
 
   /**
    * @param powerUpType the type of the PowerUp requested.
@@ -50,7 +50,7 @@ class PowerUpManager(private val virus: Virus, private val dnaPointsHandler: Dna
    * @param powerUpType the type of the PowerUp that is requested to buy.
    */
   def purchasePowerUp(powerUpType: PowerUpType): Unit =
-    this.getPurchasablePowerUps().find(powerUp => powerUp.powerUpType == powerUpType).get.hasBeenBought = true
+    this.getPurchasablePowerUps.find(powerUp => powerUp.powerUpType == powerUpType).get.hasBeenBought = true
     this.dnaPointsHandler.collectedPoints = this.dnaPointsHandler.collectedPoints - powerUpType.price
     this.virus.consumePowerUp(powerUpType.logic)
 

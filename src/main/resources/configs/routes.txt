@@ -21,12 +21,12 @@ India,China,Border
 India,Indonesia,Border
 China,Indonesia,Border
 #REACHABLE BY AIRPORT
-United States,Argentina,Airport
+United States,Russia,Airport
 United States,Australia,Airport
 United States,Europe,Airport
-Argentina,Russia,Airport
+Argentina,Australia,Airport
 Europe,China,Airport
-Europe,Japan,Airport
+Russia,Japan,Airport
 Europe,Russia,Airport
 China,Japan,Airport
 China,Australia,Airport
