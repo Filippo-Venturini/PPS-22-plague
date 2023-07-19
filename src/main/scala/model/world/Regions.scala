@@ -61,7 +61,8 @@ trait Port extends Region:
   /**
    *  @return the list of all the region reachable by adding also the ones reachable with port
    */
-  abstract override def getReachableRegions: List[ReachableRegion] = super.getReachableRegions ::: portRouteManager.getAllRoutesOf(this).map(route => (route.toRegion, route.reachableMode))
+  abstract override def getReachableRegions: List[ReachableRegion] =
+    super.getReachableRegions ::: portRouteManager.getAllRoutesOf(this).map(route => (route.toRegion, route.reachableMode))
 
 /**
  * Class that represent a region with a port
@@ -69,7 +70,8 @@ trait Port extends Region:
  * @param regionConfiguration the configuration that contains all the region's characteristics
  * @param portRouteManager the route manager responsible of handling the port's routes
  */
-class RegionWithPort(regionConfiguration: RegionConfiguration, override val portRouteManager: PortRouteManager) extends BasicRegion(regionConfiguration) with Port
+class RegionWithPort(regionConfiguration: RegionConfiguration,
+                     override val portRouteManager: PortRouteManager) extends BasicRegion(regionConfiguration) with Port
 
 /**
  * Mixin that add the possibility of having an airport
@@ -80,7 +82,8 @@ trait Airport extends Region:
   /**
    *  @return the list of all the region reachable by adding also the ones reachable with airport
    */
-  abstract override def getReachableRegions: List[ReachableRegion] = super.getReachableRegions ::: airportRouteManager.getAllRoutesOf(this).map(route => (route.toRegion, route.reachableMode))
+  abstract override def getReachableRegions: List[ReachableRegion] =
+    super.getReachableRegions ::: airportRouteManager.getAllRoutesOf(this).map(route => (route.toRegion, route.reachableMode))
 
 /**
  * Class that represent a region with an airport
@@ -88,7 +91,8 @@ trait Airport extends Region:
  * @param regionConfiguration the configuration that contains all the region's characteristics
  * @param airportRouteManager the route manager responsible of handling the airport's routes
  */
-class RegionWithAirport(regionConfiguration: RegionConfiguration, override val airportRouteManager: AirportRouteManager) extends BasicRegion(regionConfiguration) with Airport
+class RegionWithAirport(regionConfiguration: RegionConfiguration,
+                        override val airportRouteManager: AirportRouteManager) extends BasicRegion(regionConfiguration) with Airport
 
 /**
  * Class that represent a region with both an airport and a port
@@ -97,4 +101,6 @@ class RegionWithAirport(regionConfiguration: RegionConfiguration, override val a
  * @param airportRouteManager the route manager responsible of handling the airport's routes
  * @param portRouteManager the route manager responsible of handling the port's routes
  */
-class RegionWithAirportAndPort(regionConfiguration: RegionConfiguration, override val airportRouteManager: AirportRouteManager, override val portRouteManager: PortRouteManager) extends BasicRegion(regionConfiguration) with Airport with Port
+class RegionWithAirportAndPort(regionConfiguration: RegionConfiguration,
+                               override val airportRouteManager: AirportRouteManager,
+                               override val portRouteManager: PortRouteManager) extends BasicRegion(regionConfiguration) with Airport with Port
