@@ -162,5 +162,30 @@ class TestRegionBuilder {
     assertTrue(regionBuilder.build().get.isInstanceOf[RegionWithAirportAndPort])
   }
 
+  @Test
+  def testRichnessOverMax(): Unit = {
+    assertEquals(None, regionBuilder.setRichness(maxRichnessValue+1).richness)
+  }
+
+  @Test
+  def testClimateOverMax(): Unit = {
+    assertEquals(None, regionBuilder.setClimate(maxClimateValue + 1).climate)
+  }
+
+  @Test
+  def testPopulationDensityOverMax(): Unit = {
+    assertEquals(None, regionBuilder.setPopulationDensity(maxPopulationDensityValue + 1).populationDensity)
+  }
+
+  @Test
+  def testBordersControlOverMax(): Unit = {
+    assertEquals(None, regionBuilder.setBordersControl(maxBorderControlValue + 1).bordersControl)
+  }
+
+  @Test
+  def testGlobalizationOverMax(): Unit = {
+    assertEquals(None, regionBuilder.setGlobalization(maxGlobalizationValue + 1).globalization)
+  }
+
 }
 
