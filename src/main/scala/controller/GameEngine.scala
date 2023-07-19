@@ -20,6 +20,11 @@ import view.startMenu.StartMenuView
 
 import scala.annotation.tailrec
 
+/**
+ * Class that represent the main controller of the application, it contains the main loop
+ *
+ * @param gameModel : the reference to the game model
+ */
 class GameEngine(val gameModel: GameModel):
   private val refreshTime: Int = 50//300
   private var gameView: GameView = _
