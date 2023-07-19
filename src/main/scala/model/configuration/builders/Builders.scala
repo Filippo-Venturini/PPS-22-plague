@@ -4,75 +4,12 @@ import model.infection.{BasicVirus, Virus, VirusConfiguration}
 import model.world.RegionParameters.*
 import model.world.*
 
+trait ConfigurationBuilder[T]:
+  def build(): Option[T]
+
 object Builders:
-  trait ConfigurationBuilder
 
-  case class VirusBuilder(coldRegionsInfectivity: Option[ColdRegionsInfectivity],
-                          warmRegionsInfectivity: Option[WarmRegionsInfectivity],
-                          lowDensityRegionsInfectivity: Option[LowDensityRegionInfectivity],
-                          highDensityRegionsInfectivity: Option[HighDensityRegionsInfectivity],
-                          richRegionsInfectivity: Option[RichRegionsInfectivity],
-                          poorRegionsInfectivity: Option[PoorRegionsInfectivity],
-                          vaccineResistance: Option[VaccineResistance],
-                          airportEnabled: Option[AirportEnabled],
-                          portEnabled: Option[PortEnabled]) extends ConfigurationBuilder :
-    private def copy(coldRegionsInfectivity: Option[ColdRegionsInfectivity] = coldRegionsInfectivity,
-                     warmRegionsInfectivity: Option[WarmRegionsInfectivity] = warmRegionsInfectivity,
-                     lowDensityRegionsInfectivity: Option[LowDensityRegionInfectivity],
-                     highDensityRegionsInfectivity: Option[HighDensityRegionsInfectivity],
-                     richRegionsInfectivity: Option[RichRegionsInfectivity],
-                     poorRegionsInfectivity: Option[PoorRegionsInfectivity],
-                     vaccineResistance: Option[VaccineResistance],
-                     airportEnabled: Option[AirportEnabled],
-                     portEnabled: Option[PortEnabled]): VirusBuilder =
-      new VirusBuilder(coldRegionsInfectivity, warmRegionsInfectivity, lowDensityRegionsInfectivity, highDensityRegionsInfectivity,
-        richRegionsInfectivity, poorRegionsInfectivity, vaccineResistance, airportEnabled, portEnabled)
-
-    def setColdRegionInfectivity(coldRegionsInfectivity: ColdRegionsInfectivity): VirusBuilder =
-      copy(coldRegionsInfectivity = Some(coldRegionsInfectivity))
-
-    def setWarmRegionInfectivity(warmRegionsInfectivity: WarmRegionsInfectivity): VirusBuilder =
-      copy(warmRegionsInfectivity = Some(warmRegionsInfectivity))
-
-    def setLowDensityRegionsInfectivity(lowDensityRegionsInfectivity: LowDensityRegionInfectivity): VirusBuilder =
-      copy(lowDensityRegionsInfectivity = Some(lowDensityRegionsInfectivity))
-
-    def setHighDensityRegionsInfectivity(highDensityRegionsInfectivity: HighDensityRegionsInfectivity): VirusBuilder =
-      copy(highDensityRegionsInfectivity = Some(highDensityRegionsInfectivity))
-
-    def setRichRegionsInfectivity(richRegionsInfectivity: RichRegionsInfectivity): VirusBuilder =
-      copy(richRegionsInfectivity = Some(richRegionsInfectivity))
-
-    def setPoorRegionsInfectivity(poorRegionsInfectivity: PoorRegionsInfectivity): VirusBuilder =
-      copy(poorRegionsInfectivity = Some(poorRegionsInfectivity))
-
-    def setVaccineResistance(vaccineResistance: VaccineResistance): VirusBuilder =
-      copy(vaccineResistance = Some(vaccineResistance))
-
-    def setAirportEnabled(airportEnabled: AirportEnabled): VirusBuilder =
-      copy(airportEnabled = Some(airportEnabled))
-
-    def setPortEnabled(portEnabled: PortEnabled): VirusBuilder =
-      copy(portEnabled = Some(portEnabled))
-
-    def build(): Option[Virus] = this match
-      case VirusBuilder(Some(_), Some(_), Some(_), Some(_), Some(_), Some(_), Some(_), Some(_), Some(_)) =>
-        Some(new BasicVirus(VirusConfiguration(
-          "",
-          coldRegionsInfectivity.get,
-          warmRegionsInfectivity.get,
-          lowDensityRegionsInfectivity.get,
-          highDensityRegionsInfectivity.get,
-          richRegionsInfectivity.get,
-          poorRegionsInfectivity.get,
-          vaccineResistance.get,
-          airportEnabled.get,
-          portEnabled.get
-        )))
-      case _ => None
-
-  object VirusBuilder:
-    def apply() = new VirusBuilder(None, None, None, None, None, None, None, None, None)
+  
 
   case class RawRoute(nameRegion1: String, nameRegion2: String, reachableMode: ReachableMode)
 

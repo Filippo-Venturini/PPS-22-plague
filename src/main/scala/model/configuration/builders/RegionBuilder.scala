@@ -1,9 +1,22 @@
 package model.configuration.builders
 
-import model.configuration.builders.Builders.ConfigurationBuilder
+import model.configuration.builders.ConfigurationBuilder
 import model.world.{AirportRouteManager, PortRouteManager, BasicRegion, Region, RegionWithAirport, RegionWithAirportAndPort, RegionWithPort}
 import model.world.RegionParameters.*
 
+/**
+ * an object that allows to easily create a Region using the builder pattern
+ * @param name the name of the region as optional
+ * @param population the population of the region as optional
+ * @param richness the richnes of the region as optional
+ * @param climate the climate of the region as optional
+ * @param bordersControl the bordersControl of the region as optional
+ * @param globalization the globalization of the region as optional
+ * @param populationDensity the population density of the region as optional
+ * @param borderingRegionsIds the bordering regions' names of the region
+ * @param hasAirport true if the region should have an airport
+ * @param hasPort true if the region should have a port
+ */
 case class RegionBuilder private (name: Option[Name],
                          population: Option[Population],
                          richness: Option[Richness],
@@ -13,7 +26,7 @@ case class RegionBuilder private (name: Option[Name],
                          populationDensity: Option[PopulationDensity],
                          borderingRegionsIds: List[Name],
                          hasAirport: Boolean,
-                         hasPort: Boolean) extends ConfigurationBuilder :
+                         hasPort: Boolean) extends ConfigurationBuilder[Region]:
   private def copy(name: Option[Name] = name,
                    population: Option[Population] = population,
                    richness: Option[Richness] = richness,
@@ -118,7 +131,7 @@ case class RegionBuilder private (name: Option[Name],
    *  - a new RegionWithAirport if hasAirport has been set and hasPort has not
    *  - a new RegionWithAirportAndPort if both hasAirport and hasPort fields have been set
    */
-  def build(): Option[Region] = this match
+  override def build(): Option[Region] = this match
     case RegionBuilder(Some(_), Some(_), Some(_), Some(_), Some(_), Some(_), Some(_), _, false, false) =>
       Some(new BasicRegion(RegionConfiguration(name.get, population.get, richness.get, climate.get, bordersControl.get, globalization.get, populationDensity.get)))
     case RegionBuilder(Some(_), Some(_), Some(_), Some(_), Some(_), Some(_), Some(_), _, true, false) =>
@@ -129,6 +142,9 @@ case class RegionBuilder private (name: Option[Name],
       Some(new RegionWithAirportAndPort(RegionConfiguration(name.get, population.get, richness.get, climate.get, bordersControl.get, globalization.get, populationDensity.get), AirportRouteManager(), PortRouteManager()))
     case _ => None
 
+/**
+ * an object that allows to easily create a Region using the builder pattern
+ */
 object RegionBuilder:
   /**
    * @return a RegionBuilder with all the fields unset by default
