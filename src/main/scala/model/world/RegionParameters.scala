@@ -11,7 +11,10 @@ object RegionParameters :
   type BordersControl = Int
   type Globalization = Int
   type PopulationDensity = Int
-  
+
+  /**
+   * max value that richness can assume
+   */
   val maxRichnessValue: Richness = 5
   val maxClimateValue: Climate = 3
   val maxBorderControlValue: BordersControl = 5

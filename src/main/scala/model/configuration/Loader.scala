@@ -1,7 +1,7 @@
 package model.configuration
 
 import Parsers.Parser
-import model.configuration.Builders.{RawRoute, RegionIdentifier}
+import model.configuration.builders.Builders.{RawRoute, RegionIdentifier}
 import model.configuration.Loader.RegionFile
 import model.configuration.Parsers.RawRoute.RawRouteParser
 import model.configuration.Parsers.Region.RegionParser

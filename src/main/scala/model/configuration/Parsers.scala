@@ -1,6 +1,6 @@
 package model.configuration
 
-import model.configuration.Builders.{RawRoute, RawRouteBuilder, RegionBuilder, RegionIdentifier, RegionIdentifierBuilder, VirusBuilder}
+import model.configuration.builders.Builders.{RawRoute, RawRouteBuilder, RegionBuilder, RegionIdentifier, RegionIdentifierBuilder, VirusBuilder}
 import model.world.Region
 import model.world.RegionParameters.*
 import model.configuration.Parsers.Cast.*

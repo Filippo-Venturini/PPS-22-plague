@@ -1,6 +1,6 @@
 package model.configuration
 
-import model.configuration.Builders.{RawRoute, RegionIdentifier}
+import model.configuration.builders.Builders.{RawRoute, RegionIdentifier}
 import model.configuration.Parsers.RawRoute.RawRouteParser
 import model.configuration.Parsers.Region.RegionParser
 import model.configuration.Parsers.RegionIdentifier.RegionIdentifierParser

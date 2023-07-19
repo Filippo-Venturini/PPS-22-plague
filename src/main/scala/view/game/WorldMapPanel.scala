@@ -2,11 +2,11 @@ package view.game
 
 import utils.Iterables.getRandomElement
 import controller.GameEngine
-import model.configuration.Builders.RegionIdentifier
+import model.configuration.builders.Builders.RegionIdentifier
 import model.configuration.Loader
 import model.configuration.Loader.{ConfigurationsLoader, RegionIdentifierFile, regionIdentifierFilePath}
 import view.game.RegionsView.RegionsPanel
-import model.configuration.Loader.ConfigurationsLoader.given
+import model.configuration.Loader.ConfigurationsLoader.`given`
 import model.dnapoints.DnaPoints.DnaPoint
 
 import java.awt.event.{MouseEvent, MouseListener}

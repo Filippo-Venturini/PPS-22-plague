@@ -1,14 +1,14 @@
 package model.configuration
 
-import model.configuration.Builders.RegionIdentifier
+import model.configuration.builders.Builders.RegionIdentifier
 import org.junit.Test
 import org.junit.Assert.{assertEquals, assertFalse, assertTrue}
 import org.junit.{Before, Test}
 import model.configuration.Loader.{ConfigurationsLoader, File, RegionFile, RouteFile, VirusFile, regionFilePath}
 import model.configuration.Parsers.Region.RegionParser
-import model.configuration.Loader.ConfigurationsLoader.given
+import model.configuration.Loader.ConfigurationsLoader.`given`
 import model.world.{AirportRouteManager, PortRouteManager, World}
-import model.world.Filters.given
+import model.world.Filters.`given`
 import model.world.RegionParameters.ReachableMode
 
 class TestConfigurationsLoader:

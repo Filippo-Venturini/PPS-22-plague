@@ -1,6 +1,6 @@
 package model.configuration
 
-import model.configuration.Builders.VirusBuilder
+import model.configuration.builders.Builders.VirusBuilder
 import model.infection.VirusConfiguration
 import org.junit.Assert.{assertEquals, assertTrue}
 import org.junit.{Before, Test}

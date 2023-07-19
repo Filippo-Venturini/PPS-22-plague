@@ -1,6 +1,6 @@
 package model.configuration
 
-import model.configuration.Builders.{RawRouteBuilder, RawRoute}
+import model.configuration.builders.Builders.{RawRouteBuilder, RawRoute}
 import model.world.RegionParameters.ReachableMode
 import org.junit.Assert.*
 import org.junit.*
