@@ -43,7 +43,7 @@ class GameEngine(val gameModel: GameModel):
     gameModel.infectionHandler.computeInfection(gameModel.world.getRegions(using infectedRegions))
     gameModel.infectionHandler.computeInfection(gameModel.world.getRegions(using infectedRegions))(using new ExternalInfectionLogic())
     gameModel.dnaPointsHandler.computeDnaPointSpawn()
-    //gameModel.vaccineHandler.computeResearchStep(this.getWorldInfectionPercentage)
+    gameModel.vaccineHandler.computeResearchStep(this.getWorldInfectionPercentage)
     days = days + 1
 
     if isLost then

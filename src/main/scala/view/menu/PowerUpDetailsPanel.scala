@@ -8,6 +8,12 @@ import javax.imageio.ImageIO
 import javax.swing.border.EmptyBorder
 import javax.swing.{BoxLayout, ImageIcon, JButton, JComponent, JLabel, JPanel}
 
+/**
+ * Class that represent the panel that shows the details about power ups
+ *
+ * @param virusPanel : the reference to the virus panel for refreshing it's statistics
+ * @param menuController : the reference to the menu controller
+ */
 class PowerUpDetailsPanel(val virusPanel: VirusPanel, val menuController: MenuController) extends JPanel:
   private val titleFont: Font = new Font("Courier", Font.BOLD, 16)
   private val constraint: GridBagConstraints = new GridBagConstraints()
@@ -56,6 +62,9 @@ class PowerUpDetailsPanel(val virusPanel: VirusPanel, val menuController: MenuCo
   this.constraint.anchor = GridBagConstraints.LINE_END
   this.add(buyButton, this.constraint)
 
+  /**
+   * @param powerUpsGridPanel : the reference of the panel that contains the power up grid
+   */
   def setPowerUpsGridPanel(powerUpsGridPanel: PowerUpsGridPanel): Unit = this.powerUpsGridPanel = powerUpsGridPanel
 
   this.buyButton.addActionListener(_ => {
@@ -66,6 +75,12 @@ class PowerUpDetailsPanel(val virusPanel: VirusPanel, val menuController: MenuCo
     this.powerUpsGridPanel.refreshPowerUpGridPanel()
   })
 
+  /**
+   * It refresh the panel updating all the power up's informations
+   *
+   * @param powerUp : the power up to be shown
+   * @param arePrerequisiteSatisfied : true if the prerequisite for the purchasing are satisfied
+   */
   def refreshPowerUpInformation(powerUp: PowerUp, arePrerequisiteSatisfied: Boolean): Unit =
     this.powerUpShowed = powerUp
     this.powerUpNameLabel.setText(powerUp.powerUpType.toString)

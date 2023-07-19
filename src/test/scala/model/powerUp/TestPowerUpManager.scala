@@ -40,12 +40,12 @@ class TestPowerUpManager {
     assertEquals(PowerUpType.values.filter(p => p.prerequisite.isEmpty).toList, powerUpManager.getPurchasablePowerUps.map(p => p.powerUpType))
 
   @Test
-  def testPurchaseAvailablePowerUp: Unit =
+  def testPurchaseAvailablePowerUp(): Unit =
     powerUpManager.purchasePowerUp(PowerUpType.ColdResistanceI)
     assertTrue(powerUpManager.getPowerUp(PowerUpType.ColdResistanceI).get.hasBeenBought)
 
   @Test
-  def testGetPurchasedPowerUps: Unit =
+  def testGetPurchasedPowerUps(): Unit =
     powerUpManager.purchasePowerUp(PowerUpType.ColdResistanceI)
     powerUpManager.purchasePowerUp(PowerUpType.AirportEnablement)
     powerUpManager.purchasePowerUp(PowerUpType.PortEnablement)
