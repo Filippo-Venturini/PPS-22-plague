@@ -17,7 +17,7 @@ class TestRegion {
   var northAfrica: Region = new RegionWithAirport(northAfricaConfiguration, airportRouteManager)
   var southAfrica: Region = new RegionWithAirportAndPort(northAfricaConfiguration, airportRouteManager, portRouteManager)
 
-  def configureWorld: Unit =
+  def configureWorld(): Unit =
     europe.addBorderingRegion(russia)
     russia.addBorderingRegion(europe)
     northAfrica.addBorderingRegion(southAfrica)
@@ -29,81 +29,81 @@ class TestRegion {
     airportRouteManager.addRoute(southAfrica, australia)
 
   @Test
-  def testRegionName: Unit =
+  def testRegionName(): Unit =
     assertEquals(europeConfiguration.name, europe.name)
 
   @Test
-  def testRegionPopulation: Unit =
+  def testRegionPopulation(): Unit =
     assertEquals(europeConfiguration.population, europe.population)
 
   @Test
-  def testRegionRichness: Unit =
+  def testRegionRichness(): Unit =
     assertEquals(europeConfiguration.richness, europe.richness)
 
   @Test
-  def testRegionClimate: Unit =
+  def testRegionClimate(): Unit =
     assertEquals(europeConfiguration.climate, europe.climate)
 
   @Test
-  def testRegionBordersControl: Unit =
+  def testRegionBordersControl(): Unit =
     assertEquals(europeConfiguration.bordersControl, europe.bordersControl)
 
   @Test
-  def testRegionGlobalization: Unit =
+  def testRegionGlobalization(): Unit =
     assertEquals(europeConfiguration.globalization, europe.globalization)
 
   @Test
-  def testRegionPopulationDensity: Unit =
+  def testRegionPopulationDensity(): Unit =
     assertEquals(europeConfiguration.populationDensity, europe.populationDensity)
 
   @Test
-  def testIncrementInfectAmount: Unit =
+  def testIncrementInfectAmount(): Unit =
     europe.infectedAmount = newInfectedAmount
     assertTrue(Math.abs(europe.infectedAmount - newInfectedAmount) <= 0.01)
 
   @Test
-  def testSortRegions: Unit =
+  def testSortRegions(): Unit =
     val regions: List[Region] = List(unitedStates, europe, japan)
     assertEquals(List(europe, japan, unitedStates), regions.sorted)
 
   @Test
-  def testInitiallyEmptyBorderingRegions: Unit =
+  def testInitiallyEmptyBorderingRegions(): Unit =
     assertEquals(List(), europe.getReachableRegions)
 
   @Test
-  def testAddOneBorderingRegion: Unit =
+  def testAddOneBorderingRegion(): Unit =
     europe.addBorderingRegion(unitedStates)
     assertEquals(List((unitedStates, ReachableMode.Border)), europe.getReachableRegions)
 
   @Test
-  def testReachableRegionsByBorders: Unit =
+  def testReachableRegionsByBorders(): Unit =
     europe.addBorderingRegions(List(unitedStates, russia, japan))
     assertEquals(List((unitedStates, ReachableMode.Border), (russia, ReachableMode.Border), (japan, ReachableMode.Border)), europe.getReachableRegions)
 
   @Test
-  def testNotReachableRegionsByBorders: Unit =
+  def testNotReachableRegionsByBorders(): Unit =
     europe.addBorderingRegions(List(unitedStates, russia))
     assertFalse(europe.getReachableRegions.contains(japan))
 
   @Test
-  def testReachableRegionsByPort: Unit =
+  def testReachableRegionsByPort(): Unit =
     portRouteManager.addRoute(unitedStates, japan)
     assertEquals(List((japan, ReachableMode.Port)), unitedStates.getReachableRegions)
 
   @Test
-  def testReachableRegionsByAirport: Unit =
+  def testReachableRegionsByAirport(): Unit =
     airportRouteManager.addRoute(australia, northAfrica)
     assertEquals(List((northAfrica, ReachableMode.Airport)), australia.getReachableRegions)
 
   @Test
-  def testReachableRegionsByAirportAndPort: Unit =
+  def testReachableRegionsByAirportAndPort(): Unit =
     airportRouteManager.addRoute(southAfrica, northAfrica)
     portRouteManager.addRoute(southAfrica, japan)
     assertEquals(List((northAfrica, ReachableMode.Airport),(japan, ReachableMode.Port)), southAfrica.getReachableRegions)
 
   @Test
-  def testWorldConfiguration: Unit =
-    this.configureWorld
+  def testWorldConfiguration(): Unit =
+    this.configureWorld()
 
     assertEquals(List((russia, ReachableMode.Border)), europe.getReachableRegions)
     assertEquals(List((southAfrica, ReachableMode.Border), (australia, ReachableMode.Airport)), northAfrica.getReachableRegions)
