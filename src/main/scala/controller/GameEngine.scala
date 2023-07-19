@@ -14,7 +14,6 @@ import model.infection.InfectionLogics.given
 import model.powerUp.PowerUpManager
 import model.dnapoints.DnaPoints.DnaPointSpawnObserver
 import view.menu.MenuView
-import model.vaccine.VaccineLogics.given
 import view.game.GameView
 import view.startMenu.StartMenuView
 
