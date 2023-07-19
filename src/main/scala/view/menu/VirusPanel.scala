@@ -6,6 +6,11 @@ import java.awt.{Color, Font, GridLayout}
 import javax.swing.border.EmptyBorder
 import javax.swing.{JLabel, JPanel}
 
+/**
+ * Class that represent the panel that contains all the information about virus characteristics
+ * 
+ * @param virusConfiguration : the starting configuration of the virus
+ */
 class VirusPanel(var virusConfiguration: VirusConfiguration) extends JPanel:
   private val titleFont: Font = new Font("Courier", Font.BOLD, 16)
   private val firstEmptyLabel: JLabel = new JLabel()
@@ -30,8 +35,13 @@ class VirusPanel(var virusConfiguration: VirusConfiguration) extends JPanel:
     lowDensityRegionsInfectivityLabel, hotRegionsInfectivityLabel,richRegionsInfectivityLabel,
     highDensityRegionsInfectivityLabel,vaccineResistanceLabel,portEnabledLabel,airPortEnabledLabel)
 
-  def addLabels(labels: JLabel*): Unit = labels.foreach(l => this.add(l))
+  private def addLabels(labels: JLabel*): Unit = labels.foreach(l => this.add(l))
 
+  /**
+   * It refresh the information about the virus' characteristics
+   * 
+   * @param virusConfiguration : the actual virus configuration
+   */
   def refreshVirusCharacteristics(virusConfiguration: VirusConfiguration): Unit =
     this.coldRegionsInfectivityLabel.setText("Cold Regions Infectivity: " + virusConfiguration.coldRegionsInfectivity.toString)
     this.poorRegionsInfectivityLabel.setText("Poor Regions Infectivity: " + virusConfiguration.poorRegionsInfectivity.toString)
