@@ -26,7 +26,7 @@ import scala.annotation.tailrec
  * @param gameModel : the reference to the game model
  */
 class GameEngine(val gameModel: GameModel):
-  private val refreshTime: Int = 50//300
+  private val refreshTime: Int = 300//50//300//300
   private var gameView: GameView = _
   var days: Int = 1
 
@@ -34,6 +34,7 @@ class GameEngine(val gameModel: GameModel):
    * It start the infection and make the game loop start
    */
   def start(): Unit =
+    //gameModel.dnaPointsHandler.collectedPoints = 100
     gameModel.world.getRegion("Europe").get.infectedAmount = 1
     gameLoop()
 
