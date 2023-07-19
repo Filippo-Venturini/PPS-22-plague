@@ -34,10 +34,9 @@ abstract class RouteManager:
 trait PortRouteManager extends RouteManager:
   /**
    * @param region the region to be checked
-   * @tparam P check that the type of the region is allowed to have a port
    * @return true if the region has a port
    */
-  def hasPort[P <: Port](region: Region): Boolean
+  def hasPort(region: Region): Boolean
 
 /**
  * Companion Object that returns the singleton of the PortRouteManager
@@ -64,8 +63,9 @@ object PortRouteManager:
       case (fromRegion, toRegion) if this.hasPort(fromRegion) && this.hasPort(toRegion) => this.allRoutes = this.allRoutes :+ Route(fromRegion, toRegion, ReachableMode.Port)
       case _ =>
 
-    def hasPort[P <: Port](region: Region): Boolean = region match
-      case _ : P => true
+    def hasPort(region: Region): Boolean = region match
+      case _ : RegionWithPort => true
+      case _ : RegionWithAirportAndPort => true
       case _ => false
 
 /**
@@ -74,10 +74,9 @@ object PortRouteManager:
 trait AirportRouteManager extends RouteManager:
   /**
    * @param region the region to be checked
-   * @tparam A check that the type of the region is allowed to have an airport
    * @return true if the region has an airport
    */
-  def hasAirport[A <: Airport](region: Region): Boolean
+  def hasAirport(region: Region): Boolean
 
 /**
  * Companion Object that returns the singleton of the AirportRouteManager
@@ -103,6 +102,7 @@ object AirportRouteManager:
       case (fromRegion, toRegion) if this.hasAirport(fromRegion) && this.hasAirport(toRegion) => this.allRoutes = this.allRoutes :+ Route(fromRegion, toRegion, ReachableMode.Airport)
       case _ =>
 
-    def hasAirport[A <: Airport](region: Region): Boolean = region match
-      case _ : A => true
+    def hasAirport(region: Region): Boolean = region match
+      case _ : RegionWithAirport => true
+      case _ : RegionWithAirportAndPort => true
       case _ => false
