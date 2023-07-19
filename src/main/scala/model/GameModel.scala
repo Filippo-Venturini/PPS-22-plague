@@ -13,9 +13,10 @@ import model.world.Filters.given
  * Class that contains all the entities that are part of the Model of PlagueDotScala
  */
 class GameModel:
+  private val dnaPointSpawnTime: Int = 30
   val world: World = ConfigurationsLoader.loadWorld()
   val virus: Virus = ConfigurationsLoader.loadVirus().get
   val infectionHandler: InfectionHandler = new InfectionHandler(virus, world.getRegions)
   val vaccineHandler: VaccineHandler = new VaccineHandler
-  val dnaPointsHandler: DnaPointsHandler = DnaPointsHandler(BasicLogic(world, 60)) //TODO move 60 to a better place
+  val dnaPointsHandler: DnaPointsHandler = DnaPointsHandler(BasicLogic(world, dnaPointSpawnTime))
   val powerUpManager: PowerUpManager = new PowerUpManager(virus, dnaPointsHandler)
