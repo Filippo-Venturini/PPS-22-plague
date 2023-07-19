@@ -21,10 +21,10 @@ type Position = (Int, Int)
 type Dimension = (Int, Int)
 
 class WorldMapPanel(val gameEngine: GameEngine, val regionsPanel: RegionsPanel) extends JPanel with MouseClickListener:
-  val mapImage: BufferedImage = ImageIO.read(getClass().getResource("/worldMap.png"))
-  val portAndAirportIcons: BufferedImage = ImageIO.read(getClass().getResource("/portAndAirportIcons.png"))
-  val portRoutes: BufferedImage = ImageIO.read(getClass().getResource("/portRoutes.png"))
-  val airportRoutes: BufferedImage = ImageIO.read(getClass().getResource("/airportRoutes.png"))
+  val mapImage: BufferedImage = ImageIO.read(getClass().getResource("/images/worldMap.png"))
+  val portAndAirportIcons: BufferedImage = ImageIO.read(getClass().getResource("/images/portAndAirportIcons.png"))
+  val portRoutes: BufferedImage = ImageIO.read(getClass().getResource("/images/portRoutes.png"))
+  val airportRoutes: BufferedImage = ImageIO.read(getClass().getResource("/images/airportRoutes.png"))
   val regions: List[RegionIdentifier] = ConfigurationsLoader.load(RegionIdentifierFile(Loader.regionIdentifierFilePath))
   val pixelStep: Int = 10;
   val dnaPointButtonsSize: Int = 30;
@@ -42,9 +42,9 @@ class WorldMapPanel(val gameEngine: GameEngine, val regionsPanel: RegionsPanel) 
   override def paintComponent(g: Graphics): Unit =
     super.paintComponent(g)
     g.drawImage(mapImage, 0, 0, null)
-    g.drawImage(portAndAirportIcons, 0, 0, null)
     if gameEngine.arePortsEnabled then g.drawImage(portRoutes, 0, 0, null)
     if gameEngine.areAirportsEnabled then g.drawImage(airportRoutes, 0, 0, null)
+    g.drawImage(portAndAirportIcons, 0, 0, null)
 
   def showDnaPoint(dnaPoint: DnaPoint): Unit = regions.find(_.regionName == dnaPoint.regionName) match
     case Some(regionIdentifier) => colorsMap(regionIdentifier.identifier).getRandomElement() match
@@ -71,7 +71,7 @@ extension(image: BufferedImage)
   def getHexCode(x: Int, y: Int): HexCode = "#" + image.getRGB(x, y).toHexString.substring(2).toUpperCase
 
 case class DnaPointButton(dnaPoint: DnaPoint, position: Position, dimension: Dimension) extends JButton:
-  val img: Image = ImageIO.read(getClass().getResource("/dnaPointV2.png")).getScaledInstance(dimension._1, dimension._2, Image.SCALE_SMOOTH)
+  val img: Image = ImageIO.read(getClass().getResource("/images/dnaPointV2.png")).getScaledInstance(dimension._1, dimension._2, Image.SCALE_SMOOTH)
   this.setBounds(position._1-dimension._1/2, position._2-dimension._2/2, dimension._1, dimension._2)
   this.setOpaque(false)
   this.setContentAreaFilled(false)
