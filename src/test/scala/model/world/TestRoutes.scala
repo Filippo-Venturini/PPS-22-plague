@@ -19,49 +19,49 @@ class TestRoutes {
   val airportTestRoute: Route = Route(firstRegionWithAirport, secondRegionWithAirport, ReachableMode.Airport)
 
   @Test
-  def testFirstRegion: Unit =
+  def testFirstRegion(): Unit =
     assertEquals(firstBasicRegion, testRoute.fromRegion)
 
   @Test
-  def testSecondRegion: Unit =
+  def testSecondRegion(): Unit =
     assertEquals(secondRegionWithPort, testRoute.toRegion)
 
   @Test
-  def testPortRoute: Unit =
+  def testPortRoute(): Unit =
     assertEquals(ReachableMode.Port, portTestRoute.reachableMode)
 
   @Test
-  def testAirportRoute: Unit =
+  def testAirportRoute(): Unit =
     assertEquals(ReachableMode.Airport, airportTestRoute.reachableMode)
 
   @Test
-  def testAddPortRouteOfRegionWithoutPort: Unit =
+  def testAddPortRouteOfRegionWithoutPort(): Unit =
     portRouteManager.addRoute(firstBasicRegion, secondRegionWithPort)
     assertEquals(List(), portRouteManager.getAllRoutesOf(firstBasicRegion))
 
   @Test
-  def testAddOneRouteToPortRouteManager: Unit =
+  def testAddOneRouteToPortRouteManager(): Unit =
     portRouteManager.addRoute(firstRegionWithPort, regionWithAirportAndPort)
     assertEquals(List(Route(firstRegionWithPort, regionWithAirportAndPort, ReachableMode.Port)), portRouteManager.getAllRoutesOf(firstRegionWithPort))
 
   @Test
-  def testAddMultipleRouteToPortRouteManager: Unit =
+  def testAddMultipleRouteToPortRouteManager(): Unit =
     portRouteManager.addRoute(secondRegionWithPort, firstRegionWithPort)
     portRouteManager.addRoute(secondRegionWithPort, regionWithAirportAndPort)
     assertEquals(List(Route(secondRegionWithPort, firstRegionWithPort, ReachableMode.Port), Route(secondRegionWithPort, regionWithAirportAndPort, ReachableMode.Port)), portRouteManager.getAllRoutesOf(secondRegionWithPort))
 
   @Test
-  def testAddAirportRouteOfRegionWithoutAirport: Unit =
+  def testAddAirportRouteOfRegionWithoutAirport(): Unit =
     portRouteManager.addRoute(firstBasicRegion, secondRegionWithPort)
     assertEquals(List(), portRouteManager.getAllRoutesOf(firstBasicRegion))
 
   @Test
-  def testAddOneRouteToAirportRouteManager: Unit =
+  def testAddOneRouteToAirportRouteManager(): Unit =
     airportRouteManager.addRoute(firstRegionWithAirport, secondRegionWithAirport)
     assertEquals(List(Route(firstRegionWithAirport, secondRegionWithAirport, ReachableMode.Airport)), airportRouteManager.getAllRoutesOf(firstRegionWithAirport))
 
   @Test
-  def testAddMultipleRouteToAirportRouteManager: Unit =
+  def testAddMultipleRouteToAirportRouteManager(): Unit =
     airportRouteManager.addRoute(firstRegionWithAirport, secondRegionWithAirport)
     airportRouteManager.addRoute(firstRegionWithAirport, regionWithAirportAndPort)
     assertEquals(List(Route(firstRegionWithAirport, secondRegionWithAirport, ReachableMode.Airport), Route(firstRegionWithAirport, regionWithAirportAndPort, ReachableMode.Airport)), airportRouteManager.getAllRoutesOf(firstRegionWithAirport))
