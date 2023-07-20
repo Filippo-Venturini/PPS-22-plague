@@ -66,7 +66,7 @@ class GameView (val gameEngine: GameEngine) extends DnaPointSpawnObserver:
   def showWonMessageDialog(): Unit =
     JOptionPane.showMessageDialog(frame, "Your virus has infected the whole world, you won!", "You Won", JOptionPane.WARNING_MESSAGE)
     this.gameEngine.loadStartMenu()
-    
+
 /**
  * Class that represent a custom key listener for making possible to open the menu by the keyboard.
  *
