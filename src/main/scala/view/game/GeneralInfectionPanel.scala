@@ -7,6 +7,11 @@ import java.awt.{Color, Dimension, Font}
 import javax.swing.border.EmptyBorder
 import javax.swing.{BoxLayout, JComponent, JLabel, JPanel}
 
+/**
+ * Class that represent the panel that shows the information about the general infection progression
+ * 
+ * @param gameEngine a reference to the game engine for receiving the information
+ */
 class GeneralInfectionPanel(val gameEngine: GameEngine) extends RefreshablePanel:
   this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS))
   this.setBorder(new EmptyBorder(20,150,20,150))
@@ -23,7 +28,7 @@ class GeneralInfectionPanel(val gameEngine: GameEngine) extends RefreshablePanel
   val daysLabel: JLabel = new JLabel("Day: ")
   this.addComponents(worldTitleLabel, daysLabel, totalPopulationLabel, infectedAmountLabel, worldInfectionProgressBar, vaccineTitleLabel, vaccineProgressBar)
 
-  def addComponents(components: JComponent*): Unit = components.foreach(c => this.add(c))
+  private def addComponents(components: JComponent*): Unit = components.foreach(c => this.add(c))
 
   override def refresh(): Unit =
     this.infectedAmountLabel.setText("Infected Amount: " + String.format("%,d",this.gameEngine.getWorldInfectedAmount))
