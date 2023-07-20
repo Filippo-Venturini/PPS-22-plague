@@ -12,7 +12,6 @@ class VaccineHandler(val vaccineLogic: VaccineLogic):
    * Compute the research step basing on the percentage and the logic specified
    *
    * @param worldInfectionPercentage the percentage of the infected population of the whole world
-   * @param vaccineLogic the vaccine logic to be used. If not specified by default it use a basic infection logic
    */
   def computeResearchStep(worldInfectionPercentage: Double): Unit =
     if !isResearchStarted then tryStartResearch(worldInfectionPercentage)
@@ -22,7 +21,6 @@ class VaccineHandler(val vaccineLogic: VaccineLogic):
    * Try to start the research of the vaccine
    *
    * @param worldInfectionPercentage the percentage of the infected population of the whole world
-   * @param vaccineLogic the vaccine logic to be used. If not specified by default it use a basic infection logic
    */
   private def tryStartResearch(worldInfectionPercentage: Double): Unit =
     if vaccineLogic.canResearchStart(worldInfectionPercentage) then

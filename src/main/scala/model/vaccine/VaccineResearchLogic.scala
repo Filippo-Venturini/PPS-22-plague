@@ -25,7 +25,7 @@ class BasicVaccineLogic(val virus: Virus) extends VaccineLogic:
   /**
    * Factor that represent the increment of the research in every step
    */
-  private val researchFactor: Double = 0.33
+  private val researchFactor: Double = 0.30
 
   /**
    * The research will start at 20% of total infected population in the entire world
@@ -42,7 +42,6 @@ class BasicVaccineLogic(val virus: Virus) extends VaccineLogic:
    *  @return the new amount of the progression of the vaccine
    */
   override def researchStep(vaccineProgression: Double): Double =
-    println(researchFactor - virus.vaccineResistance * 0.03/10)
-    vaccineProgression + researchFactor - virus.vaccineResistance * 0.03/10 
+    vaccineProgression + researchFactor - virus.vaccineResistance * 0.05/10
     
 
