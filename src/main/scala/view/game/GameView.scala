@@ -5,7 +5,7 @@ import model.dnapoints.DnaPoints.{DnaPoint, DnaPointSpawnObserver}
 import view.game.RegionsView.{RegionsPanel, WrapWithScrollBar}
 import view.menu.MenuView
 
-import java.awt.event.{KeyAdapter, KeyEvent}
+import java.awt.event.{KeyAdapter, KeyEvent, WindowEvent}
 import java.awt.{BorderLayout, Color, Dimension, Frame, GridBagLayout, Toolkit}
 import javax.swing.{BoxLayout, JFrame, JOptionPane, JPanel, JScrollPane, ScrollPaneConstants}
 
@@ -58,13 +58,15 @@ class GameView (val gameEngine: GameEngine) extends DnaPointSpawnObserver:
    */
   def showLostMessageDialog(): Unit =
     JOptionPane.showMessageDialog(frame, "The vaccine research is completed, you lost!", "You Lost", JOptionPane.WARNING_MESSAGE)
+    this.gameEngine.loadStartMenu()
 
   /**
    * It shows a message dialog for communicating that the game is won.
    */
   def showWonMessageDialog(): Unit =
     JOptionPane.showMessageDialog(frame, "Your virus has infected the whole world, you won!", "You Won", JOptionPane.WARNING_MESSAGE)
-
+    this.gameEngine.loadStartMenu()
+    
 /**
  * Class that represent a custom key listener for making possible to open the menu by the keyboard.
  *
