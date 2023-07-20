@@ -22,7 +22,7 @@ class PowerUpDetailsPanel(val virusPanel: VirusPanel, val menuController: MenuCo
   private val DNAPointsLabel: JLabel = new JLabel("DNA Points collected: " + this.menuController.getCollectedDNAPoints)
   private val powerUpEffectLabel: JLabel = new JLabel()
   private val powerUpDescriptionLabel: JLabel = new JLabel()
-  private val buyImage: Image = ImageIO.read(getClass.getResource("/buyPowerUp.png"))
+  private val buyImage: Image = ImageIO.read(getClass.getResource("/images/buyPowerUp.png"))
   private val buyButton: JButton = new JButton()
   private var powerUpShowed: PowerUp = _
   private var powerUpsGridPanel: PowerUpsGridPanel = _

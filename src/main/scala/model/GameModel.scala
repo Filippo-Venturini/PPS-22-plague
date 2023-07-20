@@ -8,6 +8,7 @@ import model.powerUp.PowerUpManager
 import model.vaccine.VaccineHandler
 import model.world.World
 import model.world.Filters.given
+import model.vaccine.BasicVaccineLogic
 
 /**
  * Class that contains all the entities that are part of the Model of PlagueDotScala
@@ -17,6 +18,6 @@ class GameModel:
   val world: World = ConfigurationsLoader.loadWorld()
   val virus: Virus = ConfigurationsLoader.loadVirus().get
   val infectionHandler: InfectionHandler = new InfectionHandler(virus, world.getRegions)
-  val vaccineHandler: VaccineHandler = new VaccineHandler
+  val vaccineHandler: VaccineHandler = new VaccineHandler(BasicVaccineLogic(virus))
   val dnaPointsHandler: DnaPointsHandler = DnaPointsHandler(BasicLogic(world, dnaPointSpawnTime))
   val powerUpManager: PowerUpManager = new PowerUpManager(virus, dnaPointsHandler)
