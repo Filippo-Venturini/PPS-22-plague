@@ -7,7 +7,7 @@ import org.junit.Assert.{assertEquals, assertFalse, assertTrue}
 class TestBasicVaccineLogic {
   val notEnoughInfectedPercentage: Double = 10.0 
   val enoughInfectedPercentage: Double = 25.0
-  val basicResearchFactor: Double = 1.0 / 3
+  val basicResearchFactor: Double = 0.30
   var vaccineProgression: Double = 0.0
   val testVirusConfiguration: VirusConfiguration = VirusConfiguration("DHT11", 0, 0, 0, 0, 0, 0, 0, false, false)
   val vaccineLogic: VaccineLogic = new BasicVaccineLogic(new BasicVirus(testVirusConfiguration))
