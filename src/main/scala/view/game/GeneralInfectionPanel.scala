@@ -10,7 +10,7 @@ import javax.swing.{BoxLayout, JComponent, JLabel, JPanel}
 /**
  * Class that represent the panel that shows the information about the general infection progression
  * 
- * @param gameEngine a reference to the game engine for receiving the information
+ * @param gameEngine a reference to the game engine for receiving the information to show
  */
 class GeneralInfectionPanel(val gameEngine: GameEngine) extends RefreshablePanel:
   this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS))
