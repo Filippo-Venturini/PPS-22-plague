@@ -55,12 +55,13 @@ class WorldMapPanel(val gameEngine: GameEngine, val regionsPanel: RegionsPanel) 
       case _ =>
     case _ =>
 
-  override def mouseClicked(e: MouseEvent): Unit = regions.find(_.identifier == mapImage.getHexCode(e.getX, e.getY)) match
-    case Some(regionIdentifier) =>
-      gameEngine.getRegion(regionIdentifier.regionName) match
-        case Some(region) => regionsPanel.showRegionDetails(region)
-        case _ =>
-    case _ => regionsPanel.showAllRegionsDetails()
+  override def mouseClicked(e: MouseEvent): Unit = if e.getX < mapImage.getWidth && e.getY < mapImage.getHeight then
+    regions.find(_.identifier == mapImage.getHexCode(e.getX, e.getY)) match
+      case Some(regionIdentifier) =>
+        gameEngine.getRegion(regionIdentifier.regionName) match
+          case Some(region) => regionsPanel.showRegionDetails(region)
+          case _ =>
+      case _ => regionsPanel.showAllRegionsDetails()
 
 trait MouseClickListener extends MouseListener:
   override def mousePressed(e: MouseEvent): Unit = {}
