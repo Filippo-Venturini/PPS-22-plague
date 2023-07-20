@@ -19,14 +19,15 @@ class GameView (val gameEngine: GameEngine) extends DnaPointSpawnObserver:
   def start(): Unit =
     frame.setTitle("PlagueDotScala")
     frame.add(worldMapPanel, BorderLayout.CENTER)
-    frame.add(WrapWithScrollBar(regionsPanel), BorderLayout.EAST)
     frame.add(generalInfectionPanel, BorderLayout.SOUTH)
     frame.setDefaultCloseOperation(3)
     frame.addKeyListener(keyListener)
     frame.pack()
     frame.setExtendedState(Frame.MAXIMIZED_BOTH)
-    frame.setResizable(false)
+    frame.setResizable(true)
     frame.setVisible(true)
+    frame.setMinimumSize(frame.getSize());
+    frame.add(WrapWithScrollBar(regionsPanel), BorderLayout.EAST)
     renderLoop()
 
   def renderLoop(): Unit =
