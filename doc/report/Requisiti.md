@@ -6,15 +6,15 @@ Il progetto ha l'obiettivo di rappresentare un videogioco, perciò il target di 
 
 ## 2.2 Modello di dominio
 
-Per quanto riguarda il dominio applicativo è stato preso come riferimento il noto gioco "Plague.Inc" a cui sono state applicate modifiche e riadattamenti. Di seguito si riportano una descrizione dettagliata dei requisiti del progetto.
+Per quanto riguarda il dominio applicativo è stato preso come riferimento il noto gioco "Plague.Inc" a cui sono state applicate modifiche e riadattamenti. Di seguito si riporta una descrizione dettagliata dei requisiti del progetto.
 
 ### Gestione partita
 
 Il gioco ha come obiettivo la diffusione di un virus con la conseguente infezione della popolazione mondiale. Il giocatore deve cercare di completare l'infezione prima che venga prodotto un vaccino.
 
-### Gestione stati
+### Gestione regioni
 
-Ogni stato presenta varie caratteristiche che rispecchiano il mondo reale e influenzano l'espansione del virus. Inoltre ogni stato può possedere o meno un aeroporto e/o un porto, che lo collega ad altri stati anche non direttamente confinanti.
+Ogni regione presenta varie caratteristiche che rispecchiano il mondo reale e influenzano l'espansione del virus. Inoltre ogni regione può possedere o meno un aeroporto e/o un porto, che lo collega ad altri stati anche non direttamente confinanti.
 
 ### Potenziamenti virus
 
@@ -32,21 +32,27 @@ Superata una determinata soglia di infezione, l'umanità inizia la ricerca di un
 
 ### 2.3.1 Utente
 
-- Ad inizio partita l'utente deve inserire il nome del virus e selezionare uno stato da cui far partire l'infezione.
+- Ad inizio partita l'utente deve inserire il nome del virus e selezionare una regione da cui far partire l'infezione.
 
-- L'utente visualizza una mappa del mondo in cui sono rappresentati gli stati e per ogni stato è indicato se possiede un porto e/o un aeroporto.
+- L'utente visualizza una mappa del mondo in cui sono rappresentate le regioni e per ognuna è indicato se possiede un porto e/o un aeroporto.
 
-- L'utente può raccogliere "Punti Evoluzione" che vengono generati casualmente negli stati della mappa.
+- L'utente può raccogliere "DNA Points" che vengono generati casualmente nelle regioni infette della mappa.
 
-- L'utente può selezionare uno stato per visualizzarne le informazioni di dettaglio come: caratteristiche, numero di infetti e popolazione totale.
+- L'utente può selezionare una regione per visualizzarne le informazioni di dettaglio come: caratteristiche, numero di infetti e popolazione totale.
 
-- L'utente visualizza un pannello che riporta l'elenco di tutti gli stati e per ognuno il numero di infetti.
+- L'utente visualizza un pannello che riporta l'elenco di tutti gli stati e per ognuno la progressione dell'infezione.
 
 - Può essere visualizzato lo stato di avanzamento della ricerca del vaccino.
+  
+- Può essere visualizzata la progressione globale dell'infezione.
 
-- L'utente ha la possibilità di aprire un menu per l'acquisto dei potenziamenti del virus tramite i "DNA Points" collezionati. 
+- L'utente ha la possibilità di aprire un menu per l'acquisto dei potenziamenti del virus tramite i "DNA Points" collezionati.
+
+- L'utente può visualizzare quali potenziamenti sono acquistabili e quali no in base ai "DNA Points" collezionati e alle dipendenze tra potenziamenti.
 
 - L'utente può visualizzare l'avanzamento dei giorni dell'anno durante l'evoluzione della partita.
+
+- L'utente può visualizzare il numero di infetti globali rispetto alla popolazione mondiale.
 
 ### 2.3.1 Sistema
 
@@ -55,7 +61,7 @@ Superata una determinata soglia di infezione, l'umanità inizia la ricerca di un
 - Ogni regione ha una determinata popolazione e un certo numero di infetti che inizialmente è pari a zero.
 - Ogni regione possiede una serie di caratteristiche:
   -  **Richness** [1-5]: indica il livello di ricchezza di una regione.
-  -  **Climate** [1-3]: indica se il clima di una reigone è freddo, mite o caldo.
+  -  **Climate** [1-3]: indica se il clima di una regione è freddo, mite o caldo.
   -  **Population density** [1-5]: indica il livello della densità di popolazione della regione.
   -  **Borders control** [1-5]: riporta il controllo sui confini di una determinata regione, se alto risulta più difficile che avvenga l'infezione da parte di un altra regione.
   -  **Globalization** [1-5]: riporta il livello di tendenza agli spostamenti della popolazione della regione, se alto è più probabile ne infetti altre.
@@ -115,7 +121,7 @@ Superata una determinata soglia di infezione, l'umanità inizia la ricerca di un
 
 #### Sviluppo del vaccino
 
-- Lo sviluppo del vaccino ha inizio quando viene raggiunto una determinata soglia di persone infette, rispetto alla popolazione globale.
+- Lo sviluppo del vaccino ha inizio quando viene raggiunta una determinata soglia di persone infette, rispetto alla popolazione globale.
 
 - La ricerca del vaccino procede in modo costante ma può essere rallentata acquistando potenziamenti del virus.
 
