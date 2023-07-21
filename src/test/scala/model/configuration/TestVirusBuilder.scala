@@ -31,7 +31,7 @@ class TestVirusBuilder {
   }
 
   @Test
-  def testSetHotRegionsInfectivity(): Unit = {
+  def testSetWarmRegionsInfectivity(): Unit = {
     virusBuilder = virusBuilder.setHotRegionInfectivity(configuration.hotRegionsInfectivity)
     assertEquals(Some(configuration.hotRegionsInfectivity), virusBuilder.hotRegionsInfectivity)
   }
