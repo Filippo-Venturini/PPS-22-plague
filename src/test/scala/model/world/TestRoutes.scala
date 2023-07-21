@@ -1,6 +1,6 @@
 package model.world
 import model.world.RegionParameters.*
-import model.world.TestRegionConfigurations.*
+import model.world.RegionConfigurationsForTests.*
 import org.junit.Assert.assertEquals
 import org.junit.{Before, Test}
 

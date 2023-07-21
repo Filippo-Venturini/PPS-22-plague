@@ -2,7 +2,7 @@ package model.world
 
 import model.world.RegionParameters.RegionConfiguration
 import model.world.Filters.{infectedButNotCompletelyRegions, infectedRegions, notInfectedRegions, totallyInfectedRegions, given}
-import model.world.TestRegionConfigurations.*
+import model.world.RegionConfigurationsForTests.*
 import org.junit.{Before, Test}
 import org.junit.Assert.{assertEquals, assertTrue}
 

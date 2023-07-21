@@ -1,10 +1,10 @@
 package model.world
 import model.world.RegionParameters.*
-import model.world.TestRegionConfigurations.*
+import model.world.RegionConfigurationsForTests.*
 import org.junit.Assert.{assertEquals, assertFalse, assertTrue}
 import org.junit.{Before, Test}
 
-class TestRegion {
+class TestRegions {
   val regionInfectedAmount: Int = 0
   val newInfectedAmount: Int = 10
   var europe: Region = new BasicRegion(europeConfiguration)
