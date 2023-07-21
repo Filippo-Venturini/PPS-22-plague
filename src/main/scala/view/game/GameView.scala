@@ -58,14 +58,14 @@ class GameView (val gameEngine: GameEngine) extends DnaPointSpawnObserver:
    */
   def showLostMessageDialog(): Unit =
     JOptionPane.showMessageDialog(frame, "The vaccine research is completed, you lost!", "You Lost", JOptionPane.WARNING_MESSAGE)
-    this.gameEngine.loadStartMenu()
+    this.gameEngine.loadLauncher()
 
   /**
    * It shows a message dialog for communicating that the game is won.
    */
   def showWonMessageDialog(): Unit =
     JOptionPane.showMessageDialog(frame, "Your virus has infected the whole world, you won!", "You Won", JOptionPane.WARNING_MESSAGE)
-    this.gameEngine.loadStartMenu()
+    this.gameEngine.loadLauncher()
 
 /**
  * Class that represent a custom key listener for making possible to open the menu by the keyboard.
@@ -75,5 +75,5 @@ class GameView (val gameEngine: GameEngine) extends DnaPointSpawnObserver:
 class GameViewKeyListener(val gameEngine: GameEngine) extends KeyAdapter:
   override def keyPressed(evt :KeyEvent): Unit = evt match
     case evt if evt.getKeyChar == 'm' => gameEngine.loadMenu()
-    case evt if evt.getKeyChar == 'i' => gameEngine.loadStartMenu()//TODO da eliminare
+    case evt if evt.getKeyChar == 'i' => gameEngine.loadLauncher()//TODO da eliminare
     case _ =>

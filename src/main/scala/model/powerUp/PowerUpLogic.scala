@@ -31,7 +31,7 @@ object PowerUpLogics:
 
   val hotResistanceI: PowerUpLogic = new PowerUpLogic:
     /**
-     * Modify the characteristics of the virus according to the power up warmResistanceI
+     * Modify the characteristics of the virus according to the power up hotResistanceI
      *
      * @param virus is the virus inside the game
      */
@@ -40,7 +40,7 @@ object PowerUpLogics:
 
   val hotResistanceII: PowerUpLogic = new PowerUpLogic:
     /**
-     * Modify the characteristics of the virus according to the power up warmResistanceII
+     * Modify the characteristics of the virus according to the power up hotResistanceII
      *
      * @param virus is the virus inside the game
      */

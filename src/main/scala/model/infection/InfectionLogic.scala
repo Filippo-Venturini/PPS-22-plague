@@ -25,8 +25,8 @@ class InternalInfectionLogic extends InfectionLogic:
   private def getColdRegionInfectivityIndex(climate: Int, coldRegionsInfectivity: Int): Double =
     normalize(3 - climate + 1, 1, 3) * normalize(coldRegionsInfectivity, 0, 100)
 
-  private def getHotRegionInfectivityIndex(climate: Int, warmRegionsInfectivity: Int): Double =
-    normalize(climate, 1, 3) * normalize(warmRegionsInfectivity, 0, 100)
+  private def getHotRegionInfectivityIndex(climate: Int, hotRegionsInfectivity: Int): Double =
+    normalize(climate, 1, 3) * normalize(hotRegionsInfectivity, 0, 100)
 
   private def getLowDensityRegionInfectivityIndex(populationDensity: Int, lowDensityRegionInfectivity: Int): Double =
     normalize(5 - populationDensity + 1, 1, 5) * normalize(lowDensityRegionInfectivity, 0, 100)

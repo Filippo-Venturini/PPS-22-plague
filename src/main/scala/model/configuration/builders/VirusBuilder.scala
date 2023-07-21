@@ -7,7 +7,7 @@ import model.infection.*
 /**
  * an object that allows to easily create a Virus using the builder pattern
  * @param coldRegionsInfectivity the coldRegionsInfectivity of the virus as optional
- * @param warmRegionsInfectivity the warmRegionsInfectivity of the virus as optional
+ * @param hotRegionsInfectivity the hotRegionsInfectivity of the virus as optional
  * @param lowDensityRegionsInfectivity the lowDensityRegionsInfectivity of the virus as optional
  * @param highDensityRegionsInfectivity the highDensityRegionsInfectivity of the virus as optional
  * @param richRegionsInfectivity the richRegionsInfectivity of the virus as optional
@@ -17,16 +17,16 @@ import model.infection.*
  * @param portEnabled the portEnabled of the virus as optional
  */
 case class VirusBuilder private (coldRegionsInfectivity: Option[ColdRegionsInfectivity],
-                        warmRegionsInfectivity: Option[WarmRegionsInfectivity],
-                        lowDensityRegionsInfectivity: Option[LowDensityRegionInfectivity],
-                        highDensityRegionsInfectivity: Option[HighDensityRegionsInfectivity],
-                        richRegionsInfectivity: Option[RichRegionsInfectivity],
-                        poorRegionsInfectivity: Option[PoorRegionsInfectivity],
-                        vaccineResistance: Option[VaccineResistance],
-                        airportEnabled: Option[AirportEnabled],
-                        portEnabled: Option[PortEnabled]) extends ConfigurationBuilder[Virus]:
+                                 hotRegionsInfectivity: Option[HotRegionsInfectivity],
+                                 lowDensityRegionsInfectivity: Option[LowDensityRegionInfectivity],
+                                 highDensityRegionsInfectivity: Option[HighDensityRegionsInfectivity],
+                                 richRegionsInfectivity: Option[RichRegionsInfectivity],
+                                 poorRegionsInfectivity: Option[PoorRegionsInfectivity],
+                                 vaccineResistance: Option[VaccineResistance],
+                                 airportEnabled: Option[AirportEnabled],
+                                 portEnabled: Option[PortEnabled]) extends ConfigurationBuilder[Virus]:
   private def copy(coldRegionsInfectivity: Option[ColdRegionsInfectivity] = coldRegionsInfectivity,
-                   warmRegionsInfectivity: Option[WarmRegionsInfectivity] = warmRegionsInfectivity,
+                   hotRegionsInfectivity: Option[HotRegionsInfectivity] = hotRegionsInfectivity,
                    lowDensityRegionsInfectivity: Option[LowDensityRegionInfectivity],
                    highDensityRegionsInfectivity: Option[HighDensityRegionsInfectivity],
                    richRegionsInfectivity: Option[RichRegionsInfectivity],
@@ -34,7 +34,7 @@ case class VirusBuilder private (coldRegionsInfectivity: Option[ColdRegionsInfec
                    vaccineResistance: Option[VaccineResistance],
                    airportEnabled: Option[AirportEnabled],
                    portEnabled: Option[PortEnabled]): VirusBuilder =
-    new VirusBuilder(coldRegionsInfectivity, warmRegionsInfectivity, lowDensityRegionsInfectivity, highDensityRegionsInfectivity,
+    new VirusBuilder(coldRegionsInfectivity, hotRegionsInfectivity, lowDensityRegionsInfectivity, highDensityRegionsInfectivity,
       richRegionsInfectivity, poorRegionsInfectivity, vaccineResistance, airportEnabled, portEnabled)
 
   /**
@@ -45,11 +45,11 @@ case class VirusBuilder private (coldRegionsInfectivity: Option[ColdRegionsInfec
     copy(coldRegionsInfectivity = Some(coldRegionsInfectivity))
 
   /**
-   * @param warmRegionsInfectivity the new warmRegionsInfectivity value
-   * @return a new VirusBuilder with the warmRegionsInfectivity field set
+   * @param hotRegionsInfectivity the new hotRegionsInfectivity value
+   * @return a new VirusBuilder with the hotRegionsInfectivity field set
    */
-  def setWarmRegionInfectivity(warmRegionsInfectivity: WarmRegionsInfectivity): VirusBuilder =
-    copy(warmRegionsInfectivity = Some(warmRegionsInfectivity))
+  def setHotRegionInfectivity(hotRegionsInfectivity: HotRegionsInfectivity): VirusBuilder =
+    copy(hotRegionsInfectivity = Some(hotRegionsInfectivity))
 
   /**
    * @param lowDensityRegionsInfectivity the new lowDensityRegionsInfectivity value
@@ -109,7 +109,7 @@ case class VirusBuilder private (coldRegionsInfectivity: Option[ColdRegionsInfec
       Some(new BasicVirus(VirusConfiguration(
         "",
         coldRegionsInfectivity.get,
-        warmRegionsInfectivity.get,
+        hotRegionsInfectivity.get,
         lowDensityRegionsInfectivity.get,
         highDensityRegionsInfectivity.get,
         richRegionsInfectivity.get,

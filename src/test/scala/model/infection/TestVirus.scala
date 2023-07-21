@@ -21,8 +21,8 @@ class TestVirus {
 
 
   @Test
-  def testVirusWarmRegionsInfectivity: Unit =
-    assertEquals(testVirusConfiguration.warmRegionsInfectivity, virus.hotRegionsInfectivity)
+  def testVirusHotRegionsInfectivity: Unit =
+    assertEquals(testVirusConfiguration.hotRegionsInfectivity, virus.hotRegionsInfectivity)
 
   @Test
   def testVirusLowDensityRegionInfectivity: Unit =
@@ -56,7 +56,7 @@ class TestVirus {
   def testGetVirusConfiguration: Unit =
     assertEquals(testVirusConfiguration.name, virus.getActualConfiguration.name)
     assertEquals(testVirusConfiguration.coldRegionsInfectivity, virus.getActualConfiguration.coldRegionsInfectivity)
-    assertEquals(testVirusConfiguration.warmRegionsInfectivity, virus.getActualConfiguration.warmRegionsInfectivity)
+    assertEquals(testVirusConfiguration.hotRegionsInfectivity, virus.getActualConfiguration.hotRegionsInfectivity)
     assertEquals(testVirusConfiguration.lowDensityRegionInfectivity, virus.getActualConfiguration.lowDensityRegionInfectivity)
     assertEquals(testVirusConfiguration.highDensityRegionsInfectivity, virus.getActualConfiguration.highDensityRegionsInfectivity)
     assertEquals(testVirusConfiguration.richRegionsInfectivity, virus.getActualConfiguration.richRegionsInfectivity)

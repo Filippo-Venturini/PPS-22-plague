@@ -4,6 +4,7 @@ import model.world.Region
 
 object InfectionLogics:
   given InfectionLogic = new InternalInfectionLogic
+  val externalInfectionLogic: ExternalInfectionLogic = new ExternalInfectionLogic
 
 /**
  * Class that represent the Infection Handler

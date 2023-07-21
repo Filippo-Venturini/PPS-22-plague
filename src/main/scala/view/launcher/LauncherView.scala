@@ -1,11 +1,11 @@
-package view.startMenu
+package view.launcher
 
-import controller.StartMenuController
+import controller.LauncherController
 
 import java.awt.*
 import javax.swing.{JFrame, JLabel, JPanel}
 
-class StartMenuView(val startMenuController: StartMenuController):
+class LauncherView(val launcherController: LauncherController):
   val frame: JFrame = new JFrame()
   frame.setBackground(new Color(255,255,255))
   val panel: JPanel = new JPanel

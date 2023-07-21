@@ -58,9 +58,9 @@ object TestReaders {
     @Test
     def testCorrectRowRead(): Unit =
       val conf: VirusConfiguration = VirusConfiguration("foo", 1, 2, 3, 4, 5, 6, 7, false, true)
-      val virus: Virus = parser.parse(s"${conf.coldRegionsInfectivity},${conf.warmRegionsInfectivity},${conf.richRegionsInfectivity},${conf.poorRegionsInfectivity},${conf.lowDensityRegionInfectivity},${conf.highDensityRegionsInfectivity},${conf.vaccineResistance},${conf.airportEnabled.toString},${conf.portEnabled.toString}").get
+      val virus: Virus = parser.parse(s"${conf.coldRegionsInfectivity},${conf.hotRegionsInfectivity},${conf.richRegionsInfectivity},${conf.poorRegionsInfectivity},${conf.lowDensityRegionInfectivity},${conf.highDensityRegionsInfectivity},${conf.vaccineResistance},${conf.airportEnabled.toString},${conf.portEnabled.toString}").get
       assertEquals(conf.coldRegionsInfectivity, virus.coldRegionsInfectivity)
-      assertEquals(conf.warmRegionsInfectivity, virus.hotRegionsInfectivity)
+      assertEquals(conf.hotRegionsInfectivity, virus.hotRegionsInfectivity)
       assertEquals(conf.richRegionsInfectivity, virus.richRegionsInfectivity)
       assertEquals(conf.poorRegionsInfectivity, virus.poorRegionsInfectivity)
       assertEquals(conf.lowDensityRegionInfectivity, virus.lowDensityRegionInfectivity)

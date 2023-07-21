@@ -5,6 +5,6 @@ import model.infection.VirusConfiguration
 import model.powerUp.{PowerUp, PowerUpType}
 
 
-class StartMenuController(val gameModel: GameModel):
+class LauncherController(val gameModel: GameModel):
   println("avvio controller")
 
