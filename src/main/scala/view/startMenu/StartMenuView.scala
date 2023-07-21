@@ -3,16 +3,17 @@ package view.startMenu
 import controller.StartMenuController
 
 import java.awt.*
-import javax.swing.{JFrame, JPanel}
+import javax.swing.{JFrame, JLabel, JPanel}
 
 class StartMenuView(val startMenuController: StartMenuController):
   val frame: JFrame = new JFrame()
   frame.setBackground(new Color(255,255,255))
   val panel: JPanel = new JPanel
-
   frame.setTitle("Start Menu")
-
   frame.add(panel)
+
+  val msgWelcome: JLabel = new JLabel("Welcome to Plug.Scala! \nPlease choose the virus name")
+
 
   frame.pack()
   frame.setSize(1200,800)
