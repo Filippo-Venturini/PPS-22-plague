@@ -18,7 +18,7 @@ object PowerUpLogics:
      * @param virus is the virus inside the game
      */
     override def applyTo(virus: Virus): Unit =
-      virus.coldRegionsInfectivity = virus.coldRegionsInfectivity + 5
+      virus.coldRegionsInfectivity = virus.coldRegionsInfectivity + 20
 
   val coldResistanceII: PowerUpLogic = new PowerUpLogic:
     /**
@@ -27,7 +27,7 @@ object PowerUpLogics:
      * @param virus is the virus inside the game
      */
     override def applyTo(virus: Virus): Unit =
-      virus.coldRegionsInfectivity = virus.coldRegionsInfectivity + 3
+      virus.coldRegionsInfectivity = virus.coldRegionsInfectivity + 20
 
   val hotResistanceI: PowerUpLogic = new PowerUpLogic:
     /**
@@ -36,7 +36,7 @@ object PowerUpLogics:
      * @param virus is the virus inside the game
      */
     override def applyTo(virus: Virus): Unit =
-      virus.hotRegionsInfectivity = virus.hotRegionsInfectivity + 5
+      virus.hotRegionsInfectivity = virus.hotRegionsInfectivity + 10
 
   val hotResistanceII: PowerUpLogic = new PowerUpLogic:
     /**
@@ -45,7 +45,7 @@ object PowerUpLogics:
      * @param virus is the virus inside the game
      */
     override def applyTo(virus: Virus): Unit =
-      virus.hotRegionsInfectivity = virus.hotRegionsInfectivity + 3
+      virus.hotRegionsInfectivity = virus.hotRegionsInfectivity + 20
 
   val bacterialResistance: PowerUpLogic = new PowerUpLogic:
     /**
@@ -54,8 +54,8 @@ object PowerUpLogics:
      * @param virus is the virus inside the game
      */
     override def applyTo(virus: Virus): Unit =
-      virus.hotRegionsInfectivity = virus.hotRegionsInfectivity + 3
-      virus.coldRegionsInfectivity = virus.coldRegionsInfectivity + 3
+      virus.hotRegionsInfectivity = virus.hotRegionsInfectivity + 10
+      virus.coldRegionsInfectivity = virus.coldRegionsInfectivity + 10
 
   val airportEnablement: PowerUpLogic = new PowerUpLogic:
     /**
@@ -82,7 +82,7 @@ object PowerUpLogics:
      * @param virus is the virus inside the game
      */
     override def applyTo(virus: Virus): Unit =
-      virus.lowDensityRegionInfectivity = virus.lowDensityRegionInfectivity + 3
+      virus.lowDensityRegionInfectivity = virus.lowDensityRegionInfectivity + 20
 
   val infectionThroughRespiratoryTract: PowerUpLogic = new PowerUpLogic:
     /**
@@ -91,7 +91,7 @@ object PowerUpLogics:
      * @param virus is the virus inside the game
      */
     override def applyTo(virus: Virus): Unit =
-      virus.highDensityRegionsInfectivity = virus.highDensityRegionsInfectivity + 3
+      virus.highDensityRegionsInfectivity = virus.highDensityRegionsInfectivity + 20
 
   val medicinesResistance: PowerUpLogic = new PowerUpLogic:
     /**
@@ -100,7 +100,7 @@ object PowerUpLogics:
      * @param virus is the virus inside the game
      */
     override def applyTo(virus: Virus): Unit =
-      virus.richRegionsInfectivity = virus.richRegionsInfectivity + 4
+      virus.richRegionsInfectivity = virus.richRegionsInfectivity + 20
 
 
   val infectedDrinkingWater: PowerUpLogic = new PowerUpLogic:
@@ -110,7 +110,7 @@ object PowerUpLogics:
      * @param virus is the virus inside the game
      */
     override def applyTo(virus: Virus): Unit =
-      virus.poorRegionsInfectivity = virus.poorRegionsInfectivity + 1
+      virus.poorRegionsInfectivity = virus.poorRegionsInfectivity + 20
 
   val alphaMutations: PowerUpLogic = new PowerUpLogic:
     /**
@@ -119,7 +119,7 @@ object PowerUpLogics:
      * @param virus is the virus inside the game
      */
     override def applyTo(virus: Virus): Unit =
-      virus.vaccineResistance = virus.vaccineResistance + 4
+      virus.vaccineResistance = virus.vaccineResistance + 10
 
   val betaMutations: PowerUpLogic = new PowerUpLogic :
     /**
@@ -128,7 +128,7 @@ object PowerUpLogics:
      * @param virus is the virus inside the game
      */
     override def applyTo(virus: Virus): Unit =
-      virus.vaccineResistance = virus.vaccineResistance + 3
+      virus.vaccineResistance = virus.vaccineResistance + 10
 
 
   val gammaMutations: PowerUpLogic = new PowerUpLogic :
@@ -138,7 +138,7 @@ object PowerUpLogics:
      * @param virus is the virus inside the game
      */
     override def applyTo(virus: Virus): Unit =
-      virus.vaccineResistance = virus.vaccineResistance + 2
+      virus.vaccineResistance = virus.vaccineResistance + 10
 
   val omegaMutations: PowerUpLogic = new PowerUpLogic :
     /**
@@ -147,4 +147,4 @@ object PowerUpLogics:
      * @param virus is the virus inside the game
      */
     override def applyTo(virus: Virus): Unit =
-      virus.vaccineResistance = virus.vaccineResistance + 1
+      virus.vaccineResistance = virus.vaccineResistance + 10
