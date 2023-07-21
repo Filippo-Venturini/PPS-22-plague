@@ -17,7 +17,7 @@ class TestPowerUp {
 
     println(powerUp.powerUpType)
 
-    assertEquals(2, powerUp.powerUpType.price)
+    assertEquals(5, powerUp.powerUpType.price)
 
   @Test
   def testHasBought: Unit =
