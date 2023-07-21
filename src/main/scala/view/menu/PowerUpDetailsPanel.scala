@@ -26,6 +26,10 @@ class PowerUpDetailsPanel(val virusPanel: VirusPanel, val menuController: MenuCo
   private val buyButton: JButton = new JButton()
   private var powerUpShowed: PowerUp = _
   private var powerUpsGridPanel: PowerUpsGridPanel = _
+  private val emptyInsets: Insets = new Insets(0,0,0,0)
+  private val topInsets: Insets = new Insets(10,0,0,0)
+  private val topLeftInsets: Insets = new Insets(10,200,0,0)
+
   this.setBackground(new Color(217, 217, 217))
   this.setBorder(new EmptyBorder(20, 300, 20, 300))
   this.setLayout(new GridBagLayout())
@@ -35,29 +39,32 @@ class PowerUpDetailsPanel(val virusPanel: VirusPanel, val menuController: MenuCo
   buyButton.setBackground(new Color(255,255,255))
   buyButton.setFocusPainted(false)
 
-  this.constraint.gridx = 0
-  this.constraint.gridy = 0
-  this.constraint.gridwidth = 2
+  /**
+   * Extension for make the constraint easily configurable
+   */
+  extension (constraint: GridBagConstraints)
+
+    /**
+     * Configure the constraint by setting the x and y coordinates of the grid, the grid width and the insets
+     */
+    def configureConstraint(gridx: Int, gridy: Int, gridWidth: Int, insets: Insets): Unit =
+      constraint.gridx = gridx
+      constraint.gridy = gridy
+      constraint.gridwidth = gridWidth
+      constraint.insets = insets
+
+
+  this.constraint.configureConstraint(0,0,2, emptyInsets)
   this.add(powerUpNameLabel, this.constraint)
-  this.constraint.gridx = 0
-  this.constraint.gridy = 1
-  this.constraint.gridwidth = 1
-  this.constraint.insets = new Insets(10,0,0,0)
+  this.constraint.configureConstraint(0,1,1,this.topInsets)
   this.add(powerUpPriceLabel, this.constraint)
-  this.constraint.gridx = 1
-  this.constraint.gridy = 1
-  this.constraint.insets = new Insets(10,200,0,0)
+  this.constraint.configureConstraint(1,1,1,this.topLeftInsets)
   this.add(DNAPointsLabel, this.constraint)
-  this.constraint.gridx = 0
-  this.constraint.gridy = 2
-  this.constraint.insets = new Insets(10,0,0,0)
+  this.constraint.configureConstraint(0,2,1,this.topInsets)
   this.add(powerUpEffectLabel, this.constraint)
-  this.constraint.gridx = 0
-  this.constraint.gridy = 3
-  this.constraint.gridwidth = 2
+  this.constraint.configureConstraint(0,3,2,this.topInsets)
   this.add(powerUpDescriptionLabel, this.constraint)
-  this.constraint.gridx = 1
-  this.constraint.gridy = 4
+  this.constraint.configureConstraint(1,4,2,this.topInsets)
   this.constraint.fill = GridBagConstraints.LINE_END
   this.constraint.anchor = GridBagConstraints.LINE_END
   this.add(buyButton, this.constraint)
