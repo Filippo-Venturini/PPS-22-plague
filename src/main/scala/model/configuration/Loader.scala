@@ -52,7 +52,7 @@ object Loader:
     def loadWorld(regionFile: RegionFile = RegionFile(regionFilePath)): World =
       val world: World = new World(load(regionFile))
       val routes: Iterable[RawRoute] = this.load(RouteFile(routesFilePath))
-      routes.foreach(r => (world.getRegion(r.nameRegion1), world.getRegion(r.nameRegion2), r.reachableMode) match
+      routes.foreach(r => (world.getRegionByName(r.nameRegion1), world.getRegionByName(r.nameRegion2), r.reachableMode) match
         case (Some(a), Some(b), ReachableMode.Port) => {PortRouteManager().addRoute(a, b); PortRouteManager().addRoute(b, a)}
         case (Some(a), Some(b), ReachableMode.Airport) => {AirportRouteManager().addRoute(a, b); AirportRouteManager().addRoute(b,a)}
         case (Some(a), Some(b), ReachableMode.Border) => {a.addBorderingRegion(b); b.addBorderingRegion(a)}

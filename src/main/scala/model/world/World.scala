@@ -50,4 +50,4 @@ class World (private val regions: List[Region]):
    * @param name the name of the region
    * @return a filled Option if the region is present
    */
-  def getRegion(name: String): Option[Region] = regions.find(r => r.name == name)
+  def getRegionByName(name: String): Option[Region] = regions.find(r => r.name == name)

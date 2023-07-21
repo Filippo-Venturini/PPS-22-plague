@@ -34,7 +34,7 @@ class GameEngine(val gameModel: GameModel):
    */
   def start(): Unit =
     gameModel.dnaPointsHandler.collectedPoints = 100
-    gameModel.world.getRegion("India").get.infectedAmount = 1
+    gameModel.world.getRegionByName("India").get.infectedAmount = 1
     gameLoop()
 
   /**
@@ -87,7 +87,7 @@ class GameEngine(val gameModel: GameModel):
    * @param name : the name of the region to be returned
    * @return an Option filled if the region is present
    */
-  def getRegion(name: String): Option[Region] = this.gameModel.world.getRegion(name)
+  def getRegion(name: String): Option[Region] = this.gameModel.world.getRegionByName(name)
 
   /**
    * Load the menu view that make possible to purchase power-ups

@@ -40,10 +40,10 @@ class TestWorld {
 
   @Test
   def testGetNotExistingRegionByName(): Unit =
-    assertTrue(world.getRegion("Australia").isEmpty)
+    assertTrue(world.getRegionByName("Australia").isEmpty)
 
   @Test
   def testGetExistingRegionByName(): Unit =
-    assertTrue(world.getRegion("United States").isDefined)
-    assertEquals(Some(notInfectedRegion), world.getRegion("United States"))
+    assertTrue(world.getRegionByName("United States").isDefined)
+    assertEquals(Some(notInfectedRegion), world.getRegionByName("United States"))
 }
