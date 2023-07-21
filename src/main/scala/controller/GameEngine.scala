@@ -32,9 +32,9 @@ class GameEngine(val gameModel: GameModel):
   /**
    * It start the infection and make the game loop start
    */
-  def start(): Unit =
+  def start(startRegionName: String): Unit =
     gameModel.dnaPointsHandler.collectedPoints = 100
-    gameModel.world.getRegionByName("India").get.infectedAmount = 1
+    gameModel.infectionHandler.startInfection(gameModel.world.getRegionByName(startRegionName).get)
     gameLoop()
 
   /**

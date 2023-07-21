@@ -11,5 +11,4 @@ class LauncherController(val gameModel: GameModel):
 
   def getAllRegions: List[Region] = gameModel.world.getRegions
 
-  println("avvio controller")
 

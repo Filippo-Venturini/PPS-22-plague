@@ -6,7 +6,7 @@ import model.world.Region
 import view.game.GameView
 
 import java.awt.*
-import java.awt.event.ActionEvent
+import java.awt.event.{ActionEvent, WindowEvent}
 import javax.swing.border.EmptyBorder
 import javax.swing.{BoxLayout, JButton, JComponent, JFrame, JLabel, JList, JPanel, JTextField}
 
@@ -46,15 +46,16 @@ class LauncherView(val launcherController: LauncherController):
   constraints.gridy = constraints.gridy + 1
   val btnStartGame: JButton = new JButton("Start game!")
   btnStartGame.addActionListener((e: ActionEvent) => {
-    println(txtVirusName.getText)
-    println(lstRegions.getSelectedValue)
-    /*
     val gameEngine: GameEngine = new GameEngine(this.launcherController.gameModel)
     val gameView: GameView = new GameView(gameEngine)
     gameEngine.setGameView(gameView)
-    gameView.start()
-    gameEngine.start()
-    */
+    new Thread{
+      override def run(): Unit =
+        gameView.start()
+        gameEngine.start(lstRegions.getSelectedValue)
+    }.start()
+    this.frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+
   })
   panel.add(btnStartGame, constraints)
 

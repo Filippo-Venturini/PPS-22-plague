@@ -12,6 +12,8 @@ object InfectionLogics:
  * @param regions contain all the regions inside the game
  */
 class InfectionHandler(virus: Virus, regions: Iterable[Region]):
+
+  def startInfection(region: Region): Unit = region.infectedAmount = 1
   /**
    *
    * @param regions represent all the regions inside the game
