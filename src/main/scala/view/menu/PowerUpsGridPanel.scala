@@ -2,7 +2,7 @@ package view.menu
 
 import controller.MenuController
 
-import java.awt.{BasicStroke, BorderLayout, Color, Dimension, Graphics, Graphics2D, GridLayout, Image}
+import java.awt.{BasicStroke, BorderLayout, Color, Dimension, Graphics, Graphics2D, GridLayout, Image, Cursor}
 import javax.swing.{ImageIcon, JButton, JLabel, JPanel}
 import model.powerUp.{PowerUp, PowerUpManager, PowerUpType}
 import model.infection.{BasicVirus, ColdRegionsInfectivity, Virus, VirusConfiguration}
@@ -125,6 +125,8 @@ class PowerUpsGridPanel(powerUpDetailsPanel: PowerUpDetailsPanel, menuController
   this.add(btnPortEnablement.button)
   buttons = buttons.appended(btnPortEnablement)
 
+  buttons.foreach(btn => btn.button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR)))
+
   this.setOpaque(false)
   this.refreshPowerUpGridPanel()
 
@@ -156,6 +158,7 @@ class PowerUpsGridPanel(powerUpDetailsPanel: PowerUpDetailsPanel, menuController
       btnPowerUp.button.setBackground(new Color(42, 29, 196))
       btnPowerUp.button.setOpaque(true)
       btnPowerUp.button.setBorderPainted(false)
+      btnPowerUp.button.setForeground(Color.WHITE)
     })
     buttons.filter(btnPowerUp => !menuController.powerUpsAlreadyPurchasedPowerUps.contains(btnPowerUp.powerUp) &&
       !menuController.powerUpsAvailableForPurchase(btnPowerUp.powerUp)).foreach(btnPowerUp => {
