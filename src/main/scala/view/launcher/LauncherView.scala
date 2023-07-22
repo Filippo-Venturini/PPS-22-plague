@@ -8,6 +8,7 @@ import view.game.GameView
 import java.awt.*
 import java.awt.event.{ActionEvent, WindowEvent}
 import javax.swing.border.EmptyBorder
+import javax.swing.event.{DocumentEvent, DocumentListener}
 import javax.swing.{BoxLayout, JButton, JComponent, JFrame, JLabel, JList, JPanel, JTextField}
 
 class LauncherView(val launcherController: LauncherController):
@@ -41,6 +42,7 @@ class LauncherView(val launcherController: LauncherController):
   constraints.gridy = constraints.gridy + 1
   val lstRegions: JList[String] = new JList[String](launcherController.getAllRegions.map(region => region.name).toArray)
   lstRegions.setSelectedIndex(0)
+  lstRegions.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR))
   panel.add(lstRegions, constraints)
 
   constraints.gridy = constraints.gridy + 1
@@ -57,9 +59,19 @@ class LauncherView(val launcherController: LauncherController):
     this.frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
 
   })
+  btnStartGame.setEnabled(false)
+  btnStartGame.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR))
   panel.add(btnStartGame, constraints)
 
+  txtVirusName.getDocument.addDocumentListener(new DocumentListener {
+    override def insertUpdate(e: DocumentEvent): Unit =
+      btnStartGame.setEnabled(true)
 
+    override def removeUpdate(e: DocumentEvent): Unit =
+      if (txtVirusName.getText.trim.isEmpty) then btnStartGame.setEnabled(false)
+
+    override def changedUpdate(e: DocumentEvent): Unit = ???
+  })
 
   frame.add(panel)
   frame.pack()

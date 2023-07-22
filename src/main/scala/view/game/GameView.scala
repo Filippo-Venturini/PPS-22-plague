@@ -75,5 +75,4 @@ class GameView (val gameEngine: GameEngine) extends DnaPointSpawnObserver:
 class GameViewKeyListener(val gameEngine: GameEngine) extends KeyAdapter:
   override def keyPressed(evt :KeyEvent): Unit = evt match
     case evt if evt.getKeyChar == 'm' => gameEngine.loadMenu()
-    case evt if evt.getKeyChar == 'i' => gameEngine.loadLauncher()//TODO da eliminare
     case _ =>
