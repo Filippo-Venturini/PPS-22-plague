@@ -34,18 +34,18 @@ class TestInfection {
     testInfectedRegion.infectedAmount = testInfectedRegion.population / 2
 
     val borderControl = 1
-    val testSaneRegionConfiguration: RegionConfiguration = RegionConfiguration("North-Africa", 412_245_211, 2, 2, borderControl, 2, 2)
-    val testSaneRegion: Region = new BasicRegion(testSaneRegionConfiguration)
+    val testHealthyRegionConfiguration: RegionConfiguration = RegionConfiguration("North-Africa", 412_245_211, 2, 2, borderControl, 2, 2)
+    val testHealthyRegion: Region = new BasicRegion(testHealthyRegionConfiguration)
 
-    val regions: List[Region] = List(testInfectedRegion, testSaneRegion)
+    val regions: List[Region] = List(testInfectedRegion, testHealthyRegion)
     val infectionHandler: InfectionHandler = new InfectionHandler(virus, regions)
     val infectionLogic: InfectionLogic = new ExternalInfectionLogic()
 
-    testSaneRegion.addBorderingRegion(testInfectedRegion)
-    testInfectedRegion.addBorderingRegion(testSaneRegion)
+    testHealthyRegion.addBorderingRegion(testInfectedRegion)
+    testInfectedRegion.addBorderingRegion(testHealthyRegion)
     infectionHandler.computeInfection(regions)(using infectionLogic)
 
-    assertTrue(testSaneRegion.infectedAmount > 0)
+    assertTrue(testHealthyRegion.infectedAmount > 0)
 
 
   @Test

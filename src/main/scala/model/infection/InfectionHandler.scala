@@ -3,7 +3,15 @@ package model.infection
 import model.world.Region
 
 object InfectionLogics:
+
+  /**
+   * @return the internal infection logic (default)
+   */
   given InfectionLogic = new InternalInfectionLogic
+
+  /**
+   * Represent the game external infection logic 
+   */
   val externalInfectionLogic: ExternalInfectionLogic = new ExternalInfectionLogic
 
 /**
@@ -13,6 +21,9 @@ object InfectionLogics:
  */
 class InfectionHandler(virus: Virus, regions: Iterable[Region]):
 
+  /**
+   * @param region is the region where virus start to spread
+   */
   def startInfection(region: Region): Unit = region.infectedAmount = 1
   /**
    *
