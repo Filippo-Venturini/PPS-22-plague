@@ -11,6 +11,10 @@ import scala.collection.immutable.SortedMap
 import javax.swing.ScrollPaneConstants
 object RegionsView:
 
+  /**
+   * a panel that allow to interchange an AllRegionPanel and a SingleRegionPanel
+   * @param gameEngine the gameEngine from where get the information
+   */
   class RegionsPanel(gameEngine: GameEngine) extends RefreshablePanel:
     private var activePanel: RefreshablePanel = new AllRegionsPanel(gameEngine.getRegions)
     this.showAllRegionsDetails()
@@ -22,10 +26,20 @@ object RegionsView:
       this.revalidate()
       this.repaint()
 
+    /**
+     * make visible the panel containing the details of all the regions
+     */
     def showAllRegionsDetails(): Unit = this.setNewPanel(new AllRegionsPanel(gameEngine.getRegions))
 
+    /**
+     * make visible the panel containing the details of the given region
+     * @param region the region to show
+     */
     def showRegionDetails(region: Region): Unit = this.setNewPanel(SingleRegionPanel(region))
 
+    /**
+     * refresh the active panel
+     */
     override def refresh(): Unit = activePanel.refresh()
 
   class AllRegionsPanel(var regions: List[Region]) extends RefreshablePanel:
@@ -61,6 +75,10 @@ object RegionsView:
       super.setValue(n)
       this.setString(BigDecimal(100.0 * n / this.getMaximum).setScale(2, BigDecimal.RoundingMode.CEILING).toString + "%")
 
+  /**
+   * panel that show details about a single region, like population, climate, richness and number of infected
+   * @param region the region to show on the panel
+   */
   case class SingleRegionPanel(region: Region) extends RefreshablePanel:
     import model.world.RegionParameters.*
     this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS))
@@ -109,15 +127,28 @@ object RegionsView:
       if padding > 0 then this.add(Box.createRigidArea(new Dimension(0, padding)))
       this
 
+    /**
+     * update the infection bar and the infected amount label
+     */
     override def refresh(): Unit =
       infectionBar.setValue(region.infectedAmount.toInt)
       infectedAmountLabel.setText(String.format("population infected: %,d", region.infectedAmount.ceil.toInt))
 
+  /**
+   * wrap the given component with a JScrollPane
+   * @param component the component to wrap
+   */
   case class WrapWithScrollBar(component: Component) extends JScrollPane:
     this.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED)
     this.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER)
     this.getVerticalScrollBar().setUnitIncrement(10);
     this.setViewportView(component)
 
+  /**
+   * a panel that can be refreshed
+   */
   trait RefreshablePanel extends JPanel:
+    /**
+     * update the panel components
+     */
     def refresh(): Unit

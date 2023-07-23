@@ -5,7 +5,7 @@ import model.world.RegionParameters.RegionConfiguration
 import model.world.{BasicRegion, Region, World}
 import model.world.Filters.{RegionFilter, infectedRegions, notInfectedRegions, given}
 import model.configuration.Loader.ConfigurationsLoader.given
-import model.configuration.Loader.{ConfigurationsLoader, RegionFile}
+import model.configuration.Loader.{ConfigurationsLoader}
 import model.configuration.Loader
 import model.dnapoints.DnaPoints.DnaPointsHandler
 import model.dnapoints.DnaPoints.Logic.BasicLogic

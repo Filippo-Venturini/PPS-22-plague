@@ -51,6 +51,10 @@ class GameView (val gameEngine: GameEngine) extends DnaPointSpawnObserver:
         }
     }.start()
 
+  /**
+   * show the newly spawned dna point on the map
+   * @param dnaPoint the spawned dnaPoint
+   */
   override def onDnaPointSpawn(dnaPoint: DnaPoint): Unit = worldMapPanel.showDnaPoint(dnaPoint)
 
   /**
