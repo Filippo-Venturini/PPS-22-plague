@@ -4,7 +4,7 @@ import controller.{GameEngine, MenuController}
 import model.dnapoints.DnaPoints.{DnaPoint, DnaPointSpawnObserver}
 import view.game.RegionsView.{RegionsPanel, WrapWithScrollBar}
 import view.menu.MenuView
-
+import java.awt.GraphicsEnvironment
 import java.awt.event.{KeyAdapter, KeyEvent, WindowEvent}
 import java.awt.{BorderLayout, Color, Dimension, Frame, GridBagLayout, Toolkit}
 import javax.swing.{BoxLayout, JFrame, JOptionPane, JPanel, JScrollPane, ScrollPaneConstants}
@@ -28,14 +28,14 @@ class GameView (val gameEngine: GameEngine) extends DnaPointSpawnObserver:
     frame.setTitle("PlagueDotScala")
     frame.add(worldMapPanel, BorderLayout.CENTER)
     frame.add(generalInfectionPanel, BorderLayout.SOUTH)
+    frame.add(WrapWithScrollBar(regionsPanel), BorderLayout.EAST)
     frame.setDefaultCloseOperation(3)
     frame.addKeyListener(keyListener)
     frame.pack()
-    frame.setExtendedState(Frame.MAXIMIZED_BOTH)
-    frame.setResizable(true)
+    GraphicsEnvironment.getLocalGraphicsEnvironment.getScreenDevices()(0).setFullScreenWindow(frame);
+    //frame.setExtendedState(Frame.MAXIMIZED_BOTH)
+    frame.setResizable(false)
     frame.setVisible(true)
-    frame.setMinimumSize(frame.getSize());
-    frame.add(WrapWithScrollBar(regionsPanel), BorderLayout.EAST)
     renderLoop()
 
   /**

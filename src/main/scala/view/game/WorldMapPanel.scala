@@ -14,8 +14,7 @@ import model.dnapoints.DnaPoints.DnaPoint
 import java.awt
 import java.awt.event.{MouseEvent, MouseListener}
 import java.awt.image.{BufferedImage, DataBufferByte}
-import java.awt.{Color, Graphics, image}
-import java.awt.{Graphics, Image, image}
+import java.awt.{Color, Dimension, Graphics, Image, image}
 import javax.imageio.ImageIO
 import javax.swing.{ImageIcon, JButton, JPanel}
 
