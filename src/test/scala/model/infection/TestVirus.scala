@@ -9,8 +9,7 @@ import org.junit.{Before, Test}
 class TestVirus {
   val testVirusConfiguration: VirusConfiguration = VirusConfiguration("DHT11", 0, 0, 0, 0, 0, 0, 0, false, false)
   val virus: Virus = new BasicVirus(testVirusConfiguration)
-
-  //TODO aggiungere test per modificare i parametri del virus
+  
   @Test
   def testVirusName: Unit =
     assertEquals(testVirusConfiguration.name, virus.name)
@@ -65,5 +64,55 @@ class TestVirus {
     assertEquals(testVirusConfiguration.airportEnabled, virus.getActualConfiguration.airportEnabled)
     assertEquals(testVirusConfiguration.portEnabled, virus.getActualConfiguration.portEnabled)
 
-  
+  @Test
+  def testUpgradeColdRegionsInfectivity: Unit =
+    val valueBeforeModification: Int = virus.coldRegionsInfectivity
+    virus.coldRegionsInfectivity = virus.coldRegionsInfectivity + 3
+    assertEquals(valueBeforeModification + 3 , virus.coldRegionsInfectivity)
+
+  @Test
+  def testUpgradeHotRegionsInfectivity: Unit =
+    val valueBeforeModification: Int = virus.hotRegionsInfectivity
+    virus.hotRegionsInfectivity = virus.hotRegionsInfectivity + 3
+    assertEquals(valueBeforeModification + 3, virus.hotRegionsInfectivity)
+
+  @Test
+  def testUpgradeLowDensityRegionInfectivity: Unit =
+    val valueBeforeModification: Int = virus.lowDensityRegionInfectivity
+    virus.lowDensityRegionInfectivity = virus.lowDensityRegionInfectivity + 3
+    assertEquals(valueBeforeModification + 3, virus.lowDensityRegionInfectivity)
+
+  @Test
+  def testUpgradeHighDensityRegionsInfectivity: Unit =
+    val valueBeforeModification: Int = virus.highDensityRegionsInfectivity
+    virus.highDensityRegionsInfectivity = virus.highDensityRegionsInfectivity + 3
+    assertEquals(valueBeforeModification + 3, virus.highDensityRegionsInfectivity)
+
+  @Test
+  def testUpgradeRichRegionsInfectivity: Unit =
+    val valueBeforeModification: Int = virus.richRegionsInfectivity
+    virus.richRegionsInfectivity = virus.richRegionsInfectivity + 3
+    assertEquals(valueBeforeModification + 3, virus.richRegionsInfectivity)
+
+  @Test
+  def testUpgradePoorRegionsInfectivity: Unit =
+    val valueBeforeModification: Int = virus.poorRegionsInfectivity
+    virus.poorRegionsInfectivity = virus.poorRegionsInfectivity + 3
+    assertEquals(valueBeforeModification + 3, virus.poorRegionsInfectivity)
+
+  @Test
+  def testUpgradeVaccineResistance: Unit =
+    val valueBeforeModification: Int = virus.vaccineResistance
+    virus.vaccineResistance = virus.vaccineResistance + 3
+    assertEquals(valueBeforeModification + 3, virus.vaccineResistance)
+
+  @Test
+  def testUpgradeAirportEnabled: Unit =
+    virus.airportEnabled = true
+    assertEquals(true, virus.airportEnabled)
+
+  @Test
+  def testUpgradePortEnabled: Unit =
+    virus.portEnabled = true
+    assertEquals(true, virus.portEnabled)
 }
