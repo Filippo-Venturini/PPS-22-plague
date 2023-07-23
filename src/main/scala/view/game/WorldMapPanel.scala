@@ -6,7 +6,7 @@ import model.configuration.builders.RegionIdentifierBuilder.RegionIdentifier
 import model.configuration.Loader
 import model.configuration.Loader.File.*
 import model.configuration.Loader.regionIdentifierFilePath
-import view.game.RegionsView.RegionsPanel
+import view.game.RegionsView.{RefreshablePanel, RegionsPanel}
 import model.configuration.Loader.ConfigurationsLoader
 import model.configuration.Loader.ConfigurationsLoader.given
 import model.dnapoints.DnaPoints.DnaPoint
@@ -28,7 +28,7 @@ type Dimension = (Int, Int)
  * @param gameEngine
  * @param regionsPanel
  */
-class WorldMapPanel(val gameEngine: GameEngine, val regionsPanel: RegionsPanel) extends JPanel with MouseClickListener:
+class WorldMapPanel(val gameEngine: GameEngine, val regionsPanel: RegionsPanel) extends RefreshablePanel with MouseClickListener:
   val mapImage: BufferedImage = ImageIO.read(getClass().getResource("/images/worldMap1.png"))
   val portAndAirportIcons: BufferedImage = ImageIO.read(getClass().getResource("/images/portAndAirportIcons.png"))
   val portRoutes: BufferedImage = ImageIO.read(getClass().getResource("/images/portRoutes.png"))
@@ -36,6 +36,8 @@ class WorldMapPanel(val gameEngine: GameEngine, val regionsPanel: RegionsPanel) 
   val regions: List[RegionIdentifier] = ConfigurationsLoader.load(RegionIdentifierFile(Loader.regionIdentifierFilePath))
   val pixelStep: Int = 10;
   val dnaPointButtonsSize: Int = 30;
+  private var wereAirportAvailable = false
+  private var werePortAvailable = false
 
   this.setBackground(new Color(255,255,255))
   this.setLayout(null)
@@ -52,6 +54,11 @@ class WorldMapPanel(val gameEngine: GameEngine, val regionsPanel: RegionsPanel) 
     if gameEngine.arePortsEnabled then g.drawImage(portRoutes, 0, 0, null)
     if gameEngine.areAirportsEnabled then g.drawImage(airportRoutes, 0, 0, null)
     g.drawImage(portAndAirportIcons, 0, 0, null)
+
+  override def refresh(): Unit =
+    if !wereAirportAvailable && gameEngine.areAirportsEnabled then wereAirportAvailable = true; this.repaint();
+    if !werePortAvailable && gameEngine.arePortsEnabled then werePortAvailable = true; this.repaint();
+
 
   /**
    * create and show a new clickable dna point in the region of the given dnaPoint. If there is no region corresponding
