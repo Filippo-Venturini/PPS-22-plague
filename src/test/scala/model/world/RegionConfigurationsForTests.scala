@@ -2,7 +2,7 @@ package model.world
 
 import model.world.RegionParameters.RegionConfiguration
 
-object TestRegionConfigurations :
+object RegionConfigurationsForTests :
   val europeConfiguration: RegionConfiguration = RegionConfiguration("Europe", 746000000, 9, 5, 8, 9, 8)
   val unitedStatesConfiguration: RegionConfiguration = RegionConfiguration("United States", 746000000, 9, 5, 8, 9, 8)
   val russiaConfiguration: RegionConfiguration = RegionConfiguration("Russia", 143000000, 2, 3, 6, 9, 5)

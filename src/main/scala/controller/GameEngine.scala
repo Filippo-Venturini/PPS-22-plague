@@ -10,12 +10,12 @@ import model.configuration.Loader
 import model.dnapoints.DnaPoints.DnaPointsHandler
 import model.dnapoints.DnaPoints.Logic.BasicLogic
 import model.infection.{ExternalInfectionLogic, InfectionHandler, Virus, VirusConfiguration}
-import model.infection.InfectionLogics.given
+import model.infection.InfectionLogics.{externalInfectionLogic, given}
 import model.powerUp.PowerUpManager
 import model.dnapoints.DnaPoints.DnaPointSpawnObserver
 import view.menu.MenuView
 import view.game.GameView
-import view.startMenu.StartMenuView
+import view.launcher.LauncherView
 
 import scala.annotation.tailrec
 
@@ -32,9 +32,9 @@ class GameEngine(val gameModel: GameModel):
   /**
    * It start the infection and make the game loop start
    */
-  def start(): Unit =
+  def start(startRegionName: String): Unit =
     gameModel.dnaPointsHandler.collectedPoints = 100
-    gameModel.world.getRegion("India").get.infectedAmount = 1
+    gameModel.infectionHandler.startInfection(gameModel.world.getRegionByName(startRegionName).get)
     gameLoop()
 
   /**
@@ -46,7 +46,7 @@ class GameEngine(val gameModel: GameModel):
     val startTime: Long = System.currentTimeMillis()
 
     gameModel.infectionHandler.computeInfection(gameModel.world.getRegions(using infectedRegions))
-    gameModel.infectionHandler.computeInfection(gameModel.world.getRegions(using infectedRegions))(using new ExternalInfectionLogic())
+    gameModel.infectionHandler.computeInfection(gameModel.world.getRegions(using infectedRegions))(using externalInfectionLogic)
     gameModel.dnaPointsHandler.computeDnaPointSpawn()
     gameModel.vaccineHandler.computeResearchStep(this.getWorldInfectionPercentage)
     days = days + 1
@@ -87,13 +87,13 @@ class GameEngine(val gameModel: GameModel):
    * @param name : the name of the region to be returned
    * @return an Option filled if the region is present
    */
-  def getRegion(name: String): Option[Region] = this.gameModel.world.getRegion(name)
+  def getRegion(name: String): Option[Region] = this.gameModel.world.getRegionByName(name)
 
   /**
    * Load the menu view that make possible to purchase power-ups
    */
   def loadMenu(): Unit = new MenuView(new MenuController(gameModel))
-  def loadStartMenu(): Unit = new StartMenuView(new StartMenuController(gameModel))
+  def loadLauncher(): Unit = new LauncherView(new LauncherController(gameModel))
 
   /**
    * @return the total population of the world

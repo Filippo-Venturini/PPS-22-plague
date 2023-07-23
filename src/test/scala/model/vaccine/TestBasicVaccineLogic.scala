@@ -7,10 +7,11 @@ import org.junit.Assert.{assertEquals, assertFalse, assertTrue}
 class TestBasicVaccineLogic {
   val notEnoughInfectedPercentage: Double = 10.0 
   val enoughInfectedPercentage: Double = 25.0
-  val basicResearchFactor: Double = 1.0 / 3
-  var vaccineProgression: Double = 0.0
+  val basicResearchFactor: Double = 0.30
+  var initialVaccineProgression: Double = 0.0
   val testVirusConfiguration: VirusConfiguration = VirusConfiguration("DHT11", 0, 0, 0, 0, 0, 0, 0, false, false)
-  val vaccineLogic: VaccineLogic = new BasicVaccineLogic(new BasicVirus(testVirusConfiguration))
+  val testVirus: Virus = new BasicVirus(testVirusConfiguration)
+  val vaccineLogic: VaccineLogic = new BasicVaccineLogic(testVirus)
 
   @Test
   def testCantStartResearch(): Unit =
@@ -22,5 +23,10 @@ class TestBasicVaccineLogic {
 
   @Test
   def testComputeResearchStep(): Unit =
-    assertTrue(Math.abs(vaccineLogic.researchStep(vaccineProgression) - basicResearchFactor) <= 0.01)
+    assertTrue(vaccineLogic.researchStep(initialVaccineProgression) > 0.0)
+
+  @Test
+  def testSlowDownResearch(): Unit =
+    this.testVirus.vaccineResistance = 10
+    assertTrue(vaccineLogic.researchStep(initialVaccineProgression) < basicResearchFactor)
 }

@@ -12,139 +12,93 @@ trait PowerUpLogic:
   def applyTo(virus: Virus): Unit
 
 object PowerUpLogics:
-  val coldResistanceI: PowerUpLogic = new PowerUpLogic:
-    /**
-     * Modify the characteristics of the virus according to the power up coldResistanceI
-     * @param virus is the virus inside the game
-     */
-    override def applyTo(virus: Virus): Unit =
-      virus.coldRegionsInfectivity = virus.coldRegionsInfectivity + 5
+  /**
+   * Modify the characteristics of the virus according to the power up coldResistanceI.
+   * Increment the infectivity in the cold regions
+   */
+  val coldResistanceI: PowerUpLogic = (virus: Virus) => virus.coldRegionsInfectivity = virus.coldRegionsInfectivity + 20
 
-  val coldResistanceII: PowerUpLogic = new PowerUpLogic:
-    /**
-     * Modify the characteristics of the virus according to the power up coldResistanceII
-     *
-     * @param virus is the virus inside the game
-     */
-    override def applyTo(virus: Virus): Unit =
-      virus.coldRegionsInfectivity = virus.coldRegionsInfectivity + 3
+  /**
+   * Modify the characteristics of the virus according to the power up coldResistanceII.
+   * Increment the infectivity in the cold regions
+   */
+  val coldResistanceII: PowerUpLogic = (virus: Virus) => virus.coldRegionsInfectivity = virus.coldRegionsInfectivity + 20
 
-  val hotResistanceI: PowerUpLogic = new PowerUpLogic:
-    /**
-     * Modify the characteristics of the virus according to the power up warmResistanceI
-     *
-     * @param virus is the virus inside the game
-     */
-    override def applyTo(virus: Virus): Unit =
-      virus.hotRegionsInfectivity = virus.hotRegionsInfectivity + 5
+  /**
+   * Modify the characteristics of the virus according to the power up hotResistanceI.
+   * Increment the infectivity in the hot regions
+   */
+  val hotResistanceI: PowerUpLogic = (virus: Virus) => virus.hotRegionsInfectivity = virus.hotRegionsInfectivity + 10
 
-  val hotResistanceII: PowerUpLogic = new PowerUpLogic:
-    /**
-     * Modify the characteristics of the virus according to the power up warmResistanceII
-     *
-     * @param virus is the virus inside the game
-     */
-    override def applyTo(virus: Virus): Unit =
-      virus.hotRegionsInfectivity = virus.hotRegionsInfectivity + 3
+  /**
+   * Modify the characteristics of the virus according to the power up hotResistanceII.
+   * Increment the infectivity in the hot regions
+   */
+  val hotResistanceII: PowerUpLogic = (virus: Virus) => virus.hotRegionsInfectivity = virus.hotRegionsInfectivity + 20
 
-  val bacterialResistance: PowerUpLogic = new PowerUpLogic:
-    /**
-     * Modify the characteristics of the virus according to the power up bacterialResistance
-     *
-     * @param virus is the virus inside the game
-     */
-    override def applyTo(virus: Virus): Unit =
-      virus.hotRegionsInfectivity = virus.hotRegionsInfectivity + 3
-      virus.coldRegionsInfectivity = virus.coldRegionsInfectivity + 3
+  /**
+   * Modify the characteristics of the virus according to the power up bacterialResistance.
+   * Increment the infectivity in the hot and cold regions
+   */
+  val bacterialResistance: PowerUpLogic = (virus: Virus) =>
+    virus.hotRegionsInfectivity = virus.hotRegionsInfectivity + 10
+      virus.coldRegionsInfectivity = virus.coldRegionsInfectivity + 10
 
-  val airportEnablement: PowerUpLogic = new PowerUpLogic:
-    /**
-     * Modify the characteristics of the virus according to the power up airportEnablement
-     *
-     * @param virus is the virus inside the game
-     */
-    override def applyTo(virus: Virus): Unit =
-      virus.airportEnabled = true
+  /**
+   * Modify the characteristics of the virus, enable the airport.
+   */
+  val airportEnablement: PowerUpLogic = (virus: Virus) => virus.airportEnabled = true
 
-  val portEnablement: PowerUpLogic = new PowerUpLogic:
-    /**
-     * Modify the characteristics of the virus according to the power up portEnablement
-     *
-     * @param virus is the virus inside the game
-     */
-    override def applyTo(virus: Virus): Unit =
-      virus.portEnabled = true
+  /**
+   * Modify the characteristics of the virus, enable the port
+   */
+  val portEnablement: PowerUpLogic = (virus: Virus) => virus.portEnabled = true
 
-  val infectionThroughAnimals: PowerUpLogic = new PowerUpLogic:
-    /**
-     * Modify the characteristics of the virus according to the power up infectionThroughAnimals
-     *
-     * @param virus is the virus inside the game
-     */
-    override def applyTo(virus: Virus): Unit =
-      virus.lowDensityRegionInfectivity = virus.lowDensityRegionInfectivity + 3
+  /**
+   * Modify the characteristics of the virus according to the power up infectionThroughAnimals.
+   * Increment the infectivity in the population low density regions
+   */
+  val infectionThroughAnimals: PowerUpLogic = (virus: Virus) => virus.lowDensityRegionInfectivity = virus.lowDensityRegionInfectivity + 20
 
-  val infectionThroughRespiratoryTract: PowerUpLogic = new PowerUpLogic:
-    /**
-     * Modify the characteristics of the virus according to the power up infectionThroughRespiratoryTract
-     *
-     * @param virus is the virus inside the game
-     */
-    override def applyTo(virus: Virus): Unit =
-      virus.highDensityRegionsInfectivity = virus.highDensityRegionsInfectivity + 3
+  /**
+   * Modify the characteristics of the virus according to the power up infectionThroughRespiratoryTract.
+   * Increment the infectivity in the population high density regions
+   */
+  val infectionThroughRespiratoryTract: PowerUpLogic = (virus: Virus) => virus.highDensityRegionsInfectivity = virus.highDensityRegionsInfectivity + 20
 
-  val medicinesResistance: PowerUpLogic = new PowerUpLogic:
-    /**
-     * Modify the characteristics of the virus according to the power up medicinesResistance
-     *
-     * @param virus is the virus inside the game
-     */
-    override def applyTo(virus: Virus): Unit =
-      virus.richRegionsInfectivity = virus.richRegionsInfectivity + 4
+  /**
+   * Modify the characteristics of the virus according to the power up medicinesResistance.
+   * Increment the infectivity in the rich regions
+   */
+  val medicinesResistance: PowerUpLogic = (virus: Virus) => virus.richRegionsInfectivity = virus.richRegionsInfectivity + 20
+
+  /**
+   * Modify the characteristics of the virus according to the power up infectedDrinkingWater.
+   * Increment the infectivity in the poor regions
+   */
+  val infectedDrinkingWater: PowerUpLogic = (virus: Virus) => virus.poorRegionsInfectivity = virus.poorRegionsInfectivity + 20
+
+  /**
+   * Modify the characteristics of the virus according to the power up alphaMutations.
+   * Add more vaccine resistance
+   */
+  val alphaMutations: PowerUpLogic = (virus: Virus) => virus.vaccineResistance = virus.vaccineResistance + 10
+
+  /**
+   * Modify the characteristics of the virus according to the power up betaMutations.
+   * Add more vaccine resistance
+   */
+  val betaMutations: PowerUpLogic = (virus: Virus) => virus.vaccineResistance = virus.vaccineResistance + 10
 
 
-  val infectedDrinkingWater: PowerUpLogic = new PowerUpLogic:
-    /**
-     * Modify the characteristics of the virus according to the power up infectedDrinkingWater
-     *
-     * @param virus is the virus inside the game
-     */
-    override def applyTo(virus: Virus): Unit =
-      virus.poorRegionsInfectivity = virus.poorRegionsInfectivity + 1
+  /**
+   * Modify the characteristics of the virus according to the power up gammaMutations.
+   * Add more vaccine resistance
+   */
+  val gammaMutations: PowerUpLogic = (virus: Virus) => virus.vaccineResistance = virus.vaccineResistance + 10
 
-  val alphaMutations: PowerUpLogic = new PowerUpLogic:
-    /**
-     * Modify the characteristics of the virus according to the power up spontaneousMutations
-     *
-     * @param virus is the virus inside the game
-     */
-    override def applyTo(virus: Virus): Unit =
-      virus.vaccineResistance = virus.vaccineResistance + 4
-
-  val betaMutations: PowerUpLogic = new PowerUpLogic :
-    /**
-     * Modify the characteristics of the virus according to the power up spontaneousMutations
-     *
-     * @param virus is the virus inside the game
-     */
-    override def applyTo(virus: Virus): Unit =
-      virus.vaccineResistance = virus.vaccineResistance + 3
-
-
-  val gammaMutations: PowerUpLogic = new PowerUpLogic :
-    /**
-     * Modify the characteristics of the virus according to the power up spontaneousMutations
-     *
-     * @param virus is the virus inside the game
-     */
-    override def applyTo(virus: Virus): Unit =
-      virus.vaccineResistance = virus.vaccineResistance + 2
-
-  val omegaMutations: PowerUpLogic = new PowerUpLogic :
-    /**
-     * Modify the characteristics of the virus according to the power up spontaneousMutations
-     *
-     * @param virus is the virus inside the game
-     */
-    override def applyTo(virus: Virus): Unit =
-      virus.vaccineResistance = virus.vaccineResistance + 1
+  /**
+   * Modify the characteristics of the virus according to the power up omegaMutations.
+   * Add more vaccine resistance
+   */
+  val omegaMutations: PowerUpLogic = (virus: Virus) => virus.vaccineResistance = virus.vaccineResistance + 10

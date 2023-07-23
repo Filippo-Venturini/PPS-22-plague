@@ -1,7 +1,7 @@
 package model.powerUp
 
 /**
- * Represent a single Power Up instance. It contains the its type of Power Up and if is already bought
+ * Represent a single Power Up instance. It contains its type of Power Up and if is already bought
  */
 trait PowerUp:
   def powerUpType: PowerUpType
@@ -10,7 +10,7 @@ trait PowerUp:
 object PowerUp:
   /**
    * Create a Power Up instance with determined characteristic
-   * @param powerUpType represent the specific kind of Power Up
+   * @param powerUpType represent the specific type of Power Up
    * @return the Power Up instance in base of the Power Ups type passed
    */
   def apply(powerUpType: PowerUpType): PowerUp =

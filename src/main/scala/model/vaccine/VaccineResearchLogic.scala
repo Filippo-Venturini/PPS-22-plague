@@ -28,6 +28,11 @@ class BasicVaccineLogic(val virus: Virus) extends VaccineLogic:
   private val researchFactor: Double = 0.30
 
   /**
+   * Factor that represent the slow down applied to the research basing on the virus vaccine resistance
+   */
+  private val slowDownFactor: Double = 0.005
+
+  /**
    * The research will start at 20% of total infected population in the entire world
    *
    * @param worldInfectionPercentage the percentage of the infected population of the whole world
@@ -42,6 +47,6 @@ class BasicVaccineLogic(val virus: Virus) extends VaccineLogic:
    *  @return the new amount of the progression of the vaccine
    */
   override def researchStep(vaccineProgression: Double): Double =
-    vaccineProgression + researchFactor - virus.vaccineResistance * 0.05/10
+    vaccineProgression + researchFactor - virus.vaccineResistance * slowDownFactor
     
 

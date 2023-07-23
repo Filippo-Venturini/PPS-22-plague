@@ -81,7 +81,7 @@ object Parsers:
   object Virus:
     private enum VirusConfigurationFileFormat(val castCondition: String => Boolean, val setter: (VirusBuilder, String) => VirusBuilder):
       case ColdRegionsInfection extends VirusConfigurationFileFormat(canBeInt, (b, s) => b.setColdRegionInfectivity(castInt(s)))
-      case HotRegionsInfection extends VirusConfigurationFileFormat(canBeInt, (b, s) => b.setWarmRegionInfectivity(castInt(s)))
+      case HotRegionsInfection extends VirusConfigurationFileFormat(canBeInt, (b, s) => b.setHotRegionInfectivity(castInt(s)))
       case RichRegionsInfection extends VirusConfigurationFileFormat(canBeInt, (b, s) => b.setRichRegionsInfectivity(castInt(s)))
       case PoorRegionsInfection extends VirusConfigurationFileFormat(canBeInt, (b, s) => b.setPoorRegionsInfectivity(castInt(s)))
       case LowDensityRegionsInfection extends VirusConfigurationFileFormat(canBeInt, (b, s) => b.setLowDensityRegionsInfectivity(castInt(s)))

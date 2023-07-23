@@ -10,7 +10,12 @@ import model.dnapoints.DnaPoints.DnaPointsHandler
  * @param virus the virus that is infecting the world
  */
 class PowerUpManager(private val virus: Virus, private val dnaPointsHandler: DnaPointsHandler):
-  private val powerUps: List[PowerUp] = PowerUpType.values.map(powerUpType => PowerUp(powerUpType)).toList
+  //private val powerUps: List[PowerUp] = PowerUpType.values.map(powerUpType => PowerUp(powerUpType)).toList
+
+  private val powerUps: List[PowerUp] = for
+    powerUpType <- PowerUpType.values.toList
+  yield
+    PowerUp(powerUpType)
 
   /**
    * @return all the PowerUps of the game

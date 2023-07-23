@@ -14,10 +14,8 @@ class TestPowerUp {
   @Test
   def testGetPricePowerUp: Unit =
     val powerUp: PowerUp = PowerUp(PowerUpType.ColdResistanceI)
-
     println(powerUp.powerUpType)
-
-    assertEquals(2, powerUp.powerUpType.price)
+    assertEquals(5, powerUp.powerUpType.price)
 
   @Test
   def testHasBought: Unit =
@@ -43,18 +41,18 @@ class TestPowerUp {
 
   @Test
   def testHotResistanceI: Unit =
-    val startValueWarmResistance = virus.hotRegionsInfectivity
+    val startValueHotResistance = virus.hotRegionsInfectivity
     virus.consumePowerUp(PowerUpLogics.hotResistanceI)
-    val actualValueWarmResistance = virus.hotRegionsInfectivity
-    assert(startValueWarmResistance < actualValueWarmResistance)
+    val actualValueHotResistance = virus.hotRegionsInfectivity
+    assert(startValueHotResistance < actualValueHotResistance)
 
   @Test
   def testHotResistanceII: Unit =
     virus.consumePowerUp(PowerUpLogics.hotResistanceI)
-    val valueWarmResistanceI = virus.hotRegionsInfectivity
+    val valueHotResistanceI = virus.hotRegionsInfectivity
     virus.consumePowerUp(PowerUpLogics.hotResistanceII)
-    val actualValueWarmResistance = virus.hotRegionsInfectivity
-    assert(valueWarmResistanceI < actualValueWarmResistance)
+    val actualValueHotResistance = virus.hotRegionsInfectivity
+    assert(valueHotResistanceI < actualValueHotResistance)
 
   @Test
   def testEnabledAirport: Unit =

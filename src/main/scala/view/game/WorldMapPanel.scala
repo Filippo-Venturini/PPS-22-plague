@@ -24,7 +24,7 @@ type Position = (Int, Int)
 type Dimension = (Int, Int)
 
 class WorldMapPanel(val gameEngine: GameEngine, val regionsPanel: RegionsPanel) extends JPanel with MouseClickListener:
-  val mapImage: BufferedImage = ImageIO.read(getClass().getResource("/images/worldMap.png"))
+  val mapImage: BufferedImage = ImageIO.read(getClass().getResource("/images/worldMap1.png"))
   val portAndAirportIcons: BufferedImage = ImageIO.read(getClass().getResource("/images/portAndAirportIcons.png"))
   val portRoutes: BufferedImage = ImageIO.read(getClass().getResource("/images/portRoutes.png"))
   val airportRoutes: BufferedImage = ImageIO.read(getClass().getResource("/images/airportRoutes.png"))

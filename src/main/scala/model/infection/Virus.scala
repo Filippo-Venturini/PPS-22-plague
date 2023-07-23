@@ -4,7 +4,7 @@ import model.world.RegionParameters.*
 
 type Name = String
 type ColdRegionsInfectivity = Int
-type WarmRegionsInfectivity = Int
+type HotRegionsInfectivity = Int
 type LowDensityRegionInfectivity = Int
 type HighDensityRegionsInfectivity = Int
 type RichRegionsInfectivity = Int
@@ -17,7 +17,7 @@ type PortEnabled = Boolean
  * Case class that represent the virus configuration. It contains all the virus's properties
  * @param name is the name of the virus, it is chosen by the user
  * @param coldRegionsInfectivity is the level of viruses infection about the regions with a cold climate
- * @param warmRegionsInfectivity is the level of viruses infection about the regions with a warm climate
+ * @param hotRegionsInfectivity is the level of viruses infection about the regions with a hot climate
  * @param lowDensityRegionInfectivity is the level of viruses infection about the regions with low population density
  * @param highDensityRegionsInfectivity is the level of viruses infection about the regions with high population density
  * @param richRegionsInfectivity is the level of viruses infection about the rich regions
@@ -28,7 +28,7 @@ type PortEnabled = Boolean
  */
 case class VirusConfiguration(name: Name,
                               coldRegionsInfectivity: ColdRegionsInfectivity,
-                              warmRegionsInfectivity: WarmRegionsInfectivity,
+                              hotRegionsInfectivity: HotRegionsInfectivity,
                               lowDensityRegionInfectivity: LowDensityRegionInfectivity,
                               highDensityRegionsInfectivity: HighDensityRegionsInfectivity,
                               richRegionsInfectivity: RichRegionsInfectivity,
@@ -45,7 +45,7 @@ abstract class Virus:
 
   val name: Name = virusConfiguration.name
   var coldRegionsInfectivity: ColdRegionsInfectivity = virusConfiguration.coldRegionsInfectivity
-  var hotRegionsInfectivity: WarmRegionsInfectivity = virusConfiguration.warmRegionsInfectivity
+  var hotRegionsInfectivity: HotRegionsInfectivity = virusConfiguration.hotRegionsInfectivity
   var lowDensityRegionInfectivity: LowDensityRegionInfectivity = virusConfiguration.lowDensityRegionInfectivity
   var highDensityRegionsInfectivity: HighDensityRegionsInfectivity = virusConfiguration.highDensityRegionsInfectivity
   var richRegionsInfectivity: RichRegionsInfectivity = virusConfiguration.richRegionsInfectivity
@@ -61,12 +61,16 @@ abstract class Virus:
   def consumePowerUp(logic: PowerUpLogic): Unit =
     logic.applyTo(this)
 
+  /**
+   *
+   * @return the virus configuration that contains all its characteristics
+   */
   def getActualConfiguration: VirusConfiguration =
     VirusConfiguration(this.name, this.coldRegionsInfectivity, this.hotRegionsInfectivity, this.lowDensityRegionInfectivity,
       this.highDensityRegionsInfectivity, this.richRegionsInfectivity, this.poorRegionsInfectivity, this.vaccineResistance, this.airportEnabled, this.portEnabled)
 
 /**
  * Class that represent basic virus in case of next itself implementations
- * @param virusConfiguration contains the virus configurations, set all the value virus property
+ * @param virusConfiguration contains the virus configurations, sets all values of virus properties
  */
 class BasicVirus(override val virusConfiguration: VirusConfiguration) extends Virus

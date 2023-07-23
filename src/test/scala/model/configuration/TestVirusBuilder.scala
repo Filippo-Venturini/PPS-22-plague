@@ -26,14 +26,14 @@ class TestVirusBuilder {
   }
 
   @Test
-  def testWarmRegionsInfectivityIsUnsetByDefault(): Unit = {
-    assertEquals(None, virusBuilder.warmRegionsInfectivity)
+  def testHotRegionsInfectivityIsUnsetByDefault(): Unit = {
+    assertEquals(None, virusBuilder.hotRegionsInfectivity)
   }
 
   @Test
   def testSetWarmRegionsInfectivity(): Unit = {
-    virusBuilder = virusBuilder.setWarmRegionInfectivity(configuration.warmRegionsInfectivity)
-    assertEquals(Some(configuration.warmRegionsInfectivity), virusBuilder.warmRegionsInfectivity)
+    virusBuilder = virusBuilder.setHotRegionInfectivity(configuration.hotRegionsInfectivity)
+    assertEquals(Some(configuration.hotRegionsInfectivity), virusBuilder.hotRegionsInfectivity)
   }
 
   @Test
@@ -128,7 +128,7 @@ class TestVirusBuilder {
       .setPoorRegionsInfectivity(configuration.poorRegionsInfectivity)
       .setHighDensityRegionsInfectivity(configuration.highDensityRegionsInfectivity)
       .setLowDensityRegionsInfectivity(configuration.lowDensityRegionInfectivity)
-      .setWarmRegionInfectivity(configuration.warmRegionsInfectivity)
+      .setHotRegionInfectivity(configuration.hotRegionsInfectivity)
       .setColdRegionInfectivity(configuration.coldRegionsInfectivity)
     assertTrue(virusBuilder.build().isDefined)
   }

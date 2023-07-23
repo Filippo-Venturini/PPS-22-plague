@@ -61,7 +61,7 @@ class TestPowerUpManager {
   def testApplyPowerUpsToVirusOnPurchase(): Unit =
     val initialColdRegionInfectivity: ColdRegionsInfectivity = this.virus.coldRegionsInfectivity
     powerUpManager.purchasePowerUp(PowerUpType.ColdResistanceI)
-    assertEquals(initialColdRegionInfectivity + 5, this.virus.coldRegionsInfectivity)
+    assertEquals(initialColdRegionInfectivity + 20, this.virus.coldRegionsInfectivity)
 
   @Test
   def cantBuyPowerUpWithNotEnoughMoney(): Unit =
