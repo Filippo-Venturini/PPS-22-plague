@@ -9,6 +9,7 @@ import view.game.RegionsView.RegionsPanel
 import model.configuration.Loader.ConfigurationsLoader.given
 import model.dnapoints.DnaPoints.DnaPoint
 
+import java.awt
 import java.awt.event.{MouseEvent, MouseListener}
 import java.awt.image.{BufferedImage, DataBufferByte}
 import java.awt.{Color, Graphics, image}
