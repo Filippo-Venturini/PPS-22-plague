@@ -42,6 +42,11 @@ object RegionsView:
      */
     override def refresh(): Unit = activePanel.refresh()
 
+  /**
+   * Class that represent a panel for display the progression of the infection in all the regions
+   *
+   * @param regions : the list of all the regions present in the world
+   */
   class AllRegionsPanel(var regions: List[Region]) extends RefreshablePanel:
     var progressBars: Map[Region, JProgressBar] = SortedMap()
     val backgroundColor: Color = new Color(217, 217, 217)
@@ -63,6 +68,13 @@ object RegionsView:
 
     override def refresh(): Unit =
       regions.foreach(region => progressBars(region).setValue(region.infectedAmount.toInt))
+
+  /**
+   * Class that represent a progressbar with progress value expressed as decimal.
+   *
+   * @param bgColor the background color of the progressbar.
+   * @param fgColor the foreground color of the progressbar.
+   */
   class DecimalProgressBar(bgColor: Color, fgColor: Color) extends JProgressBar :
     this.setBackground(bgColor)
     this.setForeground(fgColor)
@@ -141,7 +153,7 @@ object RegionsView:
   case class WrapWithScrollBar(component: Component) extends JScrollPane:
     this.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED)
     this.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER)
-    this.getVerticalScrollBar().setUnitIncrement(10);
+    this.getVerticalScrollBar.setUnitIncrement(10);
     this.setViewportView(component)
 
   /**
