@@ -23,6 +23,11 @@ type HexCode = String
 type Position = (Int, Int)
 type Dimension = (Int, Int)
 
+/**
+ * a panel that shows an interactive world map
+ * @param gameEngine
+ * @param regionsPanel
+ */
 class WorldMapPanel(val gameEngine: GameEngine, val regionsPanel: RegionsPanel) extends JPanel with MouseClickListener:
   val mapImage: BufferedImage = ImageIO.read(getClass().getResource("/images/worldMap1.png"))
   val portAndAirportIcons: BufferedImage = ImageIO.read(getClass().getResource("/images/portAndAirportIcons.png"))
@@ -36,7 +41,6 @@ class WorldMapPanel(val gameEngine: GameEngine, val regionsPanel: RegionsPanel) 
   this.setLayout(null)
   this.addMouseListener(this)
 
-
   val colorsMap: Map[HexCode, Iterable[Position]] = (0 until mapImage.getWidth() by pixelStep)
     .flatMap(i => (0 until mapImage.getHeight() by pixelStep).map(j => (i, j)))
     .map(pos => (pos._1, pos._2, mapImage.getHexCode(pos._1, pos._2)))
@@ -49,6 +53,11 @@ class WorldMapPanel(val gameEngine: GameEngine, val regionsPanel: RegionsPanel) 
     if gameEngine.areAirportsEnabled then g.drawImage(airportRoutes, 0, 0, null)
     g.drawImage(portAndAirportIcons, 0, 0, null)
 
+  /**
+   * create and show a new clickable dna point in the region of the given dnaPoint. If there is no region corresponding
+   * to the given dnaPoint, it does nothing
+   * @param dnaPoint the new dnaPoint to show on the map
+   */
   def showDnaPoint(dnaPoint: DnaPoint): Unit = regions.find(_.regionName == dnaPoint.regionName) match
     case Some(regionIdentifier) => colorsMap(regionIdentifier.identifier).getRandomElement() match
       case Some(pos) =>
@@ -66,14 +75,27 @@ class WorldMapPanel(val gameEngine: GameEngine, val regionsPanel: RegionsPanel) 
           case _ =>
       case _ => regionsPanel.showAllRegionsDetails()
 
+/**
+ * a MouseListener that empty implements mousePressed, mouseExited, mouseReleased and mouseEntered leaving unimplemented
+ * only mouseClicked
+ */
 trait MouseClickListener extends MouseListener:
   override def mousePressed(e: MouseEvent): Unit = {}
   override def mouseExited(e: MouseEvent): Unit = {}
   override def mouseReleased(e: MouseEvent): Unit = {}
   override def mouseEntered(e: MouseEvent): Unit = {}
 extension(image: BufferedImage)
+  /**
+   * return the hexCode of the given pixel
+   */
   def getHexCode(x: Int, y: Int): HexCode = "#" + image.getRGB(x, y).toHexString.substring(2).toUpperCase
 
+/**
+ * A button associated to a DnaPoint that when clicked collects the dnaPoint and disappear
+ * @param dnaPoint the dnaPoint associated to the button
+ * @param position the position on where spawn the button
+ * @param dimension the size of the button
+ */
 case class DnaPointButton(dnaPoint: DnaPoint, position: Position, dimension: Dimension) extends JButton:
   val img: Image = ImageIO.read(getClass().getResource("/images/dnaPointV2.png")).getScaledInstance(dimension._1, dimension._2, Image.SCALE_SMOOTH)
   this.setBounds(position._1-dimension._1/2, position._2-dimension._2/2, dimension._1, dimension._2)
