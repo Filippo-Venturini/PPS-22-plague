@@ -5,6 +5,10 @@ import scala.util.Random
 object Iterables {
 
   extension [T](l: Iterable[T])
+
+    /**
+     * if the Iterable is empty returns None, otherwise return a random element from the collection
+     */
     def getRandomElement(): Option[T] = l.isEmpty match
       case true => None
       case _ =>
