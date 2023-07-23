@@ -28,7 +28,7 @@ type Dimension = (Int, Int)
  * @param regionsPanel
  */
 class WorldMapPanel(val gameEngine: GameEngine, val regionsPanel: RegionsPanel) extends RefreshablePanel with MouseClickListener:
-  val mapImage: BufferedImage = ImageIO.read(getClass().getResource("/images/worldMap1.png"))
+  val mapImage: BufferedImage = ImageIO.read(getClass().getResource("/images/worldMap3.png"))
   val portAndAirportIcons: BufferedImage = ImageIO.read(getClass().getResource("/images/portAndAirportIcons.png"))
   val portRoutes: BufferedImage = ImageIO.read(getClass().getResource("/images/portRoutes.png"))
   val airportRoutes: BufferedImage = ImageIO.read(getClass().getResource("/images/airportRoutes.png"))
