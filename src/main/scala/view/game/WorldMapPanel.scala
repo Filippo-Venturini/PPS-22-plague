@@ -4,8 +4,10 @@ import utils.Iterables.getRandomElement
 import controller.GameEngine
 import model.configuration.builders.RegionIdentifierBuilder.RegionIdentifier
 import model.configuration.Loader
-import model.configuration.Loader.{ConfigurationsLoader, RegionIdentifierFile, regionIdentifierFilePath}
+import model.configuration.Loader.File.*
+import model.configuration.Loader.regionIdentifierFilePath
 import view.game.RegionsView.RegionsPanel
+import model.configuration.Loader.ConfigurationsLoader
 import model.configuration.Loader.ConfigurationsLoader.given
 import model.dnapoints.DnaPoints.DnaPoint
 
