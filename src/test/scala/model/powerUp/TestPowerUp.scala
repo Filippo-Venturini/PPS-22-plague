@@ -14,9 +14,7 @@ class TestPowerUp {
   @Test
   def testGetPricePowerUp: Unit =
     val powerUp: PowerUp = PowerUp(PowerUpType.ColdResistanceI)
-
     println(powerUp.powerUpType)
-
     assertEquals(5, powerUp.powerUpType.price)
 
   @Test

@@ -1,7 +1,15 @@
 package model.powerUp
 
-case class PowerUpInformation(val effect: String, val description: String)
+/**
+ * Case class that represent the power up information to display in the game
+ * @param effect is the effect of a specific power up
+ * @param description is a text that contains a small power up description
+ */
+case class PowerUpInformation(effect: String, description: String)
 
+/**
+ * Encapsulate all the type of power up with its informations
+ */
 object PowerUpsInformation:
   val coldResistanceIInformation: PowerUpInformation = PowerUpInformation("+10 cold regions infectivity", "Increase the effectiveness of the virus in the cold regions")
   val coldResistanceIIInformation: PowerUpInformation = PowerUpInformation("+20 cold regions infectivity", "Increase the effectiveness of the virus in the cold regions")

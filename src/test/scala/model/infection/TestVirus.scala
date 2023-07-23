@@ -65,5 +65,5 @@ class TestVirus {
     assertEquals(testVirusConfiguration.airportEnabled, virus.getActualConfiguration.airportEnabled)
     assertEquals(testVirusConfiguration.portEnabled, virus.getActualConfiguration.portEnabled)
 
-
+  
 }

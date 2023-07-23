@@ -5,9 +5,9 @@ import model.powerUp.PowerUpLogics.*
 import model.powerUp.PowerUpsInformation.*
 
 /**
- * Represent the Power Up type. For each possible Power Up is determinate the price and a list of mandatory prerequisite
- * for to get it.
- * The list might contain other PowerUpTypes, or it might be empty if it has no prerequisites
+ * Represent the Power Up type. For each possible Power Up is determinate the price, a list of mandatory prerequisite for to get it,
+ * its logic and its informations.
+ * The list of mandatory prerequisite contain other PowerUpTypes, or it might be empty if it has no prerequisites
  */
 enum PowerUpType(val price: Int, val prerequisite: List[PowerUpType], val logic: PowerUpLogic, val information: PowerUpInformation):
   case ColdResistanceI extends PowerUpType(5, List(), coldResistanceI, coldResistanceIInformation)
