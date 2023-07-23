@@ -4,7 +4,8 @@ import model.configuration.builders.RegionIdentifierBuilder.RegionIdentifier
 import org.junit.Test
 import org.junit.Assert.{assertEquals, assertFalse, assertTrue}
 import org.junit.{Before, Test}
-import model.configuration.Loader.{ConfigurationsLoader, File, RegionFile, RouteFile, VirusFile, regionFilePath}
+import model.configuration.Loader.File.*
+import model.configuration.Loader.{ConfigurationsLoader, File, regionFilePath}
 import model.configuration.Parsers.Region.RegionParser
 import model.configuration.Loader.ConfigurationsLoader.given
 import model.world.{AirportRouteManager, PortRouteManager, World}
