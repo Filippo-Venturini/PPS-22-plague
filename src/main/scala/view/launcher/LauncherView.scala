@@ -24,7 +24,7 @@ class LauncherView(val launcherController: LauncherController):
   constraints.insets = new Insets(30, 10, 0, 10)
 
   constraints.gridy = 0
-  val msgWelcome: JLabel = new JLabel("Welcome to Plug.Scala!")
+  val msgWelcome: JLabel = new JLabel("Welcome to Plague.Scala!")
   panel.add(msgWelcome, constraints)
 
   constraints.gridy = constraints.gridy + 1
@@ -54,7 +54,7 @@ class LauncherView(val launcherController: LauncherController):
     new Thread{
       override def run(): Unit =
         gameView.start()
-        gameEngine.start(lstRegions.getSelectedValue)
+        gameEngine.start(lstRegions.getSelectedValue, txtVirusName.getText)
     }.start()
     this.frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
 
@@ -70,7 +70,7 @@ class LauncherView(val launcherController: LauncherController):
     override def removeUpdate(e: DocumentEvent): Unit =
       if (txtVirusName.getText.trim.isEmpty) then btnStartGame.setEnabled(false)
 
-    override def changedUpdate(e: DocumentEvent): Unit = ???
+    override def changedUpdate(e: DocumentEvent): Unit = {}
   })
 
   frame.add(panel)

@@ -15,7 +15,7 @@ class VirusPanel(var virusConfiguration: VirusConfiguration) extends JPanel:
   private val titleFont: Font = new Font("Courier", Font.BOLD, 16)
   private val firstEmptyLabel: JLabel = new JLabel()
   private val secondEmptyLabel: JLabel = new JLabel()
-  private val virusNameLabel: JLabel = new JLabel("VIRUS: NAME")
+  private val virusNameLabel: JLabel = new JLabel("VIRUS: " + virusConfiguration.name)
   private val coldRegionsInfectivityLabel: JLabel = new JLabel("Cold Regions Infectivity: " + virusConfiguration.coldRegionsInfectivity)
   private val poorRegionsInfectivityLabel: JLabel = new JLabel("Poor Regions Infectivity: " + virusConfiguration.poorRegionsInfectivity)
   private val lowDensityRegionsInfectivityLabel: JLabel = new JLabel("Low Density Regions Infectivity: " + virusConfiguration.lowDensityRegionInfectivity)
