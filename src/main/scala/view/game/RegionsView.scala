@@ -54,7 +54,7 @@ object RegionsView:
 
     progressBars.foreach((r, p) => {
       p.setMaximum(r.population)
-      this.add(Box.createRigidArea(new Dimension(320, 30)))
+      this.add(Box.createRigidArea(new Dimension(250, 30)))
       val regionNameLabel: JLabel = new JLabel(r.name, SwingConstants.CENTER)
       regionNameLabel.setBackground(new Color(255, 0, 0))
       this.add(regionNameLabel)
@@ -86,7 +86,7 @@ object RegionsView:
     val lblName = new JLabel(region.name)
     lblName.setFont(new Font("Arial", Font.PLAIN, 30))
 
-    val statisticsPanel: JPanel = new JPanel(new GridLayout(3, 2, 20, 15))
+    val statisticsPanel: JPanel = new JPanel(new GridLayout(6, 1, 20, 15))
     statisticsPanel.add(new JLabel("population: " + String.format("%,d", region.population)))
     statisticsPanel.add(new JLabel("population density: " + region.populationDensity + "/" + maxPopulationDensityValue))
     statisticsPanel.add(new JLabel("richness: " + region.richness + "/" + maxRichnessValue))
