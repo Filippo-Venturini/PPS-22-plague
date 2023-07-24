@@ -93,6 +93,10 @@ class GameEngine(val gameModel: GameModel):
    * Load the menu view that make possible to purchase power-ups
    */
   def loadMenu(): Unit = new MenuView(new MenuController(gameModel))
+
+  /**
+   * Load the Launcher view for insert the start game parameters
+   */
   def loadLauncher(): Unit = new LauncherView(new LauncherController(new GameModel))
 
   /**
