@@ -6,8 +6,8 @@ import org.junit.Assert.{assertEquals, assertFalse, assertTrue}
 
 class TestBasicVaccineLogic {
   val notEnoughInfectedPercentage: Double = 10.0 
-  val enoughInfectedPercentage: Double = 25.0
-  val basicResearchFactor: Double = 0.30
+  val enoughInfectedPercentage: Double = 30.0
+  val basicResearchFactor: Double = 0.25
   var initialVaccineProgression: Double = 0.0
   val testVirusConfiguration: VirusConfiguration = VirusConfiguration("DHT11", 0, 0, 0, 0, 0, 0, 0, false, false)
   val testVirus: Virus = new BasicVirus(testVirusConfiguration)

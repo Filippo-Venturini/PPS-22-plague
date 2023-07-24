@@ -25,7 +25,7 @@ class BasicVaccineLogic(val virus: Virus) extends VaccineLogic:
   /**
    * Factor that represent the increment of the research in every step
    */
-  private val researchFactor: Double = 0.30
+  private val researchFactor: Double = 0.25
 
   /**
    * Factor that represent the slow down applied to the research basing on the virus vaccine resistance
@@ -38,7 +38,7 @@ class BasicVaccineLogic(val virus: Virus) extends VaccineLogic:
    * @param worldInfectionPercentage the percentage of the infected population of the whole world
    *  @return true if the research can start basing on the percentage given by input
    */
-  override def canResearchStart(worldInfectionPercentage: Double): Boolean = worldInfectionPercentage >= 20.0
+  override def canResearchStart(worldInfectionPercentage: Double): Boolean = worldInfectionPercentage >= 30.0
 
   /**
    * The research step will increment the progression by an internal research factor

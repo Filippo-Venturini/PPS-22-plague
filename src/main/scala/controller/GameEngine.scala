@@ -25,7 +25,7 @@ import scala.annotation.tailrec
  * @param gameModel : the reference to the game model
  */
 class GameEngine(val gameModel: GameModel):
-  private val refreshTime: Int = 300
+  private val refreshTime: Int = 400
   private var gameView: GameView = _
   var days: Int = 1
 

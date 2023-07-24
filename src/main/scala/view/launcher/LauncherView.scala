@@ -15,6 +15,7 @@ class LauncherView(val launcherController: LauncherController):
   val frame: JFrame = new JFrame()
   frame.setBackground(new Color(255,255,255))
   val panel: JPanel = new JPanel
+  frame.setDefaultCloseOperation(3)
   frame.setTitle("Start Menu")
   panel.setLayout(new GridBagLayout())
 
@@ -56,8 +57,7 @@ class LauncherView(val launcherController: LauncherController):
         gameView.start()
         gameEngine.start(lstRegions.getSelectedValue, txtVirusName.getText)
     }.start()
-    this.frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
-
+    this.frame.dispose()
   })
   btnStartGame.setEnabled(false)
   btnStartGame.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR))
