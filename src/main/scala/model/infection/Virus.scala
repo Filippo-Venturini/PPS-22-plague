@@ -43,7 +43,7 @@ case class VirusConfiguration(name: Name,
 abstract class Virus:
   def virusConfiguration: VirusConfiguration
 
-  val name: Name = virusConfiguration.name
+  var name: Name = _
   var coldRegionsInfectivity: ColdRegionsInfectivity = virusConfiguration.coldRegionsInfectivity
   var hotRegionsInfectivity: HotRegionsInfectivity = virusConfiguration.hotRegionsInfectivity
   var lowDensityRegionInfectivity: LowDensityRegionInfectivity = virusConfiguration.lowDensityRegionInfectivity

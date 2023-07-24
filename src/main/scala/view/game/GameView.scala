@@ -32,8 +32,8 @@ class GameView (val gameEngine: GameEngine) extends DnaPointSpawnObserver:
     frame.setDefaultCloseOperation(3)
     frame.addKeyListener(keyListener)
     frame.pack()
-    GraphicsEnvironment.getLocalGraphicsEnvironment.getScreenDevices()(0).setFullScreenWindow(frame);
-    //frame.setExtendedState(Frame.MAXIMIZED_BOTH)
+    //GraphicsEnvironment.getLocalGraphicsEnvironment.getScreenDevices()(0).setFullScreenWindow(frame);
+    frame.setExtendedState(Frame.MAXIMIZED_BOTH)
     frame.setResizable(false)
     frame.setVisible(true)
     renderLoop()
