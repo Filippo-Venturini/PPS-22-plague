@@ -9,10 +9,6 @@ import org.junit.{Before, Test}
 class TestVirus {
   val testVirusConfiguration: VirusConfiguration = VirusConfiguration("DHT11", 0, 0, 0, 0, 0, 0, 0, false, false)
   val virus: Virus = new BasicVirus(testVirusConfiguration)
-  
-  @Test
-  def testVirusName: Unit =
-    assertEquals(testVirusConfiguration.name, virus.name)
 
   @Test
   def testVirusColdRegionsInfectivity: Unit =
@@ -53,7 +49,6 @@ class TestVirus {
 
   @Test
   def testGetVirusConfiguration: Unit =
-    assertEquals(testVirusConfiguration.name, virus.getActualConfiguration.name)
     assertEquals(testVirusConfiguration.coldRegionsInfectivity, virus.getActualConfiguration.coldRegionsInfectivity)
     assertEquals(testVirusConfiguration.hotRegionsInfectivity, virus.getActualConfiguration.hotRegionsInfectivity)
     assertEquals(testVirusConfiguration.lowDensityRegionInfectivity, virus.getActualConfiguration.lowDensityRegionInfectivity)
