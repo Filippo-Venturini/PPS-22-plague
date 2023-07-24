@@ -25,7 +25,7 @@ import scala.annotation.tailrec
  * @param gameModel : the reference to the game model
  */
 class GameEngine(val gameModel: GameModel):
-  private val refreshTime: Int = 50//300//300
+  private val refreshTime: Int = 300
   private var gameView: GameView = _
   var days: Int = 1
 
@@ -33,7 +33,6 @@ class GameEngine(val gameModel: GameModel):
    * It start the infection and make the game loop start
    */
   def start(startRegionName: String, virusName: String): Unit =
-    gameModel.dnaPointsHandler.collectedPoints = 100
     gameModel.infectionHandler.startInfection(gameModel.world.getRegionByName(startRegionName).get)
     gameModel.virus.name = virusName
     gameLoop()
@@ -94,7 +93,7 @@ class GameEngine(val gameModel: GameModel):
    * Load the menu view that make possible to purchase power-ups
    */
   def loadMenu(): Unit = new MenuView(new MenuController(gameModel))
-  def loadLauncher(): Unit = new LauncherView(new LauncherController(gameModel))
+  def loadLauncher(): Unit = new LauncherView(new LauncherController(new GameModel))
 
   /**
    * @return the total population of the world
