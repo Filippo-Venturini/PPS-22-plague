@@ -49,14 +49,7 @@ class LauncherView(val launcherController: LauncherController):
   constraints.gridy = constraints.gridy + 1
   val btnStartGame: JButton = new JButton("Start game!")
   btnStartGame.addActionListener((e: ActionEvent) => {
-    val gameEngine: GameEngine = new GameEngine(this.launcherController.gameModel)
-    val gameView: GameView = new GameView(gameEngine)
-    gameEngine.setGameView(gameView)
-    new Thread{
-      override def run(): Unit =
-        gameView.start()
-        gameEngine.start(lstRegions.getSelectedValue, txtVirusName.getText)
-    }.start()
+    this.launcherController.startGame(lstRegions.getSelectedValue, txtVirusName.getText)
     this.frame.dispose()
   })
   btnStartGame.setEnabled(false)
