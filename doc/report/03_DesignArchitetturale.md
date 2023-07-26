@@ -1,4 +1,4 @@
-# 3 - Design Architetturale
+# Capitolo 3: Design Architetturale
 Il software è stato progettato utilizzando il pattern architetturale Model-View-Controller (MVC), come rappresentato dallo schema in figura 3.1. 
 
 <p align="center">
