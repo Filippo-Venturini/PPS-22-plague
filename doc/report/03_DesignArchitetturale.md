@@ -3,6 +3,7 @@ Il software è stato progettato utilizzando il pattern architetturale Model-View
 
 <p align="center">
   <img src="./images/PackageDiagram.png" width="500" height="300" alt="Diagramma dei Package"/>
+  <p align="center"><em>Figura 1.1: Diagramma dei package</em></p>
 </p>
 
 Il Model contiene al suo interno tutti gli elementi cardine del dominio applicativo esplorato in precedenza, come ad esempio il mondo di gioco e le regioni, il virus, il vaccino, i potenziamenti e i DNA Points. La progettazione e implementazione di tutti gli elementi precedentemente citati verranno descritti e approfonditi nei successivi capitoli.
@@ -18,6 +19,7 @@ Inoltre si è deciso di evolvere l'architettura precedentemente descritta realiz
 
 <p align="center">
   <img src="./images/GameModelDiagram.png" width="500" height="300" alt="Diagramma dei Package"/>
+  <p align="center"><em>Figura 1.1: Diagramma dei package</em></p>
 </p>
 
 Facendo riferimento alla figura ??? si noti che il Model risulta totalmente indipendente dal resto dell'architettura, di conseguenza viene utilizzato dai tre controller presenti che interagiscono con le rispettive View.
