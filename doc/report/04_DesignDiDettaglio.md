@@ -51,7 +51,7 @@ Questo approccio può essere visto come una sorta di **Decorator** in quanto pre
 ## Gestione dell'infezione
 (Schema)
 
-## Vaccine
+## Ricerca del Vaccino
 
 Per quanto riguarda il vaccino, come già mostrato, si è pensato di realizzare un'entità denominata `VaccineHandler` che ha lo scopo di facilitarne la gestione da parte del `GameEngine` e di renderne eventuali modifiche o espansioni semplici da attuare. 
 
@@ -59,10 +59,9 @@ In questa parte è stato sfruttato il pattern di progettazione **Strategy**. Si 
 
 In questa versione di PlagueDotScala si è resa necessaria solamente una logica di base ed è definita all'interno di `BasicVaccineLogic`, ma risulta immediata la progettazione di logiche più complesse, semplicemente estendendo `VaccineLogic` e implementando i suoi metodi.
 
-Il pattern **Strategy** è stato sfruttato all'interno di `VaccineHandler` in quanto esso utilizza al suo interno una `VaccineLogic` che gli viene passata dall'esterno e ne utilizza i metodi definiti nel trait, ma la strategia interna della logica dipende dalla tipologia dell'istanza passata.
+Nella `BasicVaccineLogic` il metodo  *canResearchStart()* definisce se la ricerca del vaccino può iniziare, in base al numero di infetti globale, mentre *researchStep()* effettua uno step di ricerca, tenendo però conto di eventuali rallentamenti dovuti alla resistenza al vaccino del virus.
 
-(Strategy)
-(Schema?)
+Il pattern **Strategy** è stato sfruttato nel `VaccineHandler` in quanto esso utilizza al suo interno una `VaccineLogic` che gli viene passata dall'esterno e ne utilizza i metodi definiti nel trait, ma la strategia della logica di ricerca dipende dalla tipologia di istanza passata (in questo caso `BasicVaccineLogic`).
 
 ## Potenziamenti
 (PowerUp, PowerUpManager)
