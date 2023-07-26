@@ -1,5 +1,10 @@
 # Capitolo 4: Design di dettaglio
 
+<p align="center">
+  <img src="./images/04_DesignDiDettaglio/GameModelDiagram.png" width="500" height="300" alt="Diagramma dei Package"/>
+  <p align="center"><em>Figura 3.1: Diagramma dei package</em></p>
+</p>
+
 (Schema del Model ad alto livello, descrizione handler)
 
 ## Caricamento delle configurazioni di gioco
