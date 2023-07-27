@@ -31,6 +31,11 @@ Il `GameEngine` valuta inoltre se la partita viene vinta oppure persa dall'utent
 
 Analizzando i requisiti dell'applicativo si nota che il mondo di gioco è costituito da un'insieme di regioni. Una peculiarità molto importante di una regione riguarda il fatto che oltre ad essere direttamente confinante con altre regioni, essa può possedere o meno un porto e un aeroporto che la connette a regioni non direttamente confinanti.
 
+<p align="center">
+  <img src="./images/04_DesignDiDettaglio/Regions.png" width="800" height="539" alt="Gerarchia delle regioni con Mixin"/>
+  <p align="center"><em>Figura 3.1: Gerarchia delle regioni con Mixin</em></p>
+</p>
+
 Facendo riferimento alla figura ??? si noti che questo requisito è stato modellato con l'utilizzo di **Mixin**. In particolare è stata realizzata una classe astratta `Region` che contiene al suo interno tutti i parametri comuni alle regioni (Nome, Popolazione, Clima ecc.) e memorizza inoltre le regioni direttamente confinanti e il numero di infetti.
 Si noti inoltre che la classe astratta `Region` contiene un metodo astratto *getReachableRegions()* che verrà implementato in maniera differente a seconda del tipo di regione che si sta considerando. 
 
@@ -54,6 +59,11 @@ Questo approccio può essere visto come una sorta di **Decorator** in quanto pre
 ## Ricerca del Vaccino
 
 Per quanto riguarda il vaccino, come già mostrato, si è pensato di realizzare un'entità denominata `VaccineHandler` che ha lo scopo di facilitarne la gestione da parte del `GameEngine` e di renderne eventuali modifiche o espansioni semplici da attuare. 
+
+<p align="center">
+  <img src="./images/04_DesignDiDettaglio/Vaccine.png" width="261" height="534" alt="Design di dettaglio per la gestione del vaccino"/>
+  <p align="center"><em>Figura 3.1: Design di dettaglio per la gestione del vaccino</em></p>
+</p>
 
 In questa parte è stato sfruttato il pattern di progettazione **Strategy**. Si noti infatti che è stata definita una `VaccineLogic` come **trait**, essa espone due metodi astratti *canResearchStart()* e *researchStep()*, essi verranno implementati da tutte le eventuali logiche per la ricerca del vaccino, definendone di conseguenza il comportamento.
 
