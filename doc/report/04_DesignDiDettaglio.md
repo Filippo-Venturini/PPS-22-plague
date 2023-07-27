@@ -147,4 +147,11 @@ Un'altra importante funzione del `PowerUpManager` riguarda l'acquisto dei PowerU
 
 ## MenuView
 
+Questo componente rappresenta la parte grafica legata al Menu di gioco e come già anticipato nella descrizione dell'architettura comunica con il `MenuController`.
+A livello di design si è pensato di suddividere questo componente in tre pannelli che andranno a contenere e gestire informazioni differenti:
+
+- `VirusPanel`: permetterà all'utente di visualizzare tutte le caratteristiche del virus durante la partita.
+- `PowerUpGridPanel`: mostrerà la gerarchia dei PowerUp derivata dall'analisi del dominio applicativo, indicando quali risultano acquistabili e quali no.
+- `PowerUpDetailsPanel`: visualizzerà i dettagli di un singolo PowerUp selezionato dall'utente e fornirà un meccanismo per poterlo acquistare. 
+
 ## LauncherView
