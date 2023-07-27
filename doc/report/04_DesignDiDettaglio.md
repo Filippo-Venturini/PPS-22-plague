@@ -124,8 +124,21 @@ Nella `BasicVaccineLogic` il metodo  *canResearchStart()* definisce se la ricerc
 Il pattern **Strategy** è stato sfruttato nel `VaccineHandler` in quanto esso utilizza al suo interno una `VaccineLogic` che gli viene passata dall'esterno e ne utilizza i metodi definiti nel trait, ma la strategia della logica di ricerca dipende dalla tipologia di istanza passata (in questo caso `BasicVaccineLogic`).
 
 ## Potenziamenti
-(PowerUp, PowerUpManager)
-(Schema)
+ 
+### PowerUp (Anche PowerUpType ecc.)
+
+### PowerUpManager
+
+Come già anticipato, anche per la gestione dei PowerUp è stata realizzata un'entità dedicata ovvero il `PowerUpManager`. Al suo interno contiene la lista di tutti i PowerUp disponibili in PlagueDotScala ed espone vari metodi per permetterne l'accesso. Nello specifico:
+
+- *getAllPowerUps()*: restituisce la lista completa di tutti i PowerUp.
+- *getPurchasablePowerUps()*: restituisce la lista dei soli PowerUp acquistabili.
+- *getPurchasedPowerUps()*: restituisce la lista di tutti i PowerUp già acquistati.
+- *getPowerUp(powerUpType: PowerUpType)*: restituisce il PowerUp che corrisponde al tipo specificato, se presente.
+
+Una delle responsabilità principali del `PowerUpManager` quando deve fornire i PowerUp acquistabili, è verificare se i prerequisiti sono soddisfatti. Come già descritto i PowerUp hanno un'organizzazione gerarchica che stabilisce la possibilità di acquistare un determinato PowerUp solamente se quelli da cui dipende sono già stati acquistati e ovviamente se si possiedono sufficienti `DNAPoints`. A livello di progettazione si è pensato di includere questo comportamento all'interno del metodo chiamato *arePrerequisiteSatisfied(powerUp: PowerUp)*.
+
+Un'altra importante funzione del `PowerUpManager` riguarda l'acquisto dei PowerUp...
 
 ## DNAPoint
 (Schema)
