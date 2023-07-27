@@ -47,6 +47,18 @@ A questo punto risulta facilmente progettabile il concetto di regione con porto 
 
 Questo approccio può essere visto come una sorta di **Decorator** in quanto presenta gli stessi vantaggi a livello di possibile espansione della logica di gioco, ad esempio se si rendesse necessario introdurre nuove possibilità di interconnessione tra regioni (come l'introduzione delle linee ferroviarie) i Mixin ne faciliterebbero l'introduzione e la combinazione con gli approcci di collegamento già presenti.
 
+### World
+
+A questo punto si rende necessaria un'entità che contenga l'insieme delle regioni appartenenti al mondo di gioco e fornisca un modo rapido e compatto per accedervi.
+Si è pensato quindi di progettare un'entità `World` che contiene al suo interno la lista di tutte le regioni presenti. `World` espone un metodo chiamato *getRegions(using filter: RegionFilter)* che restituisce un insieme di regioni in base al filtro specificato e mette a disposizione un insieme di filtri che si comportano come segue:
+
+- `infectedRegions` : individua solamente le regioni infette.
+- `notInfectedRegions` : individua solamente le regioni non infette.
+- `totallyInfectedRegions` : individua solamente le regioni completamente infette.
+- `infectedButNotCompletelyRegions` : individua solamente le regioni infette ma non completamente.
+
+Si è pensato al tipo `RegionFilter` come `Region`=>`Boolean`, di conseguenza sarà possibile specificare un qualsiasi filtro personalizzato che rispetti questa struttura, anche se non presente tra quelli già forniti. Inoltre si è pensato di progettare il metodo sopra citato in modo da restituire la lista completa di tutte le regioni, in caso non venga specificato alcun filtro. Queste peculiarità rendono la struttura del mondo di gioco versatile e facilmente estendibile.
+
 ### Routes e RouteManager
 
 Una volta reso possibile configurare le regioni abilitando porti e aeroporti, si rende necessaria una logica per la gestione dei collegamenti tra di esse. Si è pensato di progettare un entità `Route` che possiede il riferimento a due regioni che sono collegate e contiene inoltre la modalità con cui sono connesse (rappresentata dall'enumerazione `ReachableMode`): 
@@ -62,10 +74,6 @@ Inanzitutto è stata realizzata una gerarchia con alla radice il `RouteManager` 
 In questo caso data la necessità di ottenere una sola entità per entrambi è stato utilizzato il pattern di progettazione **Singleton**. Inoltre per rispettare l' **Open-Closed Principle** è stato deciso di mantenere l'implementazione di entrambi i **trait** come privata utilizzando i rispettivi Companion Objects. 
 
 Entrambe le implementazioni si occuperanno di definire il comportamento del metodo astratto *addRoute(fromRegion: Region, toRegion: Region)* contenuto all'interno di `RouteManager`, in modo da permettere al `PortRouteManager` di poter aggiungere e gestire solamente le rotte portuali e allo stesso modo rendendo l'`AirportRouteManager` responsabile di quelle aeroportuali.
-
-### World
-(World con filtri, gerarchia regioni, rotte (Singleton))
-(Schema)
 
 ## Gestione dell'infezione
 (Schema)
