@@ -23,7 +23,30 @@ Per ogni giornata il `GameEngine` ha il compito di utilizzare i gestori contenut
 Il `GameEngine` valuta inoltre se la partita viene vinta oppure persa dall'utente gestendo in questo modo la logica di fine partita.
 
 ## Caricamento delle configurazioni di gioco
-(Schema)
+
+Durante la fase di analisi del dominio, abbiamo notato che diversi elementi di gioco, tra i quali rotte, regioni e virus, sono costituiti da una lunga serie di parametri,
+pertanto ci è sembrata fin da subito la scelta più conveniente rappresentare tali elementi sottoforma di file di testo in modo da rendere la configurazione di gioco
+indipendente dalla logica applicativa. Ogni elemento di gioco che può essere caricato dinamicamente ha associato ad esso un `ConfigurationFile`, un `Parser` ed un
+`ConfigurationBuilder`.
+
+<p align="center">
+  <img src="./images/04_DesignDiDettaglio/ConfigurationLoaderUML.png" width="600" height="300" alt="Caricamento delle configurazione di gioco, diagramma delle classi"/>
+  <p align="center"><em>Figura 4.??: Caricamento delle configurazione di gioco, diagramma delle classi</em></p>
+</p>
+
+Il `Parser` è l'entità che si occupa di convertire una stringa rappresentante un elemento di gioco, nell'elemento di gioco stesso.
+Per rendere questo possibile, nel metodo *parse* di ogni `Parser` è utilizzato un `ConfigurationBuilder` del suo stesso tipo
+(es. `RegionParser` e `RegionBuilder`). Una volta interpretata l'intera stringa, il `Parser` restituisce un opzionale contenente
+l'oggetto convertito nel caso in cui tutti i campi obbligatori siano stati settati, o un'opzionale vuoto se uno o più campi non sono stati
+correttamente settati perchè mancanti o aventi valori non ammissibili.
+
+Un file di configurazione può essere convertito in una serie di oggetti attraverso il metodo *load* del `ConfigurationLoader`.
+Per ogni riga non commentata del file, è invocato il metodo *parse* del `Parser` corrispondente al file di configurazione passato.
+Il risultato consiste in una lista contentente solamente gli oggetti correttamente convertiti.
+
+Sebbene sia possibile richiamare direttamente il metodo *load*, la classe `ConfigurationLoader` mette a disposizione due ulteriori metodi che permettono di ottenere oggetti già pronti per l'uso:
+- il metodo *loadWorld* permette di caricare regioni e rotte in una sola operazione, restituendo un oggetto `World` contenente tutte le regioni correttamente convertite;
+- il metodo *loadVirus* restituisce un opzionale contenente un singolo oggetto `Virus` o vuoto se nessuna riga del file di configurazione è stata correttamente convertita.
 
 ## Gestione del mondo di gioco
 
