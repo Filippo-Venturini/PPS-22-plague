@@ -49,6 +49,20 @@ Questo approccio può essere visto come una sorta di **Decorator** in quanto pre
 
 ### Routes e RouteManager
 
+Una volta reso possibile configurare le regioni abilitando porti e aeroporti, si rende necessaria una logica per la gestione dei collegamenti tra di esse. Si è pensato di progettare un entità `Route` che possiede il riferimento a due regioni che sono collegate e contiene inoltre la modalità con cui sono connesse (rappresentata dall'enumerazione `ReachableMode`): 
+
+- `ReachableMode.Border` : per le regioni direttamente confinanti.
+- `ReachableMode.Airport` : per le regioni collegate tramite aeroporto.
+- `ReachableMode.Port` : per le regioni collegate tramite porto.
+
+Inoltre come viene evidenziato dalla figura ??? anche per la gestione delle rotte è stata progettata un'entità, in questo caso denominata `RouteManager`. L'idea è di avere all'interno dell'applicativo un'unica istanza di un gestore per le rotte portuali ovvero un `PortRouteManager` e allo stesso modo un'unica istanza di un gestore di rotte aeroportuali quindi un `AirportRouteManager`.
+
+Inanzitutto è stata realizzata una gerarchia con alla radice il `RouteManager` come classe astratta, esso incorpora gli aspetti che un gestore di rotte deve necessariamente avere, come la lista di tutte le rotte e la possibilità di fornire le rotte disponibili a partire da una regione. Successivamente sono stati pensati come **trait** il `PortRouteManager` e l' `AirportRouteManager` che estendono il `RouteManager` di base.
+
+In questo caso data la necessità di ottenere una sola entità per entrambi è stato utilizzato il pattern di progettazione **Singleton**. Inoltre per rispettare l' **Open-Closed Principle** è stato deciso di mantenere l'implementazione di entrambi i **trait** come privata utilizzando i rispettivi Companion Objects. 
+
+Entrambe le implementazioni si occuperanno di definire il comportamento del metodo astratto *addRoute(fromRegion: Region, toRegion: Region)* contenuto all'interno di `RouteManager`, in modo da permettere al `PortRouteManager` di poter aggiungere e gestire solamente le rotte portuali e allo stesso modo rendendo l'`AirportRouteManager` responsabile di quelle aeroportuali.
+
 ### World
 (World con filtri, gerarchia regioni, rotte (Singleton))
 (Schema)
