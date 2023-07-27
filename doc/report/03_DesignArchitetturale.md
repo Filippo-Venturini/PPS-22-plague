@@ -1,6 +1,6 @@
 # Capitolo 3: Design Architetturale
 
-## Pattern Architetturale: MVC
+## 3.1 Pattern Architetturale: MVC
 
 Il software è stato progettato utilizzando il pattern architetturale Model-View-Controller (MVC), come rappresentato dallo schema in **figura 3.1**. 
 
@@ -27,7 +27,7 @@ Inoltre si è deciso di evolvere l'architettura precedentemente descritta realiz
 
 Facendo riferimento alla **figura 3.2** si noti che il `GameModel` risulta totalmente indipendente dal resto dell'architettura, di conseguenza viene utilizzato dai tre controller presenti che interagiscono con le rispettive View.
 
-## Comportamento dell'architettura
+## 3.2 Comportamento dell'architettura
 
 <p align="center">
   <img src="./images/03_DesignArchitetturale/LauncherDiagram.png" width="500" height="300" alt="Comportamento dell'architettura all'avvio del gioco"/>
