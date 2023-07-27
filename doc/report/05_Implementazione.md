@@ -1,7 +1,8 @@
 # Capitolo 5: Implementazione
 
 ## Sviluppo collaborativo
-(Architettura MVC base, GameEngine, Mappa)
+
+Nelle fasi iniziali il team si è concentrato sulla progettazione e implementazione delle basi del applicativo con un approccio collaborativo, procedendo alla suddivisione dei vari componenti solo successivamente. In particolare la struttura dell'architettura generale, il `GameEngine` e la parte grafica della mappa di gioco sono state progetttate e implementate in collaborazione dall'intero team di sviluppo.
 
 ## Alberto Di Girolamo
 (Infezione, PowerUp, GrigliaMenu, Launcher, Product-Owner)
