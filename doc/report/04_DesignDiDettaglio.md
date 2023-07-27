@@ -3,7 +3,7 @@
 ## Struttura del GameModel
 
 <p align="center">
-  <img src="./images/04_DesignDiDettaglio/GameModelDiagram.png" width="500" height="300" alt="Diagramma dei Package"/>
+  <img src="./images/04_DesignDiDettaglio/GameModelDiagram.png" width="764" height="600" alt="Diagramma dei Package"/>
   <p align="center"><em>Figura 4.1: Diagramma del GameModel</em></p>
 </p>
 
@@ -54,6 +54,11 @@ Sebbene sia possibile richiamare direttamente il metodo *load*, la classe `Confi
 
 Analizzando i requisiti dell'applicativo si nota che il mondo di gioco è costituito da un'insieme di regioni. Una peculiarità molto importante di una regione riguarda il fatto che oltre ad essere direttamente confinante con altre regioni, essa può possedere o meno un porto e un aeroporto che la connette a regioni non direttamente confinanti.
 
+<p align="center">
+  <img src="./images/04_DesignDiDettaglio/Regions.png" width="800" height="539" alt="Gerarchia delle regioni con Mixin"/>
+  <p align="center"><em>Figura 3.1: Gerarchia delle regioni con Mixin</em></p>
+</p>
+
 Facendo riferimento alla figura ??? si noti che questo requisito è stato modellato con l'utilizzo di **Mixin**. In particolare è stata realizzata una classe astratta `Region` che contiene al suo interno tutti i parametri comuni alle regioni (Nome, Popolazione, Clima ecc.) e memorizza inoltre le regioni direttamente confinanti e il numero di infetti.
 Si noti inoltre che la classe astratta `Region` contiene un metodo astratto *getReachableRegions()* che verrà implementato in maniera differente a seconda del tipo di regione che si sta considerando. 
 
@@ -65,11 +70,38 @@ A questo punto risulta facilmente progettabile il concetto di regione con porto 
 
 Questo approccio può essere visto come una sorta di **Decorator** in quanto presenta gli stessi vantaggi a livello di possibile espansione della logica di gioco, ad esempio se si rendesse necessario introdurre nuove possibilità di interconnessione tra regioni (come l'introduzione delle linee ferroviarie) i Mixin ne faciliterebbero l'introduzione e la combinazione con gli approcci di collegamento già presenti.
 
+### World
+
+A questo punto si rende necessaria un'entità che contenga l'insieme delle regioni appartenenti al mondo di gioco e fornisca un modo rapido e compatto per accedervi.
+Si è pensato quindi di progettare un'entità `World` che contiene al suo interno la lista di tutte le regioni presenti. `World` espone un metodo chiamato *getRegions(using filter: RegionFilter)* che restituisce un insieme di regioni in base al filtro specificato e mette a disposizione un insieme di filtri che si comportano come segue:
+
+- `infectedRegions` : individua solamente le regioni infette.
+- `notInfectedRegions` : individua solamente le regioni non infette.
+- `totallyInfectedRegions` : individua solamente le regioni completamente infette.
+- `infectedButNotCompletelyRegions` : individua solamente le regioni infette ma non completamente.
+
+Si è pensato al tipo `RegionFilter` come `Region`=>`Boolean`, di conseguenza sarà possibile specificare un qualsiasi filtro personalizzato che rispetti questa struttura, anche se non presente tra quelli già forniti. Inoltre si è pensato di progettare il metodo sopra citato in modo da restituire la lista completa di tutte le regioni, in caso non venga specificato alcun filtro. Queste peculiarità rendono la struttura del mondo di gioco versatile e facilmente estendibile.
+
 ### Routes e RouteManager
 
-### World
-(World con filtri, gerarchia regioni, rotte (Singleton))
-(Schema)
+Una volta reso possibile configurare le regioni abilitando porti e aeroporti, si rende necessaria una logica per la gestione dei collegamenti tra di esse. Si è pensato di progettare un entità `Route` che possiede il riferimento a due regioni che sono collegate e contiene inoltre la modalità con cui sono connesse (rappresentata dall'enumerazione `ReachableMode`): 
+
+- `ReachableMode.Border` : per le regioni direttamente confinanti.
+- `ReachableMode.Airport` : per le regioni collegate tramite aeroporto.
+- `ReachableMode.Port` : per le regioni collegate tramite porto.
+
+<p align="center">
+  <img src="./images/04_DesignDiDettaglio/Routes.png" width="650" height="351" alt="Route e gerarchia dei RouteManager"/>
+  <p align="center"><em>Figura 4.1: Route e gerarchia dei RouteManager</em></p>
+</p>
+
+Inoltre come viene evidenziato dalla figura ??? anche per la gestione delle rotte è stata progettata un'entità, in questo caso denominata `RouteManager`. L'idea è di avere all'interno dell'applicativo un'unica istanza di un gestore per le rotte portuali ovvero un `PortRouteManager` e allo stesso modo un'unica istanza di un gestore di rotte aeroportuali quindi un `AirportRouteManager`.
+
+Inanzitutto è stata realizzata una gerarchia con alla radice il `RouteManager` come classe astratta, esso incorpora gli aspetti che un gestore di rotte deve necessariamente avere, come la lista di tutte le rotte e la possibilità di fornire le rotte disponibili a partire da una regione. Successivamente sono stati pensati come **trait** il `PortRouteManager` e l' `AirportRouteManager` che estendono il `RouteManager` di base.
+
+In questo caso data la necessità di ottenere una sola entità per entrambi è stato utilizzato il pattern di progettazione **Singleton**. Inoltre per rispettare l' **Open-Closed Principle** è stato deciso di mantenere l'implementazione di entrambi i **trait** come privata utilizzando i rispettivi Companion Objects. 
+
+Entrambe le implementazioni si occuperanno di definire il comportamento del metodo astratto *addRoute(fromRegion: Region, toRegion: Region)* contenuto all'interno di `RouteManager`, in modo da permettere al `PortRouteManager` di poter aggiungere e gestire solamente le rotte portuali e allo stesso modo rendendo l'`AirportRouteManager` responsabile di quelle aeroportuali.
 
 ## Gestione dell'infezione
 (Schema)
@@ -77,6 +109,11 @@ Questo approccio può essere visto come una sorta di **Decorator** in quanto pre
 ## Ricerca del Vaccino
 
 Per quanto riguarda il vaccino, come già mostrato, si è pensato di realizzare un'entità denominata `VaccineHandler` che ha lo scopo di facilitarne la gestione da parte del `GameEngine` e di renderne eventuali modifiche o espansioni semplici da attuare. 
+
+<p align="center">
+  <img src="./images/04_DesignDiDettaglio/Vaccine.png" width="261" height="534" alt="Design di dettaglio per la gestione del vaccino"/>
+  <p align="center"><em>Figura 3.1: Design di dettaglio per la gestione del vaccino</em></p>
+</p>
 
 In questa parte è stato sfruttato il pattern di progettazione **Strategy**. Si noti infatti che è stata definita una `VaccineLogic` come **trait**, essa espone due metodi astratti *canResearchStart()* e *researchStep()*, essi verranno implementati da tutte le eventuali logiche per la ricerca del vaccino, definendone di conseguenza il comportamento.
 
