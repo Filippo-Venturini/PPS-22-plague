@@ -1,6 +1,6 @@
 # Capitolo 4: Design di dettaglio
 
-## Struttura del GameModel
+## 4.1 Struttura del GameModel
 
 <p align="center">
   <img src="./images/04_DesignDiDettaglio/GameModelDiagram.png" width="764" height="600" alt="Diagramma dei Package"/>
@@ -10,7 +10,7 @@
 Come già anticipato il GameModel si compone di tutte le entità individuate durante l'analisi del modello di dominio, ovvero: `Virus`, `Vaccine`, `PowerUp`, `DNAPoint`, `Region`, `Route` e `World`.
 Come mostrato in *figura 4.1* è stato deciso di progettare vari gestori che hanno l'obiettivo di rendere la gestione del dominio applicativo più versatile ed espandibile. In particolare sono quindi presenti: `InfectionHandler`, `VaccineHandler`, `DNAPointsHandler`, `PowerUpManager` e `RouteManager`.
 
-## GameEngine: Il motore di gioco
+## 4.2 GameEngine: Il motore di gioco
 
 Il `GameEngine` rappresenta il motore di gioco che si occupa della progressione della partita. 
 
@@ -22,7 +22,7 @@ Per ogni giornata il `GameEngine` ha il compito di utilizzare i gestori contenut
 
 Il `GameEngine` valuta inoltre se la partita viene vinta oppure persa dall'utente gestendo in questo modo la logica di fine partita.
 
-## Caricamento delle configurazioni di gioco
+## 4.3 Caricamento delle configurazioni di gioco
 
 Durante la fase di analisi del dominio, abbiamo notato che diversi elementi di gioco, tra i quali rotte, regioni e virus, sono costituiti da una lunga serie di parametri,
 pertanto ci è sembrata fin da subito la scelta più conveniente rappresentare tali elementi sottoforma di file di testo in modo da rendere la configurazione di gioco
@@ -48,7 +48,7 @@ Sebbene sia possibile richiamare direttamente il metodo *load*, la classe `Confi
 - il metodo *loadWorld* permette di caricare regioni e rotte in una sola operazione, restituendo un oggetto `World` contenente tutte le regioni correttamente convertite;
 - il metodo *loadVirus* restituisce un opzionale contenente un singolo oggetto `Virus` o vuoto se nessuna riga del file di configurazione è stata correttamente convertita.
 
-## Gestione del mondo di gioco
+## 4.4 Gestione del mondo di gioco
 
 ### Region
 
@@ -103,10 +103,10 @@ In questo caso data la necessità di ottenere una sola entità per entrambi è s
 
 Entrambe le implementazioni si occuperanno di definire il comportamento del metodo astratto *addRoute(fromRegion: Region, toRegion: Region)* contenuto all'interno di `RouteManager`, in modo da permettere al `PortRouteManager` di poter aggiungere e gestire solamente le rotte portuali e allo stesso modo rendendo l'`AirportRouteManager` responsabile di quelle aeroportuali.
 
-## Gestione dell'infezione
+## 4.5 Gestione dell'infezione
 (Schema)
 
-## Ricerca del Vaccino
+## 4.6 Ricerca del Vaccino
 
 Per quanto riguarda il vaccino, come già mostrato, si è pensato di realizzare un'entità denominata `VaccineHandler` che ha lo scopo di facilitarne la gestione da parte del `GameEngine` e di renderne eventuali modifiche o espansioni semplici da attuare. 
 
@@ -123,7 +123,7 @@ Nella `BasicVaccineLogic` il metodo  *canResearchStart()* definisce se la ricerc
 
 Il pattern **Strategy** è stato sfruttato nel `VaccineHandler` in quanto esso utilizza al suo interno una `VaccineLogic` che gli viene passata dall'esterno e ne utilizza i metodi definiti nel trait, ma la strategia della logica di ricerca dipende dalla tipologia di istanza passata (in questo caso `BasicVaccineLogic`).
 
-## Potenziamenti
+## 4.7 Potenziamenti
  
 ### PowerUp (Anche PowerUpType ecc.)
 
@@ -140,12 +140,12 @@ Una delle responsabilità principali del `PowerUpManager` quando deve fornire i 
 
 Un'altra importante funzione del `PowerUpManager` riguarda l'acquisto dei PowerUp...
 
-## DNAPoint
+## 4.8 DNAPoint
 (Schema)
 
-## GameView
+## 4.9 GameView
 
-## MenuView
+## 4.10 MenuView
 
 Questo componente rappresenta la parte grafica legata al Menu di gioco e come già anticipato nella descrizione dell'architettura, comunica con il `MenuController`.
 A livello di progettazione si è pensato di suddividere questo componente in tre pannelli che andranno a contenere e gestire informazioni differenti:
@@ -154,4 +154,4 @@ A livello di progettazione si è pensato di suddividere questo componente in tre
 - `PowerUpGridPanel`: mostrerà la gerarchia dei PowerUp derivata dall'analisi del dominio applicativo, indicando quali risultano acquistabili e quali no.
 - `PowerUpDetailsPanel`: visualizzerà i dettagli di un singolo PowerUp selezionato dall'utente e fornirà un meccanismo per poterlo acquistare. 
 
-## LauncherView
+## 4.11 LauncherView
