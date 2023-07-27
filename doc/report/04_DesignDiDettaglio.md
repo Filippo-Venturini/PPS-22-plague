@@ -50,7 +50,7 @@ Sebbene sia possibile richiamare direttamente il metodo *load*, la classe `Confi
 
 ## Gestione del mondo di gioco
 
-### Regions
+### Region
 
 Analizzando i requisiti dell'applicativo si nota che il mondo di gioco è costituito da un'insieme di regioni. Una peculiarità molto importante di una regione riguarda il fatto che oltre ad essere direttamente confinante con altre regioni, essa può possedere o meno un porto e un aeroporto che la connette a regioni non direttamente confinanti.
 
@@ -62,13 +62,13 @@ Analizzando i requisiti dell'applicativo si nota che il mondo di gioco è costit
 Facendo riferimento alla figura ??? si noti che questo requisito è stato modellato con l'utilizzo di **Mixin**. In particolare è stata realizzata una classe astratta `Region` che contiene al suo interno tutti i parametri comuni alle regioni (Nome, Popolazione, Clima ecc.) e memorizza inoltre le regioni direttamente confinanti e il numero di infetti.
 Si noti inoltre che la classe astratta `Region` contiene un metodo astratto *getReachableRegions()* che verrà implementato in maniera differente a seconda del tipo di regione che si sta considerando. 
 
-Scendendo nella gerarchia si notano due **trait** ovvero `Port` e `Airport` che hanno il ruolo di **Mixin**. Essi estendono la classe `Region` e implementano il metodo precedentemente citato *getReachableRegions()* aggiungendo le regioni raggiungibili tramite Porti e Aeroporti, facendo uso rispettivamente del `PortRouteManager` e dell' `AirportRouteManager`.
+Scendendo nella gerarchia si notano due **trait** ovvero `Port` e `Airport` che hanno il ruolo di **Mixin**. Essi estendono la classe `Region` e implementano il metodo precedentemente citato *getReachableRegions()* aggiungendo le regioni raggiungibili tramite Porti e Aeroporti, facendo uso rispettivamente del `PortRouteManager` e dell' `AirportRouteManager`, la cui progettazione verrà discussa in seguito.
 
 L'ultimo componente necessario per far uso di questa gerarchia è la classe `BasicRegion` che estende la classe astratta `Region` ma senza aver integrato alcun Mixin, essa rappresenta infatti l'implementazione base di una regione che non possiede ne porti ne aeroporti.
 
-A questo punto risulta facilmente progettabile il concetto di regione con porto e/o aeroporto, essa dovrà infatti semplicemente estendere la `BasicRegion` e i Mixin di cui necessita in base alla sua tipologia. 
+A questo punto risulta facilmente progettabile il concetto di regione con porto e/o aeroporto, essa dovrà infatti semplicemente estendere la `BasicRegion` e i Mixin di cui necessita in base alla sua tipologia. In questo modo ad esempio il metodo *getReachableRegions()* di una `RegionWithPort` restituirà non solo le regioni direttamente confinanti, ma anche quelle collegate attraverso il porto, ottenute utilizzando il `PortRouteManager`.
 
-Questo approccio può essere visto come una sorta di **Decorator** in quanto presenta gli stessi vantaggi a livello di possibile espansione della logica di gioco, ad esempio se si rendesse necessario introdurre nuove possibilità di interconnessione tra regioni (come l'introduzione delle linee ferroviarie) i Mixin ne faciliterebbero l'introduzione e la combinazione con gli approcci di collegamento già presenti.
+Questo approccio può essere visto come una sorta di **Decorator** in quanto presenta gli stessi vantaggi a livello di possibile espansione della logica di gioco, ad esempio se si rendesse necessario introdurre nuove possibilità di interconnessione tra regioni (come l'introduzione delle linee ferroviarie) i Mixin ne faciliterebbero la progettazione e la combinazione con gli approcci di collegamento già presenti.
 
 ### World
 
@@ -82,16 +82,16 @@ Si è pensato quindi di progettare un'entità `World` che contiene al suo intern
 
 Si è pensato al tipo `RegionFilter` come `Region`=>`Boolean`, di conseguenza sarà possibile specificare un qualsiasi filtro personalizzato che rispetti questa struttura, anche se non presente tra quelli già forniti. Inoltre si è pensato di progettare il metodo sopra citato in modo da restituire la lista completa di tutte le regioni, in caso non venga specificato alcun filtro. Queste peculiarità rendono la struttura del mondo di gioco versatile e facilmente estendibile.
 
-### Routes e RouteManager
+### Route e RouteManager
 
-Una volta reso possibile configurare le regioni abilitando porti e aeroporti, si rende necessaria una logica per la gestione dei collegamenti tra di esse. Si è pensato di progettare un entità `Route` che possiede il riferimento a due regioni che sono collegate e contiene inoltre la modalità con cui sono connesse (rappresentata dall'enumerazione `ReachableMode`): 
+Una volta reso possibile configurare le regioni abilitando porti e aeroporti, si rende necessaria una logica per la gestione dei collegamenti tra di esse. Si è pensato di progettare un entità `Route` che possiede il riferimento alle due regioni che sono collegate e contiene inoltre la modalità con cui sono connesse (rappresentata dall'enumerazione `ReachableMode`): 
 
 - `ReachableMode.Border` : per le regioni direttamente confinanti.
 - `ReachableMode.Airport` : per le regioni collegate tramite aeroporto.
 - `ReachableMode.Port` : per le regioni collegate tramite porto.
 
 <p align="center">
-  <img src="./images/04_DesignDiDettaglio/Routes.png" width="650" height="351" alt="Route e gerarchia dei RouteManager"/>
+  <img src="./images/04_DesignDiDettaglio/Routes.png" width="848" height="357" alt="Route e gerarchia dei RouteManager"/>
   <p align="center"><em>Figura 4.1: Route e gerarchia dei RouteManager</em></p>
 </p>
 
@@ -111,7 +111,7 @@ Entrambe le implementazioni si occuperanno di definire il comportamento del meto
 Per quanto riguarda il vaccino, come già mostrato, si è pensato di realizzare un'entità denominata `VaccineHandler` che ha lo scopo di facilitarne la gestione da parte del `GameEngine` e di renderne eventuali modifiche o espansioni semplici da attuare. 
 
 <p align="center">
-  <img src="./images/04_DesignDiDettaglio/Vaccine.png" width="261" height="534" alt="Design di dettaglio per la gestione del vaccino"/>
+  <img src="./images/04_DesignDiDettaglio/Vaccine.png" width="550" height="335" alt="Design di dettaglio per la gestione del vaccino"/>
   <p align="center"><em>Figura 3.1: Design di dettaglio per la gestione del vaccino</em></p>
 </p>
 
@@ -147,8 +147,8 @@ Un'altra importante funzione del `PowerUpManager` riguarda l'acquisto dei PowerU
 
 ## MenuView
 
-Questo componente rappresenta la parte grafica legata al Menu di gioco e come già anticipato nella descrizione dell'architettura comunica con il `MenuController`.
-A livello di design si è pensato di suddividere questo componente in tre pannelli che andranno a contenere e gestire informazioni differenti:
+Questo componente rappresenta la parte grafica legata al Menu di gioco e come già anticipato nella descrizione dell'architettura, comunica con il `MenuController`.
+A livello di progettazione si è pensato di suddividere questo componente in tre pannelli che andranno a contenere e gestire informazioni differenti:
 
 - `VirusPanel`: permetterà all'utente di visualizzare tutte le caratteristiche del virus durante la partita.
 - `PowerUpGridPanel`: mostrerà la gerarchia dei PowerUp derivata dall'analisi del dominio applicativo, indicando quali risultano acquistabili e quali no.
