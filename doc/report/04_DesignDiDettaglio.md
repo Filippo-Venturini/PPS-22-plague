@@ -3,7 +3,7 @@
 ## Struttura del GameModel
 
 <p align="center">
-  <img src="./images/04_DesignDiDettaglio/GameModelDiagram.png" width="500" height="300" alt="Diagramma dei Package"/>
+  <img src="./images/04_DesignDiDettaglio/GameModelDiagram.png" width="764" height="600" alt="Diagramma dei Package"/>
   <p align="center"><em>Figura 4.1: Diagramma del GameModel</em></p>
 </p>
 
@@ -66,6 +66,11 @@ Una volta reso possibile configurare le regioni abilitando porti e aeroporti, si
 - `ReachableMode.Border` : per le regioni direttamente confinanti.
 - `ReachableMode.Airport` : per le regioni collegate tramite aeroporto.
 - `ReachableMode.Port` : per le regioni collegate tramite porto.
+
+<p align="center">
+  <img src="./images/04_DesignDiDettaglio/Routes.png" width="650" height="351" alt="Route e gerarchia dei RouteManager"/>
+  <p align="center"><em>Figura 4.1: Route e gerarchia dei RouteManager</em></p>
+</p>
 
 Inoltre come viene evidenziato dalla figura ??? anche per la gestione delle rotte è stata progettata un'entità, in questo caso denominata `RouteManager`. L'idea è di avere all'interno dell'applicativo un'unica istanza di un gestore per le rotte portuali ovvero un `PortRouteManager` e allo stesso modo un'unica istanza di un gestore di rotte aeroportuali quindi un `AirportRouteManager`.
 
