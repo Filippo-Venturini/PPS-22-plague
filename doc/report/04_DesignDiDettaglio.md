@@ -123,8 +123,29 @@ Nella `BasicVaccineLogic` il metodo  *canResearchStart()* definisce se la ricerc
 
 Il pattern **Strategy** è stato sfruttato nel `VaccineHandler` in quanto esso utilizza al suo interno una `VaccineLogic` che gli viene passata dall'esterno e ne utilizza i metodi definiti nel trait, ma la strategia della logica di ricerca dipende dalla tipologia di istanza passata (in questo caso `BasicVaccineLogic`).
 
-## 4.7 Potenziamenti
- 
+## 4.7 DNAPoint
+<p align="center">
+  <img src="./images/04_DesignDiDettaglio/DnaPointsUML.png" width="550" height="335" alt="Design di dettaglio per la gestione dei DNA point"/>
+  <p align="center"><em>Figura ???: Design di dettaglio per la gestione dei DNA point</em></p>
+</p>
+
+I `DnaPoint` sono stati pensati come entità collezionabili, attraverso i quali è possibile acquistare potenziamenti. La gestione
+dei `DnaPoint` è interamente affidata al `DnaPointHandler`, il quale incapsula al suo interno la logica di spawn come da pattern
+**Strategy**. Al momento della creazione del `DnaPointHandler` è infatti chiesto di specificare la `SpawnPointLogic` da utilizzare. 
+
+La valutazione della logica è effettuata in seguito al metodo *computeDnaPointSpawn* del `DnaPointHandler`, che al suo interno richiama 
+il metodo *evaluate* della `SpawnPointLogic`. Il metodo *evaluate* non crea i veri e propri `DnaPoint`, bensì restituisce un insieme di regioni nelle quali
+spawnare i `DnaPoint`. Per ogni regione restituita, il `DnaPointHandler` richiama il metodo *spawnDnaPoint* che genera il `DnaPoint` nella regione
+specificata e notifica tutti i `DnaPointSpawnObserver` in ascolto. Il pattern **Observer** è utilizzato per aggiornare la grafica al momento e mostrare sulla
+mappa un pulsante corrispondente al `DnaPoint` appena creato.
+
+Utilizzando il meccanismo dei **Mixin** sono state realizzate diverse logiche di spawn:
+- `EmptyLogic`: il metodo *evaluate* restituisce sempre un insieme vuoto, pertanto lo spawn di nuovi DnaPoint non è possibile;
+- `OnNewInfectedRegionsLogic`: il metodo *evaluate* restituisce le regioni infette che al momento della precedente valutazione erano sane; 
+- `EveryXSecondsLogic`: il metodo *evaluate* restituisce una regione casuale tra quelle infette;
+- `BasicLogic`: è un unione delle logiche `OnNewInfectedRegionsLogic` e `EveryXSecondsLogic`.
+
+## 4.8 Potenziamenti
 ### PowerUp (Anche PowerUpType ecc.)
 
 ### PowerUpManager
@@ -139,9 +160,6 @@ Come già anticipato, anche per la gestione dei PowerUp è stata realizzata un'e
 Una delle responsabilità principali del `PowerUpManager` quando deve fornire i PowerUp acquistabili, è verificare se i prerequisiti sono soddisfatti. Come già descritto i PowerUp hanno un'organizzazione gerarchica che stabilisce la possibilità di acquistare un determinato PowerUp solamente se quelli da cui dipende sono già stati acquistati e ovviamente se si possiedono sufficienti `DNAPoints`. A livello di progettazione si è pensato di includere questo comportamento all'interno del metodo chiamato *arePrerequisiteSatisfied(powerUp: PowerUp)*.
 
 Un'altra importante funzione del `PowerUpManager` riguarda l'acquisto dei PowerUp...
-
-## 4.8 DNAPoint
-(Schema)
 
 ## 4.9 GameView
 
