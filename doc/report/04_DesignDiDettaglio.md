@@ -106,7 +106,7 @@ Entrambe le implementazioni si occuperanno di definire il comportamento del meto
 ## 4.5 Gestione dell'infezione
 <p align="center">
   <img src="./images/04_DesignDiDettaglio/InfectionDiagram.png" width="550" height="335" alt="Design di dettaglio per la gestione dell'infezione"/>
-  <p align="center"><em>Figura 3.1: Design di dettaglio per la gestione del vaccino</em></p>
+  <p align="center"><em>Figura 4.?: Design di dettaglio per la gestione dell'infezione</em></p>
 </p>
 
 L’infezione del virus costituisce il meccanismo mediante il quale il virus si diffonde all'interno dell'ambiente di gioco nel corso del tempo. Questa complessa dinamica è gestita da un `InfectionHandler`, il quale si occupa di avviare la propagazione del virus in una specifica regione scelta dall'utente e di calcolare l'incremento del numero di individui infetti.
@@ -174,7 +174,25 @@ Utilizzando il meccanismo dei **Mixin** sono state realizzate diverse logiche di
 - `BasicLogic`: è un unione delle logiche `OnNewInfectedRegionsLogic` e `EveryXSecondsLogic`.
 
 ## 4.8 Potenziamenti
-### PowerUp (Anche PowerUpType ecc.)
+<p align="center">
+  <img src="./images/04_DesignDiDettaglio/PowerUpDiagram.png" width="764" height="600" alt="Diagramma dei PowerUp"/>
+  <p align="center"><em>Figura 4.?:  Design di dettaglio per la gestione dei PowerUp</em></p>
+</p>
+### PowerUp 
+
+Il progresso all'interno del gioco si basa sulla possibilità di acquisire PowerUp, che consentono di apportare modifiche alle caratteristiche di infettività del virus.
+La classe PowerUp svolge un ruolo fondamentale, poiché contiene il riferimento alla tipologia specifica di PowerUp associato e tiene traccia se il PowerUp è stato già acquistato o meno.
+
+Anche in questa parte del progetto è stato utilizzato il pattern di progettazione **Strategy** con la trait `PowerUpLogic`. Questa trait tramite il metodo **applyTo()** permette di modificare determinate caratteristiche del virus. Ogni tipologia di powerUp possiede una specifica logica di esecuzione.
+
+All'interno del gioco, esistono diverse tipologie di PowerUp, le quali sono definite all'interno dell'enumerazione `PowerUpType`, che elenca tutte le opzioni disponibili. Ciascuna tipologia di PowerUp possiede diverse informazioni rilevanti:
+- `price: Int` rappresenta il costo necessario per acquisire il PowerUp.
+- `prerequisite: List[PowerUpType]` che può contenere una lista di `PowerUpType`; questa rappresenta una gerarchia di acquisto. Se l'utente non ha ancora acquistato i PowerUp indicati in questa lista, non sarà in grado di acquistare il PowerUp specificato.
+- `logic: PowerUpLogic` si riferisce alla logica specifica del PowerUp, che determina come esso modificherà le proprietà del virus.
+- `information: PowerUpInformation` contiene informazioni testuali che vengono utilizzate all'interno del gioco per mostrare all'utente gli effetti di ciascun PowerUp.
+
+Il componente `PowerUpLogic` consente di apportare modifiche alle caratteristiche del virus in base alle specifiche del PowerUp. Per ogni tipo di PowerUp presente, viene associata una logica unica che determinerà come il PowerUp influenzerà le proprietà del virus.
+
 
 ### PowerUpManager
 
@@ -204,3 +222,10 @@ A livello di progettazione si è pensato di suddividere questo componente in tre
 - `PowerUpDetailsPanel`: visualizzerà i dettagli di un singolo PowerUp selezionato dall'utente e fornirà un meccanismo per poterlo acquistare. 
 
 ## 4.11 LauncherView
+
+Il LauncherView funge da interfaccia attraverso la quale l'utente può inserire le informazioni necessarie per avviare una partita, come il nome del virus la regione di partenza, che costituirà il punto di inizio per la diffusione del virus all'interno del contesto di gioco.
+
+Il LauncherView comunica con il `LauncherController`, quest'ultimo permette digestire le operazioni di avvio della sessione di gioco.
+
+
+
