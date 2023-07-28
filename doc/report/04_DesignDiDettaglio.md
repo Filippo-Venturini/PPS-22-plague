@@ -212,13 +212,13 @@ Per permettere ciò, sia il `PowerUpManager` che il `Virus` sono passati come ar
 
 ## 4.9 GameView
 
-Questo compenente costituisce la parte grafica più importante dell'intera applicazione in quanto permette di interagire con
+Questo componente costituisce la parte grafica più importante dell'intera applicazione in quanto permette di interagire con
 la mappa del mondo e visualizzare lo stato di avanzamento del gioco. La grafica è aggiornata periodicamente, richiedendo le
 informazioni utili al `GameEngine`, come precedentemente mostrato nella descrizione dell'architettura.
 
 Gli elementi principali della `GameView` sono tre pannelli:
-- `WorldMapPanel`: contiene una rappresentazione interagibile del mondo di gioco. Cliccando su una regione viene aggiornato il `RegionsPanel` e sono mostrati i dettagli della singola regione selezionata. Cliccando invece su una parte di mondo non contenente regioni, il `RegionsPanel` è invece aggiornato mostrando lo stato di avanzamento dell'infezione in tutte le regioni. Il `WorldMapPanel` è di fondamentale importanza poiché su di esso compaiono i pulsanti corrispondenti ai DnaPoint. I DnaPoint possono essere raccolti cliccando sul pulsante corrispondente ed una volta cliccati scompaiono dalla mappa.
-- `RegionsPanel`: questo pannello ha due diversi utilizzi. Come già anticipato, cliccando su una singola regione sono mostrate le caratteristiche della singola regione (numero di infetti, popolazione, clima, ricchezza...), mentre cliccando al di fuori delle regioni, sono mostrate una progress bar per ogni regione rappresentanti la percentuale di infetti.
+- `WorldMapPanel`: contiene una rappresentazione interagibile del mondo di gioco. Cliccando su una regione viene aggiornato il `RegionsPanel` e sono mostrati i dettagli della singola regione selezionata. Cliccando invece su una parte di mondo non contenente regioni, il `RegionsPanel` è aggiornato mostrando lo stato di avanzamento dell'infezione in tutte le regioni. Il `WorldMapPanel` è di fondamentale importanza poiché su di esso compaiono i DnaPoint, i quali possono essere raccolti cliccando sul pulsante corrispondente.
+- `RegionsPanel`: questo pannello ha due diversi utilizzi. Come già anticipato, cliccando su una singola regione sono mostrate le caratteristiche della singola regione (numero di infetti, popolazione, clima, ricchezza...), mentre cliccando al di fuori delle regioni, è mostrata una progress bar per ogni regione che rappresenta la percentuale di infetti.
 - `GeneralInfectionPanel`: questo pannello mostra la percentuale di popolazione del mondo infetta e lo stato di avanzamento di ricerca del vaccino attraverso due progress bar. È inoltre mostrato il numero di giorni trascorsi dall'inizio dell'infezione.
 
 ## 4.10 MenuView
