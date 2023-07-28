@@ -64,3 +64,30 @@ Anche in questa parte è stato utilizzato il meccanismo degli **Aliases** per de
 
 ## 5.3 Testing
 
+Il testing è una fase fondamentale nello sviluppo di un progetto in Scala. In questo capitolo, descriveremo l'approccio utilizzato per il testing, compresi gli strumenti e le tecnologie adottate per garantire la qualità e la robustezza del nostro progetto.
+
+### 5.3.1 Testing tramite TDD (Test-Driven Development)
+
+Per assicurare che il nostro codice funzioni correttamente fin dalle prime fasi di sviluppo, abbiamo seguito l'approccio del Test-Driven Development (TDD). Questo metodo prevede di scrivere i test prima di sviluppare il codice effettivo. In altre parole, abbiamo definito i requisiti e le specifiche del nostro gioco in termini di test automatizzati, e solo successivamente abbiamo implementato le funzionalità per far sì che i test passassero. Questo processo iterativo ci ha aiutato a individuare bug e problemi fin dalla fase iniziale, permettendoci di mantenere un alto grado di affidabilità nel codice prodotto.
+
+
+### 5.3.2 Utilizzo di GitHub Actions per il Continuous Integration
+Per automatizzare il processo di testing e garantire che ogni modifica apportata al codice sia soggetta a una serie di test, abbiamo sfruttato GitHub Actions. Tramite questa piattaforma, abbiamo configurato una serie di workflow che vengono eseguiti automaticamente ogni volta che viene effettuata una push o viene aperta una pull request nel nostro repository GitHub. Questi workflow includono i test implementati con JUnit (vedi sezione successiva), e la loro esecuzione ci permette di individuare tempestivamente eventuali errori introdotti da nuove modifiche.
+
+
+### 5.3.3 Utilizzo di JUnit per i test unitari
+JUnit è stato lo strumento principale utilizzato per scrivere e gestire i test unitari nel nostro progetto. Abbiamo suddiviso le diverse funzionalità del gioco in unità separate e per ciascuna di esse abbiamo scritto una serie di test specifici. I test unitari coprono le seguenti sezioni del nostro gioco:
+
+- Configurazione dell'ambiente di gioco: Abbiamo testato la corretta gestione delle regioni, delle rotte e la configurazione iniziale del gioco per verificare che tutto funzioni secondo le aspettative.
+
+- Utilizzo dei DNAPoints: Abbiamo implementato test per assicurarci che i DNAPoints vengano utilizzati correttamente nel gioco e che le operazioni legate a essi siano accurate e prive di errori.
+
+- Logica di infezione: Abbiamo testato sia l'infezione interna ad una regione che l'infezione esterna attraverso le rotte, per garantire che il processo di diffusione del virus funzioni in modo corretto e realistico.
+
+- Gestione del virus: Abbiamo verificato che la configurazione e la modifica delle specifiche del virus siano gestite adeguatamente e rispecchino le scelte del giocatore.
+
+- PowerUp: Abbiamo testato la logica di acquisto, utilizzo e funzionamento dei PowerUp per garantire che conferiscano vantaggi al giocatore come previsto.
+
+- Logica del vaccino: Abbiamo implementato test per verificare che la logica del vaccino funzioni correttamente, permettendo al giocatore di contrastare l’infezione.
+
+- Gestione delle regioni, delle rotte e del mondo: Abbiamo testato la gestione delle regioni implementato test dettagliati per verificare che le regioni siano create e configurate correttamente. Per quanto riguarda le rotte sono state testate tutte le operazioni necessarie per il loro utilizzo, mentre per la parte del mondo abbiamo testato tutte le operazioni riguardanti la gestione delle regioni nel loro complesso: come l’ottenimento delle regioni non completamente infette, di quelle totalmente infetto, ecc..
