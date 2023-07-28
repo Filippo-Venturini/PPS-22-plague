@@ -25,7 +25,7 @@ Durante la fase iniziale di analisi dei requisiti del progetto, ho assunto il ru
 
 ## Filippo Venturini
 
-Il mio contributo nella realizzazione del progetto ha riguardato principalmente la gestione del mondo di gioco, mi sono occupato quindi della progettazione e dell'implementazione di tutto ciò che riguarda le regioni, le rotte e il mondo. Mi sono inoltre occupato dello sviluppo del vaccino ed ho contribuito alla realizzazione del `PowerUpManager`. Infine per quanto riguarda la parte grafica sono responsabile della realizzazione del pannello di infezione generale e dei pannelli del menu riguardanti le caratteristiche del Virus e i dettagli dei PowerUp.
+Il mio contributo nella realizzazione del progetto ha riguardato principalmente la gestione del mondo di gioco, mi sono occupato quindi della progettazione e dell'implementazione di tutto ciò che riguarda le regioni, le rotte e il mondo. Mi sono inoltre occupato dello sviluppo del vaccino ed ho contribuito alla realizzazione del PowerUpManager. Infine per quanto riguarda la parte grafica sono responsabile della realizzazione del pannello di infezione generale e dei pannelli del menu riguardanti le caratteristiche del Virus e i dettagli dei PowerUp.
 
 Di seguito verranno elencate le classi e i file su cui ho lavorato singolarmente, con riferimento ai package:
 
