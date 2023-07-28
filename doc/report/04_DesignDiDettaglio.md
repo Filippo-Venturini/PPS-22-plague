@@ -104,7 +104,35 @@ In questo caso data la necessità di ottenere una sola entità per entrambi è s
 Entrambe le implementazioni si occuperanno di definire il comportamento del metodo astratto *addRoute(fromRegion: Region, toRegion: Region)* contenuto all'interno di `RouteManager`, in modo da permettere al `PortRouteManager` di poter aggiungere e gestire solamente le rotte portuali e allo stesso modo rendendo l'`AirportRouteManager` responsabile di quelle aeroportuali.
 
 ## 4.5 Gestione dell'infezione
-(Schema)
+<p align="center">
+  <img src="./images/04_DesignDiDettaglio/InfectionDiagram.png" width="550" height="335" alt="Design di dettaglio per la gestione dell'infezione"/>
+  <p align="center"><em>Figura 3.1: Design di dettaglio per la gestione del vaccino</em></p>
+</p>
+
+L’infezione del virus costituisce il meccanismo mediante il quale il virus si diffonde all'interno dell'ambiente di gioco nel corso del tempo. Questa complessa dinamica è gestita da un `InfectionHandler`, il quale si occupa di avviare la propagazione del virus in una specifica regione scelta dall'utente e di calcolare l'incremento del numero di individui infetti.
+
+Nel metodo *computeInfection()* è stato deciso di utilizzare il meccanismo di scala avanzato **given**, permettendo di determinare una procedura standard di esecuzione (`InternalInfectionLogic`) nel caso in cui non ne venisse esplicitamente richiesta una diversa.
+
+In questa parte del progetto, è stato utilizzato il pattern di progettazione **Strategy** con la trait `InfectionLogic`. Questa trait espone un metodo **compute()*** non implementato, che verrà concretizzato dalle diverse logiche di infezione per determinare l'avanzamento della diffusione del virus. Il pattern **Strategy** ha permesso di separare la logica di infezione dall'implementazione concreta, ottenendo un sistema più modulare e flessibile.
+
+La logica di diffusione del virus si suddivide in due parti distinte: `InternalInfectionLogic` ed `ExternalInfectionLogic`.
+
+`InternalInfectionLogic`: Questa parte determina il modo in cui il virus si diffonde all'interno di una data regione, considerando le caratteristiche infettive del virus e la tipologia di tale area. 
+A seguito vengono riportati I metodi privati utilizzati per raggiungere questo obiettivo.
+
+- **getRichRegionInfectivityIndex(regionRichness: Int, richRegionsInfectivity: Int)**: Questo metodo calcola un indice di infettività per le regioni caratterizzate da un elevato livello di ricchezza.
+- **getPoorRegionInfectivityIndex(regionRichness: Int, poorRegionsInfectivity: Int)**: Analogamente al metodo precedente, calcola l'indice di infettività per le regioni svantaggiate economicamente.   
+- **getColdRegionInfectivityIndex(climate: Int, coldRegionsInfectivity)**: Questo metodo determina l'indice di infettività per le regioni caratterizzate da un clima freddo.
+- **getHotRegionInfectivityIndex(climate: Int, hotRegionsInfectivity)**: Similmente al metodo precedente, questo calcola l'indice di infettività per le regioni caratterizzate da un clima caldo.
+- **getLowDensityRegionInfectivityIndex(populationDensity: Unit, lowDensityRegionInfectivity)**: Questo metodo valuta l'indice di infettività per le regioni con una bassa densità di popolazione.
+- **getHighDensityRegionInfectivityIndex(populationDensity: Unit, highDensityRegionInfectivity)**: Similmente al metodo precedente, questo calcola l'indice di infettività per le Regioni con una alta densità di popolazione.
+
+Successivamente, questi indici di infettività vengono elaborati e la loro media viene calcolata mediante il metodo **getVirusInfectionRate()**. Inoltre, il metodo **GetInfectionFactor()** è responsabile di regolare la curva di crescita del numero di individui infetti all'interno di una determinata regione, aumentando o diminuendo la velocità di propagazione in base alla percentuale di individui già infetti presenti. Il calcolo ottenuto verrà poi combinato con la media degli indici calcolati precedentemente per determinare l'aumento effettivo del numero di individui infetti all'interno della regione considerata.
+
+
+`ExternalInfectionLogic`: è responsabile dell'implementazione della logica di diffusione del virus tra le regioni confinanti. Un aspetto cruciale di questa logica è il metodo denominato **getExternalInfectionIndex()**, il quale consente di ottenere un indice di infezione quando si considera una regione infetta e una sana. Questo indice svolge un ruolo chiave nel processo decisionale eseguito dal metodo compute, il quale stabilisce se la Regione sana debba essere infettata o meno. Di conseguenza, ciò comporta un incremento di un unità nel numero complessivo degli individui infetti, preparando la regione infetta ad essere gestita successivamente anche dalla logica di `InternalInfectionLogic` per quanto riguarda la diffusione del virus al suo interno.
+Per determinare se una regione sana debba essere infettata, viene applicata una specifica logica. Innanzitutto, è essenziale che le due regioni siano confinanti fisicamente o, alternativamente, possano essere collegate tramite rotte di porti o aeroporti (ovviamente, nel contesto del gioco, è fondamentale che gli spostamenti attraverso queste due tipologie di collegamenti siano abilitati). Successivamente, l'indice di infezione calcolato in precedenza viene impiegato in modo da agire come un criterio discriminante. Quando questo indice raggiunge il valore di 1, viene scatenata l'infezione nella regione sana, portando così alla trasformazione della regione in una regione infetta.
+
 
 ## 4.6 Ricerca del Vaccino
 
