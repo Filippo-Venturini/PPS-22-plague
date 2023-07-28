@@ -5,7 +5,6 @@
 Nelle fasi iniziali il team si è concentrato sulla progettazione e implementazione delle basi del applicativo con un approccio collaborativo, procedendo alla suddivisione dei vari componenti solo successivamente. In particolare la struttura dell'architettura generale, il `GameEngine` e la parte grafica della mappa di gioco sono state progetttate e implementate in collaborazione dall'intero team di sviluppo.
 
 ## Alberto Di Girolamo
-(Infezione, PowerUp, GrigliaMenu, Launcher, Product-Owner)
 
 Il mio contributo alla realizzazione del progetto si è concentrato principalmente sulla creazione del virus e sulla sua logica di infezione, sia all'interno di una regione sia per quanto riguarda l'espansione del virus su regioni sane tramite la logica esterna. Inoltre, ho gestito e sviluppato i PowerUp, occupandomi di tutti gli aspetti relativi alla loro struttura interna e alla logica di elaborazione.
 
@@ -18,6 +17,8 @@ Per ogni componente descritto in seguito, ho impiegato meccanismi di scala avanz
 - `InfectionHandler`: per quanto riguarda l'InfectionHandler, ho adottato il meccanismo delle **Given Instances**. In particolare, ho incluso una variabile immutabile di tipo `InfectionLogic` che, attraverso la keyword "**given**", permette di stabilire la logica di infezione predefinita nel caso in cui non ne venga specificata una diversa. Questa scelta è stata fatta con l'obiettivo di agevolare una possibile espansione del gioco, in modo da poter aggiungere ulteriori logiche di infezioni in futuro senza dover apportare modifiche complesse alla struttura esistente.
 
 L'utilizzo dei meccanismi di scala avanzati per la progettazione del `virus` e dell'`InfectionHandler` ha permesso di ottenere un codice modulare, flessibile e mantenibile. Questo approccio ha contribuito a garantire maggiore robustezza al progetto, fornendo una solida base per l’eventuale aggiunta di nuove funzionalità e miglioramenti al gioco nel tempo.
+
+Durante la fase iniziale di analisi dei requisiti del progetto, ho assunto il ruolo di Product Owner. Poiché tutti i membri del gruppo erano sviluppatori, l'importanza di questo ruolo è stata relativamente ridimensionata. Tuttavia, ho collaborato con lo Scrum Master e ho preso decisioni sulle priorità di sviluppo del progetto e sulle scelte necessarie per rispettare le scadenze settimanali e la deadline finale. Inoltre, ho coordinato parzialmente il lavoro del gruppo in qualità di Product Owner.
 
 ## Nicolò Malucelli
 (Configurazione, DNAPoint, PowerUpManager, Pannello dettaglio regione, Esperto di dominio)
