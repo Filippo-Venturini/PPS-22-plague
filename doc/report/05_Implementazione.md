@@ -1,10 +1,12 @@
 # Capitolo 5: Implementazione
 
-## Sviluppo collaborativo
+## 5.1 Sviluppo collaborativo
 
 Nelle fasi iniziali il team si è concentrato sulla progettazione e implementazione delle basi del applicativo con un approccio collaborativo, procedendo alla suddivisione dei vari componenti solo successivamente. In particolare la struttura dell'architettura generale, il `GameEngine` e la parte grafica della mappa di gioco sono state progetttate e implementate in collaborazione dall'intero team di sviluppo.
 
-## Alberto Di Girolamo
+## 5.2 Sviluppo individuale
+
+### Alberto Di Girolamo
 
 Il mio contributo alla realizzazione del progetto si è concentrato principalmente sulla creazione del virus e sulla sua logica di infezione, sia all'interno di una regione sia per quanto riguarda l'espansione del virus su regioni sane tramite la logica esterna. Inoltre, ho gestito e sviluppato i PowerUp, occupandomi di tutti gli aspetti relativi alla loro struttura interna e alla logica di elaborazione.
 
@@ -20,10 +22,10 @@ L'utilizzo dei meccanismi di scala avanzati per la progettazione del `virus` e d
 
 Durante la fase iniziale di analisi dei requisiti del progetto, ho assunto il ruolo di Product Owner. Poiché tutti i membri del gruppo erano sviluppatori, l'importanza di questo ruolo è stata relativamente ridimensionata. Tuttavia, ho collaborato con lo Scrum Master e ho preso decisioni sulle priorità di sviluppo del progetto e sulle scelte necessarie per rispettare le scadenze settimanali e la deadline finale. Inoltre, ho coordinato parzialmente il lavoro del gruppo in qualità di Product Owner.
 
-## Nicolò Malucelli
+### Nicolò Malucelli
 (Configurazione, DNAPoint, PowerUpManager, Pannello dettaglio regione, Esperto di dominio)
 
-## Filippo Venturini
+### Filippo Venturini
 
 Il mio contributo nella realizzazione del progetto ha riguardato principalmente la gestione del mondo di gioco, mi sono occupato quindi della progettazione e dell'implementazione di tutto ciò che riguarda le regioni, le rotte e il mondo. Mi sono inoltre occupato dello sviluppo del vaccino ed ho contribuito alla realizzazione del PowerUpManager. Infine per quanto riguarda la parte grafica sono responsabile della realizzazione del pannello di infezione generale e dei pannelli del menu riguardanti le caratteristiche del Virus e i dettagli dei PowerUp.
 
@@ -60,5 +62,5 @@ Anche in questa parte è stato utilizzato il meccanismo degli **Aliases** per de
 
 - `PowerUpDetailsPanel`: all'interno di questo pannello è stato utilizzato un `GridBagLayout` per disporre tutti i componenti. Questo layout fa uso di un oggetto di tipo `GridBagConstraint` per specificare i vincoli di ogni componente. Per facilitarne la configurazione e renderla più leggibile, è stata utilizzata la tecnica **Extension Methods** di Scala per aggiungere un nuovo metodo di configurazione alla classe `GridBagConstraint`.
 
-
+## 5.3 Testing
 
