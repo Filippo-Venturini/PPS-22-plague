@@ -178,6 +178,7 @@ Utilizzando il meccanismo dei **Mixin** sono state realizzate diverse logiche di
   <img src="./images/04_DesignDiDettaglio/PowerUpDiagram.png" width="764" height="600" alt="Diagramma dei PowerUp"/>
   <p align="center"><em>Figura 4.?:  Design di dettaglio per la gestione dei PowerUp</em></p>
 </p>
+
 ### PowerUp 
 
 Il progresso all'interno del gioco si basa sulla possibilità di acquisire PowerUp, che consentono di apportare modifiche alle caratteristiche di infettività del virus.
