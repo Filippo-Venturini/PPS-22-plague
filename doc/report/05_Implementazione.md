@@ -7,6 +7,18 @@ Nelle fasi iniziali il team si è concentrato sulla progettazione e implementazi
 ## Alberto Di Girolamo
 (Infezione, PowerUp, GrigliaMenu, Launcher, Product-Owner)
 
+Il mio contributo alla realizzazione del progetto si è concentrato principalmente sulla creazione del virus e sulla sua logica di infezione, sia all'interno di una regione sia per quanto riguarda l'espansione del virus su regioni sane tramite la logica esterna. Inoltre, ho gestito e sviluppato i PowerUp, occupandomi di tutti gli aspetti relativi alla loro struttura interna e alla logica di elaborazione.
+
+Per quanto riguarda la parte grafica, ho progettato e implementato la griglia che visualizza i PowerUp all'interno del menu, oltre a realizzare il Launcher di gioco.
+
+Per ogni componente descritto in seguito, ho impiegato meccanismi di scala avanzati per garantire un design efficiente e scalabile.
+
+- `Virus`: per quanto riguarda il `Virus`, ho scelto di utilizzare gli **Aliases**, che consentono di semplificare eventuali modifiche ai tipi di dati utilizzati per rappresentare il livello di infettività del virus su regioni con specifiche caratteristiche. Attraverso gli **Aliases**, ho definito un tipo denominato `VirusConfiguration`, il quale rappresenta una tupla contenente tutti i parametri di configurazione del virus, semplificando notevolmente la creazione di nuove istanze del virus con configurazioni diverse.
+
+- `InfectionHandler`: per quanto riguarda l'InfectionHandler, ho adottato il meccanismo delle **Given Instances**. In particolare, ho incluso una variabile immutabile di tipo `InfectionLogic` che, attraverso la keyword "**given**", permette di stabilire la logica di infezione predefinita nel caso in cui non ne venga specificata una diversa. Questa scelta è stata fatta con l'obiettivo di agevolare una possibile espansione del gioco, in modo da poter aggiungere ulteriori logiche di infezioni in futuro senza dover apportare modifiche complesse alla struttura esistente.
+
+L'utilizzo dei meccanismi di scala avanzati per la progettazione del `virus` e dell'`InfectionHandler` ha permesso di ottenere un codice modulare, flessibile e mantenibile. Questo approccio ha contribuito a garantire maggiore robustezza al progetto, fornendo una solida base per l’eventuale aggiunta di nuove funzionalità e miglioramenti al gioco nel tempo.
+
 ## Nicolò Malucelli
 (Configurazione, DNAPoint, PowerUpManager, Pannello dettaglio regione, Esperto di dominio)
 
