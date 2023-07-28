@@ -37,3 +37,26 @@ Anche in questa parte è stato utilizzato il meccanismo degli **Aliases** per de
 - `PowerUpManager`: questa entità è stata implementata in collaborazione con Nicolò Malucelli. Al suo interno è stato utilizzato il meccanismo del **for yield** per creare correttamente la lista dei PowerUp presenti all'interno del gioco.
 
 - `PowerUpDetailsPanel`: all'interno di questo pannello è stato utilizzato un `GridBagLayout` per disporre tutti i componenti. Questo layout fa uso di un oggetto di tipo `GridBagConstraint` per specificare i vincoli di ogni componente. Per facilitarne la configurazione e renderla più leggibile, è stata utilizzata la tecnica **Extension Methods** di Scala per aggiungere un nuovo metodo di configurazione alla classe `GridBagConstraint`.
+
+Di seguito verranno elencate le classi e i file su cui ho lavorato singolarmente, con riferimento ai package:
+
+`world`:
+- `RegionParameters`
+- `Regions`
+- `Routes`
+- `World`
+
+`vaccine`:
+- `VaccineHandler`
+- `VaccineResearchLogic`
+
+`powerUp`:
+- `PowerUpManager`
+
+`view.menu`:
+- `PowerUpDetailsPanel`
+- `VirusPanel`
+
+`view.game`:
+- `GeneralInfectionPanel`
+
