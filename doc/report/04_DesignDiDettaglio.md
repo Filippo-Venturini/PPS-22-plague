@@ -159,7 +159,10 @@ Come già anticipato, anche per la gestione dei PowerUp è stata realizzata un'e
 
 Una delle responsabilità principali del `PowerUpManager` quando deve fornire i PowerUp acquistabili, è verificare se i prerequisiti sono soddisfatti. Come già descritto i PowerUp hanno un'organizzazione gerarchica che stabilisce la possibilità di acquistare un determinato PowerUp solamente se quelli da cui dipende sono già stati acquistati e ovviamente se si possiedono sufficienti `DNAPoints`. A livello di progettazione si è pensato di includere questo comportamento all'interno del metodo chiamato *arePrerequisiteSatisfied(powerUp: PowerUp)*.
 
-Un'altra importante funzione del `PowerUpManager` riguarda l'acquisto dei PowerUp...
+Un'altra importante funzione del `PowerUpManager` riguarda l'acquisto dei PowerUp. È possibile acquistare un `PowerUp` attraverso
+il metodo *purchasePowerUp* specificandone il suo tipo. Al momento dell'acquisto, il costo del PowerUp
+è sottratto al saldo disponibile presente all'interno del `DnaPointsHandler`. Una volta acquistato, il PowerUp è applicato al Virus.
+Per permettere ciò, sia il `PowerUpManager` che il `Virus` sono passati come argomenti del costruttore.
 
 ## 4.9 GameView
 
