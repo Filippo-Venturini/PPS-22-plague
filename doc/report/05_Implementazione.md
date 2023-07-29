@@ -23,7 +23,41 @@ L'utilizzo dei meccanismi di scala avanzati per la progettazione del `virus` e d
 Durante la fase iniziale di analisi dei requisiti del progetto, ho assunto il ruolo di Product Owner. Poiché tutti i membri del gruppo erano sviluppatori, l'importanza di questo ruolo è stata relativamente ridimensionata. Tuttavia, ho collaborato con lo Scrum Master e ho preso decisioni sulle priorità di sviluppo del progetto e sulle scelte necessarie per rispettare le scadenze settimanali e la deadline finale. Inoltre, ho coordinato parzialmente il lavoro del gruppo in qualità di Product Owner.
 
 ### Nicolò Malucelli
-(Configurazione, DNAPoint, PowerUpManager, Pannello dettaglio regione, Esperto di dominio)
+Il mio contributo nella realizzazione del progetto ha riguardato inizialmente il caricamento dinamico delle configurazioni
+di gioco (regioni, rotte e virus). 
+
+Terminata questa parte, mi sono dedicato alla realizzazione dei DNA point e di tutto ciò 
+che ne concerne: logica di spawn, collezionabilità e utilizzo. Nello specifico, durante quest'ultimo punto ho contribuito
+alla realizzazione del PowerUpManager. Durante questa fase ho anche avuto modo di interagire anche con la parte grafica, 
+rendendo i DNA point veri e propri pulsanti cliccabili sulla mappa di gioco. 
+
+Infine, per quanto riguarda la parte grafica e di interazione con l'utente, ho contribuito alla realizzazione del pannello
+di dettaglio delle regioni ed ho reso interagibile la mappa di gioco, permettendo così di riconoscere la regione cliccata.
+
+Di seguito sono elencate le classi a cui ho lavorato con riferimento ai package:
+
+- `model.configuration.builders.*`
+- `model.configuration.Loader`
+- `model.configuration.Parsers`
+- `model.dnapoints`
+- `model.powerUp.PowerUpManager`
+- `view.game.WorldMapPanel`
+- `view.game.RegionsView.RegionsPanel`
+- `view.game.RegionsView.SingleRegionPanel`
+- `utils.Iterables`
+
+Di seguito sono elencati i meccanismi avanzati di scala da me utilizzati:
+
+- `ConfigurationsLoader`: per quanto riguarda l'implementazione del metodo *load* del ConfigurationLoader, ho fatto uso delle **Given Instances**. Nello specifico, ho permesso al compilatore di sapere quale Parser utilizzare a seconda del file di configurazione passato. Ad esempio, passando al metodo *load* un RegionFile, questo è convertito utilizzando un RegionParser. Ciò è stato possibile associando ciascun tipo di file di configurazione al proprio parser attraverso la keyword **given**, ed utilizzando la keyword **using** nel parametro *parser* del metodo *load*.
+
+- `SpawnPointLogic`: come precedentemente mostrato, la logica di spawn dei DNA point è stata implementata facendo uso dei **Mixin**. Attraverso questo meccanismo è possibile definire con facilità nuove logiche di spawn senza dover stravolgere l'architettura già presente. 
+
+- `Iterable`: Per facilitare la selezione di una regione randomica tra quelle infette, nella quale spawnare un DNA point, è stato realizzato attraverso il meccanismo degli **Extension Methods**, il metodo *getRandomElement*, che a partire da un iterabile restituisce un elemento casuale della collezione. Tale metodo è stato utilizzato anche per selezionare un pixel casuale di un determinato colore nel quale far comparire il DNA point sotto forma di pulsante.
+
+- `BufferedImage`: il meccanismo degli **Extension Methods** è stato utilizzato anche per implementare il metodo *getHexCode* della classe BufferedImage. Questo metodo, è utilizzato per conoscere il valore esadecimale del pixel cliccato, permettendo così di riconoscere quale regione del mondo di gioco è stata selezionata.
+
+In qualità di esperto del dominio, mi sono occupato di verificare la qualità del risultato dal punto di vista dell'utente finale, 
+contribuendo ad un corretto bilanciamento del gioco.
 
 ### Filippo Venturini
 
