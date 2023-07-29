@@ -25,7 +25,7 @@ Il `GameEngine` valuta inoltre se la partita viene vinta oppure persa dall'utent
 ## 4.3 Caricamento delle configurazioni di gioco
 
 Durante la fase di analisi del dominio, abbiamo notato che diversi elementi di gioco, tra i quali rotte, regioni e virus, sono costituiti da una lunga serie di parametri,
-pertanto ci è sembrata fin da subito la scelta più conveniente rappresentare tali elementi sottoforma di file di testo in modo da rendere la configurazione di gioco
+pertanto ci è sembrata fin da subito la scelta più conveniente rappresentare tali elementi sotto forma di file di testo in modo da rendere la configurazione di gioco
 indipendente dalla logica applicativa. Ogni elemento di gioco che può essere caricato dinamicamente ha associato ad esso un `ConfigurationFile`, un `Parser` ed un
 `ConfigurationBuilder`.
 
