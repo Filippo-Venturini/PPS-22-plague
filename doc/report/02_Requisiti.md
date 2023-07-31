@@ -14,11 +14,15 @@ Il gioco ha come obiettivo la diffusione di un virus con la conseguente infezion
 
 ### Gestione regioni
 
-Ogni regione presenta varie caratteristiche che rispecchiano il mondo reale e influenzano l'espansione del virus. Inoltre ogni regione può possedere o meno un aeroporto e/o un porto, che lo collega ad altri stati anche non direttamente confinanti.
+Il mondo di gioco è composto da varie regioni, ognuna presenta varie caratteristiche che rispecchiano la realtà e influenzano l'espansione del virus. Inoltre ogni regione può possedere o meno un aeroporto e/o un porto, che lo collega ad altri stati anche non direttamente confinanti.
+
+### DNA Points
+
+Durante una partita, all'interno delle regioni, vengono generati dei punti collezionabili chiamati "DNA Points". Una volta accumulati potranno essere utilizzati per potenziare il virus.
 
 ### Potenziamenti virus
 
-Il virus possiede varie caratteristiche che ne determinano la velocità di diffusione, che può essere differente in base alle caratteristiche dello stato che sta cercando di infettare. Queste caratteristiche possono essere migliorate acquistando dei potenziamenti attraverso "DNA Points" collezionabili.
+Il virus possiede varie caratteristiche che ne determinano la velocità di diffusione, che può essere differente in base alle caratteristiche dello stato che sta cercando di infettare. Queste caratteristiche possono essere migliorate acquistando dei potenziamenti attraverso i "DNA Points".
 
 ### Diffusione virus
 
@@ -36,11 +40,13 @@ Superata una determinata soglia di infezione, l'umanità inizia la ricerca di un
 
 - L'utente visualizza una mappa del mondo in cui sono rappresentate le regioni e per ognuna è indicato se possiede un porto e/o un aeroporto.
 
+- L'utente può visualizzare le rotte portuali e/o aeroportuali se abilitate.
+
 - L'utente può raccogliere "DNA Points" che vengono generati casualmente nelle regioni infette della mappa.
 
 - L'utente può selezionare una regione per visualizzarne le informazioni di dettaglio come: caratteristiche, numero di infetti e popolazione totale.
 
-- L'utente visualizza un pannello che riporta l'elenco di tutti gli stati e per ognuno la progressione dell'infezione.
+- L'utente visualizza l'elenco di tutti gli stati e per ognuno la progressione dell'infezione.
 
 - Può essere visualizzato lo stato di avanzamento della ricerca del vaccino.
   
@@ -50,7 +56,11 @@ Superata una determinata soglia di infezione, l'umanità inizia la ricerca di un
 
 - L'utente può visualizzare quali potenziamenti sono acquistabili e quali no in base ai "DNA Points" collezionati e alle dipendenze tra potenziamenti.
 
-- L'utente può visualizzare l'avanzamento dei giorni dell'anno durante l'evoluzione della partita.
+- L'utente può visualizzare i dettagli relativi ad ogni singolo potenziamento (nome, descrizione, effetto)
+
+- L'utente può visualizzare le carattteristiche del virus durante la partita
+
+- L'utente può visualizzare l'avanzamento dei giorni durante l'evoluzione della partita.
 
 - L'utente può visualizzare il numero di infetti globali rispetto alla popolazione mondiale.
 
@@ -65,7 +75,8 @@ Superata una determinata soglia di infezione, l'umanità inizia la ricerca di un
   -  **Population density** [1-5]: indica il livello della densità di popolazione della regione.
   -  **Borders control** [1-5]: riporta il controllo sui confini di una determinata regione, se alto risulta più difficile che avvenga l'infezione da parte di un altra regione.
   -  **Globalization** [1-5]: riporta il livello di tendenza agli spostamenti della popolazione della regione, se alto è più probabile ne infetti altre.
-    
+ 
+-  Ogni caratteristica ha un valore compreso tra 1 e 5 (eccetto Climate che varia tra 1 e 3).
 - Ogni stato può confinare con altri stati.
 - Uno stato può possedere un porto e/o un aeroporto che permettono la trasmissione del virus a stati non direttamente confinanti.
 - Ogni porto/aeroporto possiede delle tratte prestabilite che realizzano collegamenti con altri stati.
