@@ -158,7 +158,7 @@ Il pattern **Strategy** è stato sfruttato nel `VaccineHandler` in quanto esso u
 
 ## 4.7 DnaPoint
 <p align="center">
-  <img src="./images/04_DesignDiDettaglio/DnaPointsUML.png" width="450px" height="auto" alt="Design di dettaglio per la gestione dei DNA point"/>
+  <img src="./images/04_DesignDiDettaglio/DnaPointsUML.png" width="700px" height="auto" alt="Design di dettaglio per la gestione dei DNA point"/>
   <p align="center"><em>Figura 4.7: Design di dettaglio per la gestione dei DNA point</em></p>
 </p>
 
@@ -180,7 +180,7 @@ Utilizzando il meccanismo dei **Mixin** sono state realizzate diverse logiche di
 
 ## 4.8 Potenziamenti
 <p align="center">
-  <img src="./images/04_DesignDiDettaglio/PowerUpDiagram.png" width="670px" height="auto" alt="Diagramma dei PowerUp"/>
+  <img src="./images/04_DesignDiDettaglio/PowerUpDiagram.png" width="700px" height="auto" alt="Diagramma dei PowerUp"/>
   <p align="center"><em>Figura 4.8:  Design di dettaglio per la gestione dei PowerUp</em></p>
 </p>
 
