@@ -2,7 +2,7 @@
 
 ## 5.1 Sviluppo collaborativo
 
-Nelle fasi iniziali il team si è concentrato sulla progettazione e implementazione delle basi del applicativo con un approccio collaborativo, procedendo alla suddivisione dei vari componenti solo successivamente. In particolare la struttura dell'architettura generale, il `GameEngine` e la parte grafica della mappa di gioco sono state progetttate e implementate in collaborazione dall'intero team di sviluppo.
+Nelle fasi iniziali il team si è concentrato sulla progettazione e implementazione delle basi dell'applicativo con un approccio collaborativo, procedendo alla suddivisione dei vari componenti solo successivamente. In particolare la struttura dell'architettura generale, il `GameEngine` e la parte grafica della mappa di gioco sono state progettate e implementate in collaborazione dall'intero team di sviluppo.
 
 ## 5.2 Sviluppo individuale
 
@@ -12,7 +12,29 @@ Il mio contributo alla realizzazione del progetto si è concentrato principalmen
 
 Per quanto riguarda la parte grafica, ho progettato e implementato la griglia che visualizza i PowerUp all'interno del menu, oltre a realizzare il Launcher di gioco.
 
-Per ogni componente descritto in seguito, ho impiegato meccanismi di scala avanzati per garantire un design efficiente e scalabile.
+Di seguito verranno elencate le classi e i file su cui ho lavorato singolarmente, con riferimento ai package:
+
+`infection`:
+- `InfectionHandler`
+- `InfectionLogic`
+- `Virus`
+  
+`powerUp`:
+- `PowerUp`
+- `PowerUpInformation`
+- `PowerUpLogic`
+- `PowerUpType`
+  
+`view.menu`:
+- `PowerUpGridPanel`
+  
+`view.launcher`:
+- `LauncherView`
+  
+`controller`:
+- `LauncherController`
+
+Per ogni componente descritto in seguito, ho impiegato meccanismi di Scala avanzati per garantire un design efficiente e scalabile.
 
 - `Virus`: per quanto riguarda il `Virus`, ho scelto di utilizzare gli **Aliases**, che consentono di semplificare eventuali modifiche ai tipi di dati utilizzati per rappresentare il livello di infettività del virus su regioni con specifiche caratteristiche. Attraverso gli **Aliases**, ho definito un tipo denominato `VirusConfiguration`, il quale rappresenta una tupla contenente tutti i parametri di configurazione del virus, semplificando notevolmente la creazione di nuove istanze del virus con configurazioni diverse.
 
@@ -20,7 +42,7 @@ Per ogni componente descritto in seguito, ho impiegato meccanismi di scala avanz
 
 L'utilizzo dei meccanismi di scala avanzati per la progettazione del `virus` e dell'`InfectionHandler` ha permesso di ottenere un codice modulare, flessibile e mantenibile. Questo approccio ha contribuito a garantire maggiore robustezza al progetto, fornendo una solida base per l’eventuale aggiunta di nuove funzionalità e miglioramenti al gioco nel tempo.
 
-Durante la fase iniziale di analisi dei requisiti del progetto, ho assunto il ruolo di Product Owner. Poiché tutti i membri del gruppo erano sviluppatori, l'importanza di questo ruolo è stata relativamente ridimensionata. Tuttavia, ho collaborato con lo Scrum Master e ho preso decisioni sulle priorità di sviluppo del progetto e sulle scelte necessarie per rispettare le scadenze settimanali e la deadline finale. Inoltre, ho coordinato parzialmente il lavoro del gruppo in qualità di Product Owner.
+Durante la fase iniziale di analisi dei requisiti del progetto, ho assunto il ruolo di Product Owner. Poiché tutti i membri del gruppo erano sviluppatori, l'importanza di questo ruolo è stata relativamente ridimensionata. Tuttavia, ho collaborato con l'Esperto di Dominio e ho preso decisioni sulle priorità di sviluppo del progetto e sulle scelte necessarie per rispettare le scadenze settimanali e la deadline finale. Inoltre, ho coordinato parzialmente il lavoro del gruppo in qualità di Product Owner.
 
 ### Nicolò Malucelli
 Il mio contributo nella realizzazione del progetto ha riguardato inizialmente il caricamento dinamico delle configurazioni
@@ -46,7 +68,7 @@ Di seguito sono elencate le classi a cui ho lavorato con riferimento ai package:
 - `view.game.RegionsView.SingleRegionPanel`
 - `utils.Iterables`
 
-Di seguito sono elencati i meccanismi avanzati di scala da me utilizzati:
+Di seguito sono elencati i meccanismi avanzati di Scala da me utilizzati:
 
 - `ConfigurationsLoader`: per quanto riguarda l'implementazione del metodo *load* del ConfigurationLoader, ho fatto uso delle **Given Instances**. Nello specifico, ho permesso al compilatore di sapere quale Parser utilizzare a seconda del file di configurazione passato. Ad esempio, passando al metodo *load* un RegionFile, questo è convertito utilizzando un RegionParser. Ciò è stato possibile associando ciascun tipo di file di configurazione al proprio parser attraverso la keyword **given**, ed utilizzando la keyword **using** nel parametro *parser* del metodo *load*.
 
@@ -98,7 +120,7 @@ Anche in questa parte è stato utilizzato il meccanismo degli **Aliases** per de
 
 ## 5.3 Testing
 
-Il testing è una fase fondamentale nello sviluppo di un progetto in Scala. In questo capitolo, descriveremo l'approccio utilizzato per il testing, compresi gli strumenti e le tecnologie adottate per garantire la qualità e la robustezza del nostro progetto.
+Il testing è stato una fase fondamentale nello sviluppo di PlagueDotScala. In questo capitolo, descriveremo l'approccio utilizzato per il testing, compresi gli strumenti e le tecnologie adottate per garantire la qualità e la robustezza del nostro progetto.
 
 ### 5.3.1 Testing tramite TDD (Test-Driven Development)
 
@@ -112,7 +134,7 @@ Per automatizzare il processo di testing e garantire che ogni modifica apportata
 ### 5.3.3 Utilizzo di JUnit per i test unitari
 JUnit è stato lo strumento principale utilizzato per scrivere e gestire i test unitari nel nostro progetto. Abbiamo suddiviso le diverse funzionalità del gioco in unità separate e per ciascuna di esse abbiamo scritto una serie di test specifici. I test unitari coprono le seguenti sezioni del nostro gioco:
 
-- Configurazione dell'ambiente di gioco: Abbiamo testato la corretta gestione delle regioni, delle rotte e la configurazione iniziale del gioco per verificare che tutto funzioni secondo le aspettative.
+- Configurazione dell'ambiente di gioco: Abbiamo testato il corretto caricamento delle informazioni relative alle regioni, alle rotte e la configurazione iniziale del gioco per verificare che tutto funzioni secondo le aspettative.
 
 - Utilizzo dei DNAPoints: Abbiamo implementato test per assicurarci che i DNAPoints vengano utilizzati correttamente nel gioco e che le operazioni legate a essi siano accurate e prive di errori.
 
@@ -124,4 +146,4 @@ JUnit è stato lo strumento principale utilizzato per scrivere e gestire i test 
 
 - Logica del vaccino: Abbiamo implementato test per verificare che la logica del vaccino funzioni correttamente, permettendo al giocatore di contrastare l’infezione.
 
-- Gestione delle regioni, delle rotte e del mondo: Abbiamo testato la gestione delle regioni implementato test dettagliati per verificare che le regioni siano create e configurate correttamente. Per quanto riguarda le rotte sono state testate tutte le operazioni necessarie per il loro utilizzo, mentre per la parte del mondo abbiamo testato tutte le operazioni riguardanti la gestione delle regioni nel loro complesso: come l’ottenimento delle regioni non completamente infette, di quelle totalmente infetto, ecc..
+- Gestione delle regioni, delle rotte e del mondo: Abbiamo testato la gestione delle regioni implementato test dettagliati per verificare che le regioni siano create e configurate correttamente. Per quanto riguarda le rotte sono state testate tutte le operazioni necessarie per il loro utilizzo, mentre per la parte del mondo abbiamo testato tutte le operazioni riguardanti la gestione delle regioni nel loro complesso: come l’ottenimento delle regioni non completamente infette, di quelle totalmente infette, ecc..
