@@ -14,6 +14,8 @@ Poichè il progetto prende ispirazione dal noto gioco "Plague.Inc", si è pensat
 
 Sulla base dell'analisi effettuata, verranno organizzati alcuni meeting iniziali con lo scopo di definire i requisiti di massima del sistema, applicando eventuali modifiche e/o adattamenti alla logica di gioco presente in "Plague.Inc". In seguito, verrà realizzata una prima rappresentazione del modello del dominio applicativo così da poter stimare e dimensionare la mole di lavoro richiesta dal progetto. 
 
+In generale il gioco "PlagueDotScala" ha come obiettivo quello di far creare all'utente un virus con lo scopo di infettare l'intera popolazione mondiale, prima della produzione di un vaccino da parte dell'umanità. Per accelerare l'infezione è possibile potenziare le caratteristiche del virus rendendone più difficile la diffusione. L'utente deve inolttre considerare le caratteristiche delle regioni in cui sta diffondendo il virus trovando la strategia migliore per vincere la partita.
+
 Uno degli obiettivi principali sarà sviluppare l'applicativo attraverso un approccio incrementale che renda possibile, al termine di ogni sprint, verificare le nuove funzionalità aggiunte.
 
 Si stima che questa prima parte impiegherà all'incirca una settimana di lavoro, fornendo così al team di sviluppo una chiara visione degli obiettivi da raggiungere.
