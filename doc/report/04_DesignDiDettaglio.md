@@ -105,7 +105,7 @@ Entrambe le implementazioni si occuperanno di definire il comportamento del meto
 
 ## 4.5 Gestione dell'infezione
 <p align="center">
-  <img src="./images/04_DesignDiDettaglio/InfectionDiagram.png" width="550" height="335" alt="Design di dettaglio per la gestione dell'infezione"/>
+  <img src="./images/04_DesignDiDettaglio/InfectionDiagram.png" width="700" height="400" alt="Design di dettaglio per la gestione dell'infezione"/>
   <p align="center"><em>Figura 4.5: Design di dettaglio per la gestione dell'infezione</em></p>
 </p>
 
