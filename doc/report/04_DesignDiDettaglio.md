@@ -111,8 +111,6 @@ Entrambe le implementazioni si occuperanno di definire il comportamento del meto
 
 L’infezione del virus costituisce il meccanismo mediante il quale il virus si diffonde all'interno dell'ambiente di gioco nel corso del tempo. Questa complessa dinamica è gestita da un `InfectionHandler`, il quale si occupa di avviare la propagazione del virus in una specifica regione scelta dall'utente e di calcolare l'incremento del numero di individui infetti.
 
-Nel metodo *computeInfection()* è stato deciso di utilizzare il meccanismo di scala avanzato **given**, permettendo di determinare una procedura standard di esecuzione (`InternalInfectionLogic`) nel caso in cui non ne venisse esplicitamente richiesta una diversa.
-
 In questa parte del progetto, è stato utilizzato il pattern di progettazione **Strategy** con la trait `InfectionLogic`. Questa trait espone un metodo **compute()** non implementato, che verrà concretizzato dalle diverse logiche di infezione per determinare l'avanzamento della diffusione del virus. Il pattern **Strategy** ha permesso di separare la logica di infezione dall'implementazione concreta, ottenendo un sistema più modulare e flessibile.
 
 La logica di diffusione del virus si suddivide in due parti distinte: `InternalInfectionLogic` ed `ExternalInfectionLogic`.
