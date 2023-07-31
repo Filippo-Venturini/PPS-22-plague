@@ -12,10 +12,10 @@ Come mostrato in *figura 4.1* è stato deciso di progettare vari gestori che han
 
 ## 4.2 GameEngine: Il motore di gioco
 
-Il `GameEngine` rappresenta il motore di gioco che si occupa della progressione della partita. 
+Il `GameEngine`, già citatto nel capitolo relativo al design architetturale, è uno dei tre controller dell'applicativo e rappresenta il motore di gioco che si occupa della progressione della partita. 
 
 Nello specifico contiene al suo interno il *gameLoop()* e ogni sua iterazione rappresenta un giorno trascorso all'interno del mondo di gioco.
-Per ogni giornata il `GameEngine` ha il compito di utilizzare i gestori contenuti all'interno del `GameModel` per far progredire la partita, in particolare:
+Per ogni giornata il `GameEngine` ha il compito di utilizzare alcuni dei gestori contenuti all'interno del `GameModel` per far progredire la partita, in particolare:
 - Tramite l'`InfectionHandler` fa progredire l'infezione del virus.
 - Utilizzando il `VaccineHandler` viene valutata la progressione della ricerca del vaccino.
 - Con il `DNAPointsHandler` vengono generati i DNAPoints.
@@ -25,13 +25,13 @@ Il `GameEngine` valuta inoltre se la partita viene vinta oppure persa dall'utent
 ## 4.3 Caricamento delle configurazioni di gioco
 
 Durante la fase di analisi del dominio, abbiamo notato che diversi elementi di gioco, tra i quali rotte, regioni e virus, sono costituiti da una lunga serie di parametri,
-pertanto ci è sembrata fin da subito la scelta più conveniente rappresentare tali elementi sotto forma di file di testo in modo da rendere la configurazione di gioco
+pertanto ci è sembrata fin da subito la scelta più conveniente rappresentare tali elementi sotto forma di file di testo, in modo da rendere la configurazione di gioco
 indipendente dalla logica applicativa. Ogni elemento di gioco che può essere caricato dinamicamente ha associato ad esso un `ConfigurationFile`, un `Parser` ed un
 `ConfigurationBuilder`.
 
 <p align="center">
   <img src="./images/04_DesignDiDettaglio/ConfigurationLoaderUML.png" width="600" height="300" alt="Caricamento delle configurazione di gioco, diagramma delle classi"/>
-  <p align="center"><em>Figura 4.??: Caricamento delle configurazione di gioco, diagramma delle classi</em></p>
+  <p align="center"><em>Figura 4.2: Caricamento delle configurazione di gioco, diagramma delle classi</em></p>
 </p>
 
 Il `Parser` è l'entità che si occupa di convertire una stringa rappresentante un elemento di gioco, nell'elemento di gioco stesso.
@@ -56,10 +56,10 @@ Analizzando i requisiti dell'applicativo si nota che il mondo di gioco è costit
 
 <p align="center">
   <img src="./images/04_DesignDiDettaglio/Regions.png" width="800" height="539" alt="Gerarchia delle regioni con Mixin"/>
-  <p align="center"><em>Figura 3.1: Gerarchia delle regioni con Mixin</em></p>
+  <p align="center"><em>Figura 4.3: Gerarchia delle regioni con Mixin</em></p>
 </p>
 
-Facendo riferimento alla figura ??? si noti che questo requisito è stato modellato con l'utilizzo di **Mixin**. In particolare è stata realizzata una classe astratta `Region` che contiene al suo interno tutti i parametri comuni alle regioni (Nome, Popolazione, Clima ecc.) e memorizza inoltre le regioni direttamente confinanti e il numero di infetti.
+Facendo riferimento alla *figura 4.3* si noti che questo requisito è stato modellato con l'utilizzo di **Mixin**. In particolare è stata realizzata una classe astratta `Region` che contiene al suo interno tutti i parametri comuni alle regioni (Nome, Popolazione, Clima ecc.) e memorizza inoltre le regioni direttamente confinanti e il numero di infetti.
 Si noti inoltre che la classe astratta `Region` contiene un metodo astratto *getReachableRegions()* che verrà implementato in maniera differente a seconda del tipo di regione che si sta considerando. 
 
 Scendendo nella gerarchia si notano due **trait** ovvero `Port` e `Airport` che hanno il ruolo di **Mixin**. Essi estendono la classe `Region` e implementano il metodo precedentemente citato *getReachableRegions()* aggiungendo le regioni raggiungibili tramite Porti e Aeroporti, facendo uso rispettivamente del `PortRouteManager` e dell' `AirportRouteManager`, la cui progettazione verrà discussa in seguito.
@@ -92,10 +92,10 @@ Una volta reso possibile configurare le regioni abilitando porti e aeroporti, si
 
 <p align="center">
   <img src="./images/04_DesignDiDettaglio/Routes.png" width="848" height="357" alt="Route e gerarchia dei RouteManager"/>
-  <p align="center"><em>Figura 4.1: Route e gerarchia dei RouteManager</em></p>
+  <p align="center"><em>Figura 4.4: Route e gerarchia dei RouteManager</em></p>
 </p>
 
-Inoltre come viene evidenziato dalla figura ??? anche per la gestione delle rotte è stata progettata un'entità, in questo caso denominata `RouteManager`. L'idea è di avere all'interno dell'applicativo un'unica istanza di un gestore per le rotte portuali ovvero un `PortRouteManager` e allo stesso modo un'unica istanza di un gestore di rotte aeroportuali quindi un `AirportRouteManager`.
+Inoltre come viene evidenziato dalla *figura 4.4* anche per la gestione delle rotte è stata progettata un'entità di gestione, in questo caso denominata `RouteManager`. L'idea è di avere all'interno dell'applicativo un'unica istanza di un gestore per le rotte portuali ovvero un `PortRouteManager` e allo stesso modo un'unica istanza di un gestore di rotte aeroportuali quindi un `AirportRouteManager`.
 
 Inanzitutto è stata realizzata una gerarchia con alla radice il `RouteManager` come classe astratta, esso incorpora gli aspetti che un gestore di rotte deve necessariamente avere, come la lista di tutte le rotte e la possibilità di fornire le rotte disponibili a partire da una regione. Successivamente sono stati pensati come **trait** il `PortRouteManager` e l' `AirportRouteManager` che estendono il `RouteManager` di base.
 
@@ -106,18 +106,20 @@ Entrambe le implementazioni si occuperanno di definire il comportamento del meto
 ## 4.5 Gestione dell'infezione
 <p align="center">
   <img src="./images/04_DesignDiDettaglio/InfectionDiagram.png" width="550" height="335" alt="Design di dettaglio per la gestione dell'infezione"/>
-  <p align="center"><em>Figura 4.?: Design di dettaglio per la gestione dell'infezione</em></p>
+  <p align="center"><em>Figura 4.5: Design di dettaglio per la gestione dell'infezione</em></p>
 </p>
 
 L’infezione del virus costituisce il meccanismo mediante il quale il virus si diffonde all'interno dell'ambiente di gioco nel corso del tempo. Questa complessa dinamica è gestita da un `InfectionHandler`, il quale si occupa di avviare la propagazione del virus in una specifica regione scelta dall'utente e di calcolare l'incremento del numero di individui infetti.
 
 Nel metodo *computeInfection()* è stato deciso di utilizzare il meccanismo di scala avanzato **given**, permettendo di determinare una procedura standard di esecuzione (`InternalInfectionLogic`) nel caso in cui non ne venisse esplicitamente richiesta una diversa.
 
-In questa parte del progetto, è stato utilizzato il pattern di progettazione **Strategy** con la trait `InfectionLogic`. Questa trait espone un metodo **compute()*** non implementato, che verrà concretizzato dalle diverse logiche di infezione per determinare l'avanzamento della diffusione del virus. Il pattern **Strategy** ha permesso di separare la logica di infezione dall'implementazione concreta, ottenendo un sistema più modulare e flessibile.
+In questa parte del progetto, è stato utilizzato il pattern di progettazione **Strategy** con la trait `InfectionLogic`. Questa trait espone un metodo **compute()** non implementato, che verrà concretizzato dalle diverse logiche di infezione per determinare l'avanzamento della diffusione del virus. Il pattern **Strategy** ha permesso di separare la logica di infezione dall'implementazione concreta, ottenendo un sistema più modulare e flessibile.
 
 La logica di diffusione del virus si suddivide in due parti distinte: `InternalInfectionLogic` ed `ExternalInfectionLogic`.
 
-`InternalInfectionLogic`: Questa parte determina il modo in cui il virus si diffonde all'interno di una data regione, considerando le caratteristiche infettive del virus e la tipologia di tale area. 
+### InternalInfectionLogic
+
+Questa parte determina il modo in cui il virus si diffonde all'interno di una data regione, considerando le caratteristiche infettive del virus e la tipologia di tale area. 
 A seguito vengono riportati I metodi privati utilizzati per raggiungere questo obiettivo.
 
 - **getRichRegionInfectivityIndex(regionRichness: Int, richRegionsInfectivity: Int)**: Questo metodo calcola un indice di infettività per le regioni caratterizzate da un elevato livello di ricchezza.
@@ -130,8 +132,13 @@ A seguito vengono riportati I metodi privati utilizzati per raggiungere questo o
 Successivamente, questi indici di infettività vengono elaborati e la loro media viene calcolata mediante il metodo **getVirusInfectionRate()**. Inoltre, il metodo **GetInfectionFactor()** è responsabile di regolare la curva di crescita del numero di individui infetti all'interno di una determinata regione, aumentando o diminuendo la velocità di propagazione in base alla percentuale di individui già infetti presenti. Il calcolo ottenuto verrà poi combinato con la media degli indici calcolati precedentemente per determinare l'aumento effettivo del numero di individui infetti all'interno della regione considerata.
 
 
-`ExternalInfectionLogic`: è responsabile dell'implementazione della logica di diffusione del virus tra le regioni confinanti. Un aspetto cruciale di questa logica è il metodo denominato **getExternalInfectionIndex()**, il quale consente di ottenere un indice di infezione quando si considera una regione infetta e una sana. Questo indice svolge un ruolo chiave nel processo decisionale eseguito dal metodo compute, il quale stabilisce se la Regione sana debba essere infettata o meno. Di conseguenza, ciò comporta un incremento di un unità nel numero complessivo degli individui infetti, preparando la regione infetta ad essere gestita successivamente anche dalla logica di `InternalInfectionLogic` per quanto riguarda la diffusione del virus al suo interno.
-Per determinare se una regione sana debba essere infettata, viene applicata una specifica logica. Innanzitutto, è essenziale che le due regioni siano confinanti fisicamente o, alternativamente, possano essere collegate tramite rotte di porti o aeroporti (ovviamente, nel contesto del gioco, è fondamentale che gli spostamenti attraverso queste due tipologie di collegamenti siano abilitati). Successivamente, l'indice di infezione calcolato in precedenza viene impiegato in modo da agire come un criterio discriminante. Quando questo indice raggiunge il valore di 1, viene scatenata l'infezione nella regione sana, portando così alla trasformazione della regione in una regione infetta.
+### ExternalInfectionLogic
+
+Responsabile dell'implementazione della logica di diffusione del virus tra le regioni confinanti. 
+
+Un aspetto cruciale di questa logica è il metodo denominato **getExternalInfectionIndex()**, il quale consente di ottenere un indice di infezione quando si considera una regione infetta e una sana. Questo indice svolge un ruolo chiave nel processo decisionale eseguito dal metodo *compute*, il quale stabilisce se la regione sana debba essere infettata o meno. Di conseguenza, ciò comporta un incremento di un unità nel numero complessivo degli individui infetti, preparando la regione infetta ad essere gestita successivamente anche dalla logica di `InternalInfectionLogic` per quanto riguarda la diffusione del virus al suo interno.
+
+Per determinare se una regione sana debba essere infettata, viene applicata una specifica logica. Innanzitutto, è essenziale che le due regioni siano confinanti direttamente o, alternativamente, possano essere collegate tramite rotte di porti o aeroporti (ovviamente, nel contesto del gioco, è fondamentale che gli spostamenti attraverso queste due tipologie di collegamenti siano abilitati). Successivamente, l'indice di infezione calcolato in precedenza viene impiegato in modo da agire come un criterio discriminante. Quando questo indice raggiunge il valore di 1, viene scatenata l'infezione nella regione sana, portando così alla trasformazione della regione in una regione infetta.
 
 
 ## 4.6 Ricerca del Vaccino
@@ -140,7 +147,7 @@ Per quanto riguarda il vaccino, come già mostrato, si è pensato di realizzare 
 
 <p align="center">
   <img src="./images/04_DesignDiDettaglio/Vaccine.png" width="550" height="335" alt="Design di dettaglio per la gestione del vaccino"/>
-  <p align="center"><em>Figura 3.1: Design di dettaglio per la gestione del vaccino</em></p>
+  <p align="center"><em>Figura 4.6: Design di dettaglio per la gestione del vaccino</em></p>
 </p>
 
 In questa parte è stato sfruttato il pattern di progettazione **Strategy**. Si noti infatti che è stata definita una `VaccineLogic` come **trait**, essa espone due metodi astratti *canResearchStart()* e *researchStep()*, essi verranno implementati da tutte le eventuali logiche per la ricerca del vaccino, definendone di conseguenza il comportamento.
@@ -151,21 +158,21 @@ Nella `BasicVaccineLogic` il metodo  *canResearchStart()* definisce se la ricerc
 
 Il pattern **Strategy** è stato sfruttato nel `VaccineHandler` in quanto esso utilizza al suo interno una `VaccineLogic` che gli viene passata dall'esterno e ne utilizza i metodi definiti nel trait, ma la strategia della logica di ricerca dipende dalla tipologia di istanza passata (in questo caso `BasicVaccineLogic`).
 
-## 4.7 DNAPoint
+## 4.7 DnaPoint
 <p align="center">
   <img src="./images/04_DesignDiDettaglio/DnaPointsUML.png" width="550" height="335" alt="Design di dettaglio per la gestione dei DNA point"/>
-  <p align="center"><em>Figura ???: Design di dettaglio per la gestione dei DNA point</em></p>
+  <p align="center"><em>Figura 4.7: Design di dettaglio per la gestione dei DNA point</em></p>
 </p>
 
 I `DnaPoint` sono stati pensati come entità collezionabili, attraverso i quali è possibile acquistare potenziamenti. La gestione
 dei `DnaPoint` è interamente affidata al `DnaPointHandler`, il quale incapsula al suo interno la logica di spawn come da pattern
 **Strategy**. Al momento della creazione del `DnaPointHandler` è infatti chiesto di specificare la `SpawnPointLogic` da utilizzare. 
 
-La valutazione della logica è effettuata in seguito al metodo *computeDnaPointSpawn* del `DnaPointHandler`, che al suo interno richiama 
+La valutazione della logica è effettuata in seguito all'invocazione del metodo *computeDnaPointSpawn* del `DnaPointHandler`, che al suo interno richiama 
 il metodo *evaluate* della `SpawnPointLogic`. Il metodo *evaluate* non crea i veri e propri `DnaPoint`, bensì restituisce un insieme di regioni nelle quali
 spawnare i `DnaPoint`. Per ogni regione restituita, il `DnaPointHandler` richiama il metodo *spawnDnaPoint* che genera il `DnaPoint` nella regione
-specificata e notifica tutti i `DnaPointSpawnObserver` in ascolto. Il pattern **Observer** è utilizzato per aggiornare la grafica al momento e mostrare sulla
-mappa un pulsante corrispondente al `DnaPoint` appena creato.
+specificata e notifica tutti i `DnaPointSpawnObserver` in ascolto. Il pattern **Observer** è utilizzato per aggiornare la grafica e mostrare sulla
+mappa nella regione corretta il `DnaPoint` appena creato.
 
 Utilizzando il meccanismo dei **Mixin** sono state realizzate diverse logiche di spawn:
 - `EmptyLogic`: il metodo *evaluate* restituisce sempre un insieme vuoto, pertanto lo spawn di nuovi DnaPoint non è possibile;
@@ -176,17 +183,17 @@ Utilizzando il meccanismo dei **Mixin** sono state realizzate diverse logiche di
 ## 4.8 Potenziamenti
 <p align="center">
   <img src="./images/04_DesignDiDettaglio/PowerUpDiagram.png" width="764" height="600" alt="Diagramma dei PowerUp"/>
-  <p align="center"><em>Figura 4.?:  Design di dettaglio per la gestione dei PowerUp</em></p>
+  <p align="center"><em>Figura 4.8:  Design di dettaglio per la gestione dei PowerUp</em></p>
 </p>
 
 ### PowerUp 
 
-Il progresso all'interno del gioco si basa sulla possibilità di acquisire PowerUp, che consentono di apportare modifiche alle caratteristiche di infettività del virus.
-La classe PowerUp svolge un ruolo fondamentale, poiché contiene il riferimento alla tipologia specifica di PowerUp associato e tiene traccia se il PowerUp è stato già acquistato o meno.
+Il progresso all'interno del gioco si basa sulla possibilità di acquistare PowerUp, che consentono di apportare modifiche alle caratteristiche di infettività del virus.
+La classe PowerUp svolge un ruolo fondamentale, poiché contiene il riferimento alla tipologia specifica di PowerUp associato e tiene traccia del fatto che il PowerUp sia già stato acquistato o meno.
 
 Anche in questa parte del progetto è stato utilizzato il pattern di progettazione **Strategy** con la trait `PowerUpLogic`. Questa trait tramite il metodo **applyTo()** permette di modificare determinate caratteristiche del virus. Ogni tipologia di powerUp possiede una specifica logica di esecuzione.
 
-All'interno del gioco, esistono diverse tipologie di PowerUp, le quali sono definite all'interno dell'enumerazione `PowerUpType`, che elenca tutte le opzioni disponibili. Ciascuna tipologia di PowerUp possiede diverse informazioni rilevanti:
+All'interno del gioco, esistono diverse tipologie di PowerUp, le quali sono definite tramite l'enumerazione `PowerUpType`, che elenca tutte le opzioni disponibili. Ciascuna tipologia di PowerUp possiede diverse informazioni rilevanti:
 - `price: Int` rappresenta il costo necessario per acquisire il PowerUp.
 - `prerequisite: List[PowerUpType]` che può contenere una lista di `PowerUpType`; questa rappresenta una gerarchia di acquisto. Se l'utente non ha ancora acquistato i PowerUp indicati in questa lista, non sarà in grado di acquistare il PowerUp specificato.
 - `logic: PowerUpLogic` si riferisce alla logica specifica del PowerUp, che determina come esso modificherà le proprietà del virus.
@@ -209,7 +216,6 @@ Una delle responsabilità principali del `PowerUpManager` quando deve fornire i 
 Un'altra importante funzione del `PowerUpManager` riguarda l'acquisto dei PowerUp. È possibile acquistare un `PowerUp` attraverso
 il metodo *purchasePowerUp* specificandone il suo tipo. Al momento dell'acquisto, il costo del PowerUp
 è sottratto al saldo disponibile presente all'interno del `DnaPointsHandler`. Una volta acquistato, il PowerUp è applicato al Virus.
-Per permettere ciò, sia il `PowerUpManager` che il `Virus` sono passati come argomenti del costruttore.
 
 ## 4.9 GameView
 
@@ -218,9 +224,9 @@ la mappa del mondo e visualizzare lo stato di avanzamento del gioco. La grafica 
 informazioni utili al `GameEngine`, come precedentemente mostrato nella descrizione dell'architettura.
 
 Gli elementi principali della `GameView` sono tre pannelli:
-- `WorldMapPanel`: contiene una rappresentazione interagibile del mondo di gioco. Cliccando su una regione viene aggiornato il `RegionsPanel` e sono mostrati i dettagli della singola regione selezionata. Cliccando invece su una parte di mondo non contenente regioni, il `RegionsPanel` è aggiornato mostrando lo stato di avanzamento dell'infezione in tutte le regioni. Il `WorldMapPanel` è di fondamentale importanza poiché su di esso compaiono i DnaPoint, i quali possono essere raccolti cliccando sul pulsante corrispondente.
-- `RegionsPanel`: questo pannello ha due diversi utilizzi. Come già anticipato, cliccando su una singola regione sono mostrate le caratteristiche della singola regione (numero di infetti, popolazione, clima, ricchezza...), mentre cliccando al di fuori delle regioni, è mostrata una progress bar per ogni regione che rappresenta la percentuale di infetti.
-- `GeneralInfectionPanel`: questo pannello mostra la percentuale di popolazione del mondo infetta e lo stato di avanzamento di ricerca del vaccino attraverso due progress bar. È inoltre mostrato il numero di giorni trascorsi dall'inizio dell'infezione.
+- `WorldMapPanel`: contiene una rappresentazione interagibile del mondo di gioco. In base all'interazione con l'utente, modifica le informazioni contenute all'interno del `RegionsPanel`, permettendo di visualizzare l'andamento dell'infezione in tutte le regioni oppure mostrandone i dettagli di una specifica. Il `WorldMapPanel` è di fondamentale importanza poiché su di esso compaiono i DnaPoint, i quali possono essere collezionati dall'utente.
+- `RegionsPanel`: questo pannello ha due diversi utilizzi. Come già anticipato, possono essere mostrate le caratteristiche della singola regione (numero di infetti, popolazione, clima, ricchezza...), oppure lo stato dell'infezione per ogni regione tramite la sua percentuale di infetti.
+- `GeneralInfectionPanel`: questo pannello mostra la percentuale di popolazione del mondo infetta e lo stato di avanzamento di ricerca del vaccino. È inoltre mostrato il numero di giorni trascorsi dall'inizio dell'infezione.
 
 ## 4.10 MenuView
 
