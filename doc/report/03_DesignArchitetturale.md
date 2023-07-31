@@ -5,7 +5,7 @@
 Il software è stato progettato utilizzando il pattern architetturale Model-View-Controller (MVC), come rappresentato dallo schema in **figura 3.1**. 
 
 <p align="center">
-  <img src="./images/03_DesignArchitetturale/PackageDiagram.png" width="460" height="300" alt="Diagramma dei Package"/>
+  <img src="./images/03_DesignArchitetturale/PackageDiagram.png" width="400px" height="auto" alt="Diagramma dei Package"/>
   <p align="center"><em>Figura 3.1: Diagramma dei package</em></p>
 </p>
 
@@ -23,7 +23,7 @@ Inoltre si è deciso di evolvere l'architettura precedentemente descritta realiz
 - `MenuController`: ha il compito di gestire l'interazione tra la `MenuView` e il `GameModel`, viene creato dal `GameEngine` ogni qualvolta un utente desidera interagire con il Menu di gioco.
 
 <p align="center">
-  <img src="./images/03_DesignArchitetturale/MVCDiagram.png" width="500" height="400" alt="Architettura nel dettaglio"/>
+  <img src="./images/03_DesignArchitetturale/MVCDiagram.png" width="400px" height="auto" alt="Architettura nel dettaglio"/>
   <p align="center"><em>Figura 3.2: Architettura nel dettaglio</em></p>
 </p>
 
@@ -32,14 +32,14 @@ Facendo riferimento alla **figura 3.2** si noti che il `GameModel` viene quindi 
 ## 3.2 Comportamento dell'architettura
 
 <p align="center">
-  <img src="./images/03_DesignArchitetturale/LauncherDiagram.png" width="700" height="400" alt="Comportamento dell'architettura all'avvio del gioco"/>
+  <img src="./images/03_DesignArchitetturale/LauncherDiagram.png"  width="600px" height="auto" alt="Comportamento dell'architettura all'avvio del gioco"/>
   <p align="center"><em>Figura 3.3: Comportamento dell'architettura all'avvio del gioco</em></p>
 </p>
 
 In **figura 3.3** viene mostrato tramite un diagramma di sequenza il comportamento dell'architettura realizzata, all'avvio di PlagueDotScala. L'utente inizialmente interagisce con la `LauncherView` inserendo i dati richiesti per l'inizio di una nuova partita, in questo modo tramite il `LauncherController` è possibile istanziare la `GameView` che si occuperà della visualizzazione degli elementi di gioco principali e il `GameEngine` che regolerà la progressione del gioco.
 
 <p align="center">
-  <img src="./images/03_DesignArchitetturale/MenuDiagram.png" width="700" height="400" alt="Comportamento dell'architettura all'apertura del menu di gioco"/>
+  <img src="./images/03_DesignArchitetturale/MenuDiagram.png" width="600px" height="auto" alt="Comportamento dell'architettura all'apertura del menu di gioco"/>
   <p align="center"><em>Figura 3.4: Comportamento dell'architettura all'apertura del menu di gioco</em></p>
 </p>
 
