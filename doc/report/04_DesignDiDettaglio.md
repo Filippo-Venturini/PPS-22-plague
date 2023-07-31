@@ -3,7 +3,7 @@
 ## 4.1 Struttura del GameModel
 
 <p align="center">
-  <img src="./images/04_DesignDiDettaglio/GameModelDiagram.png" width="764" height="600" alt="Diagramma dei Package"/>
+  <img src="./images/04_DesignDiDettaglio/GameModelDiagram.png" width="624" height="500" alt="Diagramma dei Package"/>
   <p align="center"><em>Figura 4.1: Diagramma del GameModel</em></p>
 </p>
 
@@ -30,7 +30,7 @@ indipendente dalla logica applicativa. Ogni elemento di gioco che può essere ca
 `ConfigurationBuilder`.
 
 <p align="center">
-  <img src="./images/04_DesignDiDettaglio/ConfigurationLoaderUML.png" width="600" height="300" alt="Caricamento delle configurazione di gioco, diagramma delle classi"/>
+  <img src="./images/04_DesignDiDettaglio/ConfigurationLoaderUML.png" width="760" height="400" alt="Caricamento delle configurazione di gioco, diagramma delle classi"/>
   <p align="center"><em>Figura 4.2: Caricamento delle configurazione di gioco, diagramma delle classi</em></p>
 </p>
 
@@ -55,7 +55,7 @@ Sebbene sia possibile richiamare direttamente il metodo *load*, la classe `Confi
 Analizzando i requisiti dell'applicativo si nota che il mondo di gioco è costituito da un'insieme di regioni. Una peculiarità molto importante di una regione riguarda il fatto che oltre ad essere direttamente confinante con altre regioni, essa può possedere o meno un porto e un aeroporto che la connette a regioni non direttamente confinanti.
 
 <p align="center">
-  <img src="./images/04_DesignDiDettaglio/Regions.png" width="800" height="539" alt="Gerarchia delle regioni con Mixin"/>
+  <img src="./images/04_DesignDiDettaglio/Regions.png" width="600" height="439" alt="Gerarchia delle regioni con Mixin"/>
   <p align="center"><em>Figura 4.3: Gerarchia delle regioni con Mixin</em></p>
 </p>
 
@@ -91,7 +91,7 @@ Una volta reso possibile configurare le regioni abilitando porti e aeroporti, si
 - `ReachableMode.Port` : per le regioni collegate tramite porto.
 
 <p align="center">
-  <img src="./images/04_DesignDiDettaglio/Routes.png" width="848" height="357" alt="Route e gerarchia dei RouteManager"/>
+  <img src="./images/04_DesignDiDettaglio/Routes.png" width="588" height="257" alt="Route e gerarchia dei RouteManager"/>
   <p align="center"><em>Figura 4.4: Route e gerarchia dei RouteManager</em></p>
 </p>
 
@@ -144,7 +144,7 @@ Per determinare se una regione sana debba essere infettata, viene applicata una 
 Per quanto riguarda il vaccino, come già mostrato, si è pensato di realizzare un'entità denominata `VaccineHandler` che ha lo scopo di facilitarne la gestione da parte del `GameEngine` e di renderne eventuali modifiche o espansioni semplici da attuare. 
 
 <p align="center">
-  <img src="./images/04_DesignDiDettaglio/Vaccine.png" width="550" height="335" alt="Design di dettaglio per la gestione del vaccino"/>
+  <img src="./images/04_DesignDiDettaglio/Vaccine.png" width="450" height="300" alt="Design di dettaglio per la gestione del vaccino"/>
   <p align="center"><em>Figura 4.6: Design di dettaglio per la gestione del vaccino</em></p>
 </p>
 
@@ -158,7 +158,7 @@ Il pattern **Strategy** è stato sfruttato nel `VaccineHandler` in quanto esso u
 
 ## 4.7 DnaPoint
 <p align="center">
-  <img src="./images/04_DesignDiDettaglio/DnaPointsUML.png" width="550" height="335" alt="Design di dettaglio per la gestione dei DNA point"/>
+  <img src="./images/04_DesignDiDettaglio/DnaPointsUML.png" width="680" height="425" alt="Design di dettaglio per la gestione dei DNA point"/>
   <p align="center"><em>Figura 4.7: Design di dettaglio per la gestione dei DNA point</em></p>
 </p>
 
@@ -180,7 +180,7 @@ Utilizzando il meccanismo dei **Mixin** sono state realizzate diverse logiche di
 
 ## 4.8 Potenziamenti
 <p align="center">
-  <img src="./images/04_DesignDiDettaglio/PowerUpDiagram.png" width="764" height="600" alt="Diagramma dei PowerUp"/>
+  <img src="./images/04_DesignDiDettaglio/PowerUpDiagram.png" width="844" height="450" alt="Diagramma dei PowerUp"/>
   <p align="center"><em>Figura 4.8:  Design di dettaglio per la gestione dei PowerUp</em></p>
 </p>
 
