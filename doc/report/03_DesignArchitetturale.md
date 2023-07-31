@@ -17,7 +17,9 @@ Il `Controller` ha infine il compito di legare assieme Model e View in modo da a
 
 Inoltre si è deciso di evolvere l'architettura precedentemente descritta realizzando tre Controller differenti per mantenere una corretta suddivisione delle responsabilità. In particolare sono stati ideati i Controller seguenti: 
 - `LauncherController`: si occupa di ricevere i dati inseriti dall'utente all'inizio della partita tramite la corrispondente `LauncherView` ed ha il compito di avviare l'esecuzione del gioco.
+
 - `GameEngine`: rappresenta il Controller principale, si occupa della progressione del gioco ricevendo gli eventi generati dalla corrispondente `GameView` e aggiornandola a seguito di cambiamenti avvenuti nel `GameModel`, rappresenta di fatto un vero e proprio motore di gioco.
+
 - `MenuController`: ha il compito di gestire l'interazione tra la `MenuView` e il `GameModel`, viene creato dal `GameEngine` ogni qualvolta un utente desidera interagire con il Menu di gioco.
 
 <p align="center">
@@ -25,7 +27,7 @@ Inoltre si è deciso di evolvere l'architettura precedentemente descritta realiz
   <p align="center"><em>Figura 3.2: Architettura nel dettaglio</em></p>
 </p>
 
-Facendo riferimento alla **figura 3.2** si noti che il `GameModel` risulta totalmente indipendente dal resto dell'architettura, di conseguenza viene utilizzato dai tre controller presenti che interagiscono con le rispettive View.
+Facendo riferimento alla **figura 3.2** si noti che il `GameModel` viene quindi utilizzato da tutti e tre controller presenti che interagiscono inoltre con le rispettive View.
 
 ## 3.2 Comportamento dell'architettura
 
@@ -41,4 +43,4 @@ In **figura 3.3** viene mostrato tramite un diagramma di sequenza il comportamen
   <p align="center"><em>Figura 3.4: Comportamento dell'architettura all'apertura del menu di gioco</em></p>
 </p>
 
-Infine in **figura 3.4**, sempre utilizzando un diagramma di sequenza, viene mostrato il comportamento dell'architettura all'apertura del menu. L'utente interagisce inizialmente con la `GameView` per avviare la procedura di apertura del Menu di gioco, in questo caso è responsabilità del GameEngine avviare un'istanza del `MenuController` e della `MenuView` tramite il quale vengono abilitate le interazioni dell'utente con esso.
+Infine in **figura 3.4**, sempre utilizzando un diagramma di sequenza, viene mostrato il comportamento dell'architettura all'apertura del menu. L'utente interagisce inizialmente con la `GameView` per avviare la procedura di apertura del Menu di gioco, in questo caso è responsabilità del `GameEngine` avviare un'istanza del `MenuController` e della `MenuView` tramite il quale vengono abilitate le interazioni dell'utente con esso.
