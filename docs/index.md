@@ -9,4 +9,4 @@
 
  
 
-I backlog prodotti durante gli Sprint sono disponibili [qui](/process/backlog.md).
+I backlog prodotti durante gli Sprint sono disponibili <a href="https://github.com/FilippoVenturini8/PPS-22-plague/blob/master/docs/process/backlog.md">qui</a>.
