@@ -168,4 +168,4 @@ Superata una determinata soglia di infezione, l'umanità inizia la ricerca di un
   
 - Infine sarà necessaria una struttura che modelli il mondo di gioco.
 
-[Vai a Processo di Sviluppo](./01_ProcessiDiSviluppo.md) | [Torna alla Home](../index.md) | [Vai a Design Architetturale](./03_DesignArchitetturale.md)
+[Vai a Processo di Sviluppo](./01_ProcessoDiSviluppo.md) | [Torna alla Home](../index.md) | [Vai a Design Architetturale](./03_DesignArchitetturale.md)
