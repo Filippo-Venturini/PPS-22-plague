@@ -147,3 +147,5 @@ JUnit è stato lo strumento principale utilizzato per scrivere e gestire i test 
 - Logica del vaccino: Abbiamo implementato test per verificare che la logica del vaccino funzioni correttamente, permettendo al giocatore di contrastare l’infezione.
 
 - Gestione delle regioni, delle rotte e del mondo: Abbiamo testato la gestione delle regioni implementato test dettagliati per verificare che le regioni siano create e configurate correttamente. Per quanto riguarda le rotte sono state testate tutte le operazioni necessarie per il loro utilizzo, mentre per la parte del mondo abbiamo testato tutte le operazioni riguardanti la gestione delle regioni nel loro complesso: come l’ottenimento delle regioni non completamente infette, di quelle totalmente infette, ecc..
+
+[Vai a Implementazione](./05_Implementazione.md) | [Torna alla Home](../index.md) | [Vai a Retrospettiva](./06_Retrospettiva.md)
