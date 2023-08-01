@@ -239,10 +239,8 @@ A livello di progettazione si è pensato di suddividere questo componente in tre
 
 Il LauncherView funge da interfaccia attraverso la quale l'utente può inserire le informazioni necessarie per avviare una partita, come il nome del virus la regione di partenza, che costituirà il punto di inizio per la diffusione del virus all'interno del contesto di gioco.
 
-[Vai a Design di Dettaglio](./04_DesignDiDettaglio.md) | [Torna alla Home](../index.md) | [Vai a Implementazione](./05_Implementazione.md)
-
-
 Il LauncherView comunica con il `LauncherController`, quest'ultimo permette digestire le operazioni di avvio della sessione di gioco.
 
+[Vai a Design Architetturale](./03_DesignArchitetturale.md) | [Torna alla Home](../index.md) | [Vai a Implementazione](./05_Implementazione.md)
 
 
