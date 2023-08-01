@@ -33,3 +33,11 @@ Al termine di ogni sprint è previsto un meeting, durante il quale saranno anali
 Per verificare la correttezza delle funzionalità sviluppate si utilizzerà un approccio di tipo Test Driven Development (TDD) in modo tale da verificare la presenza di errori sui singoli componenti durante la loro implementazione e poterli quindi correggere prima di procedere con lo sviluppo di feature successive.
 
 Si è inoltre deciso di utilizzare GitHub Actions in modo da poter verificare in automatico la correttezza dei test in seguito ad ogni push sul repository, segnalando l'eventuale presenza di test falliti attraverso una notifica via mail a tutti i membri del gruppo.
+
+<nav>
+  <ul>
+    <li><a href="/02_Requisiti.md">Requisiti</a></li>
+    <li><a href="/03_DesignArchitetturale.md">Design Architetturale</a></li>
+    <li><a href="/04_DesignDiDettaglio.md">Design di Dettaglio</a></li>
+  </ul>
+</nav>
