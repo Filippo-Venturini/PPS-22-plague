@@ -44,3 +44,5 @@ In **figura 3.3** viene mostrato tramite un diagramma di sequenza il comportamen
 </p>
 
 Infine in **figura 3.4**, sempre utilizzando un diagramma di sequenza, viene mostrato il comportamento dell'architettura all'apertura del menu. L'utente interagisce inizialmente con la `GameView` per avviare la procedura di apertura del Menu di gioco, in questo caso è responsabilità del `GameEngine` avviare un'istanza del `MenuController` e della `MenuView` tramite il quale vengono abilitate le interazioni dell'utente con esso.
+
+[Vai a Design Architetturale](./03_DesignArchitetturale.md) | [Torna alla Home](../index.md) | [Vai a Design di Dettaglio](./04_DesignDiDettaglio.md)
