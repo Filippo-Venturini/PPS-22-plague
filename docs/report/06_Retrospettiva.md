@@ -27,3 +27,6 @@ Analizzando a posteriori il processo di sviluppo il team si reputa soddisfatto, 
 ## 6.2 Conclusioni
 
 La realizzazione di questo progetto ha incrementato notevolmente le capacità di gestione e organizzazione del lavoro da parte dell'intero team. La scelta sul tipo di software da realizzare non è stata semplice, in quanto si richiedeva necessariamente un dominio applicativo che desse spazio all'esplorazione di meccanismi complessi, ma che allo stesso tempo non interferisse con l'obbiettivo principale aggiungendo complessità non necessaria per la realizzazione della parte grafica. Con questo progetto inoltre il team è riuscito a sperimentare concretamente meccanismi di Scala che diversamente sarebbe stato difficile apprendere completamente ed applicare. Il team ha notato inoltre un deciso e marcato miglioramento durante la fase di progettazione rispetto a progetti svolti in passato. Reputiamo quindi questo progetto come costruttivo e fondamentale per l'apprendimento dei concetti trattati durante il corso e utile per l'integrazione di essi con le nostre conoscenze pregresse.
+
+[Vai a Implementazione](./05_Implementazione.md) | [Torna alla Home](../index.md) |
+
