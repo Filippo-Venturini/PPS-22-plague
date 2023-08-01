@@ -34,10 +34,4 @@ Per verificare la correttezza delle funzionalità sviluppate si utilizzerà un a
 
 Si è inoltre deciso di utilizzare GitHub Actions in modo da poter verificare in automatico la correttezza dei test in seguito ad ogni push sul repository, segnalando l'eventuale presenza di test falliti attraverso una notifica via mail a tutti i membri del gruppo.
 
-<nav>
-  <ul>
-    <li><a href="/02_Requisiti.md">Requisiti</a></li>
-    <li><a href="/03_DesignArchitetturale.md">Design Architetturale</a></li>
-    <li><a href="/04_DesignDiDettaglio.md">Design di Dettaglio</a></li>
-  </ul>
-</nav>
+[Torna alla Home](./index.md) | [Vai a Requisiti](./Requisiti.md)
