@@ -34,4 +34,4 @@ Per verificare la correttezza delle funzionalità sviluppate si utilizzerà un a
 
 Si è inoltre deciso di utilizzare GitHub Actions in modo da poter verificare in automatico la correttezza dei test in seguito ad ogni push sul repository, segnalando l'eventuale presenza di test falliti attraverso una notifica via mail a tutti i membri del gruppo.
 
-[Torna alla Home](./index.md) | [Vai a Requisiti](./Requisiti.md)
+[Torna alla Home](../index.md) | [Vai a Requisiti](./02_Requisiti.md)
