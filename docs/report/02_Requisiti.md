@@ -167,3 +167,5 @@ Superata una determinata soglia di infezione, l'umanità inizia la ricerca di un
 - Si richiede inoltre la realizzazione di un'entità che si occupa del caricamento e gestione delle configurazioni iniziali.
   
 - Infine sarà necessaria una struttura che modelli il mondo di gioco.
+
+[Vai a Processo di Sviluppo](./01_ProcessiDiSviluppo.md) | [Torna alla Home](../index.md) | [Vai a Design Architetturale](./03_DesignArchitetturale.md)
