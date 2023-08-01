@@ -1,4 +1,4 @@
-name: Test runner
+name: Test & Coverage
 run-name: ${{ github.actor }} has pushed. Running all the test 🚀
 on: push
 jobs:
